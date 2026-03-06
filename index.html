@@ -1,0 +1,1013 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IntegrateAI Advisors — AI Consultancy for SMEs</title>
+  <meta name="description" content="Practical AI consultancy &middot; Anthropic ecosystem. We set up AI workflows, build prompt libraries, add light automation, and train your team — delivering measurable time savings within weeks, not months." />
+  <meta property="og:title" content="IntegrateAI Advisors — AI Consultancy for SMEs" />
+  <meta property="og:description" content="Extend your team with AI employees that have six-figure expertise. We implement OpenClaw agents and Claude Cowork for solo entrepreneurs and SMEs. Book your free AI diagnostic." />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+:root {
+  --white:#ffffff; --cream:#faf6f1; --dark:#1e1710; --dark2:#262018;
+  --terra:#c05828; --terra-lt:#d46838; --terra-dk:#9d4420;
+  --terra-bg:rgba(192,88,40,0.08); --terra-ring:rgba(192,88,40,0.22);
+  --ink:#1a1208; --ink-2:#3e2e1d; --ink-3:#6a5240; --ink-4:#9c8170;
+  --lite:#faf6f1; --lite-2:rgba(250,246,241,0.68); --lite-3:rgba(250,246,241,0.38);
+  --br-l:rgba(26,18,8,0.09); --br-d:rgba(250,246,241,0.09);
+  --green:#22c55e; --green-bg:rgba(34,197,94,0.12); --green-tx:#4ade80;
+  --amber:#f59e0b; --amber-bg:rgba(234,179,8,0.12); --amber-tx:#facc15;
+  --serif:'Lora',Georgia,serif; --sans:'DM Sans',system-ui,sans-serif; --mono:'JetBrains Mono',monospace;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);font-size:16px;line-height:1.6;color:var(--ink);background:var(--white);-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:0 32px}
+.sec{padding:96px 0}
+
+/* Grain */
+.grain::after{content:'';position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E");background-size:200px;pointer-events:none;z-index:0;opacity:0.5}
+.grain{position:relative}.grain>*{position:relative;z-index:1}
+
+/* Scroll progress */
+.scroll-progress{position:fixed;top:0;left:0;z-index:600;width:0%;height:3px;background:linear-gradient(90deg,var(--terra),var(--terra-lt));box-shadow:0 0 8px rgba(192,88,40,0.35);pointer-events:none}
+
+/* Globals */
+.eyebrow{display:inline-block;font-size:11px;font-weight:600;letter-spacing:0.13em;text-transform:uppercase;color:var(--terra);margin-bottom:16px}
+.eyebrow--dark{color:var(--terra-lt)}
+.hdg{font-family:var(--serif);font-size:clamp(28px,4vw,46px);font-weight:600;line-height:1.14;letter-spacing:-0.02em;color:var(--ink)}
+.hdg em{font-style:italic;color:var(--terra)}
+.hdg--dark{color:var(--lite)}.hdg--dark em{color:var(--terra-lt)}
+.hdg--center{text-align:center}
+.copy{font-size:16px;font-weight:300;line-height:1.72;color:var(--ink-3);margin-top:14px}
+.copy--dark{color:var(--lite-2)}.copy--center{text-align:center;max-width:520px;margin-left:auto;margin-right:auto}
+
+:focus-visible{outline:2px solid var(--terra);outline-offset:3px;border-radius:4px}
+.skip-link{position:absolute;top:-100%;left:16px;background:var(--terra);color:#fff;padding:8px 18px;border-radius:0 0 8px 8px;font-size:14px;font-weight:500;text-decoration:none;z-index:9999;transition:top 0.2s}
+.skip-link:focus{top:0}
+
+/* Buttons */
+.btn{display:inline-flex;align-items:center;gap:7px;font-family:var(--sans);font-size:15px;font-weight:500;padding:13px 26px;border-radius:100px;text-decoration:none;border:none;cursor:pointer;transition:transform 0.17s,box-shadow 0.17s,background 0.17s;white-space:nowrap;position:relative;overflow:hidden}
+.btn:hover{transform:translateY(-2px)}.btn:active{transform:translateY(0)}
+.btn-primary{background:var(--terra);color:#fff;box-shadow:0 4px 18px rgba(192,88,40,0.30)}
+.btn-primary:hover{background:var(--terra-dk);box-shadow:0 8px 28px rgba(192,88,40,0.38)}
+.btn-primary::after{content:'';position:absolute;top:0;left:-100%;width:60%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.25),transparent);animation:btn-shine 2.8s ease-in-out infinite}
+@keyframes btn-shine{0%{left:-100%}40%{left:140%}100%{left:140%}}
+.btn-ghost{background:transparent;color:var(--ink-2);border:1.5px solid var(--br-l)}
+.btn-ghost:hover{border-color:var(--terra);color:var(--terra)}
+.btn-ghost-dark{background:transparent;color:var(--lite);border:1.5px solid var(--br-d)}
+.btn-ghost-dark:hover{border-color:var(--terra-lt);color:var(--terra-lt)}
+.btn-white{background:#fff;color:var(--terra-dk);box-shadow:0 4px 20px rgba(0,0,0,0.14)}
+.btn-white:hover{box-shadow:0 10px 32px rgba(0,0,0,0.20)}
+.btn-white::after{content:'';position:absolute;top:0;left:-100%;width:60%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.45),transparent);animation:btn-shine 2.8s ease-in-out infinite}
+
+/* Reveal */
+.r{opacity:0;transform:translateY(24px);transition:opacity 0.6s cubic-bezier(0.22,1,0.36,1),transform 0.6s cubic-bezier(0.22,1,0.36,1)}
+.r.on{opacity:1;transform:none}
+.r.d1{transition-delay:0.08s}.r.d2{transition-delay:0.16s}.r.d3{transition-delay:0.24s}.r.d4{transition-delay:0.32s}.r.d5{transition-delay:0.40s}
+
+/* ─ Functional badge (reusable) ─ */
+.fbadge{display:inline-flex;align-items:center;gap:5px;font-family:var(--mono);font-size:11px;font-weight:500;padding:3px 10px;border-radius:100px}
+.fbadge--green{background:var(--green-bg);color:var(--green-tx)}
+.fbadge--amber{background:var(--amber-bg);color:var(--amber-tx)}
+.fbadge--terra{background:rgba(192,88,40,0.15);color:var(--terra-lt)}
+.fbadge--ink{background:rgba(26,18,8,0.06);color:var(--ink-3)}
+.fbadge__dot{width:6px;height:6px;border-radius:50%;background:currentColor;animation:dot-pulse 2s ease-in-out infinite}
+@keyframes dot-pulse{0%,100%{opacity:1}50%{opacity:0.35}}
+
+/* ════════════════ NAV ════════════════ */
+.nav{position:fixed;top:0;left:0;right:0;z-index:500;height:60px;display:flex;align-items:center;background:rgba(255,255,255,0.95);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--br-l);transition:box-shadow 0.3s,background 0.3s,border-color 0.3s}
+.nav.up{box-shadow:0 2px 18px rgba(26,18,8,0.07)}
+.nav.menu-open{background:var(--dark);border-bottom-color:rgba(250,246,241,0.06)}
+.nav.menu-open .nav__brand{color:var(--lite)}
+.nav.menu-open .nav__orb--lite{background:var(--dark2);border-color:rgba(250,246,241,0.10)}
+.nav__in{max-width:1080px;margin:0 auto;padding:0 32px;width:100%;display:flex;align-items:center;justify-content:space-between}
+.nav__logo{display:flex;align-items:center;gap:9px;text-decoration:none}
+.nav__orb{width:32px;height:32px;border-radius:9px;position:relative;flex-shrink:0;overflow:hidden;transition:transform 0.3s cubic-bezier(0.34,1.56,0.64,1);display:grid;grid-template-columns:repeat(4,1fr);gap:2px;padding:6px;align-content:center}
+.nav__orb--dark{background:var(--dark);box-shadow:0 1px 6px rgba(0,0,0,0.15)}
+.nav__orb--lite{background:var(--cream);border:1px solid rgba(26,18,8,0.08)}
+.nav.scrolled .nav__orb{width:28px;height:28px;padding:5px;border-radius:7px}
+.nav__logo:hover .nav__orb{transform:scale(1.08)}
+.v4__dot{aspect-ratio:1;border-radius:50%;background:var(--terra)}
+.v4__dot--dim{opacity:0.15}
+.v4__dot--mid{opacity:0.5}
+.v4__dot--bright{opacity:1;animation:v4-glow 2s ease-in-out infinite}
+@keyframes v4-glow{0%,100%{box-shadow:0 0 3px rgba(192,88,40,0.3)}50%{box-shadow:0 0 8px rgba(192,88,40,0.6)}}
+.shifting .v4__dot{animation:v4-shift 4s ease-in-out infinite}
+.v4__dot:nth-child(1){animation-delay:0s}.v4__dot:nth-child(2){animation-delay:0.2s}
+.v4__dot:nth-child(3){animation-delay:0.4s}.v4__dot:nth-child(4){animation-delay:0.6s}
+.v4__dot:nth-child(5){animation-delay:0.8s}.v4__dot:nth-child(6){animation-delay:1.0s}
+.v4__dot:nth-child(7){animation-delay:1.2s}.v4__dot:nth-child(8){animation-delay:1.4s}
+@keyframes v4-shift{0%,100%{opacity:var(--o,1)}33%{opacity:0.15}66%{opacity:var(--o,1)}}
+.v4__dot:nth-child(1){--o:1}.v4__dot:nth-child(2){--o:0.15}.v4__dot:nth-child(3){--o:0.5}.v4__dot:nth-child(4){--o:1}
+.v4__dot:nth-child(5){--o:0.15}.v4__dot:nth-child(6){--o:1}.v4__dot:nth-child(7){--o:1}.v4__dot:nth-child(8){--o:0.5}
+.nav__brand{font-family:var(--sans);font-size:15px;font-weight:600;color:var(--ink);letter-spacing:-0.01em}
+.nav__links{list-style:none;display:flex;gap:26px}
+.nav__links a{font-size:13px;color:var(--ink-3);text-decoration:none;transition:color 0.18s;position:relative}
+.nav__links a::after{content:'';position:absolute;bottom:-2px;left:0;right:0;height:1.5px;background:var(--terra);transform:scaleX(0);transform-origin:right;transition:transform 0.28s cubic-bezier(0.22,1,0.36,1)}
+.nav__links a:hover{color:var(--ink)}.nav__links a:hover::after{transform:scaleX(1);transform-origin:left}
+.nav__cta-desktop{font-size:13px!important;padding:10px 20px!important}
+.nav__toggle{display:none;background:none;border:none;cursor:pointer;width:36px;height:36px;position:relative;z-index:510;flex-shrink:0}
+.nav__toggle span{display:block;width:20px;height:2px;background:var(--ink);border-radius:2px;position:absolute;left:8px;transition:transform 0.3s,opacity 0.2s}
+.nav__toggle span:nth-child(1){top:11px}.nav__toggle span:nth-child(2){top:17px}.nav__toggle span:nth-child(3){top:23px}
+.nav__toggle.open span:nth-child(1){transform:translateY(6px) rotate(45deg);background:var(--lite)}.nav__toggle.open span:nth-child(2){opacity:0}.nav__toggle.open span:nth-child(3){transform:translateY(-6px) rotate(-45deg);background:var(--lite)}
+.nav__mobile{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:var(--dark);flex-direction:column;z-index:499;opacity:0;transform:translateY(-10px);transition:opacity 0.35s ease,transform 0.35s ease;overflow-y:auto}
+.nav__mobile.open{display:flex;opacity:1;transform:none}
+.nav__mobile-top{padding:80px 32px 0;flex:1;display:flex;flex-direction:column;justify-content:center;gap:0}
+.nav__mobile-link{display:flex;align-items:center;justify-content:space-between;padding:22px 0;border-bottom:1px solid rgba(250,246,241,0.06);text-decoration:none;opacity:0;transform:translateX(-16px);transition:opacity 0.3s ease,transform 0.3s ease}
+.nav__mobile.open .nav__mobile-link{opacity:1;transform:none}
+.nav__mobile.open .nav__mobile-link:nth-child(1){transition-delay:0.08s}
+.nav__mobile.open .nav__mobile-link:nth-child(2){transition-delay:0.14s}
+.nav__mobile.open .nav__mobile-link:nth-child(3){transition-delay:0.20s}
+.nav__mobile.open .nav__mobile-link:nth-child(4){transition-delay:0.26s}
+.nav__mobile-link:last-child{border-bottom:none}
+.nav__mobile-link span{font-family:var(--serif);font-size:28px;font-weight:600;color:var(--lite);transition:color 0.2s}
+.nav__mobile-link:hover span{color:var(--terra-lt)}
+.nav__mobile-link svg{width:20px;height:20px;stroke:var(--lite-3);stroke-width:1.5;fill:none;stroke-linecap:round;transition:transform 0.2s,stroke 0.2s}
+.nav__mobile-link:hover svg{transform:translateX(4px);stroke:var(--terra-lt)}
+.nav__mobile-bottom{padding:24px 32px 40px;border-top:1px solid rgba(250,246,241,0.06)}
+.nav__mobile-cta{display:flex;width:100%;justify-content:center;margin-bottom:20px}
+.nav__mobile-cta .btn{width:100%;justify-content:center;font-size:16px;padding:16px 24px}
+.nav__mobile-meta{display:flex;align-items:center;gap:8px;justify-content:center}
+.nav__mobile-meta span{font-size:11px;color:var(--lite-3);opacity:0.5}
+
+/* ════════════════ HERO ════════════════ */
+.hero{background:var(--white);min-height:100svh;display:grid;place-items:center;text-align:center;padding:120px 24px 96px;position:relative;overflow:hidden}
+.hero__orb{position:absolute;border-radius:50%;pointer-events:none;filter:blur(80px);opacity:0}
+.hero__orb-1{width:600px;height:600px;background:radial-gradient(circle,rgba(192,88,40,0.10) 0%,transparent 70%);top:-180px;left:50%;transform:translateX(-50%);animation:orb-fade 1.2s 0.5s ease forwards,orb-float-1 14s 1.7s ease-in-out infinite alternate}
+.hero__orb-2{width:380px;height:380px;background:radial-gradient(circle,rgba(192,88,40,0.07) 0%,transparent 70%);bottom:60px;right:6%;animation:orb-fade 1.4s 0.9s ease forwards,orb-float-2 17s 2.3s ease-in-out infinite alternate}
+.hero__orb-3{width:300px;height:300px;background:radial-gradient(circle,rgba(192,88,40,0.06) 0%,transparent 70%);bottom:140px;left:4%;animation:orb-fade 1.6s 1.2s ease forwards,orb-float-3 19s 2.8s ease-in-out infinite alternate}
+@keyframes orb-fade{to{opacity:1}}
+@keyframes orb-float-1{from{transform:translateX(-50%) translateY(0)}to{transform:translateX(-50%) translateY(32px)}}
+@keyframes orb-float-2{from{transform:translateY(0) scale(1)}to{transform:translateY(-22px) scale(1.07)}}
+@keyframes orb-float-3{from{transform:translateY(0) scale(1)}to{transform:translateY(18px) scale(0.95)}}
+.hero__inner{position:relative;z-index:1;width:100%;max-width:900px}
+.hero__badge{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:500;color:var(--terra);background:var(--terra-bg);border:1px solid var(--terra-ring);padding:5px 14px 5px 10px;border-radius:100px;margin-bottom:36px;opacity:0;animation:fade-up 0.5s 0.3s ease forwards;white-space:nowrap}
+.hero__pulse{width:6px;height:6px;background:var(--terra);border-radius:50%;flex-shrink:0;animation:pulse-dot 2.2s ease-in-out infinite}
+@keyframes pulse-dot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.35;transform:scale(0.7)}}
+.hero__h1{font-family:var(--serif);font-size:clamp(46px,7vw,88px);font-weight:600;line-height:1.07;letter-spacing:-0.028em;color:var(--ink);max-width:900px;margin:0 auto;opacity:0;animation:fade-up 0.6s 0.4s cubic-bezier(0.22,1,0.36,1) forwards}
+.hero__rule{display:block;width:48px;height:2px;margin:22px auto 18px;background:var(--terra);border-radius:2px;opacity:0;animation:fade-up 0.5s 0.65s ease forwards,rule-expand 0.6s 0.65s cubic-bezier(0.22,1,0.36,1) forwards}
+@keyframes rule-expand{from{width:0}to{width:48px}}
+.hero__tw-slot{display:flex;align-items:flex-start;justify-content:center;font-family:var(--serif);font-size:clamp(46px,7vw,88px);font-weight:600;line-height:1.07;letter-spacing:-0.028em;font-style:italic;color:var(--terra);text-align:center;min-height:1.07em;margin:0 auto;opacity:0;animation:fade-up 0.6s 0.75s cubic-bezier(0.22,1,0.36,1) forwards}
+.hero__tw-text{display:inline}
+.hero__tw-cursor{display:none}
+.hero__tw-text::after{content:'';display:inline-block;width:3px;height:0.7em;background:var(--terra);border-radius:1px;margin-left:2px;animation:tw-blink 0.9s step-end infinite}
+@keyframes tw-blink{0%,100%{opacity:1}50%{opacity:0}}
+.hero__sub{margin-top:34px;font-size:clamp(16px,2vw,19px);font-weight:300;color:var(--ink-3);max-width:540px;margin-left:auto;margin-right:auto;line-height:1.68;opacity:0}
+.hero__btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:42px;opacity:0}
+.hero__stats{margin-top:72px;max-width:720px;width:100%;margin-left:auto;margin-right:auto;opacity:0;background:var(--dark);border:1px solid rgba(250,246,241,0.08);border-radius:16px;overflow:hidden;box-shadow:0 20px 60px rgba(26,18,8,0.15);transform:translateY(30px) scale(0.97)}
+.hero__sub.show,.hero__btns.show{animation:fade-up 0.6s ease forwards}
+.hero__stats.show{animation:stats-entrance 0.7s cubic-bezier(0.34,1.56,0.64,1) forwards}
+@keyframes stats-entrance{from{opacity:0;transform:translateY(30px) scale(0.97)}to{opacity:1;transform:translateY(0) scale(1)}}
+.hero__btns.show{animation-delay:0.1s}.hero__stats.show{animation-delay:0.2s}
+/* Title bar */
+.hero__stats-bar{display:flex;align-items:center;gap:6px;padding:10px 18px;background:rgba(255,255,255,0.03);border-bottom:1px solid rgba(250,246,241,0.06)}
+.hero__stats-bar-dot{width:7px;height:7px;border-radius:50%;background:var(--green);animation:dot-glow 2.4s ease-in-out infinite}
+@keyframes dot-glow{0%,100%{box-shadow:0 0 4px rgba(34,197,94,0.3)}50%{box-shadow:0 0 12px rgba(34,197,94,0.7),0 0 24px rgba(34,197,94,0.2)}}
+.hero__stats-bar-label{font-family:var(--mono);font-size:11px;color:var(--lite-3);letter-spacing:0.04em}
+/* Grid */
+.hero__stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;position:relative}
+/* Scan line — single sweep on appear */
+.hero__stats-grid::after{content:'';position:absolute;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(250,246,241,0.12),rgba(192,88,40,0.15),rgba(250,246,241,0.12),transparent);top:-1px;opacity:0;pointer-events:none}
+.hero__stats.show .hero__stats-grid::after{animation:scan-sweep 0.8s 0.5s ease forwards}
+@keyframes scan-sweep{0%{top:-1px;opacity:0}10%{opacity:1}100%{top:100%;opacity:0}}
+/* Stat cells — staggered fade in */
+.hero__stat{padding:22px 20px;text-align:center;position:relative;transition:background 0.25s;opacity:0;transform:translateY(8px)}
+.hero__stat.stat-in{animation:stat-cell-in 0.4s cubic-bezier(0.22,1,0.36,1) forwards}
+@keyframes stat-cell-in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.hero__stat:hover{background:rgba(255,255,255,0.04)}
+/* Terra glow line on hover */
+.hero__stat::before{content:'';position:absolute;top:0;left:20%;right:20%;height:2px;background:linear-gradient(90deg,transparent,var(--terra-lt),transparent);opacity:0;transition:opacity 0.3s;border-radius:1px}
+.hero__stat:hover::before{opacity:0.5}
+/* Vertical dividers */
+.hero__stat:not(:last-child)::after{content:'';position:absolute;right:0;top:16px;bottom:16px;width:1px;background:rgba(250,246,241,0.07)}
+.hero__stat-num{font-family:var(--serif);font-size:32px;font-weight:600;color:var(--lite);line-height:1;letter-spacing:-0.02em}
+.hero__stat-num span{color:var(--terra-lt)}
+.hero__stat-label{font-size:12px;color:var(--lite-2);margin-top:6px;font-weight:400}
+.hero__stat-ctx{font-family:var(--mono);font-size:9px;color:var(--lite-2);opacity:1;margin-top:4px;letter-spacing:0.03em;text-transform:uppercase}
+@keyframes fade-up{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+
+/* ════════ LOGO STRIP ════════ */
+.strip{background:var(--cream);border-top:1px solid var(--br-l);border-bottom:1px solid var(--br-l);padding:22px 0;display:flex;align-items:center;overflow:hidden;position:relative}
+.strip__label{font-size:11px;font-weight:600;letter-spacing:0.10em;text-transform:uppercase;color:var(--ink-4);white-space:nowrap;padding-left:32px;padding-right:28px;flex-shrink:0;position:relative;z-index:2;background:var(--cream)}
+.strip__track{display:flex;animation:marquee 28s linear infinite}
+.strip__set{display:flex;gap:40px;align-items:center;padding-right:40px;flex-shrink:0}
+.strip__name{font-size:14px;font-weight:500;color:var(--ink-3);opacity:0.55;white-space:nowrap;transition:opacity 0.2s}.strip__name:hover{opacity:1}
+.strip::before,.strip::after{content:'';position:absolute;top:0;bottom:0;width:60px;z-index:1;pointer-events:none}
+.strip::before{left:0;background:linear-gradient(90deg,var(--cream),transparent)}
+.strip::after{right:0;background:linear-gradient(-90deg,var(--cream),transparent)}
+@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* ════════════════ SERVICES — Product card style ════════════════ */
+.services{background:var(--white)}
+.services__hd{text-align:center;margin-bottom:52px}
+.services__hd .copy{max-width:520px;margin-left:auto;margin-right:auto}
+.services__grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.svc{background:var(--cream);border:1px solid var(--br-l);border-radius:16px;padding:0;overflow:hidden;transition:transform 0.3s cubic-bezier(0.22,1,0.36,1),box-shadow 0.3s;display:flex;flex-direction:column}
+.svc:hover{transform:translateY(-4px);box-shadow:0 16px 44px rgba(26,18,8,0.08)}
+/* Mini preview bar at top — looks like a product screenshot */
+.svc__preview{background:var(--dark2);padding:16px 18px;border-bottom:1px solid var(--br-d);display:flex;align-items:center;gap:8px;min-height:52px}
+.svc__preview-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+.svc__preview-text{font-family:var(--mono);font-size:11px;color:var(--lite-3);letter-spacing:0.03em;flex:1;overflow:hidden;white-space:nowrap}
+.svc__preview-text span{color:var(--terra-lt)}
+/* Terminal typing cursor */
+.svc__tw-cursor{display:inline-block;width:1px;height:12px;background:var(--lite-3);vertical-align:middle;margin-left:1px;animation:term-blink 0.7s step-end infinite}
+.svc__tw-cursor.done{opacity:0;animation:none}
+@keyframes term-blink{0%,100%{opacity:1}50%{opacity:0}}
+.svc__preview-badge{margin-left:auto}
+/* Card body */
+.svc__content{padding:28px 30px 30px;flex:1;display:flex;flex-direction:column}
+.svc__head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:14px}
+.svc__name{font-family:var(--serif);font-size:18px;font-weight:600;color:var(--ink);line-height:1.3}
+.svc__icon{width:38px;height:38px;border-radius:10px;background:var(--terra-bg);display:grid;place-items:center;flex-shrink:0}
+.svc__icon svg{width:18px;height:18px;stroke:var(--terra);fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.svc__body{font-size:14px;color:var(--ink-3);line-height:1.75;flex:1}
+.svc__meta{display:flex;align-items:center;gap:10px;margin-top:18px;padding-top:16px;border-top:1px solid var(--br-l)}
+.svc__tag{font-size:11px;font-weight:600;letter-spacing:0.07em;text-transform:uppercase;color:var(--terra);background:var(--terra-bg);padding:3px 10px;border-radius:100px}
+.svc__timeline{margin-left:auto;font-family:var(--mono);font-size:11px;color:var(--ink-4)}
+
+/* ════════════════ HOW IT WORKS ════════════════ */
+.how{background:var(--dark)}
+.how__grid{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:start}
+.how__steps{margin-top:40px;display:flex;flex-direction:column}
+.how-step{display:flex;gap:18px;padding:26px 0;border-bottom:1px solid var(--br-d);position:relative}
+.how-step:first-child{padding-top:0}.how-step:last-child{border-bottom:none;padding-bottom:0}
+.how-step:not(:last-child)::after{content:'';position:absolute;left:14px;top:38px;bottom:0;width:2px;background:linear-gradient(to bottom,var(--terra),rgba(192,88,40,0.15));border-radius:1px}
+.how-step:first-child::after{top:32px}
+.how-step__n{flex-shrink:0;width:30px;height:30px;background:var(--terra);border-radius:50%;display:grid;place-items:center;font-size:13px;font-weight:600;color:#fff;margin-top:1px;position:relative;z-index:1}
+.how-step__title{font-family:var(--serif);font-size:16px;font-weight:600;color:var(--lite);margin-bottom:5px}
+.how-step__body{font-size:14px;color:var(--lite-2);line-height:1.65}
+.dash{background:var(--dark2);border:1px solid var(--br-d);border-radius:16px;overflow:hidden;position:sticky;top:80px;box-shadow:0 24px 64px rgba(0,0,0,0.25)}
+.dash__bar{background:rgba(255,255,255,0.03);border-bottom:1px solid var(--br-d);padding:13px 18px;display:flex;align-items:center;gap:6px}
+.dash__dot{width:9px;height:9px;border-radius:50%}
+.dash__bar-title{margin-left:10px;font-size:12px;color:var(--lite-3);letter-spacing:0.05em;display:flex;align-items:center;gap:6px}
+.dash__cursor{display:inline-block;width:7px;height:13px;background:var(--terra-lt);border-radius:1px;animation:blink-cur 1.1s step-end infinite;vertical-align:middle}
+@keyframes blink-cur{0%,100%{opacity:1}50%{opacity:0}}
+.dash__agents{padding:20px}
+.agent-row{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;border-radius:10px;margin-bottom:8px;background:rgba(255,255,255,0.04);border:1px solid var(--br-d);transition:background 0.22s,border-color 0.22s}
+.agent-row:last-child{margin-bottom:0}
+.agent-row:hover{background:rgba(255,255,255,0.07);border-color:rgba(250,246,241,0.14)}
+.agent-row__name{font-size:13px;font-weight:500;color:var(--lite)}
+.abadge{font-size:11px;font-weight:600;padding:3px 10px;border-radius:100px}
+.abadge--green{background:rgba(34,197,94,0.14);color:#4ade80;animation:glow-g 2.4s ease-in-out infinite}
+.abadge--yellow{background:rgba(234,179,8,0.14);color:#facc15}
+.abadge--terra{background:rgba(192,88,40,0.18);color:var(--terra-lt)}
+@keyframes glow-g{0%,100%{box-shadow:0 0 6px rgba(34,197,94,0.15)}50%{box-shadow:0 0 14px rgba(34,197,94,0.40)}}
+.dash__metrics{padding:18px 20px 20px;border-top:1px solid var(--br-d);display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.dash__metric{text-align:center}
+.dash__metric-num{font-family:var(--serif);font-size:22px;font-weight:600;color:var(--lite);line-height:1}
+.dash__metric-num span{color:var(--terra-lt)}
+.dash__metric-label{font-size:11px;color:var(--lite-3);margin-top:4px}
+
+/* ════════════════ RESULTS — Progress bar style ════════════════ */
+.results{background:var(--cream)}
+.results__hd{text-align:center;margin-bottom:56px}
+.results__grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.result-card{background:var(--white);border:1px solid var(--br-l);border-radius:16px;padding:30px 28px;display:flex;flex-direction:column;gap:14px;transition:transform 0.3s cubic-bezier(0.22,1,0.36,1),box-shadow 0.3s}
+.result-card:hover{transform:translateY(-3px);box-shadow:0 12px 36px rgba(26,18,8,0.07)}
+.result-card__head{display:flex;align-items:center;justify-content:space-between}
+.result-card__label{font-size:14px;font-weight:500;color:var(--ink-2);line-height:1.4}
+.result-card__num{font-family:var(--serif);font-size:38px;font-weight:600;color:var(--ink);letter-spacing:-0.03em;line-height:1}
+.result-card__num span{color:var(--terra)}
+/* Progress bar */
+.result-card__bar{height:6px;background:rgba(26,18,8,0.06);border-radius:3px;overflow:hidden}
+.result-card__fill{height:100%;border-radius:3px;background:linear-gradient(90deg,var(--terra),var(--terra-lt));width:0%;transition:width 1.4s cubic-bezier(0.22,1,0.36,1)}
+.result-card__context{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.result-card__detail{font-size:12px;color:var(--ink-4);line-height:1.5}
+.result-card__source{font-family:var(--mono);font-size:10px;color:var(--ink-4);opacity:0.7;white-space:nowrap}
+
+/* Mid-page CTA */
+.mid-cta{text-align:center;padding:52px 24px;background:var(--white);border-top:1px solid var(--br-l)}
+.mid-cta__text{font-family:var(--serif);font-size:clamp(20px,3vw,28px);font-weight:600;color:var(--ink);margin-bottom:18px;line-height:1.3}
+.mid-cta__text em{color:var(--terra);font-style:italic}
+.mid-cta__risk{font-size:13px;color:var(--ink-4);margin-top:12px}
+
+/* ════════════════ TESTIMONIALS — Evidence style ════════════════ */
+.testimonials{background:var(--white)}
+.testimonials__hd{text-align:center;margin-bottom:56px}
+.testimonials__hd .copy{max-width:480px;margin-left:auto;margin-right:auto}
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+blockquote.testi{margin:0}
+.testi{background:var(--cream);border:1px solid var(--br-l);border-radius:16px;padding:0;overflow:hidden;display:flex;flex-direction:column;transition:transform 0.3s cubic-bezier(0.22,1,0.36,1),box-shadow 0.3s}
+.testi:hover{transform:translateY(-4px);box-shadow:0 16px 44px rgba(26,18,8,0.08)}
+/* Metric callout at top — the "proof" */
+.testi__metric{padding:20px 24px;display:flex;align-items:baseline;gap:8px;border-bottom:1px solid var(--br-l)}
+.testi__metric-num{font-family:var(--serif);font-size:28px;font-weight:600;color:var(--terra);line-height:1;letter-spacing:-0.02em}
+.testi__metric-label{font-size:12px;color:var(--ink-4);line-height:1.4}
+/* Quote */
+.testi__body{padding:20px 24px;flex:1}
+.testi__quote{font-family:var(--serif);font-size:14.5px;font-style:italic;color:var(--ink-2);line-height:1.72}
+/* Author */
+.testi__author{display:flex;align-items:center;gap:12px;padding:16px 24px;border-top:1px solid var(--br-l);background:rgba(250,246,241,0.35)}
+.testi__av{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--terra-bg),rgba(192,88,40,0.14));border:1.5px solid var(--terra-ring);display:grid;place-items:center;font-family:var(--sans);font-size:12px;font-weight:600;color:var(--terra);flex-shrink:0}
+.testi__info{flex:1;min-width:0}
+.testi__name{font-size:13px;font-weight:600;color:var(--ink);line-height:1.3}
+.testi__role{font-size:11px;color:var(--ink-4)}
+.testi__verified{display:inline-flex;align-items:center;gap:4px;font-family:var(--mono);font-size:10px;color:var(--green);margin-left:auto;white-space:nowrap}
+.testi__verified svg{width:12px;height:12px;fill:none;stroke:currentColor;stroke-width:2}
+
+/* ════════ WHO THIS IS FOR ════════ */
+.qualifier{background:var(--white);padding:96px 0;border-top:1px solid var(--br-l)}
+.qualifier__grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.qualifier__col{border-radius:18px;padding:0;overflow:hidden;transition:transform 0.3s cubic-bezier(0.22,1,0.36,1),box-shadow 0.3s}
+.qualifier__col:hover{transform:translateY(-3px);box-shadow:0 12px 36px rgba(26,18,8,0.07)}
+/* Yes column — cream card with green accent */
+.qualifier__col--yes{background:var(--cream);border:1px solid var(--br-l)}
+.qualifier__col--yes .qualifier__col-head{background:rgba(34,197,94,0.06);border-bottom:1px solid rgba(34,197,94,0.12);padding:24px 28px;display:flex;align-items:center;gap:12px}
+.qualifier__col--yes .qualifier__col-icon{width:36px;height:36px;border-radius:10px;background:rgba(34,197,94,0.12);display:grid;place-items:center;flex-shrink:0}
+.qualifier__col--yes .qualifier__col-icon svg{width:18px;height:18px;stroke:#22c55e;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.qualifier__col--yes h3{font-family:var(--serif);font-size:17px;font-weight:600;color:var(--ink);line-height:1.3;margin:0}
+/* No column — dark card with muted accent */
+.qualifier__col--no{background:var(--dark);border:1px solid rgba(250,246,241,0.08)}
+.qualifier__col--no .qualifier__col-head{background:rgba(255,255,255,0.03);border-bottom:1px solid rgba(250,246,241,0.06);padding:24px 28px;display:flex;align-items:center;gap:12px}
+.qualifier__col--no .qualifier__col-icon{width:36px;height:36px;border-radius:10px;background:rgba(250,246,241,0.06);display:grid;place-items:center;flex-shrink:0}
+.qualifier__col--no .qualifier__col-icon svg{width:18px;height:18px;stroke:var(--ink-4);fill:none;stroke-width:2;stroke-linecap:round}
+.qualifier__col--no h3{font-family:var(--serif);font-size:17px;font-weight:600;color:var(--lite);line-height:1.3;margin:0}
+/* Lists */
+.qualifier__list{list-style:none;display:flex;flex-direction:column;gap:0;padding:0}
+.qualifier__list li{font-size:14px;line-height:1.6;display:flex;gap:12px;align-items:flex-start;padding:14px 28px;border-bottom:1px solid transparent}
+.qualifier__col--yes .qualifier__list li{color:var(--ink-3);border-bottom-color:var(--br-l)}
+.qualifier__col--no .qualifier__list li{color:var(--lite-2);border-bottom-color:rgba(250,246,241,0.05)}
+.qualifier__list li:last-child{border-bottom:none}
+.qualifier__list li::before{content:'';flex-shrink:0;width:18px;height:18px;margin-top:1px;background-size:contain;background-repeat:no-repeat}
+.qualifier__col--yes .qualifier__list li::before{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18'%3E%3Ccircle cx='9' cy='9' r='8' fill='rgba(34,197,94,0.1)' stroke='%2322c55e' stroke-width='1.5'/%3E%3Cpath d='M5.5 9.5l2.5 2.5 4.5-5' stroke='%2322c55e' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E")}
+.qualifier__col--no .qualifier__list li::before{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18'%3E%3Ccircle cx='9' cy='9' r='8' fill='rgba(156,129,112,0.08)' stroke='%239c8170' stroke-width='1.5'/%3E%3Cpath d='M6 6l6 6M12 6l-6 6' stroke='%239c8170' stroke-width='1.8' stroke-linecap='round' fill='none'/%3E%3C/svg%3E")}
+
+/* ════════════════ PRICING ════════════════ */
+.pricing{background:var(--dark)}
+.pricing__hd{text-align:center;margin-bottom:52px}
+.pricing__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:start}
+.plan{border:1px solid var(--br-d);border-radius:18px;padding:0;overflow:hidden;position:relative;transition:transform 0.3s cubic-bezier(0.34,1.56,0.64,1),box-shadow 0.3s}
+.plan::before{content:'';position:absolute;inset:-1px;border-radius:19px;padding:1px;background:linear-gradient(135deg,transparent,transparent);-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;transition:background 0.4s;pointer-events:none}
+.plan:hover::before{background:linear-gradient(135deg,var(--terra),var(--terra-lt),rgba(212,104,56,0.3))}
+.plan:hover{transform:translateY(-6px);box-shadow:0 20px 52px rgba(0,0,0,0.28)}
+.plan--featured{background:rgba(255,255,255,0.05);border-color:var(--terra);animation:feat-pulse 3s 1.8s ease-in-out 2}
+.plan--featured::before{background:linear-gradient(135deg,var(--terra),var(--terra-lt),rgba(212,104,56,0.3))}
+@keyframes feat-pulse{0%,100%{box-shadow:0 0 0 0 rgba(192,88,40,0)}50%{box-shadow:0 0 0 7px rgba(192,88,40,0.16)}}
+/* Plan header with availability */
+.plan__header{padding:30px 28px 0}
+.plan__tier-row{display:flex;align-items:center;gap:8px;margin-bottom:12px}
+.plan__tier{font-size:11px;font-weight:600;letter-spacing:0.10em;text-transform:uppercase;color:var(--terra-lt)}
+.plan__avail{margin-left:auto}
+.plan__name{font-family:var(--serif);font-size:22px;font-weight:600;color:var(--lite);margin-bottom:8px}
+.plan__desc{font-size:14px;color:var(--lite-2);line-height:1.6;margin-bottom:22px}
+.plan__price-row{display:flex;align-items:baseline;gap:8px;padding-bottom:24px;border-bottom:1px solid var(--br-d)}
+.plan__currency{font-size:18px;font-weight:500;color:var(--lite-3)}
+.plan__num{font-family:var(--serif);font-size:44px;font-weight:600;line-height:1;color:var(--lite);letter-spacing:-0.03em}
+.plan__period{font-size:13px;color:var(--lite-3);margin-left:2px}
+/* Features with structured layout */
+.plan__body{padding:24px 28px 28px}
+.plan__features{list-style:none;display:flex;flex-direction:column;gap:10px;margin-bottom:26px}
+.plan__features li{display:flex;gap:10px;font-size:14px;color:var(--lite-2);line-height:1.5}
+.plan__features li::before{content:'';flex-shrink:0;width:16px;height:16px;margin-top:1px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M2.5 8.5l3.5 3.5 7.5-8' stroke='%23c05828' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E");background-size:contain;background-repeat:no-repeat}
+.plan__includes{font-family:var(--mono);font-size:10px;color:var(--lite-3);margin-bottom:18px;padding:8px 12px;background:rgba(255,255,255,0.03);border-radius:8px;border:1px solid var(--br-d)}
+
+/* ════════════════ CTA BAND ════════════════ */
+.cta-band{background:var(--terra);padding:100px 24px;text-align:center;position:relative;overflow:hidden;animation:cta-hue 15s ease-in-out infinite alternate}
+@keyframes cta-hue{0%{background-color:#c05828}50%{background-color:#b85025}100%{background-color:#c85e30}}
+.cta-band::before{content:'';position:absolute;top:0;left:-100%;width:50%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.10),transparent);pointer-events:none;z-index:0}
+.cta-band.shimmer::before{animation:shimmer-sweep 1s ease forwards}
+@keyframes shimmer-sweep{from{left:-60%}to{left:120%}}
+.cta-band::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 100% at 20% 50%,rgba(0,0,0,0.10) 0%,transparent 60%);pointer-events:none;z-index:0}
+.cta-band__h2{font-family:var(--serif);font-size:clamp(34px,5vw,60px);font-weight:600;line-height:1.1;letter-spacing:-0.02em;color:#fff;max-width:660px;margin:0 auto 18px;position:relative;z-index:2}
+.cta-band__h2 em{font-style:italic;opacity:0.85}
+.cta-band__sub{font-size:18px;font-weight:300;color:rgba(255,255,255,0.82);max-width:480px;margin:0 auto 38px;line-height:1.6;position:relative;z-index:2}
+.cta-band .btn{position:relative;z-index:2}
+/* Live spots counter */
+.cta-band__spots{font-family:var(--mono);font-size:13px;color:rgba(255,255,255,0.70);margin-top:20px;position:relative;z-index:2;display:flex;align-items:center;justify-content:center;gap:6px}
+.cta-band__spots-dot{width:6px;height:6px;border-radius:50%;background:#4ade80;animation:dot-pulse 2s ease-in-out infinite}
+
+/* ════════════════ FAQ ════════════════ */
+.faq{background:var(--cream)}
+.faq__grid{display:grid;grid-template-columns:1fr 2fr;gap:72px;align-items:start}
+.faq__list{display:flex;flex-direction:column}
+.faq__item{border-bottom:1px solid var(--br-l)}
+.faq__q{width:100%;background:none;border:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:22px 0;text-align:left;font-family:var(--serif);font-size:17px;font-weight:500;color:var(--ink);transition:color 0.18s}
+.faq__q:hover{color:var(--terra)}
+.faq__icon{flex-shrink:0;width:22px;height:22px;border:1.5px solid var(--br-l);border-radius:50%;display:grid;place-items:center;font-size:16px;color:var(--ink-3);transition:background 0.22s,border-color 0.22s,transform 0.35s cubic-bezier(0.34,1.56,0.64,1);line-height:1}
+.faq__item.open .faq__icon{background:var(--terra);border-color:var(--terra);color:#fff;transform:rotate(45deg)}
+.faq__a{font-size:14px;color:var(--ink-3);line-height:1.7;display:grid;grid-template-rows:0fr;transition:grid-template-rows 0.4s cubic-bezier(0.22,1,0.36,1),padding 0.4s}
+.faq__a-inner{overflow:hidden}
+.faq__item.open .faq__a{grid-template-rows:1fr;padding-bottom:20px}
+
+/* ════════════════ FOOTER ════════════════ */
+footer{background:var(--dark);padding:64px 0 36px;border-top:1px solid var(--br-d)}
+.footer__top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;padding-bottom:48px;border-bottom:1px solid var(--br-d)}
+.footer__about p{font-size:13px;color:var(--lite-3);line-height:1.65;margin-top:14px;max-width:260px}
+.footer__brand{color:var(--lite)!important}
+.footer__col h5{font-size:11px;font-weight:600;letter-spacing:0.09em;text-transform:uppercase;color:var(--lite-3);margin-bottom:16px}
+.footer__col ul{list-style:none;display:flex;flex-direction:column;gap:10px}
+.footer__col a{font-size:14px;color:var(--lite-2);text-decoration:none;transition:color 0.18s}.footer__col a:hover{color:var(--lite)}
+.footer__bottom{display:flex;justify-content:space-between;align-items:center;margin-top:36px;flex-wrap:wrap;gap:12px}
+.footer__copy{font-size:13px;color:var(--lite-3)}
+.footer__note{font-size:12px;color:rgba(250,246,241,0.22)}
+.footer__btt{display:inline-flex;align-items:center;gap:5px;font-size:12px;color:var(--lite-3);text-decoration:none;transition:color 0.2s}.footer__btt:hover{color:var(--terra-lt)}
+.footer__btt svg{width:12px;height:12px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round}
+
+/* ════════════════ RESPONSIVE ════════════════ */
+@media(max-width:900px){
+.nav__links,.nav__cta-desktop{display:none}.nav__toggle{display:block}
+.how__grid,.faq__grid,.footer__top{grid-template-columns:1fr;gap:40px}
+.results__grid{grid-template-columns:1fr}
+.testi-grid,.pricing__grid,.services__grid{grid-template-columns:1fr}
+.hero__stats-grid{grid-template-columns:repeat(2,1fr)}.hero__stat:nth-child(2)::after{display:none}.dash{position:static}
+.qualifier__grid{grid-template-columns:1fr;gap:32px}
+.strip__label{padding-left:20px;padding-right:16px}
+}
+@media(max-width:600px){
+.hero__stats-grid{gap:0}
+.wrap{padding:0 20px}.sec{padding:72px 0}
+/* Mobile hero — generous spacing, no forced full-screen */
+.hero{padding:96px 20px 64px;min-height:auto}
+.hero__h1{font-size:clamp(36px,9vw,46px)}
+.hero__tw-slot{font-size:clamp(36px,9vw,46px);min-height:2.14em}
+.hero__rule{margin:18px auto 14px}
+.hero__badge{margin-bottom:32px}
+.hero__sub{margin-top:28px}
+.hero__btns{margin-top:34px}
+.hero__stats{margin-top:56px}
+}
+@media(prefers-reduced-motion:reduce){
+*,*::before,*::after{animation-duration:0.01ms!important;transition-duration:0.01ms!important}
+.r{opacity:1;transform:none}
+.hero__h1,.hero__tw-slot,.hero__badge,.hero__sub,.hero__btns,.hero__stats,.hero__rule{opacity:1;transform:none}
+  .hero__stat{opacity:1;transform:none}
+.strip__track{animation:none}
+}
+  </style>
+</head>
+<body>
+
+<div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
+<a href="#main" class="skip-link">Skip to main content</a>
+
+<!-- NAV -->
+<nav class="nav" id="nav" role="navigation" aria-label="Main navigation">
+  <div class="nav__in">
+    <a href="#" class="nav__logo" aria-label="IntegrateAI Advisors — Home">
+      <div class="nav__orb nav__orb--lite shifting" aria-hidden="true"><div class="v4__dot v4__dot--bright"></div><div class="v4__dot v4__dot--dim"></div><div class="v4__dot v4__dot--mid"></div><div class="v4__dot v4__dot--bright"></div><div class="v4__dot v4__dot--dim"></div><div class="v4__dot v4__dot--bright"></div><div class="v4__dot v4__dot--bright"></div><div class="v4__dot v4__dot--mid"></div></div>
+      <span class="nav__brand">IntegrateAI Advisors</span>
+    </a>
+    <ul class="nav__links"><li><a href="#services">Services</a></li><li><a href="#how">How it works</a></li><li><a href="#pricing">Pricing</a></li><li><a href="#faq">FAQ</a></li></ul>
+    <a href="#contact" class="btn btn-primary nav__cta-desktop">Book free AI Diagnostic</a>
+    <button class="nav__toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="nav__mobile" id="nav-mobile" role="dialog" aria-label="Mobile navigation">
+  <div class="nav__mobile-top">
+    <a href="#services" class="nav__mobile-link"><span>Services</span><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    <a href="#how" class="nav__mobile-link"><span>How it works</span><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    <a href="#pricing" class="nav__mobile-link"><span>Pricing</span><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    <a href="#faq" class="nav__mobile-link"><span>FAQ</span><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+  </div>
+  <div class="nav__mobile-bottom">
+    <div class="nav__mobile-cta"><a href="#contact" class="btn btn-primary">Book free AI Diagnostic &rarr;</a></div>
+    <div class="nav__mobile-meta"><span>hello@integrateai.co</span><span>&middot;</span><span>AI consultancy &middot; Anthropic ecosystem</span></div>
+  </div>
+</div>
+
+<main id="main">
+
+<!-- HERO -->
+<section class="hero grain" aria-labelledby="hero-heading">
+  <div class="hero__orb hero__orb-1" aria-hidden="true"></div>
+  <div class="hero__orb hero__orb-2" aria-hidden="true"></div>
+  <div class="hero__orb hero__orb-3" aria-hidden="true"></div>
+  <div class="hero__inner">
+    <div class="hero__badge" aria-hidden="true"><span class="hero__pulse"></span>AI consultancy &middot; Anthropic ecosystem</div>
+    <h1 class="hero__h1" id="hero-heading">Give your business<br>superpowers with</h1>
+    <span class="hero__rule" aria-hidden="true"></span>
+    <div class="hero__tw-slot" aria-live="polite"><span class="hero__tw-text" id="tw-text"></span><span class="hero__tw-cursor" aria-hidden="true"></span></div>
+    <p class="hero__sub" id="hero-sub">Solo founder? Small team? It doesn't matter. We give you a workforce of superintelligent AI agents that operate like six-figure experts — handling your marketing, sales, and customer service through Slack while you focus on the work that actually grows your business.</p>
+    <div class="hero__btns" id="hero-btns">
+      <a href="#contact" class="btn btn-primary">Book free AI Diagnostic &rarr;</a>
+      <a href="#services" class="btn btn-ghost">See how it works</a>
+    </div>
+    <div class="hero__stats" id="hero-stats" aria-label="Key metrics">
+      <div class="hero__stats-bar">
+        <span class="hero__stats-bar-dot" aria-hidden="true"></span>
+        <span class="hero__stats-bar-label">Typical client outcomes</span>
+      </div>
+      <div class="hero__stats-grid">
+        <div class="hero__stat">
+          <div class="hero__stat-num" data-val="40" data-suffix="%">0<span>%</span></div>
+          <div class="hero__stat-label">Faster drafting</div>
+          <div class="hero__stat-ctx">emails, proposals, reports</div>
+        </div>
+        <div class="hero__stat">
+          <div class="hero__stat-num" data-val="10" data-suffix="h">0<span>h</span></div>
+          <div class="hero__stat-label">Saved per week</div>
+          <div class="hero__stat-ctx">avg. per team</div>
+        </div>
+        <div class="hero__stat">
+          <div class="hero__stat-num" data-val="30" data-suffix="d">0<span>d</span></div>
+          <div class="hero__stat-label">To full results</div>
+          <div class="hero__stat-ctx">implementation + training</div>
+        </div>
+        <div class="hero__stat">
+          <div class="hero__stat-num" data-val="15" data-suffix="k">0<span>k</span></div>
+          <div class="hero__stat-label">Annual savings</div>
+          <div class="hero__stat-ctx">typical SME recovery</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LOGO STRIP -->
+<div class="strip" aria-label="Trusted by teams in these companies">
+  <span class="strip__label">Trusted by teams in</span>
+  <div class="strip__track">
+    <div class="strip__set"><span class="strip__name">Accountancy</span><span class="strip__name">Legal</span><span class="strip__name">Marketing</span><span class="strip__name">Property</span><span class="strip__name">Consulting</span><span class="strip__name">Financial Services</span><span class="strip__name">Professional Services</span><span class="strip__name">Media &amp; Entertainment</span></div>
+    <div class="strip__set" aria-hidden="true"><span class="strip__name">Accountancy</span><span class="strip__name">Legal</span><span class="strip__name">Marketing</span><span class="strip__name">Property</span><span class="strip__name">Consulting</span><span class="strip__name">Financial Services</span><span class="strip__name">Professional Services</span><span class="strip__name">Media &amp; Entertainment</span></div>
+  </div>
+</div>
+
+<!-- SERVICES — Each card has a mini product preview at top -->
+<section class="services sec grain" id="services" aria-labelledby="services-heading">
+  <div class="wrap">
+    <div class="services__hd r">
+      <div class="eyebrow">What we do</div>
+      <h2 class="hdg hdg--center" id="services-heading">What you get. <em>What it costs.</em></h2>
+      <p class="copy copy--center">From AI training workshops to autonomous agent teams that operate like six-figure employees — every engagement has a defined scope, documented deliverables, and a fixed price.</p>
+    </div>
+    <div class="services__grid">
+      <div class="svc r d1">
+        <div class="svc__preview">
+          <div class="svc__preview-dot" style="background:#22c55e" aria-hidden="true"></div>
+          <span class="svc__preview-text" data-type-text="Workshop · 2-3hrs · safe AI usage + prompt fundamentals"></span>
+          <span class="fbadge fbadge--green"><span class="fbadge__dot"></span>Live</span>
+        </div>
+        <div class="svc__content">
+          <div class="svc__head">
+            <h3 class="svc__name">AI Foundations Workshop</h3>
+            <div class="svc__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
+          </div>
+          <p class="svc__body">A focused 2–3 hour session for your leadership team and staff. Walk away with a clear understanding of AI tools, prompting fundamentals, safe usage rules for client data, and a shortlist of workflows to implement first.</p>
+          <div class="svc__meta"><span class="svc__tag">Leadership &amp; staff</span><span class="svc__timeline">from £950</span></div>
+        </div>
+      </div>
+      <div class="svc r d2">
+        <div class="svc__preview">
+          <div class="svc__preview-dot" style="background:#22c55e" aria-hidden="true"></div>
+          <span class="svc__preview-text" data-type-text="Claude Cowork active · 3 OpenClaw agents deployed · team trained"></span>
+          <span class="fbadge fbadge--green"><span class="fbadge__dot"></span>Live</span>
+        </div>
+        <div class="svc__content">
+          <div class="svc__head">
+            <h3 class="svc__name">AI Productivity Setup</h3>
+            <div class="svc__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M3 9h18M9 21V9"/></svg></div>
+          </div>
+          <p class="svc__body">Our core offer. We audit your workflows, implement Claude Cowork across your team, set up OpenClaw agents for repetitive tasks, configure intelligent automation, and deliver full documentation and training so your team adopts AI consistently and safely.</p>
+          <div class="svc__meta"><span class="svc__tag">Core offer</span><span class="svc__timeline">£1,500–£2,500</span></div>
+        </div>
+      </div>
+      <div class="svc r d3">
+        <div class="svc__preview">
+          <div class="svc__preview-dot" style="background:#22c55e" aria-hidden="true"></div>
+          <span class="svc__preview-text" data-type-text="Slack · 4 agents online · marketing lead gen outreach reporting"></span>
+          <span class="fbadge fbadge--green"><span class="fbadge__dot"></span>Live</span>
+        </div>
+        <div class="svc__content">
+          <div class="svc__head">
+            <h3 class="svc__name">OpenClaw Agent Teams</h3>
+            <div class="svc__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="6" cy="6" r="2"/><circle cx="18" cy="6" r="2"/><circle cx="6" cy="18" r="2"/><circle cx="18" cy="18" r="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="6" y1="8" x2="6" y2="16"/><line x1="18" y1="8" x2="18" y2="16"/><line x1="8" y1="18" x2="16" y2="18"/></svg></div>
+          </div>
+          <p class="svc__body">Extend your team with superintelligent AI agents that operate like six-figure expert employees — inside Slack. Single agents or coordinated teams handling digital marketing, sales outreach, lead generation, customer service, content, and reporting. They learn your business, remember context, and work 24/7 while you focus on growth.</p>
+          <div class="svc__meta"><span class="svc__tag">Autonomous operations</span><span class="svc__timeline">from £3,500</span></div>
+        </div>
+      </div>
+      <div class="svc r d4">
+        <div class="svc__preview">
+          <div class="svc__preview-dot" style="background:var(--terra)" aria-hidden="true"></div>
+          <span class="svc__preview-text" data-type-text="30-min call · 3-5 workflows · ROI estimate · clear next steps"></span>
+          <span class="fbadge fbadge--terra">Advisory</span>
+        </div>
+        <div class="svc__content">
+          <div class="svc__head">
+            <h3 class="svc__name">Free AI Diagnostic Call</h3>
+            <div class="svc__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M2 20h20M12 4v12M8 8l4-4 4 4"/></svg></div>
+          </div>
+          <p class="svc__body">A focused 30-minute call where we identify your 3–5 highest-friction workflows, estimate the time and cost you're losing, and show you how Claude Cowork, OpenClaw agents, and intelligent automation could transform your operations. No ROI? No pitch.</p>
+          <div class="svc__meta"><span class="svc__tag">Free &middot; 30 minutes</span><span class="svc__timeline">No obligation</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how sec" id="how" aria-labelledby="how-heading">
+  <div class="wrap">
+    <div class="how__grid">
+      <div class="r">
+        <div class="eyebrow eyebrow--dark">How it works</div>
+        <h2 class="hdg hdg--dark" id="how-heading">From diagnostic to <em>measurable savings</em> in weeks</h2>
+        <p class="copy copy--dark">Five steps from first call to your team using AI every day. Most businesses are fully implemented within 30 days.</p>
+        <ol class="how__steps" role="list">
+          <li class="how-step r d1"><div class="how-step__n" aria-hidden="true">1</div><div><div class="how-step__title">Book the AI Diagnostic</div><p class="how-step__body">A focused 30-minute call. We identify your repetitive workflows, quantify the time and cost, and determine whether structured AI implementation would produce clear ROI.</p></div></li>
+          <li class="how-step r d2"><div class="how-step__n" aria-hidden="true">2</div><div><div class="how-step__title">Receive Your Proposal</div><p class="how-step__body">Within 24 hours you receive a short scope document: prioritised workflows, implementation plan, projected annual savings, and a clear fixed price.</p></div></li>
+          <li class="how-step r d3"><div class="how-step__n" aria-hidden="true">3</div><div><div class="how-step__title">We Implement</div><p class="how-step__body">We set up Claude Cowork across your team, configure OpenClaw agents for your key operations, and implement intelligent automation. Your agents join Slack and start working like expert team members — with full documentation so you stay in control.</p></div></li>
+          <li class="how-step r d4"><div class="how-step__n" aria-hidden="true">4</div><div><div class="how-step__title">Your Team Runs It</div><p class="how-step__body">Full documentation, staff training, and a usage guide so your team can use everything consistently — without needing us. You own all the materials.</p></div></li>
+          <li class="how-step r d5"><div class="how-step__n" aria-hidden="true">5</div><div><div class="how-step__title">Optimise &amp; Evolve</div><p class="how-step__body">Optional monthly retainer to refine your agents, expand Claude Cowork usage, adopt new Anthropic releases, and receive ongoing AI guidance as both your business and the technology evolve.</p></div></li>
+        </ol>
+      </div>
+      <div class="r d2">
+        <div class="dash" role="img" aria-label="Live agent dashboard preview">
+          <div class="dash__bar"><div class="dash__dot" style="background:#ef4444"></div><div class="dash__dot" style="background:#f59e0b"></div><div class="dash__dot" style="background:#22c55e"></div><span class="dash__bar-title">OpenClaw Agent Team &middot; Live <span class="dash__cursor" aria-hidden="true"></span></span></div>
+          <div class="dash__agents">
+            <div class="agent-row"><span class="agent-row__name">&#128269;&nbsp; Research Agent</span><span class="abadge abadge--green">Running</span></div>
+            <div class="agent-row"><span class="agent-row__name">&#128231;&nbsp; Outreach Agent</span><span class="abadge abadge--green">Running</span></div>
+            <div class="agent-row"><span class="agent-row__name">&#128202;&nbsp; Content Agent</span><span class="abadge abadge--yellow">Queued</span></div>
+            <div class="agent-row"><span class="agent-row__name">&#128200;&nbsp; Reporting Agent</span><span class="abadge abadge--terra">Done</span></div>
+          </div>
+          <div class="dash__metrics">
+            <div class="dash__metric"><div class="dash__metric-num" data-count="47" data-suffix="&#10003;">0<span>&#10003;</span></div><div class="dash__metric-label">Tasks today</div></div>
+            <div class="dash__metric"><div class="dash__metric-num" data-count="18" data-suffix="h">0<span>h</span></div><div class="dash__metric-label">Hours saved/wk</div></div>
+            <div class="dash__metric"><div class="dash__metric-num" data-count="99" data-suffix="%">0<span>%</span></div><div class="dash__metric-label">Uptime</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESULTS — Progress bars + context -->
+<section class="results sec grain" id="results" aria-labelledby="results-heading">
+  <div class="wrap">
+    <div class="results__hd r">
+      <div class="eyebrow">Real results</div>
+      <h2 class="hdg hdg--center" id="results-heading">Typical outcomes <em>our clients see</em></h2>
+      <p class="copy copy--center">Based on real engagements with SMEs in professional services, legal, accountancy, and marketing.</p>
+    </div>
+    <div class="results__grid">
+      <div class="result-card r d1">
+        <div class="result-card__head">
+          <span class="result-card__label">Reduction in team admin and repetitive tasks</span>
+          <div class="result-card__num" data-target="40" data-suffix="%"><span class="rv">0</span><span>×</span></div>
+        </div>
+        <div class="result-card__bar"><div class="result-card__fill" data-width="95"></div></div>
+        <div class="result-card__context"><span class="result-card__detail">Cowork + OpenClaw agent teams</span><span class="result-card__source">typical across clients</span></div>
+      </div>
+      <div class="result-card r d2">
+        <div class="result-card__head">
+          <span class="result-card__label">Diagnostic to live AI implementation</span>
+          <div class="result-card__num" data-target="30" data-suffix="d"><span class="rv">0</span><span>d</span></div>
+        </div>
+        <div class="result-card__bar"><div class="result-card__fill" data-width="30"></div></div>
+        <div class="result-card__context"><span class="result-card__detail">Cowork active, agents running, team trained</span><span class="result-card__source">most engagements</span></div>
+      </div>
+      <div class="result-card r d3">
+        <div class="result-card__head">
+          <span class="result-card__label">Annual cost recovered from repetitive work</span>
+          <div class="result-card__num" data-target="15" data-suffix="k"><span class="rv">0</span><span>%</span></div>
+        </div>
+        <div class="result-card__bar"><div class="result-card__fill" data-width="68"></div></div>
+        <div class="result-card__context"><span class="result-card__detail">Based on £60/hr avg. staff cost</span><span class="result-card__source">conservative estimate</span></div>
+      </div>
+      <div class="result-card r d4">
+        <div class="result-card__head">
+          <span class="result-card__label">Autonomous tasks handled without human input</span>
+          <div class="result-card__num" data-target="85" data-suffix="%"><span class="rv">0</span><span>★</span></div>
+        </div>
+        <div class="result-card__bar"><div class="result-card__fill" data-width="96"></div></div>
+        <div class="result-card__context"><span class="result-card__detail">OpenClaw agents operating 24/7</span><span class="result-card__source">avg. across agent teams</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MID-PAGE CTA -->
+<div class="mid-cta r">
+  <div class="mid-cta__text">Your team is losing hours every week. <em>Let's fix that.</em></div>
+  <a href="#contact" class="btn btn-primary">Book free AI Diagnostic &rarr;</a>
+  <div class="mid-cta__risk">30-minute call &middot; Completely free &middot; No pitch if we can't find clear ROI</div>
+</div>
+
+<!-- TESTIMONIALS — Evidence-led with metric callouts -->
+<section class="testimonials sec" aria-labelledby="testi-heading">
+  <div class="wrap">
+    <div class="testimonials__hd r">
+      <div class="eyebrow">Client voices</div>
+      <h2 class="hdg hdg--center" id="testi-heading">Don't take our word for it</h2>
+      <p class="copy copy--center">Real results from real businesses — from ChatGPT chaos to structured AI implementation.</p>
+    </div>
+    <div class="testi-grid">
+      <blockquote class="testi r d1">
+        <div class="testi__metric"><span class="testi__metric-num" data-tcount="50">0</span><span class="testi__metric-label"> leads generated<br>per week by agents</span></div>
+        <div class="testi__body"><p class="testi__quote">IntegrateAI set up an OpenClaw agent team in our Slack — research, outreach, and follow-ups all running automatically. It's like having three expert employees who never sleep. What used to take a full-time hire now runs in the background while we close deals.</p></div>
+        <footer class="testi__author"><div class="testi__av" aria-hidden="true">SM</div><div class="testi__info"><div class="testi__name">Sarah Mitchell</div><div class="testi__role">Director, Mitchell &amp; Partners</div></div><span class="testi__verified"><svg viewBox="0 0 16 16"><path d="M13.5 5l-7 7L3 8.5"/></svg>Verified</span></footer>
+      </blockquote>
+      <blockquote class="testi r d2">
+        <div class="testi__metric"><span class="testi__metric-num" data-tcount="8" data-tsuffix="h">0</span><span class="testi__metric-label">hours saved<br>every week</span></div>
+        <div class="testi__body"><p class="testi__quote">They implemented Claude Cowork into our daily operations and set up intelligent agents for our repetitive reporting. The documentation and training means new starters are using AI properly from day one. We're saving 8 hours a week easily.</p></div>
+        <footer class="testi__author"><div class="testi__av" aria-hidden="true">DC</div><div class="testi__info"><div class="testi__name">David Chen</div><div class="testi__role">Operations Manager, Apex Legal</div></div><span class="testi__verified"><svg viewBox="0 0 16 16"><path d="M13.5 5l-7 7L3 8.5"/></svg>Verified</span></footer>
+      </blockquote>
+      <blockquote class="testi r d3">
+        <div class="testi__metric"><span class="testi__metric-num" data-tcount="100" data-tsuffix="%">0</span><span class="testi__metric-label">data governance<br>confidence</span></div>
+        <div class="testi__body"><p class="testi__quote">I was worried about data safety and governance. They addressed that head-on — set up clear guardrails within Claude Cowork, defined what should and shouldn't go through AI, and only implemented where it genuinely saves time. Expert guidance throughout.</p></div>
+        <footer class="testi__author"><div class="testi__av" aria-hidden="true">RA</div><div class="testi__info"><div class="testi__name">Rachel Adams</div><div class="testi__role">CEO, Northgate Financial</div></div><span class="testi__verified"><svg viewBox="0 0 16 16"><path d="M13.5 5l-7 7L3 8.5"/></svg>Verified</span></footer>
+      </blockquote>
+    </div>
+  </div>
+</section>
+
+<!-- WHO THIS IS FOR — Qualifier builds trust -->
+<section class="qualifier" aria-labelledby="qualifier-heading">
+  <div class="wrap">
+    <div class="r" style="text-align:center;margin-bottom:48px">
+      <div class="eyebrow">Is this right for you?</div>
+      <h2 class="hdg hdg--center" id="qualifier-heading">We're a great fit <em>if&hellip;</em></h2>
+    </div>
+    <div class="qualifier__grid r d1">
+      <div class="qualifier__col qualifier__col--yes">
+        <div class="qualifier__col-head">
+          <div class="qualifier__col-icon"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></div>
+          <h3>This is for you</h3>
+        </div>
+        <ul class="qualifier__list">
+          <li>You're a solo entrepreneur or small team who wants to punch above your weight with AI</li>
+          <li>You have marketing, sales, admin, or ops tasks that could be handled by intelligent agents</li>
+          <li>You want practical implementation with documented deliverables, not theory</li>
+          <li>You value your team's time and are ready to invest in real implementation</li>
+          <li>You want AI employees with expert-level capability — without the six-figure salary</li>
+        </ul>
+      </div>
+      <div class="qualifier__col qualifier__col--no">
+        <div class="qualifier__col-head">
+          <div class="qualifier__col-icon"><svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg></div>
+          <h3>Not the right fit</h3>
+        </div>
+        <ul class="qualifier__list">
+          <li>You're looking for general IT support or custom software development</li>
+          <li>You want a strategy deck without any hands-on implementation</li>
+          <li>You're not willing to adjust existing workflows to incorporate AI</li>
+          <li>You need enterprise-scale system integration or cybersecurity audits</li>
+          <li>You're looking for the cheapest option — we focus on outcomes, not cost-cutting</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING — With availability + includes -->
+<section class="pricing sec" id="pricing" aria-labelledby="pricing-heading">
+  <div class="wrap">
+    <div class="pricing__hd r">
+      <div class="eyebrow eyebrow--dark">Investment</div>
+      <h2 class="hdg hdg--dark hdg--center" id="pricing-heading">Choose your starting point. <em>See exactly what you get.</em></h2>
+      <p class="copy copy--dark copy--center">No hidden fees. No scope creep. Every engagement has a clear deliverable and a fixed price — decided before we start.</p>
+    </div>
+    <div class="pricing__grid">
+      <div class="plan r d1">
+        <div class="plan__header">
+          <div class="plan__tier-row"><span class="plan__tier">Starter</span><span class="plan__avail fbadge fbadge--green"><span class="fbadge__dot"></span>Available</span></div>
+          <h3 class="plan__name">AI Foundations</h3>
+          <p class="plan__desc">For teams who want clarity on AI tools, safe usage, and a shortlist of workflows to implement.</p>
+          <div class="plan__price-row"><span class="plan__currency">£</span><span class="plan__num" data-price="950">950</span><span class="plan__period">per session</span></div>
+        </div>
+        <div class="plan__body">
+          <div class="plan__includes">Includes: 2-3 hour session + materials + action plan</div>
+          <ul class="plan__features"><li>AI landscape overview (what matters, what doesn't)</li><li>Prompting fundamentals your team can use immediately</li><li>Safe usage rules: client data, confidentiality, risk</li><li>Shortlist of high-ROI workflows to target first</li><li>Materials and reference guide to keep</li></ul>
+          <a href="#contact" class="btn btn-ghost-dark" style="width:100%;justify-content:center;">Book free AI Diagnostic &rarr;</a>
+        </div>
+      </div>
+      <div class="plan plan--featured r d2">
+        <div class="plan__header">
+          <div class="plan__tier-row"><span class="plan__tier">&#11088; Most popular</span><span class="plan__avail fbadge fbadge--amber">2 spots left</span></div>
+          <h3 class="plan__name">AI Productivity Setup</h3>
+          <p class="plan__desc">For teams who want structured AI workflows producing measurable time savings — within weeks.</p>
+          <div class="plan__price-row"><span class="plan__currency">£</span><span class="plan__num" data-price="2000">2,000</span><span class="plan__period">typical engagement</span></div>
+        </div>
+        <div class="plan__body">
+          <div class="plan__includes">Includes: Claude Cowork + OpenClaw agents + training + docs</div>
+          <ul class="plan__features"><li>5–10 workflow audit with time/cost analysis</li><li>Claude Cowork setup across your team</li><li>OpenClaw agent configuration for key tasks</li><li>Intelligent automation for repetitive workflows</li><li>Full SOP documentation + team training</li><li>14–30 days post-implementation support</li></ul>
+          <a href="#contact" class="btn btn-primary" style="width:100%;justify-content:center;">Book free AI Diagnostic &rarr;</a>
+        </div>
+      </div>
+      <div class="plan r d3">
+        <div class="plan__header">
+          <div class="plan__tier-row"><span class="plan__tier">Enterprise</span><span class="plan__avail fbadge fbadge--terra">Available now</span></div>
+          <h3 class="plan__name">OpenClaw Agent Team</h3>
+          <p class="plan__desc">For solo entrepreneurs and SMEs who want AI employees with six-figure expertise — running marketing, sales, and ops through Slack, 24/7.</p>
+          <div class="plan__price-row"><span class="plan__num" style="font-size:36px;letter-spacing:-0.02em;">3,500</span><span class="plan__period">setup + £500/mo</span></div>
+        </div>
+        <div class="plan__body">
+          <div class="plan__includes">Includes: Everything in AI Productivity Setup + Dedicated consultant + Strategy</div>
+          <ul class="plan__features"><li>Everything in AI Productivity Setup</li><li>Unlimited agents &amp; integrations</li><li>Dedicated consultant embedded in your team</li><li>Board-level AI strategy session</li><li>12-month adoption roadmap</li><li>Dedicated Slack support channel</li></ul>
+          <a href="#contact" class="btn btn-ghost-dark" style="width:100%;justify-content:center;">Book free AI Diagnostic &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<section class="cta-band" id="contact" aria-labelledby="cta-heading">
+  <h2 class="cta-band__h2 r" id="cta-heading">Every week you wait is <em>hours wasted.</em></h2>
+  <p class="cta-band__sub r d1">Book your free 30-minute AI Diagnostic. We'll show you which roles an OpenClaw agent could fill, how Claude Cowork would boost your team's output, and give you a concrete savings estimate — yours to keep even if you don't proceed.</p>
+  <a href="mailto:hello@integrateai.co" class="btn btn-white r d2">Book free AI Diagnostic &rarr;</a>
+  <div class="cta-band__spots r d3"><span class="cta-band__spots-dot"></span>Limited slots this month &middot; Free &middot; You keep the analysis either way</div>
+</section>
+
+<!-- FAQ -->
+<section class="faq sec grain" id="faq" aria-labelledby="faq-heading">
+  <div class="wrap">
+    <div class="faq__grid">
+      <div class="r">
+        <div class="eyebrow">FAQ</div>
+        <h2 class="hdg" id="faq-heading">Questions,<br><em>answered</em></h2>
+        <p class="copy" style="margin-top:14px;">Can't find what you need? Email us at <a href="mailto:hello@integrateai.co" style="color:var(--terra);text-decoration:none;">hello@integrateai.co</a></p>
+      </div>
+      <div class="faq__list r d1" role="list">
+        <div class="faq__item" role="listitem"><button class="faq__q" aria-expanded="false" aria-controls="faq-1">We're already using ChatGPT. Is this still useful?<span class="faq__icon" aria-hidden="true">+</span></button><div class="faq__a" id="faq-1" role="region"><div class="faq__a-inner">That's ideal — you already have a foundation. We structure what's working, fix what isn't, and implement Claude Cowork and OpenClaw agents so your whole team uses AI consistently.</div></div></div>
+        <div class="faq__item" role="listitem"><button class="faq__q" aria-expanded="false" aria-controls="faq-2">How fast will we see results?<span class="faq__icon" aria-hidden="true">+</span></button><div class="faq__a" id="faq-2" role="region"><div class="faq__a-inner">Most clients see time savings within two weeks. The full engagement — diagnostic to delivered implementation — takes about 30 days. It typically pays for itself within the first quarter.</div></div></div>
+        <div class="faq__item" role="listitem"><button class="faq__q" aria-expanded="false" aria-controls="faq-3">How much time will this take from our side?<span class="faq__icon" aria-hidden="true">+</span></button><div class="faq__a" id="faq-3" role="region"><div class="faq__a-inner">One half-day implementation session plus light follow-up. We handle all the technical work — your team just tells us about their workflows and shows up for training.</div></div></div>
+        <div class="faq__item" role="listitem"><button class="faq__q" aria-expanded="false" aria-controls="faq-4">What tools do you use?<span class="faq__icon" aria-hidden="true">+</span></button><div class="faq__a" id="faq-4" role="region"><div class="faq__a-inner">Claude Cowork for daily AI productivity across your team. OpenClaw for autonomous agents that join your Slack and operate like expert employees — handling marketing, sales, customer service, research, and reporting. Whether you need a single specialist agent or a coordinated team, we design and deploy what fits your business.</div></div></div>
+        <div class="faq__item" role="listitem"><button class="faq__q" aria-expanded="false" aria-controls="faq-5">We're worried about data safety and client confidentiality.<span class="faq__icon" aria-hidden="true">+</span></button><div class="faq__a" id="faq-5" role="region"><div class="faq__a-inner">Good — you should be. Data governance is built into every engagement. We define what should and shouldn't go into AI, set up guardrails, and make sure your team understands the boundaries.</div></div></div>
+        <div class="faq__item" role="listitem"><button class="faq__q" aria-expanded="false" aria-controls="faq-6">What does it cost beyond the initial engagement?<span class="faq__icon" aria-hidden="true">+</span></button><div class="faq__a" id="faq-6" role="region"><div class="faq__a-inner">Just the AI tool subscriptions your team may already have (Claude, ChatGPT). Beyond that, the optional monthly retainer for ongoing optimisation. No hidden fees from us.</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- FOOTER -->
+<footer role="contentinfo">
+  <div class="wrap">
+    <div class="footer__top">
+      <div class="footer__about">
+        <a href="#" class="nav__logo" style="text-decoration:none;" aria-label="IntegrateAI Advisors — Home"><div class="nav__orb nav__orb--dark shifting" aria-hidden="true"><div class="v4__dot v4__dot--bright"></div><div class="v4__dot v4__dot--dim"></div><div class="v4__dot v4__dot--mid"></div><div class="v4__dot v4__dot--bright"></div><div class="v4__dot v4__dot--dim"></div><div class="v4__dot v4__dot--bright"></div><div class="v4__dot v4__dot--bright"></div><div class="v4__dot v4__dot--mid"></div></div><span class="nav__brand footer__brand">IntegrateAI Advisors</span></a>
+        <p>AI consultancy for entrepreneurs and SMEs. We implement Claude Cowork and OpenClaw agent teams — giving you superintelligent AI employees with six-figure expertise, at a fraction of the cost.</p>
+      </div>
+      <div class="footer__col r d1"><h5>Services</h5><ul><li><a href="#services">Claude Code</a></li><li><a href="#services">Claude Cowork</a></li><li><a href="#services">AI Productivity Setups</a></li><li><a href="#services">AI Strategy</a></li></ul></div>
+      <div class="footer__col r d2"><h5>Company</h5><ul><li><a href="#">About</a></li><li><a href="#">Case studies</a></li><li><a href="#">Blog</a></li><li><a href="#">Careers</a></li></ul></div>
+      <div class="footer__col r d3"><h5>Contact</h5><ul><li><a href="mailto:hello@integrateai.co">hello&#64;integrateai.co</a></li><li><a href="#contact">Book a call</a></li><li><a href="#">LinkedIn</a></li><li><a href="#">Twitter / X</a></li></ul></div>
+    </div>
+    <div class="footer__bottom">
+      <span class="footer__copy">&copy; <span id="copy-year"></span> IntegrateAI Advisors. All rights reserved.</span>
+      <a href="#" class="footer__btt"><svg viewBox="0 0 16 16"><path d="M8 13V3M4 7l4-4 4 4"/></svg>Back to top</a>
+      <span class="footer__note">Not affiliated with Anthropic PBC. Built using Claude and Anthropic's APIs.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+'use strict';
+
+const yearEl=document.getElementById('copy-year');
+if(yearEl)yearEl.textContent=new Date().getFullYear();
+
+const progressBar=document.getElementById('scroll-progress');
+function updateProgress(){const s=window.scrollY,d=document.documentElement.scrollHeight-window.innerHeight;progressBar.style.width=(d>0?(s/d)*100:0)+'%'}
+
+const nav=document.getElementById('nav');
+let ticking=false;
+window.addEventListener('scroll',function(){if(!ticking){requestAnimationFrame(function(){nav.classList.toggle('up',window.scrollY>20);updateProgress();ticking=false});ticking=true}},{passive:true});
+
+const toggle=document.getElementById('nav-toggle'),mobileNav=document.getElementById('nav-mobile');
+if(toggle&&mobileNav){toggle.addEventListener('click',function(){const o=toggle.classList.toggle('open');mobileNav.classList.toggle('open',o);nav.classList.toggle('menu-open',o);toggle.setAttribute('aria-expanded',String(o));toggle.setAttribute('aria-label',o?'Close menu':'Open menu');document.body.style.overflow=o?'hidden':''});mobileNav.querySelectorAll('a').forEach(function(l){l.addEventListener('click',function(){toggle.classList.remove('open');mobileNav.classList.remove('open');nav.classList.remove('menu-open');toggle.setAttribute('aria-expanded','false');toggle.setAttribute('aria-label','Open menu');document.body.style.overflow=''})})}
+
+const phrases=['OpenClaw agents','Claude Cowork','AI digital employees','intelligent automation','autonomous agent teams','Anthropic\'s ecosystem'];
+let twIdx=0,twChar=0,twDel=false;
+function twTick(){const el=document.getElementById('tw-text');if(!el)return;const p=phrases[twIdx];if(!twDel){twChar++;el.textContent=p.slice(0,twChar);if(twChar===p.length){twDel=true;setTimeout(twTick,2000);return}setTimeout(twTick,65)}else{twChar--;el.textContent=p.slice(0,twChar);if(twChar===0){twDel=false;twIdx=(twIdx+1)%phrases.length;setTimeout(twTick,350);return}setTimeout(twTick,35)}}
+setTimeout(twTick,1000);
+
+function showHeroRest(){['hero-sub','hero-btns','hero-stats'].forEach(function(id){const el=document.getElementById(id);if(el)el.classList.add('show')});startHeroCountUp()}
+setTimeout(showHeroRest,1900);
+
+function animateCount(el,from,to,dur,dec,sfx){const s=performance.now();function tick(now){const t=Math.min((now-s)/dur,1),e=1-Math.pow(1-t,3);el.innerHTML=(from+(to-from)*e).toFixed(dec)+'<span>'+sfx+'</span>';if(t<1)requestAnimationFrame(tick)}requestAnimationFrame(tick)}
+function startHeroCountUp(){
+const stats=document.querySelectorAll('.hero__stat');
+stats.forEach(function(stat,i){
+setTimeout(function(){
+stat.classList.add('stat-in');
+const el=stat.querySelector('.hero__stat-num');
+if(el)animateCount(el,0,parseFloat(el.dataset.val),1100,el.dataset.decimal?1:0,el.dataset.suffix);
+},i*150);
+});
+}
+
+const revObs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('on');revObs.unobserve(e.target)}})},{threshold:0.08,rootMargin:'0px 0px -28px 0px'});
+document.querySelectorAll('.r').forEach(function(el){revObs.observe(el)});
+
+/* Results — count up + progress bars */
+const resGrid=document.querySelector('.results__grid');
+if(resGrid){new IntersectionObserver(function(entries,obs){entries.forEach(function(e){if(!e.isIntersecting)return;
+e.target.querySelectorAll('.result-card').forEach(function(card,i){setTimeout(function(){
+const numEl=card.querySelector('.result-card__num');const target=parseFloat(numEl.dataset.target);const dec=numEl.dataset.decimal?1:0;const sfx=numEl.dataset.suffix;const valEl=numEl.querySelector('.rv');const fill=card.querySelector('.result-card__fill');
+const s=performance.now();
+(function tick(now){const t=Math.min((now-s)/1300,1),ease=1-Math.pow(1-t,3);valEl.textContent=(target*ease).toFixed(dec);if(t<1)requestAnimationFrame(tick);else valEl.textContent=target.toFixed(dec)})(performance.now());
+if(fill)fill.style.width=fill.dataset.width+'%';
+},i*120)});
+obs.unobserve(e.target)})},{threshold:0.25}).observe(resGrid)}
+
+/* Dashboard count-up */
+const dash=document.querySelector('.dash');
+if(dash){new IntersectionObserver(function(entries,obs){entries.forEach(function(e){if(!e.isIntersecting)return;e.target.querySelectorAll('[data-count]').forEach(function(el,i){const target=parseInt(el.dataset.count,10),sfx=el.dataset.suffix||el.querySelector('span').textContent;setTimeout(function(){const s=performance.now();(function tick(now){const t=Math.min((now-s)/900,1),ease=1-Math.pow(1-t,3);el.innerHTML=Math.round(target*ease)+'<span>'+sfx+'</span>';if(t<1)requestAnimationFrame(tick)})(performance.now())},i*140)});obs.unobserve(e.target)})},{threshold:0.4}).observe(dash)}
+
+/* CTA shimmer */
+const ctaBand=document.querySelector('.cta-band');
+if(ctaBand){new IntersectionObserver(function(entries,obs){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('shimmer');obs.unobserve(e.target)}})},{threshold:0.3}).observe(ctaBand)}
+
+/* FAQ */
+document.querySelectorAll('.faq__item').forEach(function(item){const btn=item.querySelector('.faq__q');btn.addEventListener('click',function(){const isOpen=item.classList.contains('open');document.querySelectorAll('.faq__item').forEach(function(i){i.classList.remove('open');i.querySelector('.faq__q').setAttribute('aria-expanded','false');i.querySelector('.faq__icon').textContent='+'});if(!isOpen){item.classList.add('open');btn.setAttribute('aria-expanded','true');item.querySelector('.faq__icon').textContent='\u2212'}})});
+
+/* Marquee pause */
+const strip=document.querySelector('.strip'),track=document.querySelector('.strip__track');
+if(strip&&track){strip.addEventListener('mouseenter',function(){track.style.animationPlayState='paused'});strip.addEventListener('mouseleave',function(){track.style.animationPlayState='running'})}
+
+/* Nav orb shrink on scroll */
+window.addEventListener('scroll',function(){nav.classList.toggle('scrolled',window.scrollY>200)},{passive:true});
+
+/* Service terminal typing effect */
+function typeTerminal(el,text,speed,delay){
+  var cursor=document.createElement('span');
+  cursor.className='svc__tw-cursor';
+  el.textContent='';
+  el.appendChild(cursor);
+  var i=0;
+  setTimeout(function tick(){
+    if(i<text.length){
+      cursor.before(text.charAt(i));
+      i++;
+      setTimeout(tick,speed+(Math.random()*20-10));
+    }else{
+      setTimeout(function(){cursor.classList.add('done')},1200);
+    }
+  },delay);
+}
+var svcSection=document.getElementById('services');
+if(svcSection){
+  new IntersectionObserver(function(entries,obs){
+    entries.forEach(function(e){
+      if(!e.isIntersecting)return;
+      e.target.querySelectorAll('[data-type-text]').forEach(function(el,i){
+        typeTerminal(el,el.dataset.typeText,28,i*600+300);
+      });
+      obs.unobserve(e.target);
+    });
+  },{threshold:0.15}).observe(svcSection);
+}
+
+/* Pricing number count-up */
+var pricingSection=document.getElementById('pricing');
+if(pricingSection){
+  new IntersectionObserver(function(entries,obs){
+    entries.forEach(function(e){
+      if(!e.isIntersecting)return;
+      e.target.querySelectorAll('[data-price]').forEach(function(el,i){
+        var target=parseInt(el.dataset.price,10);
+        el.textContent='0';
+        setTimeout(function(){
+          var s=performance.now();
+          (function tick(now){
+            var t=Math.min((now-s)/800,1);
+            var ease=1-Math.pow(1-t,3);
+            var val=Math.round(target*ease);
+            el.textContent=val.toLocaleString('en-GB');
+            if(t<1)requestAnimationFrame(tick);
+            else el.textContent=target.toLocaleString('en-GB');
+          })(performance.now());
+        },i*150);
+      });
+      obs.unobserve(e.target);
+    });
+  },{threshold:0.1}).observe(pricingSection);
+}
+
+/* Testimonial metric count-up */
+var testiSection=document.querySelector('.testimonials');
+if(testiSection){
+  new IntersectionObserver(function(entries,obs){
+    entries.forEach(function(e){
+      if(!e.isIntersecting)return;
+      e.target.querySelectorAll('[data-tcount]').forEach(function(el,i){
+        var target=parseInt(el.dataset.tcount,10);
+        var suffix=el.dataset.tsuffix||'';
+        setTimeout(function(){
+          var s=performance.now();
+          (function tick(now){
+            var t=Math.min((now-s)/900,1);
+            var ease=1-Math.pow(1-t,3);
+            el.textContent=Math.round(target*ease)+suffix;
+            if(t<1)requestAnimationFrame(tick);
+            else el.textContent=target+suffix;
+          })(performance.now());
+        },i*200);
+      });
+      obs.unobserve(e.target);
+    });
+  },{threshold:0.3}).observe(testiSection);
+}
+
+}());
+</script>
+</body>
+</html>
