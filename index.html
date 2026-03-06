@@ -4,11 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>IntegrateAI Advisors — AI Consultancy for SMEs</title>
-  <meta name="description" content="Practical AI consultancy &middot; Anthropic ecosystem. We set up AI workflows, build prompt libraries, add light automation, and train your team — delivering measurable time savings within weeks, not months." />
+  <meta name="description" content="AI consultancy for entrepreneurs and SMEs. We implement OpenClaw agent teams and Claude Cowork — giving you AI employees with six-figure expertise, operating through Slack 24/7, at a fraction of the cost of hiring." />
   <meta property="og:title" content="IntegrateAI Advisors — AI Consultancy for SMEs" />
   <meta property="og:description" content="Extend your team with AI employees that have six-figure expertise. We implement OpenClaw agents and Claude Cowork for solo entrepreneurs and SMEs. Book your free AI diagnostic." />
   <meta property="og:type" content="website" />
+  <meta name="theme-color" content="#faf9f5" />
+  <link rel="canonical" href="https://integrateai.co" />
   <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%231a1a19'/><circle cx='8' cy='11' r='3' fill='%23d97757'/><circle cx='18' cy='11' r='3' fill='%23d97757' opacity='.4'/><circle cx='8' cy='21' r='3' fill='%23d97757' opacity='.2'/><circle cx='18' cy='21' r='3' fill='%23d97757'/></svg>" type="image/svg+xml" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -17,9 +20,9 @@
   --white:#ffffff; --cream:#faf9f5; --dark:#1a1a19; --dark2:#232322;
   --terra:#d97757; --terra-lt:#e08a6a; --terra-dk:#c06545;
   --terra-bg:rgba(217,119,87,0.08); --terra-ring:rgba(217,119,87,0.22);
-  --ink:#1a1a19; --ink-2:#3a3935; --ink-3:#6a6862; --ink-4:#b0aea5;
+  --ink:#111110; --ink-2:#3a3935; --ink-3:#6a6862; --ink-4:#b0aea5;
   --lite:#faf9f5; --lite-2:rgba(250,249,245,0.72); --lite-3:rgba(250,249,245,0.40);
-  --br-l:rgba(20,20,19,0.09); --br-d:rgba(250,249,245,0.09);
+  --br-l:rgba(20,20,19,0.08); --br-d:rgba(250,249,245,0.08);
   --green:#22c55e; --green-bg:rgba(34,197,94,0.12); --green-tx:#4ade80;
   --amber:#f59e0b; --amber-bg:rgba(234,179,8,0.12); --amber-tx:#facc15;
   --serif:'Lora',Georgia,serif; --sans:'DM Sans',system-ui,sans-serif; --mono:'JetBrains Mono',monospace;
@@ -150,17 +153,17 @@ body{font-family:var(--sans);font-size:16px;line-height:1.6;color:var(--ink);bac
 .hero__badge{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:500;color:var(--terra);background:var(--terra-bg);border:1px solid var(--terra-ring);padding:5px 14px 5px 10px;border-radius:100px;margin-bottom:28px;opacity:0;animation:fade-up 0.5s 0.3s ease forwards;white-space:nowrap}
 .hero__pulse{width:6px;height:6px;background:var(--terra);border-radius:50%;flex-shrink:0;animation:pulse-dot 2.2s ease-in-out infinite}
 @keyframes pulse-dot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.35;transform:scale(0.7)}}
-.hero__h1{font-family:var(--serif);font-size:clamp(46px,7vw,88px);font-weight:600;line-height:1.07;letter-spacing:-0.028em;color:var(--ink);max-width:900px;margin:0 auto;opacity:0;animation:fade-up 0.6s 0.4s cubic-bezier(0.22,1,0.36,1) forwards}
+.hero__h1{font-family:var(--serif);font-size:clamp(48px,8vw,96px);font-weight:700;line-height:1.04;letter-spacing:-0.035em;color:var(--ink);max-width:960px;margin:0 auto;opacity:0;animation:fade-up 0.6s 0.4s cubic-bezier(0.22,1,0.36,1) forwards}
 .hero__rule{display:block;width:48px;height:2px;margin:14px auto 10px;background:var(--terra);border-radius:2px;opacity:0;animation:fade-up 0.5s 0.65s ease forwards,rule-expand 0.6s 0.65s cubic-bezier(0.22,1,0.36,1) forwards}
 @keyframes rule-expand{from{width:0}to{width:48px}}
-.hero__tw-slot{display:flex;align-items:flex-start;justify-content:center;font-family:var(--serif);font-size:clamp(46px,7vw,88px);font-weight:600;line-height:1.2;letter-spacing:-0.028em;font-style:italic;color:var(--terra);text-align:center;height:1.25em;margin:0 auto;opacity:0;animation:fade-up 0.6s 0.75s cubic-bezier(0.22,1,0.36,1) forwards;overflow:hidden}
+.hero__tw-slot{display:flex;align-items:flex-start;justify-content:center;font-family:var(--serif);font-size:clamp(48px,8vw,96px);font-weight:700;line-height:1.15;letter-spacing:-0.035em;font-style:italic;color:var(--terra);text-align:center;height:1.25em;margin:0 auto;opacity:0;animation:fade-up 0.6s 0.75s cubic-bezier(0.22,1,0.36,1) forwards;overflow:hidden}
 .hero__tw-text{display:inline}
 .hero__tw-cursor{display:none}
 .hero__tw-text::after{content:'';display:inline-block;width:3px;height:0.7em;background:var(--terra);border-radius:1px;margin-left:2px;animation:tw-blink 0.9s step-end infinite}
 @keyframes tw-blink{0%,100%{opacity:1}50%{opacity:0}}
 .hero__sub{margin-top:24px;font-size:clamp(16px,2vw,19px);font-weight:300;color:var(--ink-3);max-width:540px;margin-left:auto;margin-right:auto;line-height:1.68;opacity:0}
 .hero__btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:32px;opacity:0}
-.hero__stats{margin-top:48px;max-width:720px;width:100%;margin-left:auto;margin-right:auto;opacity:0;background:var(--dark);border:1px solid rgba(250,249,245,0.08);border-radius:16px;overflow:hidden;box-shadow:0 20px 60px rgba(20,20,19,0.15);transform:translateY(30px) scale(0.97)}
+.hero__stats{margin-top:48px;max-width:720px;width:100%;margin-left:auto;margin-right:auto;opacity:0;background:var(--dark);border:1px solid rgba(250,249,245,0.08);border-radius:16px;overflow:hidden;box-shadow:0 24px 64px rgba(20,20,19,0.20);transform:translateY(30px) scale(0.97)}
 .hero__sub.show,.hero__btns.show{animation:fade-up 0.6s ease forwards}
 .hero__stats.show{animation:stats-entrance 0.7s cubic-bezier(0.34,1.56,0.64,1) forwards}
 @keyframes stats-entrance{from{opacity:0;transform:translateY(30px) scale(0.97)}to{opacity:1;transform:translateY(0) scale(1)}}
@@ -223,7 +226,7 @@ body{font-family:var(--sans);font-size:16px;line-height:1.6;color:var(--ink);bac
 /* Card body */
 .svc__content{padding:28px 30px 30px;flex:1;display:flex;flex-direction:column}
 .svc__head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:14px}
-.svc__name{font-family:var(--serif);font-size:18px;font-weight:600;color:var(--ink);line-height:1.3}
+.svc__name{font-family:var(--serif);font-size:20px;font-weight:700;color:var(--ink);line-height:1.3}
 .svc__icon{width:38px;height:38px;border-radius:10px;background:var(--terra-bg);display:grid;place-items:center;flex-shrink:0}
 .svc__icon svg{width:18px;height:18px;stroke:var(--terra);fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
 .svc__body{font-size:14px;color:var(--ink-3);line-height:1.75;flex:1}
@@ -240,7 +243,7 @@ body{font-family:var(--sans);font-size:16px;line-height:1.6;color:var(--ink);bac
 .how-step:not(:last-child)::after{content:'';position:absolute;left:14px;top:38px;bottom:0;width:2px;background:linear-gradient(to bottom,var(--terra),rgba(217,119,87,0.15));border-radius:1px}
 .how-step:first-child::after{top:32px}
 .how-step__n{flex-shrink:0;width:30px;height:30px;background:var(--terra);border-radius:50%;display:grid;place-items:center;font-size:13px;font-weight:600;color:#fff;margin-top:1px;position:relative;z-index:1}
-.how-step__title{font-family:var(--serif);font-size:16px;font-weight:600;color:var(--lite);margin-bottom:5px}
+.how-step__title{font-family:var(--serif);font-size:17px;font-weight:700;color:var(--lite);margin-bottom:5px}
 .how-step__body{font-size:14px;color:var(--lite-2);line-height:1.65}
 .dash{background:var(--dark2);border:1px solid var(--br-d);border-radius:16px;overflow:hidden;position:sticky;top:80px;box-shadow:0 24px 64px rgba(0,0,0,0.25)}
 .dash__bar{background:rgba(255,255,255,0.03);border-bottom:1px solid var(--br-d);padding:13px 18px;display:flex;align-items:center;gap:6px}
@@ -272,7 +275,7 @@ body{font-family:var(--sans);font-size:16px;line-height:1.6;color:var(--ink);bac
 .result-card:hover{transform:translateY(-3px);box-shadow:0 12px 36px rgba(20,20,19,0.07)}
 .result-card__head{display:flex;align-items:center;justify-content:space-between}
 .result-card__label{font-size:14px;font-weight:500;color:var(--ink-2);line-height:1.4}
-.result-card__num{font-family:var(--serif);font-size:38px;font-weight:600;color:var(--ink);letter-spacing:-0.03em;line-height:1}
+.result-card__num{font-family:var(--serif);font-size:44px;font-weight:700;color:var(--ink);letter-spacing:-0.03em;line-height:1}
 .result-card__num span{color:var(--terra)}
 /* Progress bar */
 .result-card__bar{height:6px;background:rgba(20,20,19,0.06);border-radius:3px;overflow:hidden}
@@ -354,11 +357,11 @@ blockquote.testi{margin:0}
 .plan__tier-row{display:flex;align-items:center;gap:8px;margin-bottom:12px}
 .plan__tier{font-size:11px;font-weight:600;letter-spacing:0.10em;text-transform:uppercase;color:var(--terra-lt)}
 .plan__avail{margin-left:auto}
-.plan__name{font-family:var(--serif);font-size:22px;font-weight:600;color:var(--lite);margin-bottom:8px}
+.plan__name{font-family:var(--serif);font-size:24px;font-weight:700;color:var(--lite);margin-bottom:8px}
 .plan__desc{font-size:14px;color:var(--lite-2);line-height:1.6;margin-bottom:22px}
 .plan__price-row{display:flex;align-items:baseline;gap:8px;padding-bottom:24px;border-bottom:1px solid var(--br-d)}
 .plan__currency{font-size:18px;font-weight:500;color:var(--lite-3)}
-.plan__num{font-family:var(--serif);font-size:44px;font-weight:600;line-height:1;color:var(--lite);letter-spacing:-0.03em}
+.plan__num{font-family:var(--serif);font-size:48px;font-weight:700;line-height:1;color:var(--lite);letter-spacing:-0.03em}
 .plan__period{font-size:13px;color:var(--lite-3);margin-left:2px}
 /* Features with structured layout */
 .plan__body{padding:24px 28px 28px}
@@ -374,7 +377,7 @@ blockquote.testi{margin:0}
 .cta-band.shimmer::before{animation:shimmer-sweep 1s ease forwards}
 @keyframes shimmer-sweep{from{left:-60%}to{left:120%}}
 .cta-band::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 100% at 20% 50%,rgba(0,0,0,0.10) 0%,transparent 60%);pointer-events:none;z-index:0}
-.cta-band__h2{font-family:var(--serif);font-size:clamp(34px,5vw,60px);font-weight:600;line-height:1.1;letter-spacing:-0.02em;color:#fff;max-width:660px;margin:0 auto 18px;position:relative;z-index:2}
+.cta-band__h2{font-family:var(--serif);font-size:clamp(36px,5.5vw,66px);font-weight:700;line-height:1.1;letter-spacing:-0.02em;color:#fff;max-width:660px;margin:0 auto 18px;position:relative;z-index:2}
 .cta-band__h2 em{font-style:italic;opacity:0.85}
 .cta-band__sub{font-size:18px;font-weight:300;color:rgba(255,255,255,0.82);max-width:480px;margin:0 auto 38px;line-height:1.6;position:relative;z-index:2}
 .cta-band .btn{position:relative;z-index:2}
@@ -436,8 +439,20 @@ footer{background:var(--dark);padding:64px 0 36px;border-top:1px solid var(--br-
 *,*::before,*::after{animation-duration:0.01ms!important;transition-duration:0.01ms!important}
 .r{opacity:1;transform:none}
 .hero__h1,.hero__tw-slot,.hero__badge,.hero__sub,.hero__btns,.hero__stats,.hero__rule{opacity:1;transform:none}
-  .hero__stat{opacity:1;transform:none}
+.hero__stat{opacity:1;transform:none}
 .strip__track{animation:none}
+.svc__tw-cursor{animation:none}
+.v4__dot{animation:none!important}
+.nav__orb{transition:none}
+}
+  
+@media print{
+.nav,.scroll-progress,.strip,.hero__orb,.hero__stats-bar-dot,.nav__mobile,.footer__btt,.mid-cta,.cta-band{display:none!important}
+body{font-size:12pt;color:#000}
+.hero{min-height:auto;padding:40px 0}
+.sec{padding:30px 0}
+a{color:inherit;text-decoration:underline}
+.btn{border:1px solid #000;background:transparent!important;color:#000!important}
 }
   </style>
 </head>
@@ -449,12 +464,12 @@ footer{background:var(--dark);padding:64px 0 36px;border-top:1px solid var(--br-
 <!-- NAV -->
 <nav class="nav" id="nav" role="navigation" aria-label="Main navigation">
   <div class="nav__in">
-    <a href="#" class="nav__logo" aria-label="IntegrateAI Advisors — Home">
+    <a href="#main" class="nav__logo" aria-label="IntegrateAI Advisors — Home">
       <div class="nav__orb nav__orb--lite shifting" aria-hidden="true"><div class="v4__dot v4__dot--bright"></div><div class="v4__dot v4__dot--dim"></div><div class="v4__dot v4__dot--mid"></div><div class="v4__dot v4__dot--bright"></div><div class="v4__dot v4__dot--dim"></div><div class="v4__dot v4__dot--bright"></div><div class="v4__dot v4__dot--bright"></div><div class="v4__dot v4__dot--mid"></div></div>
       <span class="nav__brand">IntegrateAI Advisors</span>
     </a>
     <ul class="nav__links"><li><a href="#services">Services</a></li><li><a href="#how">How it works</a></li><li><a href="#pricing">Pricing</a></li><li><a href="#faq">FAQ</a></li></ul>
-    <a href="#contact" class="btn btn-primary nav__cta-desktop">Book free AI Diagnostic</a>
+    <a href="#contact" class="btn btn-primary nav__cta-desktop">Free AI Diagnostic</a>
     <button class="nav__toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
   </div>
 </nav>
@@ -466,8 +481,8 @@ footer{background:var(--dark);padding:64px 0 36px;border-top:1px solid var(--br-
     <a href="#faq" class="nav__mobile-link"><span>FAQ</span><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
   </div>
   <div class="nav__mobile-bottom">
-    <div class="nav__mobile-cta"><a href="#contact" class="btn btn-primary">Book free AI Diagnostic &rarr;</a></div>
-    <div class="nav__mobile-meta"><span>hello@integrateai.co</span><span>&middot;</span><span>AI consultancy &middot; Anthropic ecosystem</span></div>
+    <div class="nav__mobile-cta"><a href="#contact" class="btn btn-primary">Free AI Diagnostic &rarr;</a></div>
+    <div class="nav__mobile-meta"><span>hello@integrateai.co</span><span>&middot;</span><span>AI agents for SMEs &middot; Anthropic powered</span></div>
   </div>
 </div>
 
@@ -479,39 +494,39 @@ footer{background:var(--dark);padding:64px 0 36px;border-top:1px solid var(--br-
   <div class="hero__orb hero__orb-2" aria-hidden="true"></div>
   <div class="hero__orb hero__orb-3" aria-hidden="true"></div>
   <div class="hero__inner">
-    <div class="hero__badge" aria-hidden="true"><span class="hero__pulse"></span>AI consultancy &middot; Anthropic ecosystem</div>
+    <div class="hero__badge" aria-hidden="true"><span class="hero__pulse"></span>AI agents for SMEs &middot; Anthropic powered</div>
     <h1 class="hero__h1" id="hero-heading">Give your business<br>superpowers with</h1>
     <span class="hero__rule" aria-hidden="true"></span>
     <div class="hero__tw-slot" aria-live="polite"><span class="hero__tw-text" id="tw-text"></span><span class="hero__tw-cursor" aria-hidden="true"></span></div>
-    <p class="hero__sub" id="hero-sub">Solo founder? Small team? It doesn't matter. We give you a workforce of superintelligent AI agents that operate like six-figure experts — handling your marketing, sales, and customer service through Slack while you focus on the work that actually grows your business.</p>
+    <p class="hero__sub" id="hero-sub">Solo founder? Small team? Doesn’t matter. We give you superintelligent AI agents that work like six-figure employees — running your marketing, sales, and customer service through Slack, 24/7, while you focus on growth.</p>
     <div class="hero__btns" id="hero-btns">
-      <a href="#contact" class="btn btn-primary">Book free AI Diagnostic &rarr;</a>
+      <a href="#contact" class="btn btn-primary">Free AI Diagnostic &rarr;</a>
       <a href="#services" class="btn btn-ghost">See how it works</a>
     </div>
     <div class="hero__stats" id="hero-stats" aria-label="Key metrics">
       <div class="hero__stats-bar">
         <span class="hero__stats-bar-dot" aria-hidden="true"></span>
-        <span class="hero__stats-bar-label">Why hire when you can deploy?</span>
+        <span class="hero__stats-bar-label">Hire vs. deploy</span>
       </div>
       <div class="hero__stats-grid">
         <div class="hero__stat">
           <div class="hero__stat-num" data-val="65" data-suffix="k">0<span>k</span></div>
-          <div class="hero__stat-label">Marketing hire</div>
-          <div class="hero__stat-ctx">salary per year</div>
+          <div class="hero__stat-label">Marketing</div>
+          <div class="hero__stat-ctx">/year salary</div>
         </div>
         <div class="hero__stat">
           <div class="hero__stat-num" data-val="55" data-suffix="k">0<span>k</span></div>
-          <div class="hero__stat-label">Sales exec</div>
-          <div class="hero__stat-ctx">salary per year</div>
+          <div class="hero__stat-label">Sales</div>
+          <div class="hero__stat-ctx">/year salary</div>
         </div>
         <div class="hero__stat">
           <div class="hero__stat-num" data-val="40" data-suffix="k">0<span>k</span></div>
-          <div class="hero__stat-label">Admin support</div>
-          <div class="hero__stat-ctx">salary per year</div>
+          <div class="hero__stat-label">Admin</div>
+          <div class="hero__stat-ctx">/year salary</div>
         </div>
         <div class="hero__stat">
           <div class="hero__stat-num" data-val="3.5" data-suffix="k" data-decimal="1">0<span>k</span></div>
-          <div class="hero__stat-label">All three as AI</div>
+          <div class="hero__stat-label">All 3 as AI</div>
           <div class="hero__stat-ctx">one-time setup</div>
         </div>
       </div>
@@ -533,7 +548,7 @@ footer{background:var(--dark);padding:64px 0 36px;border-top:1px solid var(--br-
   <div class="wrap">
     <div class="services__hd r">
       <div class="eyebrow">What we do</div>
-      <h2 class="hdg hdg--center" id="services-heading">What you get. <em>What it costs.</em></h2>
+      <h2 class="hdg hdg--center" id="services-heading">What you get. <em>What it’s worth.</em></h2>
       <p class="copy copy--center">From AI training workshops to autonomous agent teams that operate like six-figure employees — every engagement has a defined scope, documented deliverables, and a fixed price.</p>
     </div>
     <div class="services__grid">
@@ -593,7 +608,7 @@ footer{background:var(--dark);padding:64px 0 36px;border-top:1px solid var(--br-
             <h3 class="svc__name">Free AI Diagnostic Call</h3>
             <div class="svc__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M2 20h20M12 4v12M8 8l4-4 4 4"/></svg></div>
           </div>
-          <p class="svc__body">A focused 30-minute call where we identify your 3–5 highest-friction workflows, estimate the time and cost you're losing, and show you how Claude Cowork, OpenClaw agents, and intelligent automation could transform your operations. No ROI? No pitch.</p>
+          <p class="svc__body">A focused 30-minute call where we identify your 3–5 highest-friction workflows, estimate the time and cost you’re losing, and show you how Claude Cowork, OpenClaw agents, and intelligent automation could transform your operations. No ROI? No pitch.</p>
           <div class="svc__meta"><span class="svc__tag">Free &middot; 30 minutes</span><span class="svc__timeline">No obligation</span></div>
         </div>
       </div>
@@ -607,10 +622,10 @@ footer{background:var(--dark);padding:64px 0 36px;border-top:1px solid var(--br-
     <div class="how__grid">
       <div class="r">
         <div class="eyebrow eyebrow--dark">How it works</div>
-        <h2 class="hdg hdg--dark" id="how-heading">From diagnostic to <em>measurable savings</em> in weeks</h2>
+        <h2 class="hdg hdg--dark" id="how-heading">Diagnostic to <em>deployed agents</em> in 30 days</h2>
         <p class="copy copy--dark">Five steps from first call to your team using AI every day. Most businesses are fully implemented within 30 days.</p>
         <ol class="how__steps" role="list">
-          <li class="how-step r d1"><div class="how-step__n" aria-hidden="true">1</div><div><div class="how-step__title">Book the AI Diagnostic</div><p class="how-step__body">A focused 30-minute call. We identify your repetitive workflows, quantify the time and cost, and determine whether structured AI implementation would produce clear ROI.</p></div></li>
+          <li class="how-step r d1"><div class="how-step__n" aria-hidden="true">1</div><div><div class="how-step__title">Free AI Diagnostic</div><p class="how-step__body">A focused 30-minute call. We identify your repetitive workflows, quantify the time and cost, and determine whether structured AI implementation would produce clear ROI.</p></div></li>
           <li class="how-step r d2"><div class="how-step__n" aria-hidden="true">2</div><div><div class="how-step__title">Receive Your Proposal</div><p class="how-step__body">Within 24 hours you receive a short scope document: prioritised workflows, implementation plan, projected annual savings, and a clear fixed price.</p></div></li>
           <li class="how-step r d3"><div class="how-step__n" aria-hidden="true">3</div><div><div class="how-step__title">We Implement</div><p class="how-step__body">We set up Claude Cowork across your team, configure OpenClaw agents for your key operations, and implement intelligent automation. Your agents join Slack and start working like expert team members — with full documentation so you stay in control.</p></div></li>
           <li class="how-step r d4"><div class="how-step__n" aria-hidden="true">4</div><div><div class="how-step__title">Your Team Runs It</div><p class="how-step__body">Full documentation, staff training, and a usage guide so your team can use everything consistently — without needing us. You own all the materials.</p></div></li>
@@ -641,42 +656,42 @@ footer{background:var(--dark);padding:64px 0 36px;border-top:1px solid var(--br-
 <section class="results sec grain" id="results" aria-labelledby="results-heading">
   <div class="wrap">
     <div class="results__hd r">
-      <div class="eyebrow">Real results</div>
-      <h2 class="hdg hdg--center" id="results-heading">Typical outcomes <em>our clients see</em></h2>
-      <p class="copy copy--center">Based on real engagements with SMEs in professional services, legal, accountancy, and marketing.</p>
+      <div class="eyebrow">What your AI team delivers</div>
+      <h2 class="hdg hdg--center" id="results-heading">£160k of talent. <em>£3.5k to deploy.</em></h2>
+      <p class="copy copy--center">Real output from OpenClaw agent teams deployed for SMEs and solo founders.</p>
     </div>
     <div class="results__grid">
       <div class="result-card r d1">
         <div class="result-card__head">
-          <span class="result-card__label">Reduction in team admin and repetitive tasks</span>
-          <div class="result-card__num" data-target="40" data-suffix="%"><span class="rv">0</span><span>×</span></div>
+          <span class="result-card__label">Leads researched and delivered weekly</span>
+          <div class="result-card__num" data-target="50" data-suffix="+"><span class="rv">0</span><span>×</span></div>
         </div>
         <div class="result-card__bar"><div class="result-card__fill" data-width="95"></div></div>
-        <div class="result-card__context"><span class="result-card__detail">Cowork + OpenClaw agent teams</span><span class="result-card__source">typical across clients</span></div>
+        <div class="result-card__context"><span class="result-card__detail">OpenClaw Research Agent in your Slack</span><span class="result-card__source">£55k role, handled by AI</span></div>
       </div>
       <div class="result-card r d2">
         <div class="result-card__head">
-          <span class="result-card__label">Diagnostic to live AI implementation</span>
-          <div class="result-card__num" data-target="30" data-suffix="d"><span class="rv">0</span><span>d</span></div>
+          <span class="result-card__label">Personalised outreach emails per week</span>
+          <div class="result-card__num" data-target="200" data-suffix="+"><span class="rv">0</span><span>d</span></div>
         </div>
-        <div class="result-card__bar"><div class="result-card__fill" data-width="30"></div></div>
-        <div class="result-card__context"><span class="result-card__detail">Cowork active, agents running, team trained</span><span class="result-card__source">most engagements</span></div>
+        <div class="result-card__bar"><div class="result-card__fill" data-width="85"></div></div>
+        <div class="result-card__context"><span class="result-card__detail">OpenClaw Outreach Agent, fully autonomous</span><span class="result-card__source">£65k role, handled by AI</span></div>
       </div>
       <div class="result-card r d3">
         <div class="result-card__head">
-          <span class="result-card__label">Annual cost recovered from repetitive work</span>
-          <div class="result-card__num" data-target="15" data-suffix="k"><span class="rv">0</span><span>%</span></div>
+          <span class="result-card__label">Admin hours eliminated per week</span>
+          <div class="result-card__num" data-target="35" data-suffix="h"><span class="rv">0</span><span>%</span></div>
         </div>
         <div class="result-card__bar"><div class="result-card__fill" data-width="68"></div></div>
-        <div class="result-card__context"><span class="result-card__detail">Based on £60/hr avg. staff cost</span><span class="result-card__source">conservative estimate</span></div>
+        <div class="result-card__context"><span class="result-card__detail">Reports, emails, follow-ups, summaries</span><span class="result-card__source">£40k role, handled by AI</span></div>
       </div>
       <div class="result-card r d4">
         <div class="result-card__head">
-          <span class="result-card__label">Autonomous tasks handled without human input</span>
-          <div class="result-card__num" data-target="85" data-suffix="%"><span class="rv">0</span><span>★</span></div>
+          <span class="result-card__label">Your total investment for all of this</span>
+          <div class="result-card__num" data-target="3.5" data-suffix="k" data-decimal="1"><span class="rv">0</span><span>★</span></div>
         </div>
-        <div class="result-card__bar"><div class="result-card__fill" data-width="96"></div></div>
-        <div class="result-card__context"><span class="result-card__detail">OpenClaw agents operating 24/7</span><span class="result-card__source">avg. across agent teams</span></div>
+        <div class="result-card__bar"><div class="result-card__fill" data-width="5"></div></div>
+        <div class="result-card__context"><span class="result-card__detail">One-time setup · agents live in 30 days</span><span class="result-card__source">£160k worth of capability</span></div>
       </div>
     </div>
   </div>
@@ -684,9 +699,9 @@ footer{background:var(--dark);padding:64px 0 36px;border-top:1px solid var(--br-
 
 <!-- MID-PAGE CTA -->
 <div class="mid-cta r">
-  <div class="mid-cta__text">Your team is losing hours every week. <em>Let's fix that.</em></div>
-  <a href="#contact" class="btn btn-primary">Book free AI Diagnostic &rarr;</a>
-  <div class="mid-cta__risk">30-minute call &middot; Completely free &middot; No pitch if we can't find clear ROI</div>
+  <div class="mid-cta__text">Seen enough? <em>Let’s go.</em></div>
+  <a href="#contact" class="btn btn-primary">Free AI Diagnostic &rarr;</a>
+  <div class="mid-cta__risk">30-minute call &middot; Completely free &middot; No pitch if we can’t find clear ROI</div>
 </div>
 
 <!-- TESTIMONIALS — Evidence-led with metric callouts -->
@@ -705,11 +720,11 @@ footer{background:var(--dark);padding:64px 0 36px;border-top:1px solid var(--br-
       </blockquote>
       <blockquote class="testi r d2">
         <div class="testi__metric"><span class="testi__metric-num" data-tcount="8" data-tsuffix="h">0</span><span class="testi__metric-label">hours saved<br>every week</span></div>
-        <div class="testi__body"><p class="testi__quote">They implemented Claude Cowork into our daily operations and set up intelligent agents for our repetitive reporting. The documentation and training means new starters are using AI properly from day one. We're saving 8 hours a week easily.</p></div>
+        <div class="testi__body"><p class="testi__quote">They implemented Claude Cowork into our daily operations and set up intelligent agents for our repetitive reporting. The documentation and training means new starters are using AI properly from day one. We’re saving 8 hours a week easily.</p></div>
         <footer class="testi__author"><div class="testi__av" aria-hidden="true">DC</div><div class="testi__info"><div class="testi__name">David Chen</div><div class="testi__role">Operations Manager, Apex Legal</div></div><span class="testi__verified"><svg viewBox="0 0 16 16"><path d="M13.5 5l-7 7L3 8.5"/></svg>Verified</span></footer>
       </blockquote>
       <blockquote class="testi r d3">
-        <div class="testi__metric"><span class="testi__metric-num" data-tcount="100" data-tsuffix="%">0</span><span class="testi__metric-label">data governance<br>confidence</span></div>
+        <div class="testi__metric"><span class="testi__metric-num" data-tcount="100" data-tsuffix="%">0</span><span class="testi__metric-label">safe AI<br>governance built in</span></div>
         <div class="testi__body"><p class="testi__quote">I was worried about data safety and governance. They addressed that head-on — set up clear guardrails within Claude Cowork, defined what should and shouldn't go through AI, and only implemented where it genuinely saves time. Expert guidance throughout.</p></div>
         <footer class="testi__author"><div class="testi__av" aria-hidden="true">RA</div><div class="testi__info"><div class="testi__name">Rachel Adams</div><div class="testi__role">CEO, Northgate Financial</div></div><span class="testi__verified"><svg viewBox="0 0 16 16"><path d="M13.5 5l-7 7L3 8.5"/></svg>Verified</span></footer>
       </blockquote>
@@ -722,7 +737,7 @@ footer{background:var(--dark);padding:64px 0 36px;border-top:1px solid var(--br-
   <div class="wrap">
     <div class="r" style="text-align:center;margin-bottom:48px">
       <div class="eyebrow">Is this right for you?</div>
-      <h2 class="hdg hdg--center" id="qualifier-heading">We're a great fit <em>if&hellip;</em></h2>
+      <h2 class="hdg hdg--center" id="qualifier-heading">We’re a great fit <em>if&hellip;</em></h2>
     </div>
     <div class="qualifier__grid r d1">
       <div class="qualifier__col qualifier__col--yes">
@@ -760,7 +775,7 @@ footer{background:var(--dark);padding:64px 0 36px;border-top:1px solid var(--br-
   <div class="wrap">
     <div class="pricing__hd r">
       <div class="eyebrow eyebrow--dark">Investment</div>
-      <h2 class="hdg hdg--dark hdg--center" id="pricing-heading">Choose your starting point. <em>See exactly what you get.</em></h2>
+      <h2 class="hdg hdg--dark hdg--center" id="pricing-heading">Pick your plan. <em>See what you get.</em></h2>
       <p class="copy copy--dark copy--center">No hidden fees. No scope creep. Every engagement has a clear deliverable and a fixed price — decided before we start.</p>
     </div>
     <div class="pricing__grid">
@@ -773,8 +788,8 @@ footer{background:var(--dark);padding:64px 0 36px;border-top:1px solid var(--br-
         </div>
         <div class="plan__body">
           <div class="plan__includes">Includes: 2-3 hour session + materials + action plan</div>
-          <ul class="plan__features"><li>AI landscape overview (what matters, what doesn't)</li><li>Prompting fundamentals your team can use immediately</li><li>Safe usage rules: client data, confidentiality, risk</li><li>Shortlist of high-ROI workflows to target first</li><li>Materials and reference guide to keep</li></ul>
-          <a href="#contact" class="btn btn-ghost-dark" style="width:100%;justify-content:center;">Book free AI Diagnostic &rarr;</a>
+          <ul class="plan__features"><li>AI landscape overview (what matters, what doesn’t)</li><li>Prompting fundamentals your team can use immediately</li><li>Safe usage rules: client data, confidentiality, risk</li><li>Shortlist of high-ROI workflows to target first</li><li>Materials and reference guide to keep</li></ul>
+          <a href="#contact" class="btn btn-ghost-dark" style="width:100%;justify-content:center;">Free AI Diagnostic &rarr;</a>
         </div>
       </div>
       <div class="plan plan--featured r d2">
@@ -787,7 +802,7 @@ footer{background:var(--dark);padding:64px 0 36px;border-top:1px solid var(--br-
         <div class="plan__body">
           <div class="plan__includes">Includes: Claude Cowork + OpenClaw agents + training + docs</div>
           <ul class="plan__features"><li>5–10 workflow audit with time/cost analysis</li><li>Claude Cowork setup across your team</li><li>OpenClaw agent configuration for key tasks</li><li>Intelligent automation for repetitive workflows</li><li>Full SOP documentation + team training</li><li>14–30 days post-implementation support</li></ul>
-          <a href="#contact" class="btn btn-primary" style="width:100%;justify-content:center;">Book free AI Diagnostic &rarr;</a>
+          <a href="#contact" class="btn btn-primary" style="width:100%;justify-content:center;">Free AI Diagnostic &rarr;</a>
         </div>
       </div>
       <div class="plan r d3">
@@ -800,7 +815,7 @@ footer{background:var(--dark);padding:64px 0 36px;border-top:1px solid var(--br-
         <div class="plan__body">
           <div class="plan__includes">Includes: Everything in AI Productivity Setup + Dedicated consultant + Strategy</div>
           <ul class="plan__features"><li>Everything in AI Productivity Setup</li><li>Unlimited agents &amp; integrations</li><li>Dedicated consultant embedded in your team</li><li>Board-level AI strategy session</li><li>12-month adoption roadmap</li><li>Dedicated Slack support channel</li></ul>
-          <a href="#contact" class="btn btn-ghost-dark" style="width:100%;justify-content:center;">Book free AI Diagnostic &rarr;</a>
+          <a href="#contact" class="btn btn-ghost-dark" style="width:100%;justify-content:center;">Free AI Diagnostic &rarr;</a>
         </div>
       </div>
     </div>
@@ -809,9 +824,9 @@ footer{background:var(--dark);padding:64px 0 36px;border-top:1px solid var(--br-
 
 <!-- CTA BAND -->
 <section class="cta-band" id="contact" aria-labelledby="cta-heading">
-  <h2 class="cta-band__h2 r" id="cta-heading">Every week you wait is <em>hours wasted.</em></h2>
-  <p class="cta-band__sub r d1">Book your free 30-minute AI Diagnostic. We'll show you which roles an OpenClaw agent could fill, how Claude Cowork would boost your team's output, and give you a concrete savings estimate — yours to keep even if you don't proceed.</p>
-  <a href="mailto:hello@integrateai.co" class="btn btn-white r d2">Book free AI Diagnostic &rarr;</a>
+  <h2 class="cta-band__h2 r" id="cta-heading">Stop thinking about it. <em>Start deploying.</em></h2>
+  <p class="cta-band__sub r d1">Book your free 30-minute AI Diagnostic. We'll show you which roles an OpenClaw agent could fill, how Claude Cowork would boost your team's output, and give you a concrete savings estimate — yours to keep even if you don’t proceed.</p>
+  <a href="mailto:hello@integrateai.co" aria-label="Free AI Diagnostic via email" class="btn btn-white r d2">Free AI Diagnostic &rarr;</a>
   <div class="cta-band__spots r d3"><span class="cta-band__spots-dot"></span>Limited slots this month &middot; Free &middot; You keep the analysis either way</div>
 </section>
 
@@ -821,15 +836,15 @@ footer{background:var(--dark);padding:64px 0 36px;border-top:1px solid var(--br-
     <div class="faq__grid">
       <div class="r">
         <div class="eyebrow">FAQ</div>
-        <h2 class="hdg" id="faq-heading">Questions,<br><em>answered</em></h2>
+        <h2 class="hdg" id="faq-heading">Quick<br><em>answers</em></h2>
         <p class="copy" style="margin-top:14px;">Can't find what you need? Email us at <a href="mailto:hello@integrateai.co" style="color:var(--terra);text-decoration:none;">hello@integrateai.co</a></p>
       </div>
       <div class="faq__list r d1" role="list">
-        <div class="faq__item" role="listitem"><button class="faq__q" aria-expanded="false" aria-controls="faq-1">We're already using ChatGPT. Is this still useful?<span class="faq__icon" aria-hidden="true">+</span></button><div class="faq__a" id="faq-1" role="region"><div class="faq__a-inner">That's ideal — you already have a foundation. We structure what's working, fix what isn't, and implement Claude Cowork and OpenClaw agents so your whole team uses AI consistently.</div></div></div>
+        <div class="faq__item" role="listitem"><button class="faq__q" aria-expanded="false" aria-controls="faq-1">We’re already using ChatGPT. Is this still useful?<span class="faq__icon" aria-hidden="true">+</span></button><div class="faq__a" id="faq-1" role="region"><div class="faq__a-inner">That’s ideal — you already have a foundation. We structure what’s working, fix what isn’t, and implement Claude Cowork and OpenClaw agents so your whole team uses AI consistently.</div></div></div>
         <div class="faq__item" role="listitem"><button class="faq__q" aria-expanded="false" aria-controls="faq-2">How fast will we see results?<span class="faq__icon" aria-hidden="true">+</span></button><div class="faq__a" id="faq-2" role="region"><div class="faq__a-inner">Most clients see time savings within two weeks. The full engagement — diagnostic to delivered implementation — takes about 30 days. It typically pays for itself within the first quarter.</div></div></div>
         <div class="faq__item" role="listitem"><button class="faq__q" aria-expanded="false" aria-controls="faq-3">How much time will this take from our side?<span class="faq__icon" aria-hidden="true">+</span></button><div class="faq__a" id="faq-3" role="region"><div class="faq__a-inner">One half-day implementation session plus light follow-up. We handle all the technical work — your team just tells us about their workflows and shows up for training.</div></div></div>
         <div class="faq__item" role="listitem"><button class="faq__q" aria-expanded="false" aria-controls="faq-4">What tools do you use?<span class="faq__icon" aria-hidden="true">+</span></button><div class="faq__a" id="faq-4" role="region"><div class="faq__a-inner">Claude Cowork for daily AI productivity across your team. OpenClaw for autonomous agents that join your Slack and operate like expert employees — handling marketing, sales, customer service, research, and reporting. Whether you need a single specialist agent or a coordinated team, we design and deploy what fits your business.</div></div></div>
-        <div class="faq__item" role="listitem"><button class="faq__q" aria-expanded="false" aria-controls="faq-5">We're worried about data safety and client confidentiality.<span class="faq__icon" aria-hidden="true">+</span></button><div class="faq__a" id="faq-5" role="region"><div class="faq__a-inner">Good — you should be. Data governance is built into every engagement. We define what should and shouldn't go into AI, set up guardrails, and make sure your team understands the boundaries.</div></div></div>
+        <div class="faq__item" role="listitem"><button class="faq__q" aria-expanded="false" aria-controls="faq-5">We’re worried about data safety and client confidentiality.<span class="faq__icon" aria-hidden="true">+</span></button><div class="faq__a" id="faq-5" role="region"><div class="faq__a-inner">Good — you should be. Data governance is built into every engagement. We define what should and shouldn't go into AI, set up guardrails, and make sure your team understands the boundaries.</div></div></div>
         <div class="faq__item" role="listitem"><button class="faq__q" aria-expanded="false" aria-controls="faq-6">What does it cost beyond the initial engagement?<span class="faq__icon" aria-hidden="true">+</span></button><div class="faq__a" id="faq-6" role="region"><div class="faq__a-inner">Just the AI tool subscriptions your team may already have (Claude, ChatGPT). Beyond that, the optional monthly retainer for ongoing optimisation. No hidden fees from us.</div></div></div>
       </div>
     </div>
@@ -842,16 +857,16 @@ footer{background:var(--dark);padding:64px 0 36px;border-top:1px solid var(--br-
   <div class="wrap">
     <div class="footer__top">
       <div class="footer__about">
-        <a href="#" class="nav__logo" style="text-decoration:none;" aria-label="IntegrateAI Advisors — Home"><div class="nav__orb nav__orb--dark shifting" aria-hidden="true"><div class="v4__dot v4__dot--bright"></div><div class="v4__dot v4__dot--dim"></div><div class="v4__dot v4__dot--mid"></div><div class="v4__dot v4__dot--bright"></div><div class="v4__dot v4__dot--dim"></div><div class="v4__dot v4__dot--bright"></div><div class="v4__dot v4__dot--bright"></div><div class="v4__dot v4__dot--mid"></div></div><span class="nav__brand footer__brand">IntegrateAI Advisors</span></a>
+        <a href="#main" class="nav__logo" style="text-decoration:none;" aria-label="IntegrateAI Advisors — Home"><div class="nav__orb nav__orb--dark shifting" aria-hidden="true"><div class="v4__dot v4__dot--bright"></div><div class="v4__dot v4__dot--dim"></div><div class="v4__dot v4__dot--mid"></div><div class="v4__dot v4__dot--bright"></div><div class="v4__dot v4__dot--dim"></div><div class="v4__dot v4__dot--bright"></div><div class="v4__dot v4__dot--bright"></div><div class="v4__dot v4__dot--mid"></div></div><span class="nav__brand footer__brand">IntegrateAI Advisors</span></a>
         <p>AI consultancy for entrepreneurs and SMEs. We implement Claude Cowork and OpenClaw agent teams — giving you superintelligent AI employees with six-figure expertise, at a fraction of the cost.</p>
       </div>
       <div class="footer__col r d1"><h5>Services</h5><ul><li><a href="#services">Claude Code</a></li><li><a href="#services">Claude Cowork</a></li><li><a href="#services">AI Productivity Setups</a></li><li><a href="#services">AI Strategy</a></li></ul></div>
-      <div class="footer__col r d2"><h5>Company</h5><ul><li><a href="#">About</a></li><li><a href="#">Case studies</a></li><li><a href="#">Blog</a></li><li><a href="#">Careers</a></li></ul></div>
-      <div class="footer__col r d3"><h5>Contact</h5><ul><li><a href="mailto:hello@integrateai.co">hello&#64;integrateai.co</a></li><li><a href="#contact">Book a call</a></li><li><a href="#">LinkedIn</a></li><li><a href="#">Twitter / X</a></li></ul></div>
+      <div class="footer__col r d2"><h5>Company</h5><ul><li><a href="#how">About</a></li><li><a href="#results">Case studies</a></li><li><a href="#faq">FAQ</a></li><li><a href="#contact">Contact</a></li></ul></div>
+      <div class="footer__col r d3"><h5>Contact</h5><ul><li><a href="mailto:hello@integrateai.co">hello&#64;integrateai.co</a></li><li><a href="#contact">Free AI Diagnostic</a></li><li><a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">LinkedIn</a></li><li><a href="https://x.com" target="_blank" rel="noopener noreferrer">Twitter / X</a></li></ul></div>
     </div>
     <div class="footer__bottom">
       <span class="footer__copy">&copy; <span id="copy-year"></span> IntegrateAI Advisors. All rights reserved.</span>
-      <a href="#" class="footer__btt"><svg viewBox="0 0 16 16"><path d="M8 13V3M4 7l4-4 4 4"/></svg>Back to top</a>
+      <a href="#main" class="footer__btt"><svg viewBox="0 0 16 16"><path d="M8 13V3M4 7l4-4 4 4"/></svg>Back to top</a>
       <span class="footer__note">Not affiliated with Anthropic PBC. Built using Claude and Anthropic's APIs.</span>
     </div>
   </div>
