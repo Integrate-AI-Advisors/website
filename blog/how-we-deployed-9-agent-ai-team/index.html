@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>How We Deployed a 9-Agent AI Team | IntegrateAI Advisors</title>
+  <meta name="description" content="Behind the scenes of our 9-agent AI team: what each agent does, what it costs, and a full breakdown of our AI squad operating under £500/month." />
+  <meta property="og:title" content="How We Deployed a 9-Agent AI Team for Under £500/Month" />
+  <meta property="og:description" content="Behind the scenes of our 9-agent AI team. What each agent does, what it costs, and why this model works for small business." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://www.integrate-ai.uk/blog/how-we-deployed-9-agent-ai-team/" />
+  <meta property="og:image" content="https://www.integrate-ai.uk/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://www.integrate-ai.uk/og-image.png" />
+  <meta name="theme-color" content="#faf9f5" />
+  <link rel="canonical" href="https://www.integrate-ai.uk/blog/how-we-deployed-9-agent-ai-team/" />
+  <link rel="icon" href="/favicon.ico" sizes="32x32" />
+  <link rel="icon" href="/favicon.png" type="image/png" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "How We Deployed a 9-Agent AI Team for Under £500/Month",
+    "description": "Behind the scenes of our 9-agent AI team: what each agent does, what it costs, and a full breakdown.",
+    "datePublished": "2026-03-12",
+    "dateModified": "2026-03-12",
+    "author": {
+      "@type": "Organization",
+      "name": "IntegrateAI Advisors",
+      "url": "https://www.integrate-ai.uk"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "IntegrateAI Advisors",
+      "url": "https://www.integrate-ai.uk"
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://www.integrate-ai.uk/blog/how-we-deployed-9-agent-ai-team/"
+    },
+    "keywords": ["ai agent team", "ai agents for business", "ai team deployment", "ai squad small business"],
+    "wordCount": 1450
+  }
+  </script>
+
+  <style>
+:root {
+  --white:#ffffff; --cream:#faf9f5; --dark:#1a1a19; --dark2:#232322;
+  --terra:#d97757; --terra-lt:#e08a6a; --terra-dk:#c06545;
+  --terra-bg:rgba(217,119,87,0.08); --terra-ring:rgba(217,119,87,0.22);
+  --ink:#111110; --ink-2:#3a3935; --ink-3:#6a6862; --ink-4:#b0aea5;
+  --lite:#faf9f5; --lite-2:rgba(250,249,245,0.72); --lite-3:rgba(250,249,245,0.40);
+  --br-l:rgba(20,20,19,0.08); --br-d:rgba(250,249,245,0.08);
+  --green:#22c55e; --green-bg:rgba(34,197,94,0.12); --green-tx:#4ade80;
+  --amber:#f59e0b; --amber-bg:rgba(234,179,8,0.12); --amber-tx:#facc15;
+  --serif:'Lora',Georgia,serif; --sans:'DM Sans',system-ui,sans-serif; --mono:'JetBrains Mono',monospace;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);font-size:16px;line-height:1.6;color:var(--ink);background:var(--white);-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:0 32px}
+.scroll-progress{position:fixed;top:0;left:0;z-index:600;width:0%;height:3px;background:linear-gradient(90deg,var(--terra),var(--terra-lt));box-shadow:0 0 8px rgba(217,119,87,0.35);pointer-events:none}
+:focus-visible{outline:2px solid var(--terra);outline-offset:3px;border-radius:4px}
+.skip-link{position:absolute;top:-100%;left:16px;background:var(--terra);color:#fff;padding:8px 18px;border-radius:0 0 8px 8px;font-size:14px;font-weight:500;text-decoration:none;z-index:9999;transition:top 0.2s}.skip-link:focus{top:0}
+.btn{display:inline-flex;align-items:center;gap:7px;font-family:var(--sans);font-size:15px;font-weight:500;padding:13px 26px;border-radius:100px;text-decoration:none;border:none;cursor:pointer;transition:transform 0.17s,box-shadow 0.17s,background 0.17s;white-space:nowrap;position:relative;overflow:hidden}
+.btn:hover{transform:translateY(-2px)}.btn:active{transform:translateY(0)}
+.btn-primary{background:var(--terra);color:#fff;box-shadow:0 4px 18px rgba(217,119,87,0.30)}
+.btn-primary:hover{background:var(--terra-dk);box-shadow:0 8px 28px rgba(217,119,87,0.38)}
+.btn-primary::after{content:'';position:absolute;top:0;left:-100%;width:60%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.25),transparent);animation:btn-shine 2.8s ease-in-out infinite}
+@keyframes btn-shine{0%{left:-100%}40%{left:140%}100%{left:140%}}
+
+.nav{position:fixed;top:0;left:0;right:0;z-index:500;height:60px;display:flex;align-items:center;background:rgba(255,255,255,0.95);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--br-l);transition:box-shadow 0.3s,background 0.3s,border-color 0.3s}
+.nav.up{box-shadow:0 2px 18px rgba(20,20,19,0.07)}
+.nav.menu-open{background:var(--dark);border-bottom-color:rgba(250,249,245,0.06)}
+.nav.menu-open .nav__brand{color:var(--lite)}
+.nav.menu-open .nav__orb--lite{background:var(--dark2);border-color:rgba(250,249,245,0.10)}
+.nav__in{max-width:1080px;margin:0 auto;padding:0 32px;width:100%;display:flex;align-items:center;justify-content:space-between}
+.nav__logo{display:flex;align-items:center;gap:9px;text-decoration:none}
+.nav__orb{width:32px;height:32px;border-radius:9px;position:relative;flex-shrink:0;overflow:hidden;transition:transform 0.3s cubic-bezier(0.34,1.56,0.64,1);display:grid;grid-template-columns:repeat(4,1fr);gap:2px;padding:6px;align-content:center}
+.nav__orb--lite{background:var(--cream);border:1px solid rgba(20,20,19,0.08)}
+.nav__orb--dark{background:var(--dark);box-shadow:0 1px 6px rgba(0,0,0,0.15)}
+.nav.scrolled .nav__orb{width:28px;height:28px;padding:5px;border-radius:7px}
+.nav__logo:hover .nav__orb{transform:scale(1.08)}
+.v4__dot{aspect-ratio:1;border-radius:50%;background:var(--terra)}
+.v4__dot--dim{opacity:0.15}.v4__dot--mid{opacity:0.5}
+.v4__dot--bright{opacity:1;animation:v4-glow 2s ease-in-out infinite}
+@keyframes v4-glow{0%,100%{box-shadow:0 0 3px rgba(217,119,87,0.3)}50%{box-shadow:0 0 8px rgba(217,119,87,0.6)}}
+.shifting .v4__dot{animation:v4-shift 4s ease-in-out infinite}
+.v4__dot:nth-child(1){animation-delay:0s}.v4__dot:nth-child(2){animation-delay:0.2s}.v4__dot:nth-child(3){animation-delay:0.4s}.v4__dot:nth-child(4){animation-delay:0.6s}
+.v4__dot:nth-child(5){animation-delay:0.8s}.v4__dot:nth-child(6){animation-delay:1.0s}.v4__dot:nth-child(7){animation-delay:1.2s}.v4__dot:nth-child(8){animation-delay:1.4s}
+@keyframes v4-shift{0%,100%{opacity:var(--o,1)}33%{opacity:0.15}66%{opacity:var(--o,1)}}
+.v4__dot:nth-child(1){--o:1}.v4__dot:nth-child(2){--o:0.15}.v4__dot:nth-child(3){--o:0.5}.v4__dot:nth-child(4){--o:1}
+.v4__dot:nth-child(5){--o:0.15}.v4__dot:nth-child(6){--o:1}.v4__dot:nth-child(7){--o:1}.v4__dot:nth-child(8){--o:0.5}
+.nav__brand{font-family:var(--sans);font-size:15px;font-weight:600;color:var(--ink);letter-spacing:-0.01em}
+.nav__links{list-style:none;display:flex;gap:26px}
+.nav__links a{font-size:13px;color:var(--ink-3);text-decoration:none;transition:color 0.18s;position:relative}
+.nav__links a::after{content:'';position:absolute;bottom:-2px;left:0;right:0;height:1.5px;background:var(--terra);transform:scaleX(0);transform-origin:right;transition:transform 0.28s cubic-bezier(0.22,1,0.36,1)}
+.nav__links a:hover{color:var(--ink)}.nav__links a:hover::after{transform:scaleX(1);transform-origin:left}
+.nav__links a.active{color:var(--terra)}.nav__links a.active::after{transform:scaleX(1)}
+.nav__cta-desktop{font-size:13px!important;padding:10px 20px!important}
+.nav__toggle{display:none;background:none;border:none;cursor:pointer;width:36px;height:36px;position:relative;z-index:510;flex-shrink:0}
+.nav__toggle span{display:block;width:20px;height:2px;background:var(--ink);border-radius:2px;position:absolute;left:8px;transition:transform 0.3s,opacity 0.2s}
+.nav__toggle span:nth-child(1){top:11px}.nav__toggle span:nth-child(2){top:17px}.nav__toggle span:nth-child(3){top:23px}
+.nav__toggle.open span:nth-child(1){transform:translateY(6px) rotate(45deg);background:var(--lite)}.nav__toggle.open span:nth-child(2){opacity:0}.nav__toggle.open span:nth-child(3){transform:translateY(-6px) rotate(-45deg);background:var(--lite)}
+.nav__mobile{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:var(--dark);flex-direction:column;z-index:499;opacity:0;transform:translateY(-10px);transition:opacity 0.35s ease,transform 0.35s ease;overflow-y:auto}
+.nav__mobile.open{display:flex;opacity:1;transform:none}
+.nav__mobile-top{padding:80px 32px 0;flex:1;display:flex;flex-direction:column;justify-content:center;gap:0}
+.nav__mobile-link{display:flex;align-items:center;justify-content:space-between;padding:22px 0;border-bottom:1px solid rgba(250,249,245,0.06);text-decoration:none;opacity:0;transform:translateX(-16px);transition:opacity 0.3s ease,transform 0.3s ease}
+.nav__mobile.open .nav__mobile-link{opacity:1;transform:none}
+.nav__mobile.open .nav__mobile-link:nth-child(1){transition-delay:0.08s}.nav__mobile.open .nav__mobile-link:nth-child(2){transition-delay:0.14s}.nav__mobile.open .nav__mobile-link:nth-child(3){transition-delay:0.20s}.nav__mobile.open .nav__mobile-link:nth-child(4){transition-delay:0.26s}.nav__mobile.open .nav__mobile-link:nth-child(5){transition-delay:0.32s}
+.nav__mobile-link:last-child{border-bottom:none}
+.nav__mobile-link span{font-family:var(--serif);font-size:28px;font-weight:600;color:var(--lite);transition:color 0.2s}
+.nav__mobile-link:hover span{color:var(--terra-lt)}
+.nav__mobile-link svg{width:20px;height:20px;stroke:var(--lite-3);stroke-width:1.5;fill:none;stroke-linecap:round;transition:transform 0.2s,stroke 0.2s}
+.nav__mobile-link:hover svg{transform:translateX(4px);stroke:var(--terra-lt)}
+.nav__mobile-bottom{padding:24px 32px 40px;border-top:1px solid rgba(250,249,245,0.06)}
+.nav__mobile-cta{display:flex;width:100%;justify-content:center;margin-bottom:20px}
+.nav__mobile-cta .btn{width:100%;justify-content:center;font-size:16px;padding:16px 24px}
+.nav__mobile-meta{display:flex;align-items:center;gap:8px;justify-content:center}
+.nav__mobile-meta span{font-size:11px;color:var(--lite-3);opacity:0.5}
+
+.article-header{padding:120px 24px 48px;text-align:center;background:var(--white)}
+.article-header__inner{max-width:720px;margin:0 auto}
+.article-back{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--ink-4);text-decoration:none;margin-bottom:32px;transition:color 0.18s}
+.article-back:hover{color:var(--terra)}
+.article-back svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round}
+.article-meta{display:flex;align-items:center;justify-content:center;gap:16px;margin-bottom:24px;flex-wrap:wrap}
+.article-cat{font-family:var(--mono);font-size:11px;color:var(--terra);letter-spacing:0.04em;text-transform:uppercase;background:var(--terra-bg);padding:4px 12px;border-radius:100px}
+.article-date{font-family:var(--mono);font-size:11px;color:var(--ink-4)}
+.article-reading{font-family:var(--mono);font-size:11px;color:var(--ink-4)}
+.article-header h1{font-family:var(--serif);font-size:clamp(32px,5vw,48px);font-weight:700;line-height:1.12;letter-spacing:-0.03em;color:var(--ink);margin-bottom:16px}
+.article-author{font-size:14px;color:var(--ink-3)}.article-author strong{color:var(--ink-2);font-weight:500}
+
+.article-body{max-width:720px;margin:0 auto;padding:0 24px 96px}
+.article-body h2{font-family:var(--serif);font-size:clamp(22px,3vw,30px);font-weight:600;color:var(--ink);margin:48px 0 16px;line-height:1.25;letter-spacing:-0.01em}
+.article-body h2:first-child{margin-top:0}
+.article-body h3{font-family:var(--serif);font-size:18px;font-weight:600;color:var(--ink);margin:32px 0 10px}
+.article-body p{font-size:16px;font-weight:300;line-height:1.78;color:var(--ink-3);margin-bottom:20px}
+.article-body p strong{color:var(--ink-2);font-weight:500}
+.article-body a{color:var(--terra);text-decoration:none;border-bottom:1px solid var(--terra-ring);transition:border-color 0.18s}
+.article-body a:hover{border-color:var(--terra)}
+.article-body ul,.article-body ol{margin:0 0 20px 24px;color:var(--ink-3);font-weight:300;line-height:1.78}
+.article-body li{margin-bottom:8px}
+.article-body blockquote{border-left:3px solid var(--terra);padding:16px 24px;margin:32px 0;background:var(--terra-bg);border-radius:0 8px 8px 0}
+.article-body blockquote p{color:var(--ink-2);font-style:italic;margin-bottom:0}
+.article-body .callout{background:var(--cream);border:1px solid var(--br-l);border-radius:12px;padding:24px 28px;margin:32px 0}
+.article-body .callout p{margin-bottom:0}
+
+/* Agent cards */
+.agent-card{background:var(--dark2);border:1px solid var(--br-d);border-radius:12px;padding:20px 24px;margin:16px 0;display:flex;align-items:flex-start;gap:16px}
+.agent-card__status{flex-shrink:0;margin-top:2px}
+.agent-card__dot{width:8px;height:8px;border-radius:50%;background:var(--green-tx);animation:agent-pulse 2s ease-in-out infinite}
+@keyframes agent-pulse{0%,100%{box-shadow:0 0 4px rgba(74,222,128,0.3)}50%{box-shadow:0 0 10px rgba(74,222,128,0.6)}}
+.agent-card__info{flex:1;min-width:0}
+.agent-card__name{font-family:var(--serif);font-size:15px;font-weight:600;color:var(--lite);margin-bottom:4px}
+.agent-card__desc{font-size:13px;color:var(--lite-2);line-height:1.6}
+.agent-card__cost{font-family:var(--mono);font-size:11px;color:var(--terra-lt);margin-top:6px}
+
+/* Cost breakdown */
+.cost-table{width:100%;border-collapse:collapse;margin:24px 0 32px;font-size:14px}
+.cost-table th{text-align:left;font-weight:500;color:var(--ink-2);padding:12px 16px;border-bottom:2px solid var(--br-l);font-family:var(--sans)}
+.cost-table td{padding:10px 16px;border-bottom:1px solid var(--br-l);color:var(--ink-3);font-weight:300}
+.cost-table td:last-child{font-family:var(--mono);font-size:13px;text-align:right;color:var(--ink-2)}
+.cost-table tr:last-child td{border-bottom:2px solid var(--terra);font-weight:500;color:var(--ink)}
+
+.article-cta{max-width:720px;margin:0 auto 96px;padding:0 24px}
+.article-cta__box{background:var(--dark);border-radius:16px;padding:48px 40px;text-align:center}
+.article-cta__box h3{font-family:var(--serif);font-size:24px;font-weight:600;color:var(--lite);margin-bottom:12px}
+.article-cta__box p{font-size:15px;color:var(--lite-2);margin-bottom:24px;max-width:440px;margin-left:auto;margin-right:auto;line-height:1.65}
+.article-cta__box .article-cta__risk{font-family:var(--mono);font-size:12px;color:var(--lite-3);margin-top:16px}
+
+.related{max-width:720px;margin:0 auto;padding:0 24px 96px}
+.related h3{font-family:var(--serif);font-size:20px;font-weight:600;color:var(--ink);margin-bottom:24px}
+.related__grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.related__card{background:var(--cream);border:1px solid var(--br-l);border-radius:12px;padding:20px 22px;text-decoration:none;transition:transform 0.2s,box-shadow 0.2s}
+.related__card:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(20,20,19,0.06)}
+.related__card-cat{font-family:var(--mono);font-size:10px;color:var(--terra);text-transform:uppercase;letter-spacing:0.04em;margin-bottom:8px}
+.related__card-title{font-family:var(--serif);font-size:15px;font-weight:600;color:var(--ink);line-height:1.35;transition:color 0.18s}
+.related__card:hover .related__card-title{color:var(--terra)}
+
+footer{background:var(--dark);padding:64px 0 36px;border-top:1px solid var(--br-d)}
+.footer__top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;padding-bottom:48px;border-bottom:1px solid var(--br-d)}
+.footer__about p{font-size:13px;color:var(--lite-3);line-height:1.65;margin-top:14px;max-width:260px}
+.footer__brand{color:var(--lite)!important}
+.footer__col h5{font-size:11px;font-weight:600;letter-spacing:0.09em;text-transform:uppercase;color:var(--lite-3);margin-bottom:16px}
+.footer__col ul{list-style:none;display:flex;flex-direction:column;gap:10px}
+.footer__col a{font-size:14px;color:var(--lite-2);text-decoration:none;transition:color 0.18s}.footer__col a:hover{color:var(--lite)}
+.footer__bottom{display:flex;justify-content:space-between;align-items:center;margin-top:36px;flex-wrap:wrap;gap:12px}
+.footer__copy{font-size:13px;color:var(--lite-3)}
+.footer__note{font-size:12px;color:rgba(250,249,245,0.22)}
+.footer__btt{display:inline-flex;align-items:center;gap:5px;font-size:12px;color:var(--lite-3);text-decoration:none;transition:color 0.2s}.footer__btt:hover{color:var(--terra-lt)}
+.footer__btt svg{width:12px;height:12px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round}
+
+@media(max-width:900px){.nav__links,.nav__cta-desktop{display:none}.nav__toggle{display:block}.footer__top{grid-template-columns:1fr;gap:40px}.related__grid{grid-template-columns:1fr}}
+@media(max-width:600px){.wrap{padding:0 20px}.article-header{padding:96px 20px 36px}.article-body{padding:0 20px 72px}.article-cta{padding:0 20px}.article-cta__box{padding:36px 24px}.related{padding:0 20px 72px}.agent-card{flex-direction:column;gap:10px}.cost-table{font-size:13px}.cost-table th,.cost-table td{padding:8px 10px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:0.01ms!important;transition-duration:0.01ms!important}.v4__dot{animation:none!important}.agent-card__dot{animation:none!important}}
+  </style>
+</head>
+<body>
+
+<div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
+<a href="#main" class="skip-link">Skip to main content</a>
+
+<nav class="nav" id="nav" role="navigation" aria-label="Main navigation">
+  <div class="nav__in">
+    <a href="/" class="nav__logo" aria-label="IntegrateAI Advisors — Home">
+      <div class="nav__orb nav__orb--lite shifting" aria-hidden="true"><div class="v4__dot v4__dot--bright"></div><div class="v4__dot v4__dot--dim"></div><div class="v4__dot v4__dot--mid"></div><div class="v4__dot v4__dot--bright"></div><div class="v4__dot v4__dot--dim"></div><div class="v4__dot v4__dot--bright"></div><div class="v4__dot v4__dot--bright"></div><div class="v4__dot v4__dot--mid"></div></div>
+      <span class="nav__brand">IntegrateAI Advisors</span>
+    </a>
+    <ul class="nav__links"><li><a href="/#services">Services</a></li><li><a href="/#how">How it works</a></li><li><a href="/#pricing">Pricing</a></li><li><a href="/#faq">FAQ</a></li><li><a href="/blog" class="active">Blog</a></li></ul>
+    <a href="/#contact" class="btn btn-primary nav__cta-desktop">Free AI Diagnostic</a>
+    <button class="nav__toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="nav__mobile" id="nav-mobile" role="dialog" aria-label="Mobile navigation">
+  <div class="nav__mobile-top">
+    <a href="/#services" class="nav__mobile-link"><span>Services</span><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    <a href="/#how" class="nav__mobile-link"><span>How it works</span><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    <a href="/#pricing" class="nav__mobile-link"><span>Pricing</span><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    <a href="/#faq" class="nav__mobile-link"><span>FAQ</span><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    <a href="/blog" class="nav__mobile-link"><span>Blog</span><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+  </div>
+  <div class="nav__mobile-bottom">
+    <div class="nav__mobile-cta"><a href="/#contact" class="btn btn-primary">Free AI Diagnostic &rarr;</a></div>
+    <div class="nav__mobile-meta"><span>hello@integrateai.co</span><span>&middot;</span><span>AI agents for SMEs</span></div>
+  </div>
+</div>
+
+<main id="main">
+
+<header class="article-header">
+  <div class="article-header__inner">
+    <a href="/blog" class="article-back"><svg viewBox="0 0 24 24"><path d="M19 12H5M12 5l-7 7 7 7"/></svg> Back to blog</a>
+    <div class="article-meta">
+      <span class="article-cat">The Squad at Work</span>
+      <span class="article-date">12 March 2026</span>
+      <span class="article-reading">7 min read</span>
+    </div>
+    <h1>How We Deployed a 9-Agent AI Team for Under &pound;500/Month</h1>
+    <p class="article-author">By <strong>IntegrateAI Team</strong></p>
+  </div>
+</header>
+
+<article class="article-body">
+
+<p>We wrote about <a href="/blog/cant-afford-marketing-team/">not being able to afford a marketing team</a> and building one from AI agents instead. People wanted specifics. What agents? What do they do? How much does each one cost? Here's the full breakdown.</p>
+
+<p>This is our actual agent team &mdash; the squad running our marketing, sales, content, and operations from our base in Milton under Wychwood, Oxfordshire. Everything described here is live and running as you read this.</p>
+
+<h2>The squad: all 9 agents</h2>
+
+<p>Each agent runs on Claude via Anthropic's API, integrated into our Slack workspace. They operate on schedules (some daily, some weekly) and post their output directly into dedicated Slack channels where we review and act on it.</p>
+
+<h3>1. Research Agent</h3>
+<div class="agent-card">
+  <div class="agent-card__status"><div class="agent-card__dot"></div></div>
+  <div class="agent-card__info">
+    <div class="agent-card__name">Research Agent</div>
+    <div class="agent-card__desc">Finds and qualifies potential clients. Searches public sources, cross-references against our ideal client profile, and delivers 10&ndash;15 qualified leads daily with company info, key contacts, and suggested outreach angles. Posts to #leads channel every morning at 7am.</div>
+    <div class="agent-card__cost">~&pound;25/month in API costs</div>
+  </div>
+</div>
+
+<h3>2. Outreach Agent</h3>
+<div class="agent-card">
+  <div class="agent-card__status"><div class="agent-card__dot"></div></div>
+  <div class="agent-card__info">
+    <div class="agent-card__name">Outreach Agent</div>
+    <div class="agent-card__desc">Takes the leads from Research Agent and crafts personalised outreach emails. Each email references the prospect's business, recent activity, and specific pain points. Produces 30&ndash;40 emails per batch, ready for review and sending.</div>
+    <div class="agent-card__cost">~&pound;20/month in API costs</div>
+  </div>
+</div>
+
+<h3>3. Content Strategist Agent</h3>
+<div class="agent-card">
+  <div class="agent-card__status"><div class="agent-card__dot"></div></div>
+  <div class="agent-card__info">
+    <div class="agent-card__name">Content Strategist Agent</div>
+    <div class="agent-card__desc">Analyses search trends, competitor content, and our existing blog performance. Produces a weekly content brief with 3&ndash;5 article ideas, each with target keywords, suggested angles, and estimated search volume. Runs every Monday morning.</div>
+    <div class="agent-card__cost">~&pound;15/month in API costs</div>
+  </div>
+</div>
+
+<h3>4. Blog Writer Agent</h3>
+<div class="agent-card">
+  <div class="agent-card__status"><div class="agent-card__dot"></div></div>
+  <div class="agent-card__info">
+    <div class="agent-card__name">Blog Writer Agent</div>
+    <div class="agent-card__desc">Takes briefs from Content Strategist and produces full first drafts. Follows our brand voice guidelines, includes proper heading structure, and targets specified keywords naturally. Outputs 1,200&ndash;1,500 word posts that need about 30 minutes of human editing.</div>
+    <div class="agent-card__cost">~&pound;30/month in API costs</div>
+  </div>
+</div>
+
+<h3>5. Social Media Agent</h3>
+<div class="agent-card">
+  <div class="agent-card__status"><div class="agent-card__dot"></div></div>
+  <div class="agent-card__info">
+    <div class="agent-card__name">Social Media Agent</div>
+    <div class="agent-card__desc">Creates daily social posts for LinkedIn and X. Repurposes blog content, generates standalone thought leadership pieces, and formats everything for each platform. Posts are queued in a review channel with platform-specific formatting.</div>
+    <div class="agent-card__cost">~&pound;18/month in API costs</div>
+  </div>
+</div>
+
+<h3>6. SEO Agent</h3>
+<div class="agent-card">
+  <div class="agent-card__status"><div class="agent-card__dot"></div></div>
+  <div class="agent-card__info">
+    <div class="agent-card__name">SEO Agent</div>
+    <div class="agent-card__desc">Analyses our site structure, existing content, and search performance. Identifies keyword gaps, suggests internal linking improvements, and flags technical SEO issues. Produces a weekly report with prioritised actions.</div>
+    <div class="agent-card__cost">~&pound;12/month in API costs</div>
+  </div>
+</div>
+
+<h3>7. Email Newsletter Agent</h3>
+<div class="agent-card">
+  <div class="agent-card__status"><div class="agent-card__dot"></div></div>
+  <div class="agent-card__info">
+    <div class="agent-card__name">Email Newsletter Agent</div>
+    <div class="agent-card__desc">Curates a weekly newsletter from our latest blog posts, industry news, and AI developments relevant to SMEs. Writes engaging subject lines (A/B variants), introduction copy, and section summaries. Ready for review every Thursday afternoon.</div>
+    <div class="agent-card__cost">~&pound;10/month in API costs</div>
+  </div>
+</div>
+
+<h3>8. Competitor Intelligence Agent</h3>
+<div class="agent-card">
+  <div class="agent-card__status"><div class="agent-card__dot"></div></div>
+  <div class="agent-card__info">
+    <div class="agent-card__name">Competitor Intelligence Agent</div>
+    <div class="agent-card__desc">Monitors competitor websites, social profiles, and content output. Summarises what they're publishing, positioning changes, new service launches, and pricing updates. Delivers a fortnightly briefing that takes 10 minutes to read.</div>
+    <div class="agent-card__cost">~&pound;8/month in API costs</div>
+  </div>
+</div>
+
+<h3>9. Reporting Agent</h3>
+<div class="agent-card">
+  <div class="agent-card__status"><div class="agent-card__dot"></div></div>
+  <div class="agent-card__info">
+    <div class="agent-card__name">Reporting Agent</div>
+    <div class="agent-card__desc">Pulls data from all other agents and compiles a weekly marketing dashboard. Tracks leads generated, outreach response rates, content published, social engagement, and website traffic trends. Highlights what's working and what needs attention.</div>
+    <div class="agent-card__cost">~&pound;10/month in API costs</div>
+  </div>
+</div>
+
+<h2>What does this cost in total?</h2>
+
+<p>Here's the honest monthly breakdown:</p>
+
+<table class="cost-table">
+  <tr><th>Item</th><th>Monthly cost</th></tr>
+  <tr><td>All 9 agents (API / token costs)</td><td>&pound;148&ndash;220</td></tr>
+  <tr><td>Claude Pro subscriptions (x2 team members)</td><td>&pound;36</td></tr>
+  <tr><td>Slack workspace</td><td>&pound;0 (existing)</td></tr>
+  <tr><td>Scheduling and automation tools</td><td>&pound;40&ndash;55</td></tr>
+  <tr><td>Buffer / social scheduling</td><td>&pound;15</td></tr>
+  <tr><td><strong>Total</strong></td><td><strong>&pound;239&ndash;326</strong></td></tr>
+</table>
+
+<p>Even at the high end, we're well under &pound;500/month. In practice, most months come in around &pound;280&ndash;&pound;310.</p>
+
+<p>For context, hiring a single marketing coordinator in the Cotswolds area would cost &pound;28,000&ndash;&pound;35,000 per year. We're getting significantly more output for roughly &pound;3,600 per year in total costs.</p>
+
+<h2>How do the agents work together?</h2>
+
+<p>This is where it gets interesting. The agents aren't completely independent &mdash; several feed into each other:</p>
+
+<ul>
+  <li><strong>Research Agent</strong> feeds leads to <strong>Outreach Agent</strong></li>
+  <li><strong>Content Strategist</strong> feeds briefs to <strong>Blog Writer</strong> and <strong>Social Media Agent</strong></li>
+  <li><strong>Blog Writer</strong> output gets repurposed by <strong>Social Media Agent</strong> and <strong>Email Newsletter Agent</strong></li>
+  <li><strong>SEO Agent</strong> informs <strong>Content Strategist</strong>'s keyword targets</li>
+  <li><strong>Reporting Agent</strong> tracks output from all of them</li>
+</ul>
+
+<p>It's a pipeline, not a collection of disconnected tools. Each agent knows its role, and the hand-offs happen automatically through our Slack channels.</p>
+
+<h2>What took the longest to get right?</h2>
+
+<p>Getting the agents to produce output that sounds like us &mdash; not like generic AI content. We spent the first week refining voice guidelines, providing examples of writing we liked and writing we didn't, and iterating on instructions until the output felt natural.</p>
+
+<p>The Research Agent was the fastest to get right (data gathering is relatively straightforward). The Blog Writer took the longest because writing quality is subjective, and our brand voice has specific requirements &mdash; no buzzwords, no corporate waffle, real numbers over vague claims.</p>
+
+<p>The biggest mistake we made early on was giving agents too much freedom. When we tightened their instructions and gave them clearer constraints, the output improved dramatically. More specific prompts produce better results than open-ended ones.</p>
+
+<h2>Could you replicate this for your business?</h2>
+
+<p>Yes, with two caveats.</p>
+
+<p><strong>First:</strong> you need to know what you want the agents to do before you build them. "Help with marketing" isn't specific enough. "Research 10 qualified leads per day matching these criteria and deliver them to this Slack channel at 7am" is. The more precise your brief, the better the agent performs. (We cover this process in our <a href="/#services">AI agent deployment service</a>.)</p>
+
+<p><strong>Second:</strong> the setup requires technical knowledge. Connecting agents to APIs, configuring Slack integrations, setting up scheduling, writing effective system prompts &mdash; these aren't trivial tasks. You can learn to do them, or you can hire someone who already knows how. We built our system in about 3 weeks; a business new to AI would likely need 4&ndash;6 weeks with guidance.</p>
+
+<div class="callout">
+  <p><strong>The bottom line:</strong> 9 agents, under &pound;500/month, producing the output of a 3&ndash;4 person marketing team. It took 3 weeks to set up, about 45 minutes a day to review and direct, and it runs 24/7 from our small office in Oxfordshire. If you run a small business and you've been putting off marketing because you can't afford to hire, this is a genuine alternative worth considering.</p>
+</div>
+
+</article>
+
+<div class="article-cta">
+  <div class="article-cta__box">
+    <h3>Want your own AI agent team?</h3>
+    <p>We'll assess your workflows, identify the right agents, and deploy them in your Slack. Same approach we used for ourselves, configured for your business.</p>
+    <a href="/#contact" class="btn btn-primary">Free AI Diagnostic &rarr;</a>
+    <div class="article-cta__risk">Free &middot; No obligation &middot; You keep the analysis either way</div>
+  </div>
+</div>
+
+<div class="related">
+  <h3>Related posts</h3>
+  <div class="related__grid">
+    <a href="/blog/cant-afford-marketing-team/" class="related__card">
+      <div class="related__card-cat">Real Talk</div>
+      <div class="related__card-title">Can't Afford a Marketing Team? Here's What We Did Instead</div>
+    </a>
+    <a href="/blog/what-ai-agents-actually-do/" class="related__card">
+      <div class="related__card-cat">AI Explained</div>
+      <div class="related__card-title">What AI Agents Actually Do (No Jargon, We Promise)</div>
+    </a>
+  </div>
+</div>
+
+</main>
+
+<footer role="contentinfo">
+  <div class="wrap">
+    <div class="footer__top">
+      <div class="footer__about">
+        <a href="/" class="nav__logo" style="text-decoration:none;" aria-label="IntegrateAI Advisors — Home"><div class="nav__orb nav__orb--dark shifting" aria-hidden="true"><div class="v4__dot v4__dot--bright"></div><div class="v4__dot v4__dot--dim"></div><div class="v4__dot v4__dot--mid"></div><div class="v4__dot v4__dot--bright"></div><div class="v4__dot v4__dot--dim"></div><div class="v4__dot v4__dot--bright"></div><div class="v4__dot v4__dot--bright"></div><div class="v4__dot v4__dot--mid"></div></div><span class="nav__brand footer__brand">IntegrateAI Advisors</span></a>
+        <p>AI consultancy for entrepreneurs and SMEs. We implement AI agent teams and productivity tools — giving you superintelligent AI employees with six-figure expertise, at a fraction of the cost.</p>
+      </div>
+      <div class="footer__col"><h5>Services</h5><ul><li><a href="/#services">Claude Code</a></li><li><a href="/#services">Claude Cowork</a></li><li><a href="/#services">AI Productivity Setups</a></li><li><a href="/#services">AI Strategy</a></li></ul></div>
+      <div class="footer__col"><h5>Company</h5><ul><li><a href="/#how">About</a></li><li><a href="/#results">Case studies</a></li><li><a href="/#faq">FAQ</a></li><li><a href="/blog">Blog</a></li><li><a href="/#contact">Contact</a></li></ul></div>
+      <div class="footer__col"><h5>Contact</h5><ul><li><a href="mailto:hello@integrateai.co">hello&#64;integrateai.co</a></li><li><a href="/#contact">Free AI Diagnostic</a></li><li><a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">LinkedIn</a></li><li><a href="https://x.com" target="_blank" rel="noopener noreferrer">Twitter / X</a></li></ul></div>
+    </div>
+    <div class="footer__bottom">
+      <span class="footer__copy">&copy; <span id="copy-year"></span> IntegrateAI Advisors. All rights reserved.</span>
+      <a href="#main" class="footer__btt"><svg viewBox="0 0 16 16"><path d="M8 13V3M4 7l4-4 4 4"/></svg>Back to top</a>
+      <span class="footer__note">Not affiliated with Anthropic PBC. Built using Claude and Anthropic's APIs.</span>
+    </div>
+  </div>
+</footer>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RT7VN5KQHC"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-RT7VN5KQHC');</script>
+
+<script>
+(function(){
+'use strict';
+document.getElementById('copy-year').textContent=new Date().getFullYear();
+var progressBar=document.getElementById('scroll-progress');
+function updateProgress(){var s=window.scrollY,d=document.documentElement.scrollHeight-window.innerHeight;progressBar.style.width=(d>0?(s/d)*100:0)+'%'}
+var nav=document.getElementById('nav');var ticking=false;
+window.addEventListener('scroll',function(){if(!ticking){requestAnimationFrame(function(){nav.classList.toggle('up',window.scrollY>20);nav.classList.toggle('scrolled',window.scrollY>200);updateProgress();ticking=false});ticking=true}},{passive:true});
+var toggle=document.getElementById('nav-toggle'),mobileNav=document.getElementById('nav-mobile');
+if(toggle&&mobileNav){toggle.addEventListener('click',function(){var o=toggle.classList.toggle('open');mobileNav.classList.toggle('open',o);nav.classList.toggle('menu-open',o);toggle.setAttribute('aria-expanded',String(o));toggle.setAttribute('aria-label',o?'Close menu':'Open menu');document.body.style.overflow=o?'hidden':''});mobileNav.querySelectorAll('a').forEach(function(l){l.addEventListener('click',function(){toggle.classList.remove('open');mobileNav.classList.remove('open');nav.classList.remove('menu-open');toggle.setAttribute('aria-expanded','false');toggle.setAttribute('aria-label','Open menu');document.body.style.overflow=''})})}
+}());
+</script>
+</body>
+</html>
