@@ -405,29 +405,6 @@ body{font-family:var(--sans);font-size:16px;line-height:1.6;color:var(--grey);ba
 @media(max-width:600px){.mid-cta{padding:36px 24px}}
 
 /* ═══════════════════════════════════════════
-   TESTIMONIALS — DARK section
-   ═══════════════════════════════════════════ */
-.testimonials{background:var(--dark)}
-.testimonials__hd{text-align:center;margin-bottom:56px}
-.testimonials__hd .copy{max-width:480px;margin-left:auto;margin-right:auto}
-.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-blockquote.testi{margin:0}
-.testi{background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.06);border-radius:12px;padding:0;overflow:hidden;display:flex;flex-direction:column;transition:transform 0.3s cubic-bezier(.22,1,.36,1),box-shadow 0.3s}
-.testi:hover{transform:translateY(-4px);box-shadow:0 16px 44px rgba(0,0,0,.15)}
-.testi__metric{padding:20px 24px;display:flex;align-items:baseline;gap:8px;border-bottom:1px solid rgba(255,255,255,.06)}
-.testi__metric-num{font-family:var(--serif);font-size:28px;font-weight:400;color:var(--terra);line-height:1;letter-spacing:-0.02em}
-.testi__metric-label{font-family:var(--sans);font-size:12px;color:var(--muted);line-height:1.4}
-.testi__body{padding:20px 24px;flex:1}
-.testi__quote{font-family:var(--serif);font-size:0.95rem;font-style:italic;color:var(--muted);line-height:1.72}
-.testi__author{display:flex;align-items:center;gap:12px;padding:16px 24px;border-top:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)}
-.testi__av{width:36px;height:36px;border-radius:50%;background:var(--terra-bg);border:1.5px solid var(--terra-ring);display:grid;place-items:center;font-family:var(--sans);font-size:12px;font-weight:600;color:var(--terra);flex-shrink:0}
-.testi__info{flex:1;min-width:0}
-.testi__name{font-family:var(--sans);font-size:13px;font-weight:600;color:var(--lite);line-height:1.3}
-.testi__role{font-family:var(--mono);font-size:0.55rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.04em}
-.testi__verified{display:inline-flex;align-items:center;gap:4px;font-family:var(--mono);font-size:0.55rem;color:var(--green);margin-left:auto;white-space:nowrap;text-transform:uppercase;letter-spacing:0.04em}
-.testi__verified svg{width:12px;height:12px;fill:none;stroke:currentColor;stroke-width:2}
-
-/* ═══════════════════════════════════════════
    QUALIFIER — LIGHT section
    ═══════════════════════════════════════════ */
 .qualifier{background:var(--cream);padding:96px 0;border-top:1px solid var(--border)}
@@ -836,40 +813,6 @@ a{color:inherit;text-decoration:underline}
   </div>
 </div>
 
-<!-- ═══ DIVIDER ═══ -->
-<div class="divider" aria-hidden="true"><span class="divider__dot"></span><span class="divider__dot"></span><span class="divider__dot"></span></div>
-
-<!-- ═══ TESTIMONIALS — DARK ═══ -->
-<section class="testimonials sec" aria-labelledby="testi-heading">
-  <div class="wrap">
-    <div class="testimonials__hd r">
-      <div class="eyebrow">Client voices</div>
-      <h2 class="hdg hdg--dark hdg--center" id="testi-heading">Don't take our word for it</h2>
-      <p class="copy copy--dark copy--center">Real results from real businesses — from ChatGPT chaos to structured AI implementation.</p>
-    </div>
-    <div class="testi-grid">
-      <blockquote class="testi r d1">
-        <div class="testi__metric"><span class="testi__metric-num" data-tcount="50">0</span><span class="testi__metric-label"> leads generated<br>per week by agents</span></div>
-        <div class="testi__body"><p class="testi__quote">IntegrateAI set up an AI agent team in our Slack — research, outreach, and follow-ups all running automatically. It's like having three expert employees who never sleep. What used to take a full-time hire now runs in the background while we close deals.</p></div>
-        <footer class="testi__author"><div class="testi__av" aria-hidden="true">SM</div><div class="testi__info"><div class="testi__name">Sarah Mitchell</div><div class="testi__role">Director, Mitchell &amp; Partners</div></div><span class="testi__verified"><svg viewBox="0 0 16 16"><path d="M13.5 5l-7 7L3 8.5"/></svg>Verified</span></footer>
-      </blockquote>
-      <blockquote class="testi r d2">
-        <div class="testi__metric"><span class="testi__metric-num" data-tcount="8" data-tsuffix="h">0</span><span class="testi__metric-label">hours saved<br>every week</span></div>
-        <div class="testi__body"><p class="testi__quote">They implemented Claude Cowork into our daily operations and set up intelligent agents for our repetitive reporting. The documentation and training means new starters are using AI properly from day one. We're saving 8 hours a week easily.</p></div>
-        <footer class="testi__author"><div class="testi__av" aria-hidden="true">DC</div><div class="testi__info"><div class="testi__name">David Chen</div><div class="testi__role">Operations Manager, Apex Legal</div></div><span class="testi__verified"><svg viewBox="0 0 16 16"><path d="M13.5 5l-7 7L3 8.5"/></svg>Verified</span></footer>
-      </blockquote>
-      <blockquote class="testi r d3">
-        <div class="testi__metric"><span class="testi__metric-num" data-tcount="100" data-tsuffix="%">0</span><span class="testi__metric-label">safe AI<br>governance built in</span></div>
-        <div class="testi__body"><p class="testi__quote">I was worried about data safety and governance. They addressed that head-on — set up clear guardrails within Claude Cowork, defined what should and shouldn't go through AI, and only implemented where it genuinely saves time. Expert guidance throughout.</p></div>
-        <footer class="testi__author"><div class="testi__av" aria-hidden="true">RA</div><div class="testi__info"><div class="testi__name">Rachel Adams</div><div class="testi__role">CEO, Northgate Financial</div></div><span class="testi__verified"><svg viewBox="0 0 16 16"><path d="M13.5 5l-7 7L3 8.5"/></svg>Verified</span></footer>
-      </blockquote>
-    </div>
-  </div>
-</section>
-
-<!-- ═══ DIVIDER ═══ -->
-<div class="divider" aria-hidden="true"><span class="divider__dot"></span><span class="divider__dot"></span><span class="divider__dot"></span></div>
-
 <!-- ═══ QUALIFIER — LIGHT ═══ -->
 <section class="qualifier" aria-labelledby="qualifier-heading">
   <div class="wrap">
@@ -1141,30 +1084,6 @@ if(pricingSection){
   },{threshold:0.1}).observe(pricingSection);
 }
 
-/* Testimonial metric count-up */
-var testiSection=document.querySelector('.testimonials');
-if(testiSection){
-  new IntersectionObserver(function(entries,obs){
-    entries.forEach(function(e){
-      if(!e.isIntersecting)return;
-      e.target.querySelectorAll('[data-tcount]').forEach(function(el,i){
-        var target=parseInt(el.dataset.tcount,10);
-        var suffix=el.dataset.tsuffix||'';
-        setTimeout(function(){
-          var s=performance.now();
-          (function tick(now){
-            var t=Math.min((now-s)/900,1);
-            var ease=1-Math.pow(1-t,3);
-            el.textContent=Math.round(target*ease)+suffix;
-            if(t<1)requestAnimationFrame(tick);
-            else el.textContent=target+suffix;
-          })(performance.now());
-        },i*200);
-      });
-      obs.unobserve(e.target);
-    });
-  },{threshold:0.3}).observe(testiSection);
-}
 
 }());
 </script>
