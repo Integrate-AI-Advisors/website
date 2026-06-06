@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- GA4 is loaded by app.js ONLY after cookie consent — do NOT inline the gtag snippet here. -->
+  <title>How a coffee roaster runs their business from Slack — IntegrateAI for Food &amp; Drink</title>
+  <meta name="description" content="See how a food or drink business could run from Slack: a workforce that watches your roaster, your wholesale accounts, your stock and your margins — and acts only when you approve. Built for coffee roasters, bakeries, breweries and independent producers." />
+  <meta property="og:title" content="How a coffee roaster runs their business from Slack — IntegrateAI for Food &amp; Drink" />
+  <meta property="og:description" content="A worked example for food &amp; drink: idle-roast-time savings, wholesale upsell, everything in Slack, and a warning when a key account goes quiet. Every move waits for your approval. Book a free 30-minute diagnostic." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://integrate-ai.uk/og-image.png" />
+  <meta property="og:url" content="https://integrate-ai.uk/food-and-beverage" />
+  <meta name="theme-color" content="#1A1A19" />
+  <link rel="canonical" href="https://integrate-ai.uk/food-and-beverage" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" href="/favicon.ico" sizes="32x32" />
+  <link rel="icon" href="/favicon.png" type="image/png" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "IntegrateAI Advisors",
+    "description": "AI consultancy for food and drink businesses — coffee roasters, bakeries, breweries and independent producers. We build a workforce that runs from Slack and acts only when you approve.",
+    "url": "https://www.integrate-ai.uk",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Milton under Wychwood",
+      "addressRegion": "Oxfordshire",
+      "addressCountry": "GB"
+    },
+    "email": "hello@integrate-ai.uk",
+    "areaServed": { "@type": "Country", "name": "United Kingdom" },
+    "priceRange": "££"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {"@type": "Question", "name": "Is the coffee roaster on this page a real client?", "acceptedAnswer": {"@type": "Answer", "text": "No. Northwind Coffee Roasters is an illustrative composite — not a real company. We haven't launched with a client yet, so every figure, account and product shown here is invented to show how the system would work for a food or drink business."}},
+      {"@type": "Question", "name": "Do I have to give up control to the AI workforce?", "acceptedAnswer": {"@type": "Answer", "text": "No. Nothing happens without you. The workforce drafts, checks and proposes — then waits in Slack for your approval. You can approve, request changes, or decline. Anything that moves money or changes a live price is flagged as high-risk and always needs your sign-off."}},
+      {"@type": "Question", "name": "How do you connect to my tools?", "acceptedAnswer": {"@type": "Answer", "text": "You paste the credentials your providers give you — an accounting key, an online-store key, a card-payments key — and we handle the connection. There's no clicking through provider login screens."}},
+      {"@type": "Question", "name": "What does it cost?", "acceptedAnswer": {"@type": "Answer", "text": "Engagements start at £1,200 per month. We name the price on a call and there's no lock-in. Early clients get a founding-client rate, locked for 12 months."}}
+    ]
+  }
+  </script>
+  <!-- Brand fonts: DM Serif Display, Inter, JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <!-- Shared design system -->
+  <link rel="stylesheet" href="../assets/styles.css">
+  <style>
+    /* ---------------------------------------------------------------------
+       PAGE-LOCAL styles — layout-only helpers the shared system doesn't ship.
+       Brand tokens reused from styles.css; no new colours introduced.
+       --------------------------------------------------------------------- */
+
+    /* Hero / opening block ------------------------------------------------ */
+    .fb-hero { padding-top: calc(var(--s-9) + 40px); }
+    .fb-hero__grid { display: grid; gap: var(--s-7); align-items: start; }
+    @media (min-width: 980px) { .fb-hero__grid { grid-template-columns: 1.05fr 1fr; gap: var(--s-8); align-items: center; } }
+    .fb-hero__frame { font-family: var(--serif); font-weight: 400; font-size: clamp(1.5rem, 3.4vw, 2.1rem); line-height: 1.18; color: var(--on-dark); margin-bottom: var(--s-4); letter-spacing: -.01em; }
+    .fb-hero__frame em { font-style: italic; color: var(--terra); }
+    .fb-hero__demo { max-width: 460px; width: 100%; margin: 0 auto; }
+    @media (min-width: 980px) { .fb-hero__demo { margin: 0; } }
+
+    /* Inline list of typeset signal lines under the framing copy ---------- */
+    .fb-signals { display: grid; gap: var(--s-3); margin-top: var(--s-5); }
+    .fb-signal { display: flex; gap: 11px; align-items: flex-start; }
+    .fb-signal__dot { width: 7px; height: 7px; border-radius: 50%; background: var(--terra); margin-top: 7px; flex-shrink: 0; }
+    .fb-signal__text { font-size: var(--fs-body-sm); line-height: 1.6; color: var(--on-dark-2); }
+    .fb-signal__text b { color: var(--on-dark); font-weight: 600; }
+
+    /* "Nothing happens without you" reassurance ------------------------- */
+    .fb-reassure { display: flex; align-items: center; gap: 9px; font-family: var(--mono); font-size: .68rem; letter-spacing: .04em; color: var(--on-dark-2); margin-top: var(--s-4); }
+    .fb-reassure .pill__dot { background: var(--green); }
+
+    /* Morning-brief card ------------------------------------------------- */
+    .brief { max-width: 680px; margin: 0 auto; border-radius: var(--r-card); overflow: hidden; border: 1px solid var(--border); background: var(--white); box-shadow: 0 18px 50px rgba(20,20,19,.08); }
+    .brief__bar { display: flex; align-items: center; gap: 9px; padding: 13px 22px; border-bottom: 1px solid var(--border); background: var(--lgrey); }
+    .brief__avatar { width: 24px; height: 24px; border-radius: 6px; background: var(--terra); display: grid; place-items: center; flex-shrink: 0; }
+    .brief__avatar span { width: 10px; height: 10px; border-radius: 2px; background: var(--terra-ink); }
+    .brief__app { font-family: var(--sans); font-size: 13px; font-weight: 600; color: var(--ink); }
+    .brief__badge { font-family: var(--mono); font-size: .52rem; font-weight: 600; text-transform: uppercase; letter-spacing: .08em; padding: 2px 7px; border-radius: 4px; background: var(--border); color: var(--muted-strong); }
+    .brief__time { margin-left: auto; font-family: var(--mono); font-size: .62rem; color: var(--muted-strong); }
+    .brief__body { padding: 26px 22px 28px; }
+    .brief__greeting { font-family: var(--serif); font-weight: 400; font-size: clamp(1.4rem, 3vw, 1.85rem); line-height: 1.2; color: var(--ink); letter-spacing: -.01em; }
+    .brief__date { font-family: var(--mono); font-size: .64rem; text-transform: uppercase; letter-spacing: .1em; color: var(--muted-strong); margin-top: 8px; }
+    .brief__lead { font-size: var(--fs-body); line-height: 1.7; color: var(--grey); margin-top: var(--s-4); max-width: none; }
+    .brief__items { display: grid; gap: 14px; margin-top: var(--s-5); }
+    .brief__item { display: grid; grid-template-columns: auto 1fr; gap: 13px; align-items: start; padding: 15px 16px; border-radius: 10px; border: 1px solid var(--border); background: var(--cream); }
+    .brief__tag { font-family: var(--mono); font-size: .54rem; font-weight: 600; text-transform: uppercase; letter-spacing: .07em; padding: 4px 9px; border-radius: 5px; white-space: nowrap; align-self: start; margin-top: 1px; }
+    .brief__tag--watch { color: var(--amber-deep); background: var(--amber-bg); border: 1px solid rgba(196,148,58,.25); }
+    .brief__tag--action { color: var(--blue); background: var(--blue-bg); border: 1px solid rgba(74,111,165,.25); }
+    .brief__tag--good { color: var(--green-deep); background: var(--green-bg); border: 1px solid rgba(74,124,89,.25); }
+    .brief__itext { font-size: var(--fs-body-sm); line-height: 1.6; color: var(--grey); }
+    .brief__itext b { color: var(--ink); font-weight: 600; }
+    .brief__foot { display: flex; align-items: center; gap: 9px; margin-top: var(--s-5); padding-top: var(--s-4); border-top: 1px solid var(--border); font-family: var(--mono); font-size: .62rem; letter-spacing: .03em; color: var(--muted-strong); }
+    .brief__foot .pill__dot { background: var(--green); }
+
+    /* Connect / paste-a-key demo helpers -------------------------------- */
+    .fb-connect { max-width: 880px; margin: 0 auto; }
+    .fb-paste { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-top: var(--s-6); padding: 16px 18px; border-radius: var(--r-card); border: 1px dashed var(--br-d); background: var(--card-d); }
+    .fb-paste__label { font-family: var(--mono); font-size: .62rem; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+    .fb-paste__field { flex: 1 1 220px; min-width: 0; font-family: var(--mono); font-size: .82rem; padding: 11px 13px; border-radius: 8px; border: 1.5px solid var(--br-d); background: rgba(0,0,0,.25); color: var(--on-dark-2); letter-spacing: .06em; }
+    .fb-paste__btn { font-family: var(--sans); font-size: .82rem; font-weight: 600; padding: 11px 20px; border-radius: 8px; border: 0; background: var(--terra); color: var(--terra-ink); cursor: pointer; transition: background .2s, transform .2s; }
+    .fb-paste__btn:hover { background: var(--terra-deep); transform: translateY(-1px); }
+    .fb-paste__done { display: none; align-items: center; gap: 8px; font-family: var(--mono); font-size: .66rem; letter-spacing: .03em; color: #7FB890; flex-basis: 100%; }
+    .fb-paste__done.is-on { display: flex; }
+    .fb-paste__done .pill__dot { background: var(--green); }
+
+    /* Two-up intro for sections that pair copy + visual ------------------ */
+    .fb-split { display: grid; gap: var(--s-7); align-items: center; }
+    @media (min-width: 920px) { .fb-split { grid-template-columns: 1fr 1.1fr; gap: var(--s-8); } }
+
+    /* Vertical-promise steps -------------------------------------------- */
+    .fb-promise { display: grid; gap: var(--s-4); grid-template-columns: 1fr; margin-top: var(--s-7); }
+    @media (min-width: 760px) { .fb-promise { grid-template-columns: repeat(3, 1fr); } }
+    .fb-step { position: relative; padding: var(--s-6) var(--s-5) var(--s-5); border-radius: var(--r-card); background: var(--white); border: 1px solid var(--border); }
+    .fb-step__n { font-family: var(--mono); font-size: .7rem; font-weight: 600; color: var(--terra); letter-spacing: .08em; }
+    .fb-step__title { font-family: var(--serif); font-weight: 400; font-size: 1.2rem; color: var(--ink); margin: 10px 0 8px; }
+    .fb-step__body { font-size: var(--fs-body-sm); line-height: 1.6; color: var(--grey); }
+
+    /* CTA / form column -------------------------------------------------- */
+    .fb-cta-grid { display: grid; gap: var(--s-7); align-items: start; }
+    @media (min-width: 920px) { .fb-cta-grid { grid-template-columns: .85fr 1.15fr; gap: var(--s-8); } }
+    .fb-pricecard { border-radius: var(--r-card); padding: var(--s-6); background: var(--card-d); border: 1px solid var(--br-d); }
+    .fb-pricecard__big { font-family: var(--serif); font-weight: 400; font-size: clamp(2rem, 5vw, 2.6rem); color: var(--on-dark); letter-spacing: -.02em; line-height: 1; }
+    .fb-pricecard__from { font-family: var(--mono); font-size: .64rem; text-transform: uppercase; letter-spacing: .08em; color: var(--terra); margin-bottom: 8px; }
+    .fb-pricecard__sub { font-size: var(--fs-body-sm); line-height: 1.6; color: var(--on-dark-2); margin-top: var(--s-3); }
+    .fb-pricecard__list { display: grid; gap: 9px; margin-top: var(--s-5); }
+    .fb-pricecard__li { display: flex; gap: 9px; align-items: flex-start; font-size: var(--fs-body-sm); line-height: 1.5; color: var(--on-dark-2); }
+    .fb-pricecard__li svg { width: 15px; height: 15px; stroke: var(--terra); fill: none; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; margin-top: 2px; }
+
+    /* honesty banner pinned to the top of the page body ----------------- */
+    .fb-honesty { display: flex; flex-wrap: wrap; align-items: center; gap: 9px; max-width: var(--wrap); margin: 0 auto var(--s-5); padding: 11px 16px; border-radius: 10px; background: rgba(255,255,255,.05); border: 1px solid var(--br-d); }
+    .fb-honesty__mark { width: 7px; height: 7px; border-radius: 50%; background: var(--amber); flex-shrink: 0; }
+    .fb-honesty__text { font-family: var(--mono); font-size: .68rem; font-weight: 500; letter-spacing: .02em; line-height: 1.5; color: var(--on-dark-2); }
+
+    /* small util */
+    .fb-mt-6 { margin-top: var(--s-6); }
+    .fb-center { text-align: center; }
+    .fb-cal-fallback { display: none; margin-top: var(--s-4); }
+  </style>
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to content</a>
+  <div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
+
+  <!-- ===================== NAV ===================== -->
+  <nav class="nav" id="nav" aria-label="Primary">
+    <div class="nav__in">
+      <a href="../index.html" class="nav__logo" aria-label="IntegrateAI Advisors — Home">
+        <span class="nav__mark" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span>
+        <span class="nav__brand">Integrate<span class="ai">AI</span></span>
+      </a>
+      <ul class="nav__links">
+        <li><a href="#how-it-runs">How it runs</a></li>
+        <li><a href="#pillars">What it finds</a></li>
+        <li><a href="#connect">Connect</a></li>
+        <li><a href="#dashboard">Dashboard</a></li>
+        <li><a href="../index.html">For any business</a></li>
+      </ul>
+      <a href="#book" class="btn btn--primary nav__cta" data-track="cta_book_click" data-cta-source="nav_fnb">Book a diagnostic</a>
+      <button class="nav__toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="nav-mobile">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- mobile nav overlay -->
+  <div class="nav__mobile" id="nav-mobile">
+    <div class="nav__mobile-top">
+      <a class="nav__mobile-link" href="#how-it-runs"><span>How it runs</span></a>
+      <a class="nav__mobile-link" href="#pillars"><span>What it finds</span></a>
+      <a class="nav__mobile-link" href="#connect"><span>Connect</span></a>
+      <a class="nav__mobile-link" href="#dashboard"><span>Dashboard</span></a>
+      <a class="nav__mobile-link" href="../index.html"><span>For any business</span></a>
+    </div>
+    <div class="nav__mobile-bottom">
+      <a href="#book" class="btn btn--primary" data-track="cta_book_click" data-cta-source="nav_mobile_fnb">Book a diagnostic</a>
+    </div>
+  </div>
+
+  <main id="main">
+
+    <!-- ===================== OPENING [dark] — framing line, then the demo ===================== -->
+    <section class="section section--dark fb-hero" id="how-it-runs">
+      <div class="wrap">
+
+        <div class="fb-honesty reveal" role="note">
+          <span class="fb-honesty__mark" aria-hidden="true"></span>
+          <span class="fb-honesty__text">Northwind Coffee Roasters is an illustrative composite — not a real company. We haven&rsquo;t launched with a client yet. Every name, product and figure below is invented to show how this would work.</span>
+        </div>
+
+        <div class="fb-hero__grid">
+          <div class="reveal">
+            <span class="eyebrow">For food &amp; drink businesses</span>
+            <p class="fb-hero__frame">This is how a coffee roaster runs their business <em>from Slack</em>.</p>
+            <p class="copy">One place to see everything — your roaster, your wholesale accounts, your stock, your margins. A workforce watches all of it overnight, finds where the money is, and brings each move to you. You approve, ask for changes, or say no. Nothing happens without you.</p>
+
+            <div class="fb-signals">
+              <div class="fb-signal"><span class="fb-signal__dot" aria-hidden="true"></span><p class="fb-signal__text"><b>It catches what slips.</b> A wholesale account that&rsquo;s gone quiet. A roaster sitting idle between batches.</p></div>
+              <div class="fb-signal"><span class="fb-signal__dot" aria-hidden="true"></span><p class="fb-signal__text"><b>It does the work.</b> Drafts the reorder, writes the check-in, stages the price change — ready for your yes.</p></div>
+              <div class="fb-signal"><span class="fb-signal__dot" aria-hidden="true"></span><p class="fb-signal__text"><b>It waits for you.</b> Anything that spends money or changes a live price is flagged and held until you approve.</p></div>
+            </div>
+
+            <div class="fb-reassure" aria-hidden="true">
+              <span class="pill__dot pill__dot--live"></span>
+              Nothing happens without you — try it on the right
+            </div>
+          </div>
+
+          <div class="reveal">
+            <div class="fb-hero__demo" id="fb-hero-demo" aria-label="Live example: an approval request from the workforce"></div>
+            <span class="demo-label"><span class="demo-label__mark" aria-hidden="true"></span>Live example — try Approve, Request changes or Decline. Not a real client.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="section section--dark" style="padding:0">
+      <div class="divider" aria-hidden="true"><span class="divider__dot"></span><span class="divider__dot"></span><span class="divider__dot"></span></div>
+    </div>
+
+    <!-- ===================== FOUR PILLARS [cream] — F&B-concrete ===================== -->
+    <section class="section section--light" id="pillars">
+      <div class="wrap">
+        <div class="section__head reveal">
+          <span class="eyebrow">Where the money is</span>
+          <h2 class="h2">Four places a food &amp; drink business <em>leaks or grows</em></h2>
+          <p class="copy copy--center">The workforce watches all four at once and brings you the moves. These are illustrative — built around a roaster, but the same four hold for a bakery, a brewery or any independent producer.</p>
+        </div>
+
+        <div class="pillars reveal">
+          <!-- Save money -->
+          <article class="pillar pillar--cost" data-reveal-child>
+            <span class="pillar__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M3 17l5-5 4 3 6-7"/><path d="M21 8v5h-5"/></svg>
+            </span>
+            <h3 class="pillar__title">Save money</h3>
+            <p class="pillar__body">Your roaster sat idle for 90 minutes between batches. Grouping the runs saves gas and an hour of an operator&rsquo;s time — about <b>£38 a run</b>, with no customer impact. The workforce spots the gap and drafts a tighter schedule for your head roaster to confirm.</p>
+          </article>
+
+          <!-- Grow revenue (DOMINANT — the hero demo pays this off) -->
+          <article class="pillar pillar--revenue pillar--dominant" data-reveal-child>
+            <span class="pillar__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M3 21V3M3 21h18"/><path d="M7 16l4-5 3 3 5-7"/></svg>
+            </span>
+            <h3 class="pillar__title">Grow revenue</h3>
+            <p class="pillar__body">A new wholesale lead enquires about your single origins. The workforce drafts the intro, offers a sample box, and adds your wholesale terms once you ask — so the upsell goes out warm and same-day instead of sitting in a drafts folder for a week.</p>
+          </article>
+
+          <!-- Get efficient -->
+          <article class="pillar pillar--efficiency" data-reveal-child>
+            <span class="pillar__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h10"/></svg>
+            </span>
+            <h3 class="pillar__title">Get efficient</h3>
+            <p class="pillar__body">Sales, stock, accounts and wholesale orders all land in one Slack thread. No flicking between five tabs to know where you stand. One morning brief at 06:30, then approvals as the day needs them — the business reports to you, not the other way round.</p>
+          </article>
+
+          <!-- Keep customers -->
+          <article class="pillar pillar--customers" data-reveal-child>
+            <span class="pillar__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M12 21s-7-4.5-9-9a4.5 4.5 0 0 1 8-3 4.5 4.5 0 0 1 8 3c-2 4.5-9 9-9 9z"/></svg>
+            </span>
+            <h3 class="pillar__title">Keep customers</h3>
+            <p class="pillar__body">A wholesale account that orders every fortnight has gone quiet for five weeks. That pattern usually means churn. The workforce flags it early and drafts a friendly check-in for your wholesale lead — before the account quietly switches roaster.</p>
+          </article>
+        </div>
+
+        <p class="meta meta--strong fb-center fb-mt-6">Illustrative scenarios — figures and accounts invented for this example, not a real client&rsquo;s results.</p>
+      </div>
+    </section>
+
+    <!-- ===================== INTEGRATION MAP [dark] — paste-a-key ===================== -->
+    <section class="section section--dark" id="connect">
+      <div class="wrap fb-connect">
+        <div class="section__head reveal">
+          <span class="eyebrow">Connect what you already use</span>
+          <h2 class="h2">It plugs into your <em>existing tools</em></h2>
+          <p class="copy copy--center">You paste the credentials your providers give you — a key, a token — and we handle the connection. No clicking through provider login screens. The workforce reads from these to find the money and write the moves.</p>
+        </div>
+
+        <div class="connect-grid reveal">
+          <div class="connect-tile is-connected"><span class="connect-tile__name">Shopify &mdash; online store</span><span class="connect-tile__dot" aria-hidden="true"></span></div>
+          <div class="connect-tile is-connected"><span class="connect-tile__name">Square / EPOS &mdash; café counter</span><span class="connect-tile__dot" aria-hidden="true"></span></div>
+          <div class="connect-tile is-connected"><span class="connect-tile__name">Xero &mdash; accounts &amp; ledger</span><span class="connect-tile__dot" aria-hidden="true"></span></div>
+          <div class="connect-tile"><span class="connect-tile__name">Klaviyo &mdash; email marketing</span><span class="connect-tile__dot" aria-hidden="true"></span></div>
+          <div class="connect-tile"><span class="connect-tile__name">Roastery / inventory tool</span><span class="connect-tile__dot" aria-hidden="true"></span></div>
+          <div class="connect-tile"><span class="connect-tile__name">Email &amp; calendar</span><span class="connect-tile__dot" aria-hidden="true"></span></div>
+          <div class="connect-tile"><span class="connect-tile__name">Wholesale order sheet</span><span class="connect-tile__dot" aria-hidden="true"></span></div>
+          <div class="connect-tile"><span class="connect-tile__name">Social pages</span><span class="connect-tile__dot" aria-hidden="true"></span></div>
+        </div>
+
+        <div class="fb-paste reveal">
+          <span class="fb-paste__label" id="paste-label">Paste a key</span>
+          <input class="fb-paste__field" type="text" value="klav_•••••••••••••••••••••" aria-labelledby="paste-label" aria-describedby="paste-done" readonly />
+          <button class="fb-paste__btn" id="fb-paste-btn" type="button">Connect</button>
+          <span class="fb-paste__done" id="paste-done"><span class="pill__dot pill__dot--live"></span>Klaviyo connected — the workforce can now see your email marketing.</span>
+        </div>
+
+        <span class="demo-label" style="margin-top:16px"><span class="demo-label__mark" aria-hidden="true"></span>Sample — no real credentials are entered or stored. Tool names show the kinds of systems we connect to.</span>
+      </div>
+    </section>
+
+    <div class="section section--dark" style="padding:0">
+      <div class="divider" aria-hidden="true"><span class="divider__dot"></span><span class="divider__dot"></span><span class="divider__dot"></span></div>
+    </div>
+
+    <!-- ===================== SAMPLE MORNING BRIEF [cream] ===================== -->
+    <section class="section section--light" id="brief">
+      <div class="wrap">
+        <div class="section__head reveal">
+          <span class="eyebrow">06:30, before you&rsquo;ve opened the laptop</span>
+          <h2 class="h2">A sample <em>morning brief</em></h2>
+          <p class="copy copy--center">Every morning the workforce checks overnight sales, stock and your wholesale accounts, then writes you a short brief — what to watch, what needs a decision, what&rsquo;s on track. Here&rsquo;s the shape of one.</p>
+        </div>
+
+        <div class="brief reveal">
+          <div class="brief__bar">
+            <span class="brief__avatar" aria-hidden="true"><span></span></span>
+            <span class="brief__app">IntegrateAI</span>
+            <span class="brief__badge">APP</span>
+            <span class="brief__time">06:30</span>
+          </div>
+          <div class="brief__body">
+            <p class="brief__greeting">Morning. Here&rsquo;s where Northwind stands.</p>
+            <p class="brief__date">Tuesday &middot; sample brief &middot; illustrative</p>
+            <p class="brief__lead">Quiet night on the numbers — café counter and online both tracked to plan. Three things want your eye: one account to keep, one order to place, and good news on the roaster.</p>
+
+            <div class="brief__items">
+              <div class="brief__item">
+                <span class="brief__tag brief__tag--watch">Watch</span>
+                <p class="brief__itext"><b>The Bridge Café has gone quiet.</b> Usually orders Harbour Blend every fortnight; last order was 35 days ago. I&rsquo;ve drafted a warm check-in for your wholesale lead — say the word and it sends.</p>
+              </div>
+              <div class="brief__item">
+                <span class="brief__tag brief__tag--action">Decide</span>
+                <p class="brief__itext"><b>Green coffee for Old Town Espresso runs out in ~9 days.</b> Supplier lead time is 7. A 60kg top-up (£660) bridges the gap. Approve and I&rsquo;ll place it.</p>
+              </div>
+              <div class="brief__item">
+                <span class="brief__tag brief__tag--good">On track</span>
+                <p class="brief__itext"><b>Yesterday&rsquo;s roasts hit target</b> and the tighter schedule saved about 90 minutes of idle time. Nothing for you to do here.</p>
+              </div>
+            </div>
+
+            <div class="brief__foot">
+              <span class="pill__dot pill__dot--live" aria-hidden="true"></span>
+              Reply in the thread to approve, change or ask a question. Next brief tomorrow at 06:30.
+            </div>
+          </div>
+        </div>
+
+        <p class="meta meta--strong fb-center fb-mt-6">Sample morning brief — content invented for this example, not drawn from a real client&rsquo;s account.</p>
+      </div>
+    </section>
+
+    <!-- ===================== A DAY OF DECISIONS [dark] — full Green/Amber/Red queue ===================== -->
+    <section class="section section--dark" id="queue">
+      <div class="wrap wrap--narrow">
+        <div class="section__head reveal">
+          <span class="eyebrow">Green &middot; Amber &middot; Red</span>
+          <h2 class="h2">A day&rsquo;s worth of <em>decisions</em>, in one queue</h2>
+          <p class="copy copy--center">Low-risk heads-ups are green. Things that need your sign-off are amber. Anything that changes a live price or moves real money is red — held until you say so. Try them: approve, request changes, or decline.</p>
+        </div>
+
+        <div id="fb-queue" aria-label="Example queue of approval requests for a fictional roaster"></div>
+
+        <div class="approval__reassure reveal" style="justify-content:center;margin-top:24px">
+          <span class="pill__dot pill__dot--live"></span>
+          Nothing in this queue acts on its own. The real one runs on your numbers.
+        </div>
+        <span class="demo-label" style="margin-top:14px"><span class="demo-label__mark" aria-hidden="true"></span>Illustrative composite — Northwind Coffee Roasters is not a real company. Try the buttons; nothing leaves this page.</span>
+      </div>
+    </section>
+
+    <div class="section section--dark" style="padding:0">
+      <div class="divider" aria-hidden="true"><span class="divider__dot"></span><span class="divider__dot"></span><span class="divider__dot"></span></div>
+    </div>
+
+    <!-- ===================== THE DASHBOARD [dark] ===================== -->
+    <section class="section section--dark" id="dashboard">
+      <div class="wrap">
+        <div class="section__head reveal">
+          <span class="eyebrow">The view, all in one place</span>
+          <h2 class="h2">Where the business <em>stands</em> — at a glance</h2>
+          <p class="copy copy--center">Behind the Slack thread sits the picture: revenue by channel, wholesale accounts and their order patterns, what the workforce cleared this week. The time axis is a projection — an illustration of a ramp, not a real client&rsquo;s history.</p>
+        </div>
+
+        <div class="reveal">
+          <div id="fb-dashboard" aria-label="Illustrative sample dashboard for a fictional coffee roaster"></div>
+        </div>
+
+        <p class="meta meta--strong fb-center fb-mt-6">Sample data &middot; illustrative composite &middot; the Month 1&ndash;6 line is a projection, not a real client&rsquo;s history.</p>
+      </div>
+    </section>
+
+    <!-- ===================== VERTICAL PROMISE [cream] ===================== -->
+    <section class="section section--light" id="promise">
+      <div class="wrap">
+        <div class="section__head reveal">
+          <span class="eyebrow">Why a specialist beats a generalist</span>
+          <h2 class="h2">Every coffee roaster we build for <em>makes the next one faster</em></h2>
+          <p class="copy copy--center">This is the plan, told straight — not a track record. We haven&rsquo;t launched with a food or drink client yet. But the system is built to compound: what we learn about roast schedules, wholesale patterns and green-coffee lead times becomes a head start for the next roaster, bakery or brewery.</p>
+        </div>
+
+        <div class="fb-promise reveal">
+          <div class="fb-step" data-reveal-child>
+            <span class="fb-step__n">01</span>
+            <h3 class="fb-step__title">We learn your trade once</h3>
+            <p class="fb-step__body">The first build is the deep one — we map how a roaster actually runs: batch timing, wholesale cadence, the margin maths on a blend. That knowledge gets written down, not held in someone&rsquo;s head.</p>
+          </div>
+          <div class="fb-step" data-reveal-child>
+            <span class="fb-step__n">02</span>
+            <h3 class="fb-step__title">It becomes a template</h3>
+            <p class="fb-step__body">The patterns that hold for one food &amp; drink business — idle-time savings, churn signals, reorder timing — become a starting point. The next build begins with the trade already understood.</p>
+          </div>
+          <div class="fb-step" data-reveal-child>
+            <span class="fb-step__n">03</span>
+            <h3 class="fb-step__title">You get the compounding</h3>
+            <p class="fb-step__body">Faster to set up, sharper out of the box, and improving as the system sees more of your trade. The work done for the businesses before you is the reason yours starts ahead.</p>
+          </div>
+        </div>
+
+        <div class="callout reveal" style="max-width:760px;margin:48px auto 0">
+          <p class="callout__title">Be the first food &amp; drink business we build for</p>
+          <p class="copy" style="margin-top:6px">We haven&rsquo;t launched with a client yet — which means you could be the one we learn the trade with. Fixed price, no lock-in, and a founding-client rate locked for 12 months. If it isn&rsquo;t a fit, we&rsquo;ll tell you straight on the call.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== F&B CTA [dark] — qualify form ===================== -->
+    <section class="section section--dark" id="book">
+      <div class="wrap">
+        <div class="section__head reveal">
+          <span class="eyebrow">No sales pitch &middot; 30 minutes &middot; with a founder</span>
+          <h2 class="h2">Book a diagnostic for your <em>food or drink business</em></h2>
+          <p class="copy copy--center">Tell us a little about your business and we&rsquo;ll see if there&rsquo;s a fit. If there isn&rsquo;t, we&rsquo;ll say so — no calendar games. Prefer email? Write to <a href="mailto:hello@integrate-ai.uk" style="color:var(--terra)">hello@integrate-ai.uk</a>.</p>
+        </div>
+
+        <div class="fb-cta-grid">
+          <!-- price card -->
+          <aside class="fb-pricecard reveal">
+            <p class="fb-pricecard__from">Investment</p>
+            <p class="fb-pricecard__big">From &pound;1,200<span style="font-family:var(--mono);font-size:.9rem;color:var(--on-dark-2)">/mo</span></p>
+            <p class="fb-pricecard__sub">A fixed monthly investment, named on the call. Founding-client rate locked for 12 months for early clients.</p>
+            <div class="fb-pricecard__list">
+              <p class="fb-pricecard__li"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 8.5l3.5 3.5 7.5-8"/></svg>No lock-in — leave whenever</p>
+              <p class="fb-pricecard__li"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 8.5l3.5 3.5 7.5-8"/></svg>You approve every move — nothing acts on its own</p>
+              <p class="fb-pricecard__li"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 8.5l3.5 3.5 7.5-8"/></svg>Built around your tools — you paste the keys</p>
+              <p class="fb-pricecard__li"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 8.5l3.5 3.5 7.5-8"/></svg>We&rsquo;ll tell you straight if it isn&rsquo;t a fit</p>
+            </div>
+          </aside>
+
+          <!-- qualify form -->
+          <div class="reveal">
+            <form class="qform" id="fb-qualify" novalidate>
+              <div class="qfield">
+                <label for="q-company">Business name</label>
+                <input class="qinput" id="q-company" name="company" type="text" autocomplete="organization" required />
+                <span class="qfield__error" role="alert">Please tell us your business name.</span>
+              </div>
+
+              <div class="qfield">
+                <label for="q-website">Website</label>
+                <input class="qinput" id="q-website" name="website" type="text" autocomplete="url" placeholder="yourbusiness.co.uk" required />
+                <span class="qfield__error" role="alert">Please add your website.</span>
+              </div>
+
+              <div class="qfield">
+                <label for="q-revenue">Monthly revenue</label>
+                <select class="qselect" id="q-revenue" name="revenue" required>
+                  <option value="">Choose a range&hellip;</option>
+                  <option value="band-pre">Pre-revenue / just starting</option>
+                  <option value="band-a">£10k–£40k a month</option>
+                  <option value="band-b">£40k–£100k a month</option>
+                  <option value="band-c">£100k+ a month</option>
+                </select>
+                <span class="qfield__error" role="alert">Please choose a range.</span>
+              </div>
+
+              <div class="qfield">
+                <span style="font-family:var(--sans);font-size:.85rem;font-weight:600;color:var(--on-dark)">Which tools do you use today?</span>
+                <span class="qfield__hint">Pick any that apply — it helps us see the fit.</span>
+                <div class="qtools" role="group" aria-label="Tools you use today">
+                  <span class="qtool"><input id="t-shopify" type="checkbox" name="tools" value="shopify" /><label for="t-shopify">Shopify / online store</label></span>
+                  <span class="qtool"><input id="t-square" type="checkbox" name="tools" value="square" /><label for="t-square">Square / EPOS</label></span>
+                  <span class="qtool"><input id="t-xero" type="checkbox" name="tools" value="xero" /><label for="t-xero">Xero / QuickBooks</label></span>
+                  <span class="qtool"><input id="t-klaviyo" type="checkbox" name="tools" value="klaviyo" /><label for="t-klaviyo">Email marketing</label></span>
+                  <span class="qtool"><input id="t-inventory" type="checkbox" name="tools" value="inventory" /><label for="t-inventory">Inventory / roastery tool</label></span>
+                  <span class="qtool"><input id="t-spreadsheets" type="checkbox" name="tools" value="spreadsheets" /><label for="t-spreadsheets">Spreadsheets</label></span>
+                </div>
+              </div>
+
+              <div class="qfield">
+                <label for="q-role">Your role</label>
+                <select class="qselect" id="q-role" name="role" required>
+                  <option value="">Choose&hellip;</option>
+                  <option value="owner">Owner / founder</option>
+                  <option value="director">Director</option>
+                  <option value="manager">Manager</option>
+                  <option value="other">Something else</option>
+                </select>
+                <span class="qfield__error" role="alert">Please choose your role.</span>
+              </div>
+
+              <!-- honeypot -->
+              <div class="qpot" aria-hidden="true">
+                <label for="q-company-url">Leave this field blank</label>
+                <input id="q-company-url" name="company_url" type="text" tabindex="-1" autocomplete="off" />
+              </div>
+
+              <button type="submit" class="btn btn--primary btn--lg btn--block" data-track="cta_book_click" data-cta-source="fnb_qualify_form">Find a time with a founder</button>
+              <a id="cal-fallback" class="btn btn--ghost fb-cal-fallback" href="#">Calendar slow? Email us instead</a>
+            </form>
+
+            <!-- soft-decline panel -->
+            <div class="soft-decline" id="soft-decline" role="status">
+              <p class="soft-decline__title">We might not be the right fit just yet</p>
+              <p class="soft-decline__body">Right now we&rsquo;re focused on food &amp; drink businesses that already have a few systems in place and some monthly trade to work with. From what you&rsquo;ve told us, we may not be the best use of your money today — and we&rsquo;d rather say that than sell you something.</p>
+              <p class="soft-decline__body" style="margin-top:12px">If you think we&rsquo;ve got that wrong, write to us directly and we&rsquo;ll take a proper look.</p>
+              <div class="soft-decline__alt">
+                <a class="btn btn--ghost" href="mailto:hello@integrate-ai.uk?subject=Food%20%26%20drink%20enquiry">Email a founder</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="footer" role="contentinfo">
+    <div class="wrap">
+      <div class="footer__top">
+        <div class="footer__about">
+          <a href="../index.html" class="nav__logo" aria-label="IntegrateAI Advisors — Home">
+            <span class="nav__mark" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span>
+            <span class="nav__brand">Integrate<span class="ai">AI</span> Advisors</span>
+          </a>
+          <p class="footer__about">A workforce that runs your food &amp; drink business from Slack — finding the money, doing the work, and waiting for your approval. Run by Chad &amp; Paul from Milton under Wychwood, Oxfordshire.</p>
+        </div>
+        <div class="footer__col">
+          <h5>This page</h5>
+          <a href="#how-it-runs">How it runs</a>
+          <a href="#pillars">What it finds</a>
+          <a href="#connect">Connect your tools</a>
+          <a href="#dashboard">The dashboard</a>
+          <a href="#book">Book a diagnostic</a>
+        </div>
+        <div class="footer__col">
+          <h5>Company</h5>
+          <a href="../index.html">For any business</a>
+          <a href="mailto:hello@integrate-ai.uk">hello&#64;integrate-ai.uk</a>
+          <a href="../privacy.html">Privacy Policy</a>
+          <a href="../terms.html">Terms of Service</a>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <span class="footer__copy">&copy; <span id="copy-year"></span> IntegrateAI Advisors. All rights reserved.</span>
+        <span class="footer__note">Northwind Coffee Roasters is fictional &middot; not affiliated with Anthropic PBC &middot; built using Claude and Anthropic&rsquo;s APIs</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===================== COOKIE CONSENT (GA4 gated by app.js) ===================== -->
+  <div class="cookie" id="cookie" role="dialog" aria-live="polite" aria-label="Cookie consent">
+    <p class="cookie__text">We use a few analytics cookies to see how this page is used. They stay off until you say yes. See our <a href="../privacy.html">Privacy Policy</a>.</p>
+    <div class="cookie__actions">
+      <button class="cookie__btn cookie__btn--accept" data-cookie-accept type="button">Accept</button>
+      <button class="cookie__btn cookie__btn--decline" data-cookie-decline type="button">Decline</button>
+    </div>
+  </div>
+
+  <!-- ===================== SCRIPTS ===================== -->
+  <script src="../assets/demo-data.js"></script>
+  <script src="../assets/app.js"></script>
+  <script>
+    (function () {
+      'use strict';
+      // current year in footer
+      var yr = document.getElementById('copy-year');
+      if (yr) yr.textContent = new Date().getFullYear();
+
+      var D = window.IAA_DEMO || {};
+
+      // Hero — single F&B card (The Bridge Café has gone quiet)
+      var heroEl = document.getElementById('fb-hero-demo');
+      if (heroEl && window.IAA && D.northwindHero) {
+        IAA.initApprovalLoop(heroEl, D.northwindHero);
+      }
+
+      // Full queue — Green / Amber / Red, includes the redraft micro-flow
+      var queueEl = document.getElementById('fb-queue');
+      if (queueEl && window.IAA && D.northwindScenarios) {
+        IAA.initApprovalLoop(queueEl, D.northwindScenarios);
+      }
+
+      // Dashboard — Northwind sample dataset (projection-labelled)
+      var dashEl = document.getElementById('fb-dashboard');
+      if (dashEl && window.IAA && D.northwindDashboard) {
+        IAA.initDashboard(dashEl, D.northwindDashboard);
+      }
+
+      // Qualify form — client-side gate -> Cal.com prefill / mailto fallback
+      var form = document.getElementById('fb-qualify');
+      if (form && window.IAA) {
+        IAA.initQualifyForm(form, {
+          calBase: 'https://cal.com/chad-pickard-integrateai',
+          mailto: 'hello@integrate-ai.uk',
+          passRevenue: ['band-a', 'band-b', 'band-c'],
+          minTools: 1,
+          softSelector: '#soft-decline'
+        });
+      }
+
+      // Paste-a-key demo (illustrative only — no real connection made)
+      var pasteBtn = document.getElementById('fb-paste-btn');
+      var pasteDone = document.getElementById('paste-done');
+      if (pasteBtn && pasteDone) {
+        pasteBtn.addEventListener('click', function () {
+          pasteDone.classList.add('is-on');
+          pasteBtn.textContent = 'Connected';
+          pasteBtn.disabled = true;
+          pasteBtn.style.opacity = '0.6';
+          if (window.IAA && IAA.track) IAA.track('demo_interact', { demo: 'paste_credentials', action: 'connect' });
+        });
+      }
+
+      // Fire the F&B page-view event (only counts after cookie consent)
+      if (window.IAA && IAA.track) IAA.track('fnb_page_view', { page: 'food-and-beverage' });
+    })();
+  </script>
+</body>
+</html>
