@@ -3,13 +3,22 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <!-- Google Analytics 4 -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-RT7VN5KQHC"></script>
+  <!-- Google Analytics 4 — loads ONLY with stored cookie consent (set on homepage banner) -->
   <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-RT7VN5KQHC');
+    (function () {
+      var consent = null;
+      try { consent = localStorage.getItem('iaa_consent'); } catch (e) {}
+      if (consent !== 'granted') return;
+      var s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=G-RT7VN5KQHC';
+      document.head.appendChild(s);
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      window.gtag = gtag;
+      gtag('js', new Date());
+      gtag('config', 'G-RT7VN5KQHC', { anonymize_ip: true });
+    })();
   </script>
   <title>Blog — IntegrateAI Advisors</title>
   <meta name="description" content="Insights on AI agents, automation, and practical AI implementation for SMEs. From the team at IntegrateAI Advisors." />
@@ -122,10 +131,10 @@ footer{background:var(--dark);padding:32px 0;border-top:1px solid var(--br-d)}
       <span class="nav__brand">Integrate<span class="ai">AI</span> Advisors</span>
     </a>
     <ul class="nav__links">
-      <li><a href="/#services">Services</a></li>
-      <li><a href="/#how">How it works</a></li>
-      <li><a href="/#pricing">Pricing</a></li>
-      <li><a href="/#faq">FAQ</a></li>
+      <li><a href="/#how-it-works">How it works</a></li>
+      <li><a href="/#approval-loop">Approval loop</a></li>
+      <li><a href="/#connect">Integrations</a></li>
+      <li><a href="/#economics">Pricing</a></li>
       <li><a href="/blog" class="active">Blog</a></li>
     </ul>
     <a href="https://cal.com/chad-pickard-integrateai" class="nav__cta">Free AI Diagnostic</a>
@@ -140,11 +149,10 @@ footer{background:var(--dark);padding:32px 0;border-top:1px solid var(--br-d)}
     <h1 class="page__h1">The blog is <em>brewing.</em></h1>
     <div class="page__rule" aria-hidden="true"></div>
     <p class="page__sub">Practical insights on AI agents, automation, and implementation for SMEs. No fluff, no hype — just what works.</p>
-    <form class="notify" onsubmit="event.preventDefault();this.querySelector('button').textContent='You\'re in.';this.querySelector('input').disabled=true">
-      <input type="email" class="notify__input" placeholder="your@email.com" required aria-label="Email address" />
-      <button type="submit" class="notify__btn">Notify me</button>
-      <span class="notify__note">No spam. First edition only.</span>
-    </form>
+    <div class="notify">
+      <a class="notify__btn" href="mailto:hello@integrate-ai.uk?subject=Notify%20me%20when%20the%20blog%20launches">Email us — we'll let you know</a>
+      <span class="notify__note">No list, no spam. One reply when the first edition ships.</span>
+    </div>
     <a href="/" class="page__back"><svg viewBox="0 0 16 16"><path d="M10 12L6 8l4-4"/></svg>Back to home</a>
   </div>
 </main>
