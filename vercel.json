@@ -20,27 +20,27 @@
     },
     {
       "source": "/services",
-      "destination": "/#services",
+      "destination": "/#how-it-works",
       "permanent": true
     },
     {
       "source": "/pricing",
-      "destination": "/#pricing",
+      "destination": "/#economics",
       "permanent": true
     },
     {
       "source": "/how-it-works",
-      "destination": "/#how",
+      "destination": "/#how-it-works",
       "permanent": true
     },
     {
       "source": "/results",
-      "destination": "/#results",
+      "destination": "/#economics",
       "permanent": true
     },
     {
       "source": "/faq",
-      "destination": "/#faq",
+      "destination": "/",
       "permanent": true
     },
     {
@@ -94,7 +94,7 @@
       "headers": [
         {
           "key": "Cache-Control",
-          "value": "public, max-age=31536000, immutable"
+          "value": "public, max-age=3600, stale-while-revalidate=86400"
         }
       ]
     },
@@ -103,7 +103,7 @@
       "headers": [
         {
           "key": "Cache-Control",
-          "value": "public, max-age=31536000, immutable"
+          "value": "public, max-age=604800"
         }
       ]
     }
