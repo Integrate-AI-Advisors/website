@@ -76,27 +76,30 @@
         <defs>
           <radialGradient id="hubGlow" cx="50%" cy="50%" r="50%">
             <stop offset="0%" stop-color="#FFF4DC" stop-opacity=".95"/>
-            <stop offset="45%" stop-color="#F3E4BE" stop-opacity=".35"/>
+            <stop offset="45%" stop-color="#F3E4BE" stop-opacity=".38"/>
             <stop offset="100%" stop-color="#F3E4BE" stop-opacity="0"/>
           </radialGradient>
-          <linearGradient id="fil" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0%" stop-color="#FFF4DC" stop-opacity=".9"/>
-            <stop offset="100%" stop-color="#FFFFFF" stop-opacity=".25"/>
-          </linearGradient>
+          <!-- Filaments light from the hub outward, whichever direction they leave in -->
+          <radialGradient id="filR" gradientUnits="userSpaceOnUse" cx="620" cy="470" r="520">
+            <stop offset="0%" stop-color="#FFF4DC" stop-opacity=".95"/>
+            <stop offset="45%" stop-color="#FFF8E8" stop-opacity=".7"/>
+            <stop offset="100%" stop-color="#FFFFFF" stop-opacity=".3"/>
+          </radialGradient>
         </defs>
 
-        <circle cx="620" cy="470" r="330" fill="url(#hubGlow)" opacity=".55"/>
-        <circle cx="620" cy="470" r="150" fill="url(#hubGlow)"/>
+        <circle cx="620" cy="470" r="430" fill="url(#hubGlow)" opacity=".6"/>
+        <circle cx="620" cy="470" r="250" fill="url(#hubGlow)" opacity=".8"/>
+        <circle cx="620" cy="470" r="130" fill="url(#hubGlow)"/>
 
-        <g fill="none" stroke="url(#fil)" stroke-width="1.6" opacity=".85">
-          <path d="M620 470 C 560 380, 480 300, 390 195"/>
-          <path d="M620 470 C 680 380, 700 300, 760 225"/>
-          <path d="M620 470 C 720 470, 790 470, 875 455"/>
-          <path d="M620 470 C 690 560, 710 640, 765 715"/>
-          <path d="M620 470 C 560 570, 520 650, 460 730"/>
-          <path d="M620 470 C 500 560, 360 590, 225 605"/>
-          <path d="M620 470 C 500 420, 360 380, 250 330"/>
-          <path d="M620 470 C 760 360, 850 320, 930 300" opacity=".35"/>
+        <g fill="none" stroke="url(#filR)" stroke-width="2" opacity=".9">
+          <path d="M620 470 C 545 420, 545 300, 440 290 S 400 250, 390 195"/>
+          <path d="M620 470 C 700 400, 650 330, 720 300 S 745 270, 760 225"/>
+          <path d="M620 470 C 720 500, 750 430, 810 470 S 845 445, 875 455"/>
+          <path d="M620 470 C 660 580, 740 590, 730 660 S 755 685, 765 715"/>
+          <path d="M620 470 C 590 580, 500 600, 510 670 S 470 690, 460 730"/>
+          <path d="M620 470 C 520 540, 460 520, 380 570 S 290 575, 225 605"/>
+          <path d="M620 470 C 520 440, 460 370, 370 380 S 300 345, 250 330"/>
+          <path d="M620 470 C 740 400, 800 350, 930 300" opacity=".35"/>
           <path d="M620 470 C 700 620, 640 740, 560 820" opacity=".3"/>
           <path d="M620 470 C 480 470, 400 500, 330 470" opacity=".3"/>
         </g>
@@ -106,10 +109,17 @@
           <circle cx="800" cy="462" r="2.2" opacity=".85"/><circle cx="710" cy="620" r="2" opacity=".8"/>
           <circle cx="520" cy="620" r="2.4" opacity=".85"/><circle cx="380" cy="580" r="2" opacity=".75"/>
           <circle cx="400" cy="390" r="2.2" opacity=".8"/><circle cx="580" cy="260" r="1.6" opacity=".7"/>
+          <circle cx="560" cy="410" r="2.8" opacity=".95"/><circle cx="672" cy="405" r="2.6" opacity=".9"/>
+          <circle cx="690" cy="520" r="2.6" opacity=".9"/><circle cx="565" cy="545" r="2.4" opacity=".9"/>
+          <circle cx="742" cy="470" r="2.2" opacity=".85"/><circle cx="620" cy="345" r="2.2" opacity=".85"/>
+          <circle cx="475" cy="500" r="2" opacity=".8"/><circle cx="640" cy="600" r="2" opacity=".8"/>
+          <circle cx="852" cy="380" r="1.6" opacity=".6"/><circle cx="310" cy="470" r="1.6" opacity=".6"/>
+          <circle cx="600" cy="770" r="1.6" opacity=".55"/><circle cx="450" cy="255" r="1.6" opacity=".6"/>
+          <circle cx="330" cy="655" r="1.4" opacity=".5"/><circle cx="775" cy="590" r="1.8" opacity=".7"/>
         </g>
 
         <g>
-          <circle cx="620" cy="470" r="64" fill="rgba(255,255,255,.5)" stroke="rgba(255,255,255,.85)" stroke-width="1.5"/>
+          <circle cx="620" cy="470" r="64" fill="rgba(255,255,255,.68)" stroke="rgba(255,255,255,.9)" stroke-width="1.5"/>
           <g transform="translate(596,446)" stroke="#1E2A45" stroke-linecap="round" fill="none">
             <path d="M24 6 24 16" stroke-width="3"/><path d="M24 32 24 42" stroke-width="3"/>
             <path d="M6 24 16 24" stroke-width="3"/><path d="M32 24 42 24" stroke-width="3"/>
@@ -118,27 +128,27 @@
           </g>
         </g>
 
-        <g id="nodes" font-family="Inter,system-ui,sans-serif" font-size="13" font-weight="500" fill="#FFFFFF" text-anchor="middle">
-          <g class="node"><circle cx="390" cy="175" r="52" fill="rgba(255,255,255,.28)" stroke="rgba(255,255,255,.65)" stroke-width="1.2"/>
-            <g stroke="#fff" stroke-width="1.5" fill="none"><circle cx="383" cy="160" r="6"/><circle cx="399" cy="160" r="6"/><path d="M372 182c2-8 8-12 11-12m24 12c-2-8-8-12-11-12"/></g>
+        <g id="nodes" font-family="Inter,system-ui,sans-serif" font-size="14.5" font-weight="500" fill="#FFFFFF" text-anchor="middle">
+          <g class="node"><circle cx="390" cy="175" r="52" fill="rgba(255,255,255,.4)" stroke="rgba(255,255,255,.88)" stroke-width="1.3"/>
+            <g stroke="#fff" stroke-width="1.7" fill="none"><circle cx="383" cy="160" r="6"/><circle cx="399" cy="160" r="6"/><path d="M372 182c2-8 8-12 11-12m24 12c-2-8-8-12-11-12"/></g>
             <text x="390" y="197">CRM</text></g>
-          <g class="node"><circle cx="760" cy="225" r="52" fill="rgba(255,255,255,.28)" stroke="rgba(255,255,255,.65)" stroke-width="1.2"/>
-            <g stroke="#fff" stroke-width="1.5" fill="none"><rect x="744" y="203" width="32" height="22" rx="3"/><path d="m744 206 16 12 16-12"/></g>
+          <g class="node"><circle cx="760" cy="225" r="52" fill="rgba(255,255,255,.4)" stroke="rgba(255,255,255,.88)" stroke-width="1.3"/>
+            <g stroke="#fff" stroke-width="1.7" fill="none"><rect x="744" y="203" width="32" height="22" rx="3"/><path d="m744 206 16 12 16-12"/></g>
             <text x="760" y="247">Email</text></g>
-          <g class="node"><circle cx="875" cy="455" r="52" fill="rgba(255,255,255,.28)" stroke="rgba(255,255,255,.65)" stroke-width="1.2"/>
-            <g stroke="#fff" stroke-width="1.5" fill="none"><rect x="859" y="432" width="32" height="28" rx="3"/><path d="M859 441h32M867 428v8m16-8v8"/></g>
+          <g class="node"><circle cx="875" cy="455" r="52" fill="rgba(255,255,255,.4)" stroke="rgba(255,255,255,.88)" stroke-width="1.3"/>
+            <g stroke="#fff" stroke-width="1.7" fill="none"><rect x="859" y="432" width="32" height="28" rx="3"/><path d="M859 441h32M867 428v8m16-8v8"/></g>
             <text x="875" y="477">Calendar</text></g>
-          <g class="node"><circle cx="765" cy="715" r="52" fill="rgba(255,255,255,.28)" stroke="rgba(255,255,255,.65)" stroke-width="1.2"/>
+          <g class="node"><circle cx="765" cy="715" r="52" fill="rgba(255,255,255,.4)" stroke="rgba(255,255,255,.88)" stroke-width="1.3"/>
             <text x="765" y="708" font-family="Fraunces,Georgia,serif" font-size="30" font-weight="400">£</text>
             <text x="765" y="737">Finance</text></g>
-          <g class="node"><circle cx="460" cy="730" r="52" fill="rgba(255,255,255,.28)" stroke="rgba(255,255,255,.65)" stroke-width="1.2"/>
-            <g stroke="#fff" stroke-width="1.5" fill="none"><path d="M446 716h28l-3 24h-22zM452 716v-4a8 8 0 0 1 16 0v4"/></g>
+          <g class="node"><circle cx="460" cy="730" r="52" fill="rgba(255,255,255,.4)" stroke="rgba(255,255,255,.88)" stroke-width="1.3"/>
+            <g stroke="#fff" stroke-width="1.7" fill="none"><path d="M446 716h28l-3 24h-22zM452 716v-4a8 8 0 0 1 16 0v4"/></g>
             <text x="460" y="752">Commerce</text></g>
-          <g class="node"><circle cx="225" cy="605" r="52" fill="rgba(255,255,255,.28)" stroke="rgba(255,255,255,.65)" stroke-width="1.2"/>
-            <g stroke="#fff" stroke-width="1.5" fill="none"><path d="M209 618v-10m10 10v-18m10 18v-13m10 13v-22"/></g>
+          <g class="node"><circle cx="225" cy="605" r="52" fill="rgba(255,255,255,.4)" stroke="rgba(255,255,255,.88)" stroke-width="1.3"/>
+            <g stroke="#fff" stroke-width="1.7" fill="none"><path d="M209 618v-10m10 10v-18m10 18v-13m10 13v-22"/></g>
             <text x="225" y="627">Analytics</text></g>
-          <g class="node"><circle cx="250" cy="330" r="52" fill="rgba(255,255,255,.28)" stroke="rgba(255,255,255,.65)" stroke-width="1.2"/>
-            <g stroke="#fff" stroke-width="1.5" fill="none"><path d="M232 316h26a4 4 0 0 1 4 4v12a4 4 0 0 1-4 4h-14l-8 7v-7h-4a4 4 0 0 1-4-4v-12a4 4 0 0 1 4-4z"/></g>
+          <g class="node"><circle cx="250" cy="330" r="52" fill="rgba(255,255,255,.4)" stroke="rgba(255,255,255,.88)" stroke-width="1.3"/>
+            <g stroke="#fff" stroke-width="1.7" fill="none"><path d="M232 316h26a4 4 0 0 1 4 4v12a4 4 0 0 1-4 4h-14l-8 7v-7h-4a4 4 0 0 1-4-4v-12a4 4 0 0 1 4-4z"/></g>
             <text x="250" y="352">Messaging</text></g>
         </g>
       </svg>
