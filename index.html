@@ -1,647 +1,365 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-GB">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>IntegrateAI Advisors — Run your business from Slack. You approve every move.</title>
-  <meta name="description" content="An intelligence layer for your business that finds the money across four outcomes — more customers, more efficiency, more revenue, less waste — and acts on it. You approve every decision; it does the rest. Book your free 30-minute diagnostic." />
-
-  <!-- Open Graph / social -->
-  <meta property="og:title" content="IntegrateAI Advisors — Run your business from Slack" />
-  <meta property="og:description" content="An intelligence layer that finds the money across four outcomes and acts on it. You approve every move; it does the rest. Book your free 30-minute diagnostic." />
-  <meta property="og:type" content="website" />
-  <meta property="og:image" content="https://integrate-ai.uk/og-image.png" />
-  <meta property="og:url" content="https://integrate-ai.uk" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="theme-color" content="#1A1A19" />
-  <link rel="canonical" href="https://integrate-ai.uk" />
-
-  <!-- Favicons -->
-  <link rel="icon" href="/favicon.ico" sizes="32x32" />
-  <link rel="icon" href="/favicon.png" type="image/png" />
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-
-  <!-- Structured data — LocalBusiness -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>IntegrateAI — Give your business an operating brain</title>
+  <meta name="description" content="One intelligence layer that connects your systems — Shopify, Xero, your inbox — understands your business, and guides your next move. You approve every action. From £500/month.">
+  <link rel="canonical" href="https://integrate-ai.uk/">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://integrate-ai.uk/">
+  <meta property="og:title" content="IntegrateAI — Give your business an operating brain">
+  <meta property="og:description" content="One intelligence layer that connects your systems, understands your business, and guides your next move. You approve every move.">
+  <meta property="og:image" content="https://integrate-ai.uk/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="preload" href="/assets/fonts/fraunces-var.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/inter-var.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/styles.v1.css">
+  <script>document.documentElement.classList.add('js')</script>
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    "name": "IntegrateAI Advisors",
-    "description": "An intelligence layer for businesses. We connect the tools you already use, surface where the money is across four outcomes, and act on it — with your approval on every move.",
-    "url": "https://www.integrate-ai.uk",
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Milton under Wychwood",
-      "addressRegion": "Oxfordshire",
-      "addressCountry": "GB"
-    },
-    "email": "hello@integrate-ai.uk",
-    "areaServed": {
-      "@type": "Country",
-      "name": "United Kingdom"
-    },
-    "priceRange": "££"
-  }
+  {"@context":"https://schema.org","@type":"LocalBusiness","name":"IntegrateAI",
+   "legalName":"Integrate AI Advisors Ltd","url":"https://integrate-ai.uk",
+   "email":"hello@integrate-ai.uk","address":{"@type":"PostalAddress","addressCountry":"GB"},
+   "description":"The operating brain for your business — one AI layer that connects your systems, understands your business, and acts with your approval.","priceRange":"from £500/month"}
   </script>
-
-  <!-- Structured data — FAQ -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {"@type": "Question", "name": "What does it actually do?", "acceptedAnswer": {"@type": "Answer", "text": "It connects the tools you already use, watches for where money is leaking or being left on the table across four outcomes — more customers, more efficiency, more revenue, less waste — and proposes the action. Nothing happens until you approve it in Slack."}},
-      {"@type": "Question", "name": "Do I have to give it control of my accounts?", "acceptedAnswer": {"@type": "Answer", "text": "No. Every action — a payment, a price change, an outbound email — is proposed to you first and waits for your approval. You stay in control of every decision; it does the legwork."}},
-      {"@type": "Question", "name": "How do I connect my tools?", "acceptedAnswer": {"@type": "Answer", "text": "You paste the credentials your tool gives you and click Connect. There is no redirect dance and no logins to hand over. We handle any connection in the background."}},
-      {"@type": "Question", "name": "What does it cost?", "acceptedAnswer": {"@type": "Answer", "text": "Engagements start at £1,200 per month. Fixed pricing, no lock-in. A marketing specialist, an operations analyst or a bookkeeper each cost many times that to employ."}},
-      {"@type": "Question", "name": "Do you have results to show me?", "acceptedAnswer": {"@type": "Answer", "text": "Honestly, not yet — we have not launched with a client. You could be the first, on a founding-client rate locked for twelve months. Everything you see on this page is clearly labelled as an example."}}
-    ]
-  }
-  </script>
-
-  <!-- Brand fonts: DM Serif Display, Inter, JetBrains Mono -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-
-  <!-- Shared design system -->
-  <link rel="stylesheet" href="/assets/styles.css" />
-
-  <!-- Page-only composition CSS (consumes tokens; defines no component styles) -->
-  <style>
-    /* Hero layout — mobile-first: headline + value + CTA first, demo below.
-       Desktop (>=960px): two-column, copy left, live demo right. */
-    .hero { padding-top: calc(60px + var(--s-9)); overflow: hidden; }
-    .hero__grid { display: grid; gap: var(--s-7); align-items: center; }
-    @media (min-width: 960px) {
-      .hero__grid { grid-template-columns: 1.05fr .95fr; gap: var(--s-8); }
-    }
-    .hero__copy { max-width: 600px; }
-    .hero__h1 { margin-bottom: var(--s-5); }
-    .hero__value { font-size: var(--fs-lead); line-height: 1.6; color: var(--on-dark-2); margin-bottom: var(--s-6); max-width: 540px; }
-    .hero__cta-row { display: flex; flex-wrap: wrap; gap: var(--s-3); align-items: center; }
-    .hero__see { font-size: .92rem; font-weight: 500; color: var(--on-dark); text-decoration: none; display: inline-flex; align-items: center; gap: 7px; padding: 14px 8px; transition: color .2s; }
-    .hero__see:hover { color: var(--terra); }
-    .hero__see svg { width: 15px; height: 15px; stroke: currentColor; fill: none; stroke-width: 2; }
-    .hero__sub { font-family: var(--mono); font-size: var(--fs-meta); color: var(--on-dark-2); letter-spacing: .03em; margin-top: var(--s-4); }
-    .hero__demo { position: relative; }
-
-    /* soft ambient glow behind the hero demo — non-text accent only */
-    .hero__glow { position: absolute; inset: -8% -6% auto auto; width: 420px; height: 420px; max-width: 90%; border-radius: 50%; background: radial-gradient(circle, rgba(217,119,87,.14) 0%, transparent 70%); filter: blur(40px); pointer-events: none; z-index: 0; }
-    .hero__demo > * { position: relative; z-index: 1; }
-
-    /* Generic two-up content rows used in §4 / §5 / §6 */
-    .split { display: grid; gap: var(--s-7); align-items: center; }
-    @media (min-width: 880px) { .split { grid-template-columns: 1fr 1fr; gap: var(--s-8); } }
-    .split--brain { align-items: stretch; }
-
-    /* Founders block */
-    .founders { display: grid; gap: var(--s-5); margin-top: var(--s-6); }
-    @media (min-width: 620px) { .founders { grid-template-columns: 1fr 1fr; } }
-    .founder { display: flex; gap: var(--s-4); align-items: flex-start; }
-    .founder__avatar { width: 52px; height: 52px; border-radius: 50%; flex-shrink: 0; background: var(--terra-bg); border: 1px solid var(--terra-ring); display: grid; place-items: center; font-family: var(--serif); font-size: 1.2rem; color: var(--terra); }
-    .founder__name { font-family: var(--serif); font-size: 1.15rem; color: var(--on-dark); line-height: 1.2; }
-    .founder__role { font-family: var(--mono); font-size: .62rem; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); margin-top: 4px; }
-    .founder__bio { font-size: var(--fs-body-sm); line-height: 1.6; color: var(--on-dark-2); margin-top: var(--s-2); }
-
-    /* "How we work" small feature list */
-    .work-list { display: grid; gap: var(--s-4); margin-top: var(--s-5); }
-    @media (min-width: 620px) { .work-list { grid-template-columns: repeat(3, 1fr); } }
-    .work-item__title { font-family: var(--serif); font-size: 1.05rem; color: var(--on-dark); margin-bottom: var(--s-1); }
-    .section--light .work-item__title { color: var(--ink); }
-    .work-item__body { font-size: var(--fs-body-sm); line-height: 1.6; }
-
-    /* Economics — anchor price line */
-    .econ-anchor { margin-top: var(--s-6); display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--s-2) var(--s-4); padding-top: var(--s-5); border-top: 1px solid var(--br-d); }
-    .econ-anchor__price { font-family: var(--serif); font-size: clamp(2rem, 5vw, 2.6rem); color: var(--terra); line-height: 1; }
-    .econ-anchor__label { font-size: var(--fs-body); color: var(--on-dark-2); }
-    .econ-anchor__note { font-family: var(--mono); font-size: var(--fs-meta); color: var(--muted); width: 100%; }
-
-    /* Founding-client rate block */
-    .founding { display: flex; flex-direction: column; gap: var(--s-3); margin-top: var(--s-5); }
-    .founding__tag { align-self: flex-start; }
-
-    /* knowledge-build steps */
-    .brain-step { display: flex; gap: var(--s-3); align-items: flex-start; }
-    .brain-step .pill { flex-shrink: 0; white-space: nowrap; }
-  </style>
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to content</a>
 
-<div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
-<a href="#main" class="skip-link">Skip to main content</a>
-
-<!-- ============================ NAV ============================ -->
-<nav class="nav" id="nav" aria-label="Primary">
-  <div class="nav__in">
-    <a href="#main" class="nav__logo" aria-label="IntegrateAI Advisors — home">
-      <span class="nav__mark" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span>
-      <span class="nav__brand">Integrate<span class="ai">AI</span></span>
+<header class="nav" id="top">
+  <div class="wrap">
+    <a class="brand" href="/">
+      <svg viewBox="0 0 48 48" fill="none" aria-hidden="true"><g stroke="currentColor" stroke-linecap="round"><path d="M24 4.5 24 15" stroke-width="3.4"/><path d="M24 33 24 43.5" stroke-width="3.4"/><path d="M4.5 24 15 24" stroke-width="3.4"/><path d="M33 24 43.5 24" stroke-width="3.4"/><path d="M10.2 10.2 17 17" stroke-width="2.6"/><path d="M31 31 37.8 37.8" stroke-width="2.6"/><path d="M37.8 10.2 31 17" stroke-width="2.6"/><path d="M17 31 10.2 37.8" stroke-width="2.6"/></g></svg>
+      IntegrateAI
     </a>
     <ul class="nav__links">
-      <li><a href="#how-it-works">How it works</a></li>
-      <li><a href="#connect">Connect</a></li>
-      <li><a href="#economics">Economics</a></li>
-      <li><a href="/food-and-beverage">For food &amp; drink</a></li>
+      <li><a href="#how">How it works</a></li>
+      <li><a href="#pricing">Pricing</a></li>
+      <li><a href="/coffee">For coffee</a></li>
+      <li><a class="btn" href="https://cal.com/integrateai/diagnostic" target="_blank" rel="noopener">Book a diagnostic</a></li>
     </ul>
-    <a href="#book" class="btn btn--primary nav__cta" data-track="cta_book_click" data-cta-source="nav">Book a diagnostic</a>
-    <button class="nav__toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="nav-mobile">
+    <button class="nav__burger" aria-label="Open menu" aria-expanded="false" aria-controls="drawer">
       <span></span><span></span><span></span>
     </button>
   </div>
-</nav>
+</header>
 
-<div class="nav__mobile" id="nav-mobile" aria-label="Menu">
-  <div class="nav__mobile-top">
-    <a href="#how-it-works" class="nav__mobile-link"><span>How it works</span></a>
-    <a href="#connect" class="nav__mobile-link"><span>Connect</span></a>
-    <a href="#economics" class="nav__mobile-link"><span>Economics</span></a>
-    <a href="/food-and-beverage" class="nav__mobile-link"><span>For food &amp; drink</span></a>
-  </div>
-  <div class="nav__mobile-bottom">
-    <a href="#book" class="btn btn--primary" data-track="cta_book_click" data-cta-source="nav_mobile">Book your free diagnostic</a>
-  </div>
-</div>
+<nav class="drawer" id="drawer" aria-label="Mobile">
+  <button class="drawer__close" aria-label="Close menu">×</button>
+  <a href="#how">How it works</a>
+  <a href="#pricing">Pricing</a>
+  <a href="/coffee">For coffee</a>
+  <a href="#book">Contact</a>
+  <a class="btn" href="https://cal.com/integrateai/diagnostic" target="_blank" rel="noopener">Book a diagnostic <span class="arrow">→</span></a>
+</nav>
 
 <main id="main">
 
-  <!-- ==================== 1. HERO [dark] ==================== -->
-  <section class="section section--dark hero" aria-labelledby="hero-h1">
-    <div class="wrap">
-      <div class="hero__grid">
+<!-- ============ HERO ============ -->
+<section class="hero grain">
+  <div class="wrap hero__inner">
+    <div class="hero__copy">
+      <h1>Give your business an <em>operating</em> brain.</h1>
+      <p class="lead">One intelligence layer that connects your systems, understands your business, and guides your next move.</p>
+      <a class="btn" href="https://cal.com/integrateai/diagnostic" target="_blank" rel="noopener">Book a free diagnostic <span class="arrow">→</span></a>
+      <p class="hero__meta">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><circle cx="8" cy="8" r="6.5"/><path d="M8 4.5V8l2.5 1.5"/></svg>
+        30 minutes&nbsp;&nbsp;·&nbsp;&nbsp;No commitment
+      </p>
+    </div>
 
-        <div class="hero__copy">
-          <span class="pill pill--terra"><span class="pill__dot pill__dot--live"></span>An intelligence layer for your business</span>
-          <h1 class="h1 hero__h1" id="hero-h1" data-hero-shimmer>
-            <span class="hero-shimmer">Run your business from Slack.</span><br />
-            You approve every move — <em>it does the rest.</em>
-          </h1>
-          <p class="hero__value">
-            It plugs into the tools you already use, finds the money across four outcomes —
-            more customers, more efficiency, more revenue, less waste — and proposes the action.
-            Nothing happens without your say-so.
-          </p>
-          <div class="hero__cta-row">
-            <a href="#book" class="btn btn--primary btn--lg" data-track="cta_book_click" data-cta-source="hero">Book your free 30-minute diagnostic</a>
-            <a href="#approval-loop" class="hero__see">
-              See it work first
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
-            </a>
-          </div>
-          <p class="hero__sub">With a founder · no sales pitch · 30 min</p>
-        </div>
+    <div class="hero__network">
+      <!-- Radial network, geometry measured from hero-comp-desktop.png -->
+      <svg viewBox="0 0 1000 940" role="img" aria-label="A glowing network radiating from a central spark, connecting the tools a business already runs — CRM, email, calendar, finance, commerce, analytics and messaging — in warm dawn light.">
+        <defs>
+          <radialGradient id="hubGlow" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#FFF4DC" stop-opacity=".95"/>
+            <stop offset="45%" stop-color="#F3E4BE" stop-opacity=".35"/>
+            <stop offset="100%" stop-color="#F3E4BE" stop-opacity="0"/>
+          </radialGradient>
+          <linearGradient id="fil" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#FFF4DC" stop-opacity=".9"/>
+            <stop offset="100%" stop-color="#FFFFFF" stop-opacity=".25"/>
+          </linearGradient>
+        </defs>
 
-        <div class="hero__demo">
-          <span class="hero__glow" aria-hidden="true"></span>
-          <div id="hero-approval"></div>
-          <span class="demo-label"><span class="demo-label__mark" aria-hidden="true"></span>An example — not a real client. Try the buttons.</span>
-        </div>
+        <circle cx="620" cy="470" r="330" fill="url(#hubGlow)" opacity=".55"/>
+        <circle cx="620" cy="470" r="150" fill="url(#hubGlow)"/>
 
+        <g fill="none" stroke="url(#fil)" stroke-width="1.6" opacity=".85">
+          <path d="M620 470 C 560 380, 480 300, 390 195"/>
+          <path d="M620 470 C 680 380, 700 300, 760 225"/>
+          <path d="M620 470 C 720 470, 790 470, 875 455"/>
+          <path d="M620 470 C 690 560, 710 640, 765 715"/>
+          <path d="M620 470 C 560 570, 520 650, 460 730"/>
+          <path d="M620 470 C 500 560, 360 590, 225 605"/>
+          <path d="M620 470 C 500 420, 360 380, 250 330"/>
+          <path d="M620 470 C 760 360, 850 320, 930 300" opacity=".35"/>
+          <path d="M620 470 C 700 620, 640 740, 560 820" opacity=".3"/>
+          <path d="M620 470 C 480 470, 400 500, 330 470" opacity=".3"/>
+        </g>
+
+        <g fill="#FFF4DC">
+          <circle cx="520" cy="360" r="2.4" opacity=".9"/><circle cx="700" cy="330" r="2" opacity=".8"/>
+          <circle cx="800" cy="462" r="2.2" opacity=".85"/><circle cx="710" cy="620" r="2" opacity=".8"/>
+          <circle cx="520" cy="620" r="2.4" opacity=".85"/><circle cx="380" cy="580" r="2" opacity=".75"/>
+          <circle cx="400" cy="390" r="2.2" opacity=".8"/><circle cx="580" cy="260" r="1.6" opacity=".7"/>
+        </g>
+
+        <g>
+          <circle cx="620" cy="470" r="64" fill="rgba(255,255,255,.5)" stroke="rgba(255,255,255,.85)" stroke-width="1.5"/>
+          <g transform="translate(596,446)" stroke="#1E2A45" stroke-linecap="round" fill="none">
+            <path d="M24 6 24 16" stroke-width="3"/><path d="M24 32 24 42" stroke-width="3"/>
+            <path d="M6 24 16 24" stroke-width="3"/><path d="M32 24 42 24" stroke-width="3"/>
+            <path d="M11.3 11.3 17.7 17.7" stroke-width="2.3"/><path d="M30.3 30.3 36.7 36.7" stroke-width="2.3"/>
+            <path d="M36.7 11.3 30.3 17.7" stroke-width="2.3"/><path d="M17.7 30.3 11.3 36.7" stroke-width="2.3"/>
+          </g>
+        </g>
+
+        <g id="nodes" font-family="Inter,system-ui,sans-serif" font-size="13" font-weight="500" fill="#FFFFFF" text-anchor="middle">
+          <g class="node"><circle cx="390" cy="175" r="52" fill="rgba(255,255,255,.28)" stroke="rgba(255,255,255,.65)" stroke-width="1.2"/>
+            <g stroke="#fff" stroke-width="1.5" fill="none"><circle cx="383" cy="160" r="6"/><circle cx="399" cy="160" r="6"/><path d="M372 182c2-8 8-12 11-12m24 12c-2-8-8-12-11-12"/></g>
+            <text x="390" y="197">CRM</text></g>
+          <g class="node"><circle cx="760" cy="225" r="52" fill="rgba(255,255,255,.28)" stroke="rgba(255,255,255,.65)" stroke-width="1.2"/>
+            <g stroke="#fff" stroke-width="1.5" fill="none"><rect x="744" y="203" width="32" height="22" rx="3"/><path d="m744 206 16 12 16-12"/></g>
+            <text x="760" y="247">Email</text></g>
+          <g class="node"><circle cx="875" cy="455" r="52" fill="rgba(255,255,255,.28)" stroke="rgba(255,255,255,.65)" stroke-width="1.2"/>
+            <g stroke="#fff" stroke-width="1.5" fill="none"><rect x="859" y="432" width="32" height="28" rx="3"/><path d="M859 441h32M867 428v8m16-8v8"/></g>
+            <text x="875" y="477">Calendar</text></g>
+          <g class="node"><circle cx="765" cy="715" r="52" fill="rgba(255,255,255,.28)" stroke="rgba(255,255,255,.65)" stroke-width="1.2"/>
+            <text x="765" y="708" font-family="Fraunces,Georgia,serif" font-size="30" font-weight="400">£</text>
+            <text x="765" y="737">Finance</text></g>
+          <g class="node"><circle cx="460" cy="730" r="52" fill="rgba(255,255,255,.28)" stroke="rgba(255,255,255,.65)" stroke-width="1.2"/>
+            <g stroke="#fff" stroke-width="1.5" fill="none"><path d="M446 716h28l-3 24h-22zM452 716v-4a8 8 0 0 1 16 0v4"/></g>
+            <text x="460" y="752">Commerce</text></g>
+          <g class="node"><circle cx="225" cy="605" r="52" fill="rgba(255,255,255,.28)" stroke="rgba(255,255,255,.65)" stroke-width="1.2"/>
+            <g stroke="#fff" stroke-width="1.5" fill="none"><path d="M209 618v-10m10 10v-18m10 18v-13m10 13v-22"/></g>
+            <text x="225" y="627">Analytics</text></g>
+          <g class="node"><circle cx="250" cy="330" r="52" fill="rgba(255,255,255,.28)" stroke="rgba(255,255,255,.65)" stroke-width="1.2"/>
+            <g stroke="#fff" stroke-width="1.5" fill="none"><path d="M232 316h26a4 4 0 0 1 4 4v12a4 4 0 0 1-4 4h-14l-8 7v-7h-4a4 4 0 0 1-4-4v-12a4 4 0 0 1 4-4z"/></g>
+            <text x="250" y="352">Messaging</text></g>
+        </g>
+      </svg>
+      <canvas class="hero__canvas" aria-hidden="true"></canvas>
+    </div>
+  </div>
+
+  <div class="wrap strip">
+    <p class="strip__label">Connect what you already use</p>
+    <div class="strip__logos">
+      <span class="strip__name" style="letter-spacing:.28em">SKIO</span>
+      <span class="strip__name">shopify</span>
+      <span class="strip__name">xero</span>
+      <span class="strip__name">pipedrive</span>
+      <span class="strip__name">klaviyo</span>
+      <span class="strip__name">Google Workspace</span>
+      <span class="strip__name">✉ Mail</span>
+      <span class="strip__name">cropster</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROBLEM ============ -->
+<section class="section problem">
+  <div class="wrap reveal">
+    <h2>Your tools work. They just don't work <em>together</em>.</h2>
+    <p class="lead" style="margin-top:1.6rem">The till knows what sold. The inbox knows who's asking. The accounts know what's owed. Each one does its job — and none of them talk. The only thing joining it all up is you, holding the whole picture in your head at 11pm.</p>
+    <p class="kicker-line">That's not a software problem. It's a missing brain.</p>
+  </div>
+</section>
+
+<!-- ============ CONNECTS ============ -->
+<section class="section chapter" id="how">
+  <div class="wrap chapter__grid reveal">
+    <div>
+      <p class="eyebrow">01 — Connects</p>
+      <h2>It starts with what you already use.</h2>
+      <p style="margin-top:1.4rem">No migration. No new system to learn. The Brain plugs into the tools you already run — your shop, your books, your inbox, your calendar — and meets your business exactly where it is. Connecting takes days, not months.</p>
+      <p class="detail-line">Read-only until you say otherwise. You choose what it can see, and what it can touch.</p>
+    </div>
+    <div class="chips" aria-label="Connected tools">
+      <span class="chip"><span class="dot"></span>Shopify <small>connected</small></span>
+      <span class="chip"><span class="dot"></span>Xero <small>connected</small></span>
+      <span class="chip"><span class="dot"></span>Klaviyo <small>connected</small></span>
+      <span class="chip"><span class="dot"></span>SKIO <small>connected</small></span>
+      <span class="chip chip--ro"><span class="dot"></span>Inbox <small>read-only</small></span>
+      <span class="chip chip--ro"><span class="dot"></span>Calendar <small>read-only</small></span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ UNDERSTANDS ============ -->
+<section class="section chapter">
+  <div class="wrap chapter__grid chapter__grid--flip reveal">
+    <figure class="proof">
+      <img src="/assets/img/proof-dashboard.png" alt="The IntegrateAI dashboard showing a whole business on one screen — orders, invoices, messages and numbers, populated with sample data." width="1200" height="750" loading="lazy">
+      <figcaption class="proof__caption">Your whole business, on one screen. Shown with sample roastery data.</figcaption>
+    </figure>
+    <div>
+      <p class="eyebrow">02 — Understands</p>
+      <h2>Then it sees what no single tool can.</h2>
+      <p style="margin-top:1.4rem">It reads across everything at once — orders, invoices, messages, numbers — and builds a living picture of your business. Which customers are drifting. Which invoices are about to slip. Which busy week is actually a quiet month wearing a disguise. The kind of thing you'd spot yourself, if you had the time to look at everything, every day.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ACTS ============ -->
+<section class="section chapter">
+  <div class="wrap reveal">
+    <p class="eyebrow">03 — Acts</p>
+    <h2>And then it gets on with the work.</h2>
+    <p class="lead" style="margin-top:1.4rem">Not suggestions in a report you'll never read. Work, done: the overdue invoice chased, the wholesale enquiry answered, the reorder queued, the quiet regular won back. Four things it's built to never stop working on —</p>
+    <div class="cards">
+      <div class="card">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M3 20c0-3.5 2.7-5.5 6-5.5s6 2 6 5.5M16 8l2 2 4-4"/></svg>
+        <h3>More customers</h3>
+        <p>The regulars who went quiet mostly didn't fall out of love — they hit a failed payment. That's billing, not taste. The Brain spots it and wins them back.</p>
+      </div>
+      <div class="card">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg>
+        <h3>More time</h3>
+        <p>The ninety-minute Monday pile — reconciling orders, chasing signatures, updating the sheet — done before you've finished your coffee.</p>
+      </div>
+      <div class="card">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 19h16M6 16l4-5 3 3 5-7"/></svg>
+        <h3>More revenue</h3>
+        <p>The lead you forgot to follow up, the reorder that's due, the quote you never sent — it sees them, and it acts.</p>
+      </div>
+      <div class="card">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 7h14l-1.5 13h-11zM9 7V5a3 3 0 0 1 6 0v2M9 11v5m6-5v5"/></svg>
+        <h3>Less waste</h3>
+        <p>You're about to over-order stock again because last month <em>felt</em> busy. The numbers say otherwise. It flags it before the cash goes out the door.</p>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <div class="section--light"><div class="divider" aria-hidden="true"><span class="divider__dot"></span><span class="divider__dot"></span><span class="divider__dot"></span></div></div>
-
-  <!-- ==================== 2. FOUR PILLARS [cream] ==================== -->
-  <section class="section section--light" id="pillars" aria-labelledby="pillars-h2">
-    <div class="wrap">
-      <div class="section__head reveal">
-        <span class="eyebrow">Four outcomes</span>
-        <h2 class="h2" id="pillars-h2">Every business wants the same four things</h2>
-        <p class="copy copy--center">It looks at your numbers through four lenses and works on whichever has the most to give. The example above pays off the first one — finding money you were about to lose.</p>
-      </div>
-
-      <div class="pillars reveal">
-        <div class="pillar pillar--cost pillar--dominant" data-reveal-child>
-          <div class="pillar__icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-          </div>
-          <h3 class="pillar__title">Less waste</h3>
-          <p class="pillar__body">It spots money quietly leaking — overdue invoices about to incur a fee, idle capacity, duplicate spend — and flags it before it costs you.</p>
-        </div>
-
-        <div class="pillar pillar--customers" data-reveal-child>
-          <div class="pillar__icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9.5" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-          </div>
-          <h3 class="pillar__title">More customers</h3>
-          <p class="pillar__body">It notices when a regular goes quiet, drafts the warm check-in, and keeps an eye on the accounts most likely to drift away.</p>
-        </div>
-
-        <div class="pillar pillar--efficiency" data-reveal-child>
-          <div class="pillar__icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24"><path d="M13 2 3 14h7l-1 8 10-12h-7l1-8z"/></svg>
-          </div>
-          <h3 class="pillar__title">More efficiency</h3>
-          <p class="pillar__body">It handles the daily legwork — reorders, scheduling, follow-ups — so the hours your team spends chasing admin go back into the business.</p>
-        </div>
-
-        <div class="pillar pillar--revenue" data-reveal-child>
-          <div class="pillar__icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 8-8M21 7v6M21 7h-6"/></svg>
-          </div>
-          <h3 class="pillar__title">More revenue</h3>
-          <p class="pillar__body">It watches margins and demand, surfaces a price worth adjusting or a line worth pushing, and drafts it — for you to approve.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ==================== 3. THE APPROVAL LOOP [dark] ==================== -->
-  <section class="section section--dark" id="approval-loop" aria-labelledby="loop-h2">
-    <div class="wrap">
-      <div class="section__head reveal">
-        <span class="eyebrow">The approval loop</span>
-        <h2 class="h2" id="loop-h2">Nothing happens <em>without you</em></h2>
-        <p class="copy copy--center">Every proposal lands in Slack with a clear risk level. Green is a heads-up. Amber needs a nod. Red touches something serious and waits. Approve, ask for a change, or decline — you are always the last word.</p>
-      </div>
-
-      <div class="wrap--narrow" style="margin:0 auto;">
-        <div id="loop-queue"></div>
-        <div class="approval__reassure" aria-hidden="true">
-          <span class="pill__dot pill__dot--live"></span>
-          You hold every decision. It only ever does the legwork.
-        </div>
-        <span class="demo-label" style="margin-top:var(--s-4);"><span class="demo-label__mark" aria-hidden="true"></span>An example — not a real client. The cards are interactive.</span>
-
-        <div class="section__head" style="margin:var(--s-8) auto 0;">
-          <p class="copy copy--center" style="margin-bottom:var(--s-5);">The real one runs on <em>your</em> numbers, your accounts, your customers.</p>
-          <a href="#book" class="btn btn--primary btn--lg" data-track="cta_book_click" data-cta-source="approval_loop">Book your free diagnostic</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ==================== 4. CONNECT WHAT YOU USE [cream] ==================== -->
-  <section class="section section--light" id="connect" aria-labelledby="connect-h2">
-    <div class="wrap">
-      <div class="split">
-        <div class="reveal">
-          <span class="eyebrow">Connect what you use</span>
-          <h2 class="h2" id="connect-h2">It plugs into the tools you <em>already have</em></h2>
-          <p class="copy">Your accounting ledger, your online store, your card payments, your email — it works with what you already run. No new system to learn, no migration.</p>
-          <div class="callout" style="margin-top:var(--s-5);">
-            <div class="callout__title">You paste a key — that is the whole setup</div>
-            <p class="copy" style="margin:0;">When a tool gives you an API key or token, you paste it in and click Connect. No login redirects, no handing over passwords. We take care of the connection behind the scenes.</p>
-          </div>
-        </div>
-
-        <div class="reveal">
-          <div class="connect-grid" id="connect-grid" role="list" aria-label="Sample integrations"></div>
-          <span class="demo-label"><span class="demo-label__mark" aria-hidden="true"></span>Sample — no real credentials stored. Categories shown, not your live tools.</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ==================== 5. THE ECONOMICS [dark] ==================== -->
-  <section class="section section--dark" id="economics" aria-labelledby="econ-h2">
-    <div class="wrap">
-      <div class="split">
-        <div class="reveal">
-          <span class="eyebrow">The economics</span>
-          <h2 class="h2" id="econ-h2">A specialist's work, without a specialist's salary</h2>
-          <p class="copy">Hiring for each of these is a five-figure commitment before tax, holiday and the months it takes to get someone up to speed. The intelligence layer covers the same ground — and waits for your approval on anything that matters.</p>
-
-          <div class="econ-anchor">
-            <span class="econ-anchor__price">£1,200</span>
-            <span class="econ-anchor__label">Engagements start here, per month. Fixed. No lock-in.</span>
-            <span class="econ-anchor__note">Compare that to the roles on the right — each one a full salary, every year.</span>
-          </div>
-        </div>
-
-        <div class="reveal">
-          <div class="card" style="padding:var(--s-6) var(--s-6) var(--s-4);">
-            <p class="meta meta--strong" style="margin-bottom:var(--s-4);">What it would cost to employ each of these</p>
-            <div class="econ-grid" id="econ-grid"></div>
-          </div>
-          <span class="demo-label"><span class="demo-label__mark" aria-hidden="true"></span>Typical UK salaries — external benchmark, not a quote. Figures are illustrative.</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ==================== 6. THE COMPANY BRAIN [cream] ==================== -->
-  <section class="section section--light" id="company-brain" aria-labelledby="brain-h2">
-    <div class="wrap">
-      <div class="split split--brain">
-        <div class="reveal">
-          <span class="eyebrow">What we're building</span>
-          <h2 class="h2" id="brain-h2">It learns how <em>your</em> business actually works</h2>
-          <p class="copy">The longer it runs, the more it understands — your accounts, your customers, your rhythms, the decisions you tend to make. It becomes a company brain: context that compounds, so each week's suggestions are sharper than the last.</p>
-          <p class="copy">We are building this depth first for food and drink — a coffee roaster's wholesale accounts, roast schedules and stock — as a worked example of how far the specificity goes.</p>
-          <a href="/food-and-beverage" class="btn btn--ghost" style="margin-top:var(--s-4);">
-            See it built for a coffee roaster
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-          </a>
-          <p class="meta meta--strong" style="margin-top:var(--s-4);">A designed mechanism — shown as an example, not a client's history.</p>
-        </div>
-
-        <div class="reveal">
-          <div class="card" style="height:100%;display:flex;flex-direction:column;gap:var(--s-4);">
-            <span class="pill pill--purple"><span class="pill__dot"></span>How the knowledge builds</span>
-            <h3 class="h3">From a blank slate to context that pays off</h3>
-            <ul style="display:flex;flex-direction:column;gap:var(--s-3);">
-              <li class="brain-step">
-                <span class="pill pill--green">Week 1</span>
-                <span class="copy" style="margin:0;font-size:var(--fs-body-sm);">It connects your tools and learns the basics — who your customers are, what you sell, how money moves.</span>
-              </li>
-              <li class="brain-step">
-                <span class="pill pill--blue">Month 1</span>
-                <span class="copy" style="margin:0;font-size:var(--fs-body-sm);">It knows your patterns — usual order cadences, seasonal swings, the accounts worth watching.</span>
-              </li>
-              <li class="brain-step">
-                <span class="pill pill--terra">Ongoing</span>
-                <span class="copy" style="margin:0;font-size:var(--fs-body-sm);">Every approval you give teaches it your judgement, so the proposals get closer to what you'd do anyway.</span>
-              </li>
-            </ul>
-            <span class="demo-note" style="margin-top:auto;">Illustrative — how the knowledge base is designed to grow, not a real client's six months.</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ==================== 7. HOW WE WORK + HONEST STATE + FOUNDERS [dark] ==================== -->
-  <section class="section section--dark" id="how-it-works" aria-labelledby="work-h2">
-    <div class="wrap">
-      <div class="section__head reveal">
-        <span class="eyebrow">How we work</span>
-        <h2 class="h2" id="work-h2">Fixed prices, no lock-in, and a straight answer</h2>
-      </div>
-
-      <div class="work-list reveal">
-        <div class="work-item card" data-reveal-child>
-          <div class="work-item__title">Fixed monthly investment</div>
-          <p class="work-item__body copy" style="margin:0;">From £1,200 a month, agreed up front. No surprise invoices, no per-seat creep.</p>
-        </div>
-        <div class="work-item card" data-reveal-child>
-          <div class="work-item__title">No lock-in</div>
-          <p class="work-item__body copy" style="margin:0;">Month to month. If it isn't earning its place, you stop. We'd rather keep you because it works.</p>
-        </div>
-        <div class="work-item card" data-reveal-child>
-          <div class="work-item__title">You own the decisions</div>
-          <p class="work-item__body copy" style="margin:0;">Every action waits for your approval in Slack. The system never acts on its own.</p>
-        </div>
-      </div>
-
-      <!-- Honest state bundled with risk-reversal -->
-      <div class="callout reveal" style="margin-top:var(--s-8);">
-        <div class="callout__title">We haven't launched with a client yet — you could be the first</div>
-        <p class="copy" style="margin:0;">We're a new firm and we won't pretend otherwise. There are no logos to show you and no metrics to quote. What there is: a system that's built and working, two founders doing the work themselves, and a real reason to come in early.</p>
-        <div class="founding">
-          <span class="pill pill--terra founding__tag"><span class="pill__dot pill__dot--live"></span>Founding-client rate · locked for 12 months</span>
-          <p class="copy" style="margin:0;">The first few clients lock today's rate for a full year, with both founders close to the work. The standard rate is £1,200/month; the founding rate sits below it and stays put while we grow.</p>
-        </div>
-      </div>
-
-      <!-- Founders -->
-      <div class="reveal" style="margin-top:var(--s-8);">
-        <h3 class="h3" style="margin-bottom:var(--s-2);">The people you'll actually work with</h3>
-        <p class="copy">Two founders, based in Milton-under-Wychwood, Oxfordshire. You deal with us directly — not an account manager.</p>
-        <div class="founders">
-          <div class="founder" data-reveal-child>
-            <span class="founder__avatar" aria-hidden="true">CP</span>
-            <div>
-              <div class="founder__name">Chad Pickard</div>
-              <div class="founder__role">Co-founder · technical lead</div>
-              <p class="founder__bio">Builds and runs the system end to end — the intelligence layer, the integrations, the approval loop you tried above.</p>
-            </div>
-          </div>
-          <div class="founder" data-reveal-child>
-            <span class="founder__avatar" aria-hidden="true">PR</span>
-            <div>
-              <div class="founder__name">Paul Robinson</div>
-              <div class="founder__role">Co-founder · client &amp; strategy</div>
-              <p class="founder__bio">Works with you to find where the money is, what to connect first, and what a sensible first month looks like.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ==================== 8. FINAL CTA + QUALIFICATION FORM [cream] ==================== -->
-  <section class="section section--light" id="book" aria-labelledby="book-h2">
-    <div class="wrap wrap--narrow">
-      <div class="section__head reveal">
-        <span class="eyebrow">Book a diagnostic</span>
-        <h2 class="h2" id="book-h2">See if there's a fit</h2>
-        <p class="copy copy--center">A 30-minute call with a founder to see if there's a fit — we'll tell you straight if there isn't. A few questions first so the call is useful for both of us.</p>
-      </div>
-
-      <form class="qform reveal" id="qualify-form" novalidate aria-describedby="form-intro">
-        <p id="form-intro" class="sr-only">All fields except the tools selection require an answer. Submitting takes you to a booking page with your answers pre-filled.</p>
-
-        <div class="qfield">
-          <label for="q-company">Company name</label>
-          <input class="qinput" type="text" id="q-company" name="company" autocomplete="organization" required />
-          <span class="qfield__error" id="err-company" role="alert"></span>
-        </div>
-
-        <div class="qfield">
-          <label for="q-website">Website</label>
-          <input class="qinput" type="text" id="q-website" name="website" inputmode="url" autocomplete="url" placeholder="yourcompany.co.uk" required />
-          <span class="qfield__error" id="err-website" role="alert"></span>
-        </div>
-
-        <div class="qfield">
-          <label for="q-revenue">Monthly revenue</label>
-          <select class="qselect" id="q-revenue" name="revenue" required>
-            <option value="" selected disabled>Choose a range…</option>
-            <option value="band-pre">Pre-revenue / just starting</option>
-            <option value="band-a">£10k – £50k a month</option>
-            <option value="band-b">£50k – £200k a month</option>
-            <option value="band-c">£200k+ a month</option>
-          </select>
-          <span class="qfield__hint">Helps us see whether the numbers add up for you.</span>
-          <span class="qfield__error" id="err-revenue" role="alert"></span>
-        </div>
-
-        <fieldset class="qfield" style="border:0;padding:0;margin:0;">
-          <legend style="font-family:var(--sans);font-size:.85rem;font-weight:600;color:var(--ink);margin-bottom:7px;">Which tools do you use today?</legend>
-          <div class="qtools" role="group" aria-label="Tools you use today">
-            <span class="qtool"><input type="checkbox" id="t-accounting" name="tools" value="Accounting / ledger" /><label for="t-accounting">Accounting / ledger</label></span>
-            <span class="qtool"><input type="checkbox" id="t-store" name="tools" value="Online store" /><label for="t-store">Online store</label></span>
-            <span class="qtool"><input type="checkbox" id="t-payments" name="tools" value="Card payments" /><label for="t-payments">Card payments</label></span>
-            <span class="qtool"><input type="checkbox" id="t-email" name="tools" value="Email marketing" /><label for="t-email">Email marketing</label></span>
-            <span class="qtool"><input type="checkbox" id="t-slack" name="tools" value="Slack" /><label for="t-slack">Slack</label></span>
-            <span class="qtool"><input type="checkbox" id="t-inventory" name="tools" value="Stock / inventory" /><label for="t-inventory">Stock / inventory</label></span>
-            <span class="qtool"><input type="checkbox" id="t-booking" name="tools" value="Booking system" /><label for="t-booking">Booking system</label></span>
-          </div>
-          <span class="qfield__hint">Pick any that apply — these are what we'd connect first.</span>
-        </fieldset>
-
-        <div class="qfield">
-          <label for="q-role">Your role</label>
-          <select class="qselect" id="q-role" name="role" required>
-            <option value="" selected disabled>Choose…</option>
-            <option value="Founder / owner">Founder / owner</option>
-            <option value="Director / C-suite">Director / C-suite</option>
-            <option value="Operations / finance lead">Operations / finance lead</option>
-            <option value="Marketing / sales lead">Marketing / sales lead</option>
-            <option value="Other">Other</option>
-          </select>
-          <span class="qfield__error" id="err-role" role="alert"></span>
-        </div>
-
-        <!-- honeypot -->
-        <div class="qpot" aria-hidden="true">
-          <label for="q-company-url">Leave this field empty</label>
-          <input type="text" id="q-company-url" name="company_url" tabindex="-1" autocomplete="off" />
-        </div>
-
-        <button type="submit" class="btn btn--primary btn--lg btn--block" data-track="cta_book_click" data-cta-source="form_submit">
-          Continue to booking
-        </button>
-        <a id="cal-fallback" href="#" class="btn btn--ghost btn--block" style="display:none;">Booking page slow? Email us your details instead</a>
-        <p class="meta meta--strong" style="text-align:center;">Booking is handled by Cal.com. Your answers are sent to them to pre-fill the call — nothing is stored on our own servers. See our <a href="/privacy.html" style="color:var(--terra-deep);text-decoration:underline;">privacy policy</a>.</p>
+<!-- ============ SOFT CTA ============ -->
+<section class="section">
+  <div class="wrap reveal">
+    <div class="softcta grain">
+      <h2>Not ready for a call? See a diagnostic first.</h2>
+      <p class="lead">Leave your email and we'll send a sample diagnostic — a real teardown of a fictional roastery, showing exactly what the Brain would find and do.</p>
+      <form id="sample-form" method="post" action="/api/diagnostic-sample" novalidate>
+        <label class="hp-field" aria-hidden="true">Leave this empty <input type="text" name="company_website" tabindex="-1" autocomplete="off"></label>
+        <input type="email" name="email" required autocomplete="email" placeholder="you@yourbusiness.co.uk" aria-label="Your email address" aria-describedby="form-status">
+        <button class="btn" type="submit">Send the sample <span class="arrow">→</span></button>
       </form>
+      <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+      <p class="gdpr">We'll send the sample and nothing else. No list, no chasing.</p>
+    </div>
+  </div>
+</section>
 
-      <!-- soft-decline panel -->
-      <div class="soft-decline" id="soft-decline" role="status" aria-live="polite">
-        <div class="soft-decline__title">We might not be the right fit just yet — and we'd rather say so</div>
-        <p class="soft-decline__body">Right now we're focused on established businesses with a few tools already in place, where there's real money for the system to work on. If that's not quite you today, we'd genuinely rather not take your time on a call that won't land. Things change fast — do come back as you grow.</p>
-        <div class="soft-decline__alt">
-          <a href="mailto:hello@integrate-ai.uk?subject=Keep%20me%20posted" class="btn btn--ghost">Email us to stay in touch</a>
-        </div>
+<!-- ============ APPROVE ============ -->
+<section class="section chapter">
+  <div class="wrap chapter__grid reveal">
+    <div>
+      <p class="eyebrow">You're in charge</p>
+      <h2>Nothing happens without your say-so.</h2>
+      <p style="margin-top:1.4rem">Every action lands in your Slack before it goes out. Small, safe things it just does and tells you. Anything that spends money, sends a message or touches a customer waits for a tap. You decide in seconds, from your phone.</p>
+      <p class="detail-line">It's one brain — but it shows up as a small team of specialists in your Slack, each looking after a different corner of the business.</p>
+    </div>
+    <figure class="proof">
+      <img src="/assets/img/proof-approval.png" alt="A Slack approval card: the Brain asks permission before chasing an overdue invoice, with Approve, Hold and Not now buttons. Sample data." width="1000" height="720" loading="lazy">
+      <figcaption class="proof__caption">Approve · Hold · Not now — from your phone. Shown with sample roastery data.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ============ TRUST ============ -->
+<section class="section chapter trust">
+  <div class="wrap reveal">
+    <p class="eyebrow">Your data stays yours</p>
+    <h2>Powerful doesn't have to mean exposed.</h2>
+    <ul>
+      <li><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m3 8.5 3 3 7-7"/></svg><span><strong>UK company, UK agreements.</strong></span></li>
+      <li><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m3 8.5 3 3 7-7"/></svg><span><strong>A signed data agreement with every client.</strong></span></li>
+      <li><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m3 8.5 3 3 7-7"/></svg><span><strong>Your data never trains anyone's models</strong> — ours or our providers', in writing.</span></li>
+      <li><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m3 8.5 3 3 7-7"/></svg><span><strong>Switch it off and it forgets.</strong> Revocable any time.</span></li>
+      <li><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m3 8.5 3 3 7-7"/></svg><span><strong>Every action is logged.</strong> You can see exactly what it did, and when.</span></li>
+    </ul>
+    <p class="reassure">Even we can't quietly use what your Brain sees. It works for you, on your terms — and the record proves it.</p>
+  </div>
+</section>
+
+<!-- ============ FOUNDERS ============ -->
+<section class="section founders">
+  <div class="wrap reveal">
+    <h2 style="font-size:clamp(1.5rem,3.2vw,2rem)">Two founders, not a faceless platform.</h2>
+    <div class="founders__row">
+      <div class="founder">
+        <img src="/assets/img/founder-chad.jpg" alt="Chad, co-founder of IntegrateAI" width="64" height="64" loading="lazy">
+        <div><b>Chad</b><span>Co-founder · builds and runs every Brain</span></div>
+      </div>
+      <div class="founder">
+        <img src="/assets/img/founder-paul.jpg" alt="Paul, co-founder of IntegrateAI" width="64" height="64" loading="lazy">
+        <div><b>Paul</b><span>Co-founder · on the end of the line when you need us</span></div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
+
+<!-- ============ PRICING ============ -->
+<section class="section pricing" id="pricing">
+  <div class="wrap reveal">
+    <p class="eyebrow">Pricing</p>
+    <h2>A hire like this doesn't exist.</h2>
+    <p class="lead" style="margin-top:1.4rem">If it did — someone who knew your whole business, worked around the clock, chased every loose end and never needed managing — you'd pay £45,000 a year. And you'd still be their boss.</p>
+    <p class="price-line">Your operating brain starts at <strong>£500 a month.</strong></p>
+    <p class="scope-line">Includes your core tools connected, the always-on watchlist, and every action approved by you. No long contract — start with a free diagnostic and see exactly what it would do for your business before you pay a penny.</p>
+    <a class="btn" style="margin-top:2rem" href="https://cal.com/integrateai/diagnostic" target="_blank" rel="noopener">Book a free diagnostic <span class="arrow">→</span></a>
+  </div>
+</section>
+
+<!-- ============ WHY NOT / FAQ ============ -->
+<section class="section whynot">
+  <div class="wrap reveal">
+    <h2>Why not just…?</h2>
+    <div class="cards">
+      <div class="card"><h3>…use ChatGPT?</h3><p>Brilliant in a chat window — but it isn't wired into your tools, and it can't do a thing once you close the tab. The Brain is connected to your business and works while you sleep.</p></div>
+      <div class="card"><h3>…set up Zapier?</h3><p>A zap is one fixed step you wired up in advance. The Brain works out what needs doing and does it — no flowcharts, no maintenance.</p></div>
+      <div class="card"><h3>…hire a part-time VA?</h3><p>One person, a few hours a week, who still needs briefing and managing. The Brain is always on, already knows everything, and costs a fraction.</p></div>
+      <div class="card"><h3>…wait for the big platforms?</h3><p>The new "company brains" answer questions about your business. This one does the work — connected, acting, and accountable to you. Knowing isn't the job. Doing is.</p></div>
+    </div>
+    <div class="faq">
+      <details><summary>How long does setup take?</summary><p>Days, not months. We connect your main tools and it starts learning straight away.</p></details>
+      <details><summary>What if it gets something wrong?</summary><p>It asks before anything that matters — anything irreversible waits for your tap — and every action is logged, so you can always see exactly what happened.</p></details>
+      <details><summary>Am I locked in?</summary><p>No. Switch it off whenever you like — your data comes with you, and it forgets.</p></details>
+      <details><summary>Is my data safe?</summary><p>UK company, signed data agreement, never used to train models — see above.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CLOSE ============ -->
+<section class="section close-section grain" id="book">
+  <div class="wrap reveal">
+    <h2>Now installing in our first roastery.</h2>
+    <p class="lead">We'll share the real results — good or bad. Until then, don't take our word for it: book a free diagnostic and we'll show you exactly what an operating brain would do for your business.</p>
+    <a class="btn" href="https://cal.com/integrateai/diagnostic" target="_blank" rel="noopener">Book a free diagnostic <span class="arrow">→</span></a>
+    <p class="hero__meta" style="justify-content:center"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><circle cx="8" cy="8" r="6.5"/><path d="M8 4.5V8l2.5 1.5"/></svg>30 minutes&nbsp;&nbsp;·&nbsp;&nbsp;No commitment · or email <a href="mailto:hello@integrate-ai.uk">hello@integrate-ai.uk</a></p>
+  </div>
+</section>
 
 </main>
 
-<!-- ============================ FOOTER [dark] ============================ -->
-<footer class="footer">
+<footer>
   <div class="wrap">
-    <div class="footer__top">
-      <div>
-        <a href="#main" class="nav__logo" aria-label="IntegrateAI Advisors — home" style="margin-bottom:var(--s-3);">
-          <span class="nav__mark" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span>
-          <span class="nav__brand">Integrate<span class="ai">AI</span></span>
-        </a>
-        <p class="footer__about">Intelligence layers for business. Milton-under-Wychwood, Oxfordshire.</p>
-      </div>
-      <div class="footer__col">
-        <h5>Explore</h5>
-        <a href="#how-it-works">How it works</a>
-        <a href="#connect">Connect your tools</a>
-        <a href="#economics">The economics</a>
-        <a href="/food-and-beverage">For food &amp; drink</a>
-      </div>
-      <div class="footer__col">
-        <h5>Company</h5>
-        <a href="#book">Book a diagnostic</a>
-        <a href="mailto:hello@integrate-ai.uk">hello@integrate-ai.uk</a>
-        <a href="/privacy.html">Privacy</a>
-        <a href="/terms.html">Terms</a>
-      </div>
-    </div>
-    <div class="footer__bottom">
-      <span class="footer__copy">© 2026 IntegrateAI Advisors. All rights reserved.</span>
-      <span class="footer__note">Intelligence layers for business</span>
-    </div>
+    <a class="brand" href="/">
+      <svg viewBox="0 0 48 48" fill="none" aria-hidden="true" width="20" height="20"><g stroke="currentColor" stroke-linecap="round"><path d="M24 4.5 24 15" stroke-width="3.4"/><path d="M24 33 24 43.5" stroke-width="3.4"/><path d="M4.5 24 15 24" stroke-width="3.4"/><path d="M33 24 43.5 24" stroke-width="3.4"/><path d="M10.2 10.2 17 17" stroke-width="2.6"/><path d="M31 31 37.8 37.8" stroke-width="2.6"/><path d="M37.8 10.2 31 17" stroke-width="2.6"/><path d="M17 31 10.2 37.8" stroke-width="2.6"/></g></svg>
+      IntegrateAI — the operating brain for your business.
+    </a>
+    <nav>
+      <a href="/privacy">Privacy</a>
+      <a href="/terms">Terms</a>
+      <a href="mailto:hello@integrate-ai.uk">Contact</a>
+    </nav>
+    <p>© 2026 Integrate AI Advisors Ltd · Company no. 17134367</p>
   </div>
 </footer>
 
-<!-- ============================ COOKIE CONSENT ============================ -->
-<div class="cookie" id="cookie" role="region" aria-label="Cookie consent">
-  <p class="cookie__text">
-    We'd like to use analytics cookies to understand how this site is used. They're off until you agree. See our
-    <a href="/privacy.html">privacy policy</a>.
-  </p>
-  <div class="cookie__actions">
-    <button type="button" class="cookie__btn cookie__btn--accept" data-cookie-accept>Accept analytics</button>
-    <button type="button" class="cookie__btn cookie__btn--decline" data-cookie-decline>Decline</button>
-  </div>
-</div>
-
-<!-- ============================ SCRIPTS ============================ -->
-<script src="/assets/demo-data.js"></script>
-<script src="/assets/app.js"></script>
-<script>
-  (function () {
-    var D = window.IAA_DEMO || {};
-
-    // 1. HERO — single brand-neutral approval card
-    var heroEl = document.getElementById('hero-approval');
-    if (heroEl && D.heroScenarios) {
-      IAA.initApprovalLoop(heroEl, D.heroScenarios);
-    }
-
-    // 3. APPROVAL LOOP — fuller Green/Amber/Red queue (brand-neutral, no F&B names)
-    var queueEl = document.getElementById('loop-queue');
-    if (queueEl && D.heroScenarios && D.heroAltScenario) {
-      // green heads-up, amber sign-off, red hold — all brand-neutral
-      var redHold = {
-        id: 'loop-price-hold',
-        app: 'IntegrateAI', appBadge: 'APP', time: '08:40',
-        risk: 'red',
-        riskLabel: 'High risk — changes a live price · held for you',
-        title: 'Hold: a proposed price rise on your best-selling line',
-        detail: 'Input costs are up and this line’s margin has thinned. A small rise would restore it — but it touches every customer on that product, so I won’t act without you. Review the proposal?',
-        facts: ['Affects all buyers of this line', 'Proposed: +6%', 'Restores margin to target'],
-        confirm: 'Done — the rise is staged with a customer-friendly note, ready to apply on your say-so. Nothing has changed yet.'
-      };
-      var queue = [D.heroAltScenario, D.heroScenarios[0], redHold];
-      IAA.initApprovalLoop(queueEl, queue);
-    }
-
-    // 4. CONNECT GRID — paste-a-key tiles
-    var grid = document.getElementById('connect-grid');
-    if (grid && D.connectProviders) {
-      D.connectProviders.forEach(function (p) {
-        var tile = document.createElement('div');
-        tile.className = 'connect-tile' + (p.connected ? ' is-connected' : '');
-        tile.setAttribute('role', 'listitem');
-        var name = document.createElement('span');
-        name.className = 'connect-tile__name';
-        name.textContent = p.name;
-        var status = document.createElement('span');
-        status.className = 'sr-only';
-        status.textContent = p.connected ? ' — connected' : ' — not connected';
-        var dot = document.createElement('span');
-        dot.className = 'connect-tile__dot';
-        dot.setAttribute('aria-hidden', 'true');
-        tile.appendChild(name);
-        tile.appendChild(status);
-        tile.appendChild(dot);
-        grid.appendChild(tile);
-      });
-    }
-
-    // 5. ECONOMICS — per-role STATIC rows (NO aggregated count-up)
-    var econ = document.getElementById('econ-grid');
-    if (econ && D.economicsRoles) {
-      D.economicsRoles.forEach(function (r) {
-        var row = document.createElement('div');
-        row.className = 'econ-row';
-        var role = document.createElement('span');
-        role.className = 'econ-row__role';
-        role.textContent = r.role;
-        var cost = document.createElement('span');
-        cost.className = 'econ-row__cost';
-        cost.textContent = r.cost;
-        row.appendChild(role);
-        row.appendChild(cost);
-        econ.appendChild(row);
-      });
-    }
-
-    // 8. QUALIFICATION FORM
-    var form = document.getElementById('qualify-form');
-    if (form) {
-      IAA.initQualifyForm(form, {
-        calBase: 'https://cal.com/chad-pickard-integrateai',
-        mailto: 'hello@integrate-ai.uk',
-        passRevenue: ['band-a', 'band-b', 'band-c'],
-        minTools: 1,
-        softSelector: '#soft-decline'
-      });
-    }
-  })();
-</script>
-
+<script src="/assets/app.v1.js" defer></script>
 </body>
 </html>

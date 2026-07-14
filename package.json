@@ -1,0 +1,8 @@
+{
+  "name": "integrateai-website",
+  "private": true,
+  "description": "IntegrateAI public site — static HTML/CSS/JS, one serverless function",
+  "dependencies": {
+    "nodemailer": "6.9.14"
+  }
+}
