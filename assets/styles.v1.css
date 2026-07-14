@@ -365,3 +365,109 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 1.4rem; align-items: center;
 footer p, footer a { font-size: .85rem; color: var(--ink-soft); }
 footer .brand { font-size: .95rem; }
 footer nav { display: flex; gap: 1.4rem; }
+
+/* ---------- Legal pages (privacy · terms) ---------- */
+/* A legal page is the same dawn: short hero in the gradient, then long-form
+   prose on ivory. Reuses .hero so the sticky-nav observer picks it up. */
+.legal-hero {
+  min-height: 0;
+  display: block;
+  padding-block: 8.5rem clamp(3rem, 7vw, 4.5rem);
+  /* A wide, short box turns --grad-page cold: the 315° axis parks slate across
+     the entire right half. Re-weighted so the dawn light leads — golden glow
+     back at the top-left source, slate held to the far corner. */
+  background:
+    radial-gradient(115% 150% at 10% -10%,
+      rgba(255,244,220,.85) 0%, rgba(243,228,190,.32) 32%, rgba(243,228,190,0) 64%),
+    linear-gradient(302deg,
+      #7C8AA5 0%, #A9B4C6 13%, #C7CEDA 28%, #E8E2D6 56%, #F2EDE3 80%, #F7F3EA 100%);
+}
+.legal-hero .wrap { position: relative; z-index: 2; }
+.legal-hero h1 { max-width: 11em; }
+.legal-hero .lead { margin-top: 1.3rem; max-width: 38rem; }
+.legal-back {
+  display: inline-flex; align-items: center; gap: .45rem;
+  font: 500 .85rem/1 var(--sans); color: var(--ink-soft);
+  text-decoration: none; margin-bottom: 1.5rem;
+}
+.legal-back:hover { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
+.legal-back svg { width: 13px; height: 13px; flex: none; }
+.legal-updated { font-size: var(--fs-small); color: var(--ink-soft); margin-top: 1.9rem; }
+
+.legal-main { padding-block: clamp(3.2rem, 7vw, 5rem); }
+/* Sits in the same 1200px wrap as the nav and the hero, so the document column's
+   left edge lines up with the brand mark and the h1 above it. */
+.legal-wrap {
+  max-width: var(--width-content); margin-inline: auto;
+  padding-inline: clamp(1.25rem, 4vw, 2.5rem);
+}
+.legal-body { max-width: 47rem; }
+
+/* Warm callouts — the section gradient, not a flat grey box */
+.legal-callout {
+  background: var(--grad-section);
+  border-radius: var(--radius-card);
+  padding: clamp(1.35rem, 3vw, 1.8rem) clamp(1.35rem, 3vw, 2rem);
+  margin-bottom: 2.4rem;
+}
+.legal-callout p + p { margin-top: .7rem; }
+
+.legal-toc {
+  background: var(--grad-section);
+  border-radius: var(--radius-card);
+  padding: clamp(1.35rem, 3vw, 1.8rem) clamp(1.35rem, 3vw, 2rem);
+  margin-bottom: clamp(2.6rem, 6vw, 3.6rem);
+}
+.legal-toc__title {
+  font-size: var(--fs-eyebrow); font-weight: 600; letter-spacing: .14em;
+  text-transform: uppercase; color: var(--ink-soft); margin-bottom: 1rem;
+}
+.legal-toc ol { columns: 2; column-gap: 2rem; margin: 0; padding-left: 1.1rem; }
+.legal-toc li { break-inside: avoid; margin-bottom: .45rem; font-size: var(--fs-small); }
+.legal-toc a { color: var(--ink-soft); text-decoration: none; }
+.legal-toc a:hover { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
+
+/* Long-form prose */
+.legal-body h2 {
+  font-size: clamp(1.3rem, 3vw, 1.65rem);
+  margin: clamp(2.6rem, 6vw, 3.4rem) 0 1rem;
+  scroll-margin-top: 5.5rem;
+}
+.legal-body h2:first-child { margin-top: 0; }
+.legal-body h3 { margin: 1.9rem 0 .7rem; }
+.legal-body p, .legal-body li { max-width: 66ch; color: var(--ink-soft); }
+.legal-body p + p { margin-top: 1rem; }
+.legal-body ul, .legal-body ol { margin: 1.1rem 0; padding-left: 1.15rem; }
+.legal-body li { margin-bottom: .55rem; }
+.legal-body li::marker { color: var(--slate); }
+.legal-body strong { color: var(--ink); font-weight: 600; }
+.legal-body a { color: var(--ink); text-decoration: underline; text-decoration-color: rgba(30,42,69,.35); }
+.legal-body a:hover { text-decoration-color: var(--ink); }
+
+/* Tables scroll inside their own container — the page never does */
+.legal-tablewrap {
+  overflow-x: auto;
+  margin: 1.4rem 0;
+  border: 1px solid rgba(30,42,69,.1);
+  border-radius: var(--radius-card);
+  background: var(--surface);
+}
+.legal-table { width: 100%; border-collapse: collapse; font-size: var(--fs-small); }
+.legal-table th, .legal-table td {
+  text-align: left; padding: .85rem 1.1rem; line-height: 1.6;
+  border-bottom: 1px solid rgba(30,42,69,.08); vertical-align: top;
+}
+.legal-table th {
+  font-size: var(--fs-eyebrow); font-weight: 600; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--ink-soft);
+  background: rgba(199,206,218,.22); white-space: nowrap;
+}
+.legal-table td { color: var(--ink-soft); }
+.legal-table td:first-child { color: var(--ink); font-weight: 500; }
+.legal-table tr:last-child td { border-bottom: none; }
+
+@media (max-width: 640px) {
+  .legal-toc ol { columns: 1; }
+  .legal-hero { padding-block: 7rem 2.8rem; }
+}
+.legal-signoff { margin-top: clamp(2.6rem, 6vw, 3.4rem); }
