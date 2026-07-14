@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="robots" content="noindex">
+  <title>OG render — IntegrateAI</title>
+  <link rel="stylesheet" href="/assets/styles.v1.css">
+  <style>
+    /* Fixed social-card canvas. 1200×630 is a wide short box, so --grad-page
+       would read cold — reuse the legal-hero re-weighting (golden source
+       top-left, slate held to the far corner). */
+    html, body { width: 1200px; height: 630px; overflow: hidden; }
+    .og {
+      position: relative; width: 1200px; height: 630px; overflow: hidden;
+      background:
+        radial-gradient(115% 150% at 10% -10%,
+          rgba(255,244,220,.85) 0%, rgba(243,228,190,.32) 32%, rgba(243,228,190,0) 64%),
+        radial-gradient(52% 80% at 79% 50%,
+          rgba(255,244,220,.32) 0%, rgba(243,228,190,.14) 40%, rgba(243,228,190,0) 70%),
+        linear-gradient(302deg,
+          #7C8AA5 0%, #A9B4C6 13%, #C7CEDA 28%, #E8E2D6 56%, #F2EDE3 80%, #F7F3EA 100%);
+    }
+    .og__copy {
+      position: absolute; left: 72px; top: 0; bottom: 0; width: 560px;
+      display: flex; flex-direction: column; justify-content: center; z-index: 5;
+    }
+    .og__brand {
+      display: flex; align-items: center; gap: 14px;
+      font: 600 27px/1 var(--sans); letter-spacing: -.01em; color: var(--ink);
+      margin-bottom: 44px;
+    }
+    .og__brand svg { width: 34px; height: 34px; }
+    .og h1 { font-size: 67px; margin-bottom: 30px; max-width: 8.4em; }
+    .og .lead { font-size: 25.5px; line-height: 1.5; color: var(--ink-soft); max-width: 21em; }
+    .og__url {
+      position: absolute; left: 72px; bottom: 46px; z-index: 5;
+      font: 600 16px/1 var(--sans); letter-spacing: .13em; text-transform: uppercase;
+      color: var(--ink-soft);
+    }
+    .og__network {
+      position: absolute; right: -8px; top: 50%; transform: translateY(-50%);
+      width: 640px; z-index: 2;
+    }
+    .og__network svg { width: 100%; height: auto; }
+  </style>
+</head>
+<body>
+<div class="og grain">
+  <div class="og__copy">
+    <p class="og__brand">
+      <svg viewBox="0 0 48 48" fill="none" aria-hidden="true"><g stroke="currentColor" stroke-linecap="round"><path d="M24 4.5 24 15" stroke-width="3.4"/><path d="M24 33 24 43.5" stroke-width="3.4"/><path d="M4.5 24 15 24" stroke-width="3.4"/><path d="M33 24 43.5 24" stroke-width="3.4"/><path d="M10.2 10.2 17 17" stroke-width="2.6"/><path d="M31 31 37.8 37.8" stroke-width="2.6"/><path d="M37.8 10.2 31 17" stroke-width="2.6"/><path d="M17 31 10.2 37.8" stroke-width="2.6"/></g></svg>
+      IntegrateAI
+    </p>
+    <h1>Give your business an <em>operating</em> brain.</h1>
+    <p class="lead">One intelligence layer that connects your systems, understands your business, and guides your next move.</p>
+  </div>
+  <p class="og__url">integrate-ai.uk</p>
+
+  <div class="og__network">
+    <svg viewBox="0 0 1000 940" aria-hidden="true">
+      <defs>
+        <radialGradient id="hubGlow" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#FFF4DC" stop-opacity=".95"/>
+          <stop offset="45%" stop-color="#F3E4BE" stop-opacity=".35"/>
+          <stop offset="100%" stop-color="#F3E4BE" stop-opacity="0"/>
+        </radialGradient>
+        <linearGradient id="fil" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stop-color="#FFF4DC" stop-opacity=".9"/>
+          <stop offset="100%" stop-color="#FFFFFF" stop-opacity=".25"/>
+        </linearGradient>
+      </defs>
+
+      <circle cx="620" cy="470" r="330" fill="url(#hubGlow)" opacity=".55"/>
+      <circle cx="620" cy="470" r="150" fill="url(#hubGlow)"/>
+
+      <g fill="none" stroke="url(#fil)" stroke-width="1.6" opacity=".85">
+        <path d="M620 470 C 560 380, 480 300, 390 195"/>
+        <path d="M620 470 C 680 380, 700 300, 760 225"/>
+        <path d="M620 470 C 720 470, 790 470, 875 455"/>
+        <path d="M620 470 C 690 560, 710 640, 765 715"/>
+        <path d="M620 470 C 560 570, 520 650, 460 730"/>
+        <path d="M620 470 C 500 560, 360 590, 225 605"/>
+        <path d="M620 470 C 500 420, 360 380, 250 330"/>
+        <path d="M620 470 C 760 360, 850 320, 930 300" opacity=".35"/>
+        <path d="M620 470 C 700 620, 640 740, 560 820" opacity=".3"/>
+        <path d="M620 470 C 480 470, 400 500, 330 470" opacity=".3"/>
+      </g>
+
+      <g fill="#FFF4DC">
+        <circle cx="520" cy="360" r="2.4" opacity=".9"/><circle cx="700" cy="330" r="2" opacity=".8"/>
+        <circle cx="800" cy="462" r="2.2" opacity=".85"/><circle cx="710" cy="620" r="2" opacity=".8"/>
+        <circle cx="520" cy="620" r="2.4" opacity=".85"/><circle cx="380" cy="580" r="2" opacity=".75"/>
+        <circle cx="400" cy="390" r="2.2" opacity=".8"/><circle cx="580" cy="260" r="1.6" opacity=".7"/>
+      </g>
+
+      <g>
+        <circle cx="620" cy="470" r="64" fill="rgba(255,255,255,.5)" stroke="rgba(255,255,255,.85)" stroke-width="1.5"/>
+        <g transform="translate(596,446)" stroke="#1E2A45" stroke-linecap="round" fill="none">
+          <path d="M24 6 24 16" stroke-width="3"/><path d="M24 32 24 42" stroke-width="3"/>
+          <path d="M6 24 16 24" stroke-width="3"/><path d="M32 24 42 24" stroke-width="3"/>
+          <path d="M11.3 11.3 17.7 17.7" stroke-width="2.3"/><path d="M30.3 30.3 36.7 36.7" stroke-width="2.3"/>
+          <path d="M36.7 11.3 30.3 17.7" stroke-width="2.3"/><path d="M17.7 30.3 11.3 36.7" stroke-width="2.3"/>
+        </g>
+      </g>
+
+      <g font-family="Inter,system-ui,sans-serif" font-size="13" font-weight="500" fill="#FFFFFF" text-anchor="middle">
+        <g class="node"><circle cx="390" cy="175" r="52" fill="rgba(255,255,255,.28)" stroke="rgba(255,255,255,.65)" stroke-width="1.2"/>
+          <g stroke="#fff" stroke-width="1.5" fill="none"><circle cx="383" cy="160" r="6"/><circle cx="399" cy="160" r="6"/><path d="M372 182c2-8 8-12 11-12m24 12c-2-8-8-12-11-12"/></g>
+          <text x="390" y="197">CRM</text></g>
+        <g class="node"><circle cx="760" cy="225" r="52" fill="rgba(255,255,255,.28)" stroke="rgba(255,255,255,.65)" stroke-width="1.2"/>
+          <g stroke="#fff" stroke-width="1.5" fill="none"><rect x="744" y="203" width="32" height="22" rx="3"/><path d="m744 206 16 12 16-12"/></g>
+          <text x="760" y="247">Email</text></g>
+        <g class="node"><circle cx="875" cy="455" r="52" fill="rgba(255,255,255,.28)" stroke="rgba(255,255,255,.65)" stroke-width="1.2"/>
+          <g stroke="#fff" stroke-width="1.5" fill="none"><rect x="859" y="432" width="32" height="28" rx="3"/><path d="M859 441h32M867 428v8m16-8v8"/></g>
+          <text x="875" y="477">Calendar</text></g>
+        <g class="node"><circle cx="765" cy="715" r="52" fill="rgba(255,255,255,.28)" stroke="rgba(255,255,255,.65)" stroke-width="1.2"/>
+          <text x="765" y="708" font-family="Fraunces,Georgia,serif" font-size="30" font-weight="400">£</text>
+          <text x="765" y="737">Finance</text></g>
+        <g class="node"><circle cx="460" cy="730" r="52" fill="rgba(255,255,255,.28)" stroke="rgba(255,255,255,.65)" stroke-width="1.2"/>
+          <g stroke="#fff" stroke-width="1.5" fill="none"><path d="M446 716h28l-3 24h-22zM452 716v-4a8 8 0 0 1 16 0v4"/></g>
+          <text x="460" y="752">Commerce</text></g>
+        <g class="node"><circle cx="225" cy="605" r="52" fill="rgba(255,255,255,.28)" stroke="rgba(255,255,255,.65)" stroke-width="1.2"/>
+          <g stroke="#fff" stroke-width="1.5" fill="none"><path d="M209 618v-10m10 10v-18m10 18v-13m10 13v-22"/></g>
+          <text x="225" y="627">Analytics</text></g>
+        <g class="node"><circle cx="250" cy="330" r="52" fill="rgba(255,255,255,.28)" stroke="rgba(255,255,255,.65)" stroke-width="1.2"/>
+          <g stroke="#fff" stroke-width="1.5" fill="none"><path d="M232 316h26a4 4 0 0 1 4 4v12a4 4 0 0 1-4 4h-14l-8 7v-7h-4a4 4 0 0 1-4-4v-12a4 4 0 0 1 4-4z"/></g>
+          <text x="250" y="352">Messaging</text></g>
+      </g>
+    </svg>
+  </div>
+</div>
+</body>
+</html>
