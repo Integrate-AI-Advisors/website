@@ -376,10 +376,21 @@ body::after {
   display: flex; flex-wrap: wrap; align-items: center;
   column-gap: clamp(1.4rem, 3.5vw, 2.6rem); row-gap: 1rem;
 }
-.strip__logos > * { opacity: .62; color: var(--ink); }
-.strip__logos svg { height: 20px; width: auto; }
-.strip__logos .strip__name {
-  font: 600 .82rem/1 var(--sans); letter-spacing: .18em; text-transform: uppercase;
+/* Wordmark wall — each name set in its brand's voice, one ink, no rasters */
+.strip__logos > * { opacity: .68; color: var(--ink); display: inline-flex; align-items: center; gap: .45rem; }
+.strip__logos svg { height: 16px; width: auto; display: inline-block; }
+.strip__name { font: 600 .95rem/1 var(--sans); }
+.lg-skio { font-weight: 700; font-size: .85rem; letter-spacing: .3em; }
+.lg-shopify, .lg-pipedrive, .lg-cropster, .lg-xero { font-weight: 700; font-size: 1.02rem; }
+.lg-xero { letter-spacing: .05em; }
+.lg-klaviyo { font-weight: 600; font-size: 1rem; }
+.lg-klaviyo .lg-flag { height: 9px; margin-left: 1px; transform: translateY(-4px); }
+.lg-google, .lg-mail { font-weight: 500; font-size: .98rem; }
+.lg-google b { font-weight: 800; font-size: 1.18em; line-height: 1; }
+@media (max-width: 900px) {
+  /* the mobile strip sits on slate — go luminous like the comp */
+  .strip__label { color: rgba(247,243,234,.7); }
+  .strip__logos > * { color: #F7F3EA; opacity: .88; }
 }
 
 @media (max-width: 900px) {
