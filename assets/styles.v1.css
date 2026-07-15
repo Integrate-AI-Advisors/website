@@ -607,9 +607,10 @@ body::after {
 /* ---------- Pricing ---------- */
 .pricing {
   padding-block: var(--space-beat);
+  /* warm-grey slope — grad-section's blue right half breaks the warmth law here */
   background:
     radial-gradient(75% 110% at 12% -15%, rgba(255,244,220,.85) 0%, rgba(243,228,190,.3) 38%, rgba(243,228,190,0) 66%),
-    var(--grad-section);
+    linear-gradient(315deg, #DBD7CB 0%, #E8E3D5 48%, #F2EDE3 100%);
 }
 .pricing .price-line { font-family: var(--serif); font-size: clamp(1.8rem, 4.4vw, 2.6rem); margin-top: 2rem; letter-spacing: -.015em; }
 .pricing .price-line strong { font-weight: 520; font-variant-numeric: lining-nums; }
@@ -626,22 +627,36 @@ body::after {
 .faq details[open] summary::after { transform: rotate(45deg); }
 .faq details p { margin-top: .8rem; color: var(--ink-soft); }
 
-/* ---------- Close ---------- */
+/* ---------- Close — the dawn again, not a cold exit ----------
+   The last thing a visitor sees echoes the hero: golden light breaking
+   over the horizon, slate held to the far corners only. */
 .close-section {
-  background: var(--grad-page); position: relative; overflow: hidden;
+  padding-block: var(--space-beat);
+  background:
+    radial-gradient(80% 110% at 50% -30%, #FFF4DC 0%, rgba(243,228,190,.55) 36%, rgba(243,228,190,0) 66%),
+    radial-gradient(90% 70% at 108% 112%, rgba(94,111,141,.5) 0%, rgba(94,111,141,0) 60%),
+    radial-gradient(90% 70% at -8% 112%, rgba(139,152,176,.35) 0%, rgba(139,152,176,0) 55%),
+    linear-gradient(180deg, var(--dawn-ivory) 0%, #EAE4D6 100%);
+  position: relative; overflow: hidden;
   text-align: center; color: var(--ink);
 }
 .close-section .wrap { position: relative; z-index: 2; }
 .close-section h2 { max-width: 16em; margin-inline: auto; }
 .close-section p { margin-inline: auto; margin-top: 1.4rem; color: var(--ink-soft); }
-.close-section .btn { margin-top: 2.4rem; }
+.close-section .btn { margin-top: 2.6rem; }
 
 /* ---------- Footer ---------- */
-footer { background: var(--dawn-ivory); border-top: 1px solid rgba(30,42,69,.08); padding-block: 2.4rem; }
-footer .wrap { display: flex; flex-wrap: wrap; gap: 1.4rem; align-items: center; justify-content: space-between; }
-footer p, footer a { font-size: .85rem; color: var(--ink-soft); }
+footer {
+  background: #EDE7D9;
+  border-top: 1px solid transparent;
+  border-image: linear-gradient(90deg, rgba(168,121,56,0), rgba(168,121,56,.3) 50%, rgba(168,121,56,0)) 1;
+  padding-block: 2.6rem;
+}
+footer .wrap { display: flex; flex-wrap: wrap; gap: 1.2rem; align-items: center; justify-content: space-between; }
+footer p, footer a { font-size: .88rem; color: var(--ink-soft); }
 footer .brand { font-size: .95rem; }
-footer nav { display: flex; gap: 1.4rem; }
+footer nav { display: flex; gap: .5rem; }
+footer nav a { padding: .7rem .6rem; } /* 44px touch targets */
 
 /* ---------- Legal pages (privacy · terms) ---------- */
 /* A legal page is the same dawn: short hero in the gradient, then long-form
