@@ -55,16 +55,22 @@
   --grad-page: linear-gradient(315deg, #5E6F8D 0%, #8B98B0 26%, #C7CEDA 52%, #E8E2D6 78%, #F2EDE3 100%);
   --grad-section: linear-gradient(315deg, #DFE3E9 0%, #EDE9E0 55%, #F2EDE3 100%);
 
-  /* type */
+  /* warm metal accents — the bronze thread that runs through the artwork */
+  --bronze: #A87938;
+  --bronze-bright: #C99B4F;
+  --bronze-deep: #6B5128;
+
+  /* type — display scale with real hierarchy between beats */
   --serif: 'Fraunces', 'Fraunces-fallback', Georgia, 'Times New Roman', serif;
   --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  --fs-h1: clamp(2.6rem, 5.2vw, 3.95rem);
-  --fs-h2: clamp(1.8rem, 4.5vw, 2.75rem);
-  --fs-h3: 1.25rem;
-  --fs-lead: clamp(1.125rem, 2.2vw, 1.3rem);
+  --fs-h1: clamp(3rem, 6vw, 4.6rem);
+  --fs-display: clamp(2.4rem, 5.6vw, 3.9rem);   /* the big narrative beats */
+  --fs-h2: clamp(2rem, 4.6vw, 3.1rem);           /* working sections */
+  --fs-h3: 1.3rem;
+  --fs-lead: clamp(1.15rem, 2.3vw, 1.375rem);
   --fs-body: 1.0625rem;
-  --fs-small: .9rem;
-  --fs-eyebrow: .72rem;
+  --fs-small: .92rem;
+  --fs-eyebrow: .78rem;
 
   /* shape + depth */
   --radius-btn: 14px;
@@ -97,11 +103,17 @@ body {
 ::selection { background: var(--glow-core); color: var(--ink); }
 img, svg, video { max-width: 100%; height: auto; display: block; }
 
-h1, h2 { font-family: var(--serif); font-weight: 380; line-height: 1.08; letter-spacing: -.015em; }
-h1 em, h2 em { font-style: italic; font-weight: 360; }
-h1 { font-size: var(--fs-h1); }
+h1, h2 {
+  font-family: var(--serif); font-weight: 400; line-height: 1.06;
+  letter-spacing: -.022em; text-wrap: balance;
+  font-optical-sizing: auto; font-variation-settings: 'SOFT' 28;
+}
+h1 em, h2 em { font-style: italic; font-weight: 380; }
+h1 { font-size: var(--fs-h1); line-height: 1.03; }
 h2 { font-size: var(--fs-h2); }
-h3 { font-family: var(--sans); font-weight: 600; font-size: var(--fs-h3); line-height: 1.35; }
+/* The narrative beats speak louder than the working sections */
+.problem h2, .pricing h2, .close-section h2 { font-size: var(--fs-display); }
+h3 { font-family: var(--serif); font-weight: 480; font-size: var(--fs-h3); line-height: 1.3; letter-spacing: -.01em; }
 p  { max-width: var(--width-prose); }
 
 a { color: var(--ink); text-decoration-color: rgba(30,42,69,.3); text-underline-offset: 3px; }
@@ -136,8 +148,13 @@ a:hover { text-decoration-color: var(--ink); }
 .wrap { max-width: var(--width-content); margin-inline: auto; padding-inline: clamp(1.25rem, 4vw, 2.5rem); }
 .section { padding-block: var(--space-section); position: relative; }
 .eyebrow {
-  font-size: var(--fs-eyebrow); font-weight: 600; letter-spacing: .14em;
-  text-transform: uppercase; color: var(--ink-soft); margin-bottom: 1.1rem;
+  display: flex; align-items: center; gap: .7rem;
+  font-size: var(--fs-eyebrow); font-weight: 600; letter-spacing: .22em;
+  text-transform: uppercase; color: var(--bronze-deep); margin-bottom: 1.3rem;
+}
+.eyebrow::before {
+  content: ''; width: 26px; height: 1px; flex: none;
+  background: linear-gradient(90deg, var(--bronze), rgba(168,121,56,.25));
 }
 .lead { font-size: var(--fs-lead); line-height: 1.6; color: var(--ink-soft); }
 
