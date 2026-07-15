@@ -192,17 +192,19 @@ body::after {
 @keyframes hero-fil-draw { from { stroke-dashoffset: 620; } to { stroke-dashoffset: 0; } }
 @keyframes hero-fade { from { opacity: 0; } }
 @keyframes hero-rise { from { opacity: 0; transform: translateY(16px); } }
-.js .hero__network svg g[stroke^="url"] path {
+/* Only the seven primary strands draw in — companions, tendrils and the glow
+   pass are simply present. Animating every strand re-rasterised the whole
+   oversized SVG each frame during load and cost half a second of first paint. */
+.js .hero__network .fil-main > path:nth-child(-n+7) {
   stroke-dasharray: 620 9999;
   animation: hero-fil-draw 1.4s cubic-bezier(.22,1,.36,1) both;
 }
-.js .hero__network svg g[stroke^="url"] path:nth-child(2) { animation-delay: .07s; }
-.js .hero__network svg g[stroke^="url"] path:nth-child(3) { animation-delay: .14s; }
-.js .hero__network svg g[stroke^="url"] path:nth-child(4) { animation-delay: .21s; }
-.js .hero__network svg g[stroke^="url"] path:nth-child(5) { animation-delay: .28s; }
-.js .hero__network svg g[stroke^="url"] path:nth-child(6) { animation-delay: .35s; }
-.js .hero__network svg g[stroke^="url"] path:nth-child(7) { animation-delay: .42s; }
-.js .hero__network svg g[stroke^="url"] path:nth-child(n+8) { animation-delay: .55s; }
+.js .hero__network .fil-main > path:nth-child(2) { animation-delay: .07s; }
+.js .hero__network .fil-main > path:nth-child(3) { animation-delay: .14s; }
+.js .hero__network .fil-main > path:nth-child(4) { animation-delay: .21s; }
+.js .hero__network .fil-main > path:nth-child(5) { animation-delay: .28s; }
+.js .hero__network .fil-main > path:nth-child(6) { animation-delay: .35s; }
+.js .hero__network .fil-main > path:nth-child(7) { animation-delay: .42s; }
 .js .hero__network svg #nodes { animation: hero-fade .9s ease-out .55s both; }
 /* The headline anchors the page instantly (it's the LCP element) —
    everything else rises around it */
@@ -211,7 +213,7 @@ body::after {
 .js .hero__copy > *:nth-child(4) { animation-delay: .22s; }
 .js .hero__copy > *:nth-child(5) { animation-delay: .3s; }
 @media (prefers-reduced-motion: reduce) {
-  .js .hero__network svg g[stroke^="url"] path, .js .hero__network svg #nodes,
+  .js .hero__network .fil-main > path, .js .hero__network svg #nodes,
   .js .hero__copy > * { animation: none; }
 }
 
