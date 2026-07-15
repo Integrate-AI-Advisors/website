@@ -208,8 +208,41 @@
 <section class="section chapter">
   <div class="wrap chapter__grid chapter__grid--flip reveal">
     <figure class="proof">
-      <img src="/assets/img/proof-dashboard.png" alt="The IntegrateAI dashboard showing a whole roastery on one screen — orders, invoices, messages and numbers, populated with sample data." width="1200" height="750" loading="lazy">
-      <figcaption class="proof__caption">Your whole roastery, on one screen. Shown with sample roastery data.</figcaption>
+      <div class="dash" role="group" aria-label="Illustrative sample dashboard for a fictional coffee roastery. Every figure is invented — not a real client.">
+        <p class="dash__bar"><span class="dash__dot" aria-hidden="true"></span>Northwind Coffee Roasters — sample dashboard</p>
+        <div class="dash__kpis">
+          <div class="kpi"><span class="kpi__num" data-count="18" data-prefix="£" data-suffix="k">£18k</span><span class="kpi__label">Wholesale revenue / month</span></div>
+          <div class="kpi"><span class="kpi__num" data-count="34">34</span><span class="kpi__label">Active wholesale accounts</span></div>
+          <div class="kpi"><span class="kpi__num" data-count="9" data-suffix="&thinsp;hrs">9&thinsp;hrs</span><span class="kpi__label">Founder time saved / week</span></div>
+        </div>
+        <div class="dash__panel">
+          <p class="dash__panel-head"><span>Wholesale revenue</span><span class="dash__badge">Projection — not real history</span></p>
+          <svg class="dash__chart" viewBox="0 0 460 150" role="img" aria-label="Illustrative projected wholesale revenue rising from twelve thousand pounds in month one to twenty-two thousand in month six. A projection with invented figures, not real history.">
+            <defs><linearGradient id="dashFade" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#A87938" stop-opacity=".22"/>
+              <stop offset="100%" stop-color="#A87938" stop-opacity="0"/>
+            </linearGradient></defs>
+            <line class="chart-grid" x1="10" y1="12" x2="450" y2="12"/>
+            <line class="chart-grid" x1="10" y1="50" x2="450" y2="50"/>
+            <line class="chart-grid" x1="10" y1="88" x2="450" y2="88"/>
+            <line class="chart-grid" x1="10" y1="126" x2="450" y2="126"/>
+            <path class="chart-area" d="M10 73.4 L98 66.8 L186 60.2 L274 51.5 L362 40.5 L450 29.5 L450 126 L10 126 Z"/>
+            <path class="chart-line" d="M10 73.4 L98 66.8 L186 60.2 L274 51.5 L362 40.5 L450 29.5"/>
+            <g class="chart-dots">
+              <circle class="chart-dot" cx="10" cy="73.4" r="3"/><circle class="chart-dot" cx="98" cy="66.8" r="3"/><circle class="chart-dot" cx="186" cy="60.2" r="3"/><circle class="chart-dot" cx="274" cy="51.5" r="3"/><circle class="chart-dot" cx="362" cy="40.5" r="3"/><circle class="chart-dot" cx="450" cy="29.5" r="3"/>
+            </g>
+            <text class="chart-axis" x="10" y="144" text-anchor="start">Month 1</text>
+            <text class="chart-axis" x="186" y="144" text-anchor="middle">Month 3</text>
+            <text class="chart-axis" x="450" y="144" text-anchor="end">Month 6</text>
+          </svg>
+        </div>
+        <ul class="dash__insights">
+          <li class="insight insight--risk"><span class="insight__dot" aria-hidden="true"></span><span><b>The Bridge Café has gone quiet</b> — usually orders every two weeks; last order five weeks ago.</span></li>
+          <li class="insight"><span class="insight__dot" aria-hidden="true"></span><span><b>Green coffee for Old Town Espresso</b> runs out in ~9 days — the supplier's lead time is 7.</span></li>
+          <li class="insight"><span class="insight__dot" aria-hidden="true"></span><span><b>Margin on Harbour Blend slipped 6%</b> — input costs rose while the price held.</span></li>
+        </ul>
+      </div>
+      <figcaption class="proof__caption">Your whole roastery, on one screen. Shown with sample roastery data — Northwind is fictional.</figcaption>
     </figure>
     <div>
       <p class="eyebrow">02 — Understands</p>

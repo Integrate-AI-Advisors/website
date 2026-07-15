@@ -164,6 +164,56 @@
     motionQuery.addEventListener('change', apply);
   }
 
+  /* ---------- §02 dashboard demo: count-ups, line draw, insight stagger.
+     Markup carries the FINISHED state (no-JS law); this only animates it in.
+     Draw-once; the sole loop (risk-dot breathe) is CSS, gated by .is-live. */
+  document.querySelectorAll('.dash').forEach(function (dash) {
+    var counts = dash.querySelectorAll('[data-count]');
+    var line = dash.querySelector('.chart-line');
+    var extras = dash.querySelectorAll('.chart-area, .chart-dots');
+    var insights = dash.querySelectorAll('.insight');
+    var played = false;
+
+    function countUp(el) {
+      var target = parseFloat(el.getAttribute('data-count')) || 0;
+      var pre = el.getAttribute('data-prefix') || '';
+      var suf = el.getAttribute('data-suffix') || '';
+      var t0 = performance.now(), dur = 1100;
+      (function tick(now) {
+        var t = Math.min((now - t0) / dur, 1);
+        var e = 1 - Math.pow(1 - t, 3);
+        el.textContent = pre + Math.round(target * e) + suf;
+        if (t < 1) requestAnimationFrame(tick);
+      })(t0);
+    }
+    function play() {
+      if (played) return; played = true;
+      counts.forEach(function (el, i) { setTimeout(function () { countUp(el); }, i * 130); });
+      if (line) {
+        requestAnimationFrame(function () { requestAnimationFrame(function () {
+          line.style.transition = 'stroke-dashoffset 1.2s cubic-bezier(.16,1,.3,1)';
+          line.style.strokeDashoffset = '0';
+          extras.forEach(function (el) { el.style.transition = 'opacity .6s ease .7s'; el.style.opacity = '1'; });
+        }); });
+      }
+      insights.forEach(function (el, i) { setTimeout(function () { el.classList.add('is-on'); }, 450 + i * 160); });
+    }
+    function showFinal() { insights.forEach(function (el) { el.classList.add('is-on'); }); }
+
+    if (motionQuery.matches || !('IntersectionObserver' in window)) { showFinal(); return; }
+    /* hide chart before first view so scroll-in draws it (values stay in DOM) */
+    if (line) {
+      var len = line.getTotalLength();
+      line.style.strokeDasharray = len;
+      line.style.strokeDashoffset = len;
+      extras.forEach(function (el) { el.style.opacity = '0'; });
+    }
+    new IntersectionObserver(function (entries) {
+      dash.classList.toggle('is-live', entries[0].isIntersecting);
+      if (entries[0].isIntersecting) play();
+    }, { threshold: 0.3 }).observe(dash);
+  });
+
   /* ---------- Soft-CTA form ---------- */
   var form = document.getElementById('sample-form');
   var status = document.getElementById('form-status');
