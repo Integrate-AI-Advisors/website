@@ -457,19 +457,24 @@ body::after {
    Shimmer is CSS-only; .is-live is IO-toggled so it pauses off-viewport.
    Reduced-motion / no-JS: static base connectors — the authored finished state. */
 .pipeline { margin: 0; width: 100%; }
-.pipeline svg { display: block; width: 100%; height: auto; }
-.pipe-base path { fill: none; stroke: var(--bronze); stroke-opacity: .28; stroke-width: 1.6; }
-.pipe-node circle { fill: rgba(252,250,245,.88); stroke: rgba(168,121,56,.3); stroke-width: 1.2; }
-.pipe-pill rect { fill: rgba(252,250,245,.88); stroke: rgba(168,121,56,.26); stroke-width: 1.2; }
+.pipeline svg { display: block; width: 100%; height: auto; overflow: visible; }
 .pipe-flow {
-  fill: none; stroke: #C99B4F; stroke-width: 2; stroke-linecap: round;
-  stroke-dasharray: 16 128; opacity: 0; transition: opacity .6s ease;
+  fill: none; stroke: #E0B060; stroke-width: 2.2; stroke-linecap: round;
+  stroke-dasharray: 14 130; opacity: 0; transition: opacity .6s ease;
 }
-.pipeline.is-live .pipe-flow { opacity: .9; animation: pipe-flow 3.8s linear infinite; }
+.pipeline.is-live .pipe-flow { opacity: .95; animation: pipe-flow 3.8s linear infinite; }
 @keyframes pipe-flow { to { stroke-dashoffset: -144; } }
+/* the core breathes while on screen — same life as the hero */
+.pipe-halo { transform-box: fill-box; transform-origin: center; }
+.pipeline.is-live .pipe-halo { animation: pipe-breathe 4.5s ease-in-out infinite; }
+@keyframes pipe-breathe {
+  0%, 100% { transform: scale(1); opacity: .95; }
+  50% { transform: scale(1.07); opacity: 1; }
+}
 @media (max-width: 860px) { .pipeline { margin-top: 1.8rem; max-width: 560px; } }
 @media (prefers-reduced-motion: reduce) {
   .pipeline .pipe-flow { animation: none !important; opacity: 0 !important; }
+  .pipeline .pipe-halo { animation: none !important; }
 }
 
 /* Proof frames (screenshots live in code-drawn glass cards) —

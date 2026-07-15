@@ -369,27 +369,61 @@
       <p class="detail-line">Read-only until you say otherwise. You choose what it can see, and what it can touch.</p>
     </div>
     <figure class="pipeline">
-      <svg viewBox="0 0 600 380" role="img" aria-label="How it fits together: the tools you already run — Shopify, Xero, Klaviyo, your inbox — connect to one brain, which turns what it sees into actions you approve: invoices chased, reorders queued, quiet regulars won back.">
+      <svg viewBox="0 0 600 400" role="img" aria-label="How it fits together: the tools you already run — Shopify, Xero, Klaviyo, your inbox — connect to one brain, which turns what it sees into actions you approve: invoices chased, reorders queued, quiet regulars won back.">
         <defs>
           <radialGradient id="pipeGlow" cx="50%" cy="50%" r="50%">
             <stop offset="0%" stop-color="#FFF4DC" stop-opacity=".95"/>
             <stop offset="45%" stop-color="#F3E4BE" stop-opacity=".38"/>
             <stop offset="100%" stop-color="#F3E4BE" stop-opacity="0"/>
           </radialGradient>
+          <radialGradient id="pipeGrad" gradientUnits="userSpaceOnUse" cx="300" cy="200" r="270">
+            <stop offset="0%" stop-color="#D9AC5E" stop-opacity=".95"/>
+            <stop offset="55%" stop-color="#C08A45" stop-opacity=".6"/>
+            <stop offset="100%" stop-color="#A87938" stop-opacity=".32"/>
+          </radialGradient>
+          <filter id="pSoft" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="3"/></filter>
+          <filter id="pShadow" x="-30%" y="-30%" width="160%" height="160%">
+            <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#1E2A45" flood-opacity=".14"/>
+          </filter>
         </defs>
 
-        <circle cx="300" cy="200" r="148" fill="url(#pipeGlow)" opacity=".55"/>
-        <circle cx="300" cy="200" r="92" fill="url(#pipeGlow)" opacity=".8"/>
-        <circle cx="300" cy="200" r="52" fill="url(#pipeGlow)"/>
+        <circle cx="300" cy="200" r="150" fill="url(#pipeGlow)" opacity=".55"/>
+        <circle cx="300" cy="200" r="95" fill="url(#pipeGlow)" opacity=".85"/>
+        <circle class="pipe-halo" cx="300" cy="200" r="56" fill="url(#pipeGlow)"/>
 
-        <g class="pipe-base">
-          <path id="pf1" d="M122 68 C 190 68, 220 158, 258 186"/>
-          <path id="pf2" d="M122 156 C 180 156, 215 182, 257 195"/>
-          <path id="pf3" d="M122 244 C 180 244, 215 218, 257 205"/>
-          <path id="pf4" d="M122 332 C 190 332, 220 242, 258 214"/>
-          <path id="pf5" d="M342 185 C 380 158, 392 110, 432 110"/>
-          <path id="pf6" d="M344 200 C 375 200, 400 200, 432 200"/>
-          <path id="pf7" d="M342 215 C 380 242, 392 290, 432 290"/>
+        <g fill="none" stroke="url(#pipeGrad)" stroke-width="4" opacity=".25" filter="url(#pSoft)">
+          <path d="M300 200 C 218 169, 159 101, 90 72"/>
+          <path d="M300 200 C 231 163, 150 186, 90 158"/>
+          <path d="M300 200 C 223 199, 156 245, 90 244"/>
+          <path d="M300 200 C 232 255, 149 285, 90 330"/>
+          <path d="M300 200 C 357 183, 388 127, 436 112"/>
+          <path d="M300 200 C 348 221, 395 182, 436 200"/>
+          <path d="M300 200 C 338 245, 401 253, 436 288"/>
+        </g>
+        <g fill="none" stroke="url(#pipeGrad)" stroke-linecap="round">
+          <path id="pf1" d="M300 200 C 218 169, 159 101, 90 72" stroke-width="1.8" opacity=".85"/>
+          <path id="pf2" d="M300 200 C 231 163, 150 186, 90 158" stroke-width="1.8" opacity=".85"/>
+          <path id="pf3" d="M300 200 C 223 199, 156 245, 90 244" stroke-width="1.8" opacity=".85"/>
+          <path id="pf4" d="M300 200 C 232 255, 149 285, 90 330" stroke-width="1.8" opacity=".85"/>
+          <path id="pf5" d="M300 200 C 357 183, 388 127, 436 112" stroke-width="1.8" opacity=".85"/>
+          <path id="pf6" d="M300 200 C 348 221, 395 182, 436 200" stroke-width="1.8" opacity=".85"/>
+          <path id="pf7" d="M300 200 C 338 245, 401 253, 436 288" stroke-width="1.8" opacity=".85"/>
+          <path d="M300 200 C 214 175, 158 99, 90 68.6544462903158" stroke-width="0.7" opacity="0.42"/>
+          <path d="M300 200 C 213 179, 159 102, 90 74.95835959917842" stroke-width="0.5" opacity="0.28"/>
+          <path d="M300 200 C 232 160, 150 183, 90 153.888206722201" stroke-width="0.7" opacity="0.42"/>
+          <path d="M300 200 C 231 165, 150 186, 90 157.2513296755816" stroke-width="0.5" opacity="0.28"/>
+          <path d="M300 200 C 222 197, 155 240, 90 245.85392887762822" stroke-width="0.7" opacity="0.42"/>
+          <path d="M300 200 C 224 207, 155 243, 90 250.63916637944922" stroke-width="0.5" opacity="0.28"/>
+          <path d="M300 200 C 228 249, 152 293, 90 333.7943887357343" stroke-width="0.7" opacity="0.42"/>
+          <path d="M300 200 C 227 246, 153 289, 90 327.4658251228135" stroke-width="0.5" opacity="0.28"/>
+          <path d="M300 200 C 357 181, 390 128, 436 107.86373929106719" stroke-width="0.7" opacity="0.42"/>
+          <path d="M300 200 C 354 180, 391 133, 436 114.14677005182449" stroke-width="0.5" opacity="0.28"/>
+          <path d="M300 200 C 348 210, 395 188, 436 195.16880514613882" stroke-width="0.7" opacity="0.42"/>
+          <path d="M300 200 C 347 217, 395 191, 436 203.4275666488131" stroke-width="0.5" opacity="0.28"/>
+          <path d="M300 200 C 339 243, 402 249, 436 284.40410870164004" stroke-width="0.7" opacity="0.42"/>
+          <path d="M300 200 C 341 243, 399 260, 436 293.88078308869086" stroke-width="0.5" opacity="0.28"/>
+          <path d="M300 200 C 338 160, 329 98, 361.2731161326236 63.08540896092185" stroke-width="0.55" opacity="0.22"/>
+          <path d="M300 200 C 253 240, 271 310, 233.4165061524572 345.4875882921091" stroke-width="0.55" opacity="0.22"/>
         </g>
         <g class="pipe-flows" aria-hidden="true">
           <use href="#pf1" class="pipe-flow"/>
@@ -400,12 +434,60 @@
           <use href="#pf6" class="pipe-flow" style="animation-delay:-3.2s"/>
           <use href="#pf7" class="pipe-flow" style="animation-delay:-1.8s"/>
         </g>
-
         <g fill="#C99B4F">
-          <circle cx="180" cy="120" r="2" opacity=".5"/><circle cx="225" cy="298" r="2" opacity=".45"/>
-          <circle cx="385" cy="142" r="2" opacity=".5"/><circle cx="394" cy="262" r="1.8" opacity=".45"/>
-          <circle cx="300" cy="122" r="1.6" opacity=".4"/><circle cx="302" cy="284" r="1.6" opacity=".4"/>
+          <circle cx="234" cy="166" r="0.7" opacity="0.65"/>
+          <circle cx="248" cy="175" r="0.9" opacity="0.78"/>
+          <circle cx="120" cy="87" r="1.0" opacity="0.80"/>
+          <circle cx="184" cy="131" r="0.8" opacity="0.45"/>
+          <circle cx="248" cy="174" r="1.3" opacity="0.49"/>
+          <circle cx="228" cy="162" r="1.0" opacity="0.50"/>
+          <circle cx="225" cy="178" r="0.7" opacity="0.49"/>
+          <circle cx="192" cy="176" r="0.6" opacity="0.81"/>
+          <circle cx="238" cy="180" r="1.2" opacity="0.51"/>
+          <circle cx="172" cy="174" r="0.7" opacity="0.89"/>
+          <circle cx="227" cy="179" r="1.4" opacity="0.55"/>
+          <circle cx="214" cy="177" r="0.6" opacity="0.49"/>
+          <circle cx="153" cy="234" r="1.2" opacity="0.52"/>
+          <circle cx="202" cy="218" r="0.9" opacity="0.49"/>
+          <circle cx="222" cy="212" r="0.9" opacity="0.86"/>
+          <circle cx="250" cy="205" r="0.6" opacity="0.67"/>
+          <circle cx="265" cy="225" r="0.6" opacity="0.51"/>
+          <circle cx="230" cy="247" r="1.4" opacity="0.72"/>
+          <circle cx="136" cy="299" r="0.6" opacity="0.48"/>
+          <circle cx="159" cy="287" r="0.8" opacity="0.47"/>
+          <circle cx="357" cy="167" r="0.5" opacity="0.48"/>
+          <circle cx="358" cy="166" r="1.1" opacity="0.66"/>
+          <circle cx="363" cy="162" r="0.8" opacity="0.49"/>
+          <circle cx="335" cy="184" r="1.1" opacity="0.67"/>
+          <circle cx="337" cy="182" r="0.8" opacity="0.87"/>
+          <circle cx="362" cy="203" r="0.8" opacity="0.85"/>
+          <circle cx="337" cy="206" r="1.1" opacity="0.77"/>
+          <circle cx="366" cy="202" r="1.1" opacity="0.58"/>
+          <circle cx="350" cy="205" r="0.9" opacity="0.54"/>
+          <circle cx="415" cy="195" r="1.1" opacity="0.62"/>
+          <circle cx="360" cy="244" r="0.7" opacity="0.63"/>
+          <circle cx="356" cy="242" r="1.0" opacity="0.82"/>
+          <circle cx="328" cy="225" r="1.3" opacity="0.51"/>
+          <circle cx="381" cy="254" r="1.4" opacity="0.87"/>
+          <circle cx="409" cy="268" r="0.5" opacity="0.60"/>
+          <circle cx="291" cy="350" r="1.0" opacity="0.25"/>
+          <circle cx="353" cy="182" r="1.0" opacity="0.27"/>
+          <circle cx="357" cy="277" r="0.8" opacity="0.26"/>
+          <circle cx="399" cy="218" r="0.6" opacity="0.25"/>
+          <circle cx="422" cy="127" r="0.9" opacity="0.34"/>
+          <circle cx="411" cy="233" r="0.7" opacity="0.18"/>
+          <circle cx="313" cy="132" r="0.8" opacity="0.23"/>
+          <circle cx="184" cy="51" r="0.7" opacity="0.26"/>
+          <circle cx="163" cy="325" r="0.8" opacity="0.35"/>
+          <circle cx="187" cy="78" r="0.6" opacity="0.34"/>
+          <circle cx="288" cy="326" r="1.0" opacity="0.23"/>
+          <circle cx="224" cy="198" r="0.7" opacity="0.33"/>
+          <circle cx="431" cy="326" r="0.8" opacity="0.17"/>
+          <circle cx="276" cy="59" r="0.7" opacity="0.29"/>
         </g>
+        <g stroke="#C99B4F" stroke-width="1.1" stroke-linecap="round" opacity=".8" fill="none">
+  <path d="M198 118v7M194.5 121.5h7"/><path d="M382 268v6M379 271h6"/>
+</g>
 
         <g font-family="Inter,system-ui,sans-serif" font-size="11.5" font-weight="600" fill="#6B5128" letter-spacing=".16em" text-anchor="middle">
           <text x="84" y="18">YOUR TOOLS</text>
@@ -413,16 +495,37 @@
           <text x="506" y="18">APPROVED ACTIONS</text>
         </g>
 
-        <g font-family="Inter,system-ui,sans-serif" font-size="15" font-weight="500" fill="#1E2A45" text-anchor="middle">
-          <g class="pipe-node"><circle cx="84" cy="68" r="36"/><text x="84" y="73">Shopify</text></g>
-          <g class="pipe-node"><circle cx="84" cy="156" r="36"/><text x="84" y="161">Xero</text></g>
-          <g class="pipe-node"><circle cx="84" cy="244" r="36"/><text x="84" y="249">Klaviyo</text></g>
-          <g class="pipe-node"><circle cx="84" cy="332" r="36"/><text x="84" y="330">Inbox</text><text x="84" y="345" font-size="9.5" font-weight="400" fill="#44506B" letter-spacing=".04em">read-only</text></g>
+        <g>
+          <circle cx="90" cy="72" r="44" fill="url(#pipeGlow)" opacity=".5"/>
+          <circle cx="90" cy="72" r="30" fill="rgba(255,255,255,.93)" stroke="rgba(168,121,56,.34)" stroke-width="1.2" filter="url(#pShadow)"/>
+          <g transform="translate(78,60)" fill="none" stroke="#8A6A33" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 8h10l-.9 11.3a1.5 1.5 0 0 1-1.5 1.4H9.4a1.5 1.5 0 0 1-1.5-1.4L7 8z"/><path d="M9.2 8V6.4a2.8 2.8 0 0 1 5.6 0V8"/></g>
+          <text x="90" y="122" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="13.5" font-weight="600" fill="#1E2A45">Shopify</text>
+        </g>
+        <g>
+          <circle cx="90" cy="158" r="44" fill="url(#pipeGlow)" opacity=".5"/>
+          <circle cx="90" cy="158" r="30" fill="rgba(255,255,255,.93)" stroke="rgba(168,121,56,.34)" stroke-width="1.2" filter="url(#pShadow)"/>
+          <g transform="translate(78,146)" fill="none" stroke="#8A6A33" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><text x="12" y="16.4" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="11.5" font-weight="700" fill="#8A6A33" stroke="none">£</text></g>
+          <text x="90" y="208" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="13.5" font-weight="600" fill="#1E2A45">Xero</text>
+        </g>
+        <g>
+          <circle cx="90" cy="244" r="44" fill="url(#pipeGlow)" opacity=".5"/>
+          <circle cx="90" cy="244" r="30" fill="rgba(255,255,255,.93)" stroke="rgba(168,121,56,.34)" stroke-width="1.2" filter="url(#pShadow)"/>
+          <g transform="translate(78,232)" fill="none" stroke="#8A6A33" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4.5" y="7" width="15" height="11" rx="2"/><path d="M5.2 8.2 12 13.4l6.8-5.2"/></g>
+          <text x="90" y="294" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="13.5" font-weight="600" fill="#1E2A45">Klaviyo</text>
+        </g>
+        <g>
+          <circle cx="90" cy="330" r="44" fill="url(#pipeGlow)" opacity=".5"/>
+          <circle cx="90" cy="330" r="30" fill="rgba(255,255,255,.93)" stroke="rgba(168,121,56,.34)" stroke-width="1.2" filter="url(#pShadow)"/>
+          <g transform="translate(78,318)" fill="none" stroke="#8A6A33" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 6.5h11l2.5 7v4a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 4 17.5v-4l2.5-7z"/><path d="M4 13.5h4.4l1.7 2.6h3.8l1.7-2.6H20"/></g>
+          <text x="90" y="380" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="13.5" font-weight="600" fill="#1E2A45">Inbox</text>
+          <text x="90" y="394" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="10" font-weight="500" fill="#44506B" letter-spacing=".04em">read-only</text>
         </g>
 
         <g>
-          <circle cx="300" cy="200" r="44" fill="rgba(255,255,255,.82)" stroke="rgba(30,42,69,.14)" stroke-width="1.4"/>
-          <g transform="translate(280,180) scale(0.83)" stroke="#1E2A45" stroke-linecap="round" fill="none">
+          <circle cx="300" cy="200" r="62" fill="none" stroke="rgba(201,155,79,.22)" stroke-width="1"/>
+          <circle cx="300" cy="200" r="50" fill="none" stroke="rgba(201,155,79,.4)" stroke-width="1"/>
+          <circle cx="300" cy="200" r="38" fill="rgba(255,255,255,.96)" stroke="rgba(168,121,56,.35)" stroke-width="1.3" filter="url(#pShadow)"/>
+          <g transform="translate(283.2,183.2) scale(0.7)" stroke="#1E2A45" stroke-linecap="round" fill="none">
             <path d="M24 6 24 16" stroke-width="3"/><path d="M24 32 24 42" stroke-width="3"/>
             <path d="M6 24 16 24" stroke-width="3"/><path d="M32 24 42 24" stroke-width="3"/>
             <path d="M11.3 11.3 17.7 17.7" stroke-width="2.3"/><path d="M30.3 30.3 36.7 36.7" stroke-width="2.3"/>
@@ -430,10 +533,23 @@
           </g>
         </g>
 
-        <g font-family="Inter,system-ui,sans-serif" font-size="13.5" font-weight="500" fill="#1E2A45">
-          <g class="pipe-pill"><rect x="432" y="92" width="156" height="36" rx="18"/><circle cx="450" cy="110" r="3.5" fill="#4A7C59"/><text x="462" y="114.5">Invoice chased</text></g>
-          <g class="pipe-pill"><rect x="432" y="182" width="156" height="36" rx="18"/><circle cx="450" cy="200" r="3.5" fill="#4A7C59"/><text x="462" y="204.5">Reorder queued</text></g>
-          <g class="pipe-pill"><rect x="432" y="272" width="156" height="36" rx="18"/><circle cx="450" cy="290" r="3.5" fill="#4A7C59"/><text x="462" y="294.5">Regular won back</text></g>
+        <g filter="url(#pShadow)">
+          <rect x="432" y="93" width="160" height="38" rx="19" fill="rgba(255,255,255,.93)" stroke="rgba(168,121,56,.3)" stroke-width="1.2"/>
+          <circle cx="458" cy="112" r="8" fill="rgba(74,124,89,.12)" stroke="#4A7C59" stroke-width="1.5"/>
+          <path d="M454.6 112 l2.4 2.4 4.4-4.8" fill="none" stroke="#4A7C59" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+          <text x="472" y="116.5" font-family="Inter,system-ui,sans-serif" font-size="13" font-weight="600" fill="#1E2A45">Invoice chased</text>
+        </g>
+        <g filter="url(#pShadow)">
+          <rect x="432" y="181" width="160" height="38" rx="19" fill="rgba(255,255,255,.93)" stroke="rgba(168,121,56,.3)" stroke-width="1.2"/>
+          <circle cx="458" cy="200" r="8" fill="rgba(74,124,89,.12)" stroke="#4A7C59" stroke-width="1.5"/>
+          <path d="M454.6 200 l2.4 2.4 4.4-4.8" fill="none" stroke="#4A7C59" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+          <text x="472" y="204.5" font-family="Inter,system-ui,sans-serif" font-size="13" font-weight="600" fill="#1E2A45">Reorder queued</text>
+        </g>
+        <g filter="url(#pShadow)">
+          <rect x="432" y="269" width="160" height="38" rx="19" fill="rgba(255,255,255,.93)" stroke="rgba(168,121,56,.3)" stroke-width="1.2"/>
+          <circle cx="458" cy="288" r="8" fill="rgba(74,124,89,.12)" stroke="#4A7C59" stroke-width="1.5"/>
+          <path d="M454.6 288 l2.4 2.4 4.4-4.8" fill="none" stroke="#4A7C59" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+          <text x="472" y="292.5" font-family="Inter,system-ui,sans-serif" font-size="13" font-weight="600" fill="#1E2A45">Regular won back</text>
         </g>
       </svg>
     </figure>
