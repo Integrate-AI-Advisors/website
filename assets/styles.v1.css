@@ -371,15 +371,20 @@ body::after {
   .pipeline .pipe-flow { animation: none !important; opacity: 0 !important; }
 }
 
-/* Proof frames (screenshots live in code-drawn glass cards) */
+/* Proof frames (screenshots live in code-drawn glass cards) —
+   layered light: ambient shadow + key shadow + inner ivory highlight */
 .proof {
-  background: var(--glass); border: 1px solid var(--glass-border);
-  border-radius: var(--radius-card); padding: .8rem;
-  box-shadow: var(--shadow-card);
+  background: linear-gradient(180deg, rgba(255,255,255,.72) 0%, rgba(255,255,255,.5) 100%);
+  border: 1px solid rgba(255,255,255,.85);
+  border-radius: 22px; padding: .9rem;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.95),
+    0 2px 6px rgb(30 42 69 / .06),
+    0 32px 72px -32px rgb(30 42 69 / .4);
   backdrop-filter: blur(var(--glass-blur)); -webkit-backdrop-filter: blur(var(--glass-blur));
 }
-.proof img { border-radius: calc(var(--radius-card) - 8px); }
-.proof__caption { font-size: .82rem; color: var(--ink-soft); padding: .7rem .4rem .2rem; text-align: center; }
+.proof img { border-radius: 14px; }
+.proof__caption { font-size: .82rem; color: var(--ink-soft); padding: .75rem .4rem .15rem; text-align: center; }
 
 /* ---------- Live dashboard demo (§02 Understands) — code-drawn, sample data.
    Draw-once on scroll-in; only the at-risk dot loops, and only while the
@@ -596,9 +601,16 @@ body::after {
 
 /* ---------- Soft CTA panel ---------- */
 .softcta {
-  background: var(--grad-section);
-  border-radius: var(--radius-card);
-  padding: clamp(2rem, 5vw, 3.2rem);
+  background:
+    radial-gradient(80% 130% at 8% -20%, rgba(255,244,220,.9) 0%, rgba(243,228,190,.35) 40%, rgba(243,228,190,0) 70%),
+    linear-gradient(315deg, #DFDACC 0%, #EDE8DB 55%, #F2EDE3 100%);
+  border: 1px solid rgba(255,255,255,.8);
+  border-radius: 22px;
+  padding: clamp(2.2rem, 5vw, 3.4rem);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.9),
+    0 2px 6px rgb(30 42 69 / .05),
+    0 28px 64px -32px rgb(30 42 69 / .35);
   position: relative; overflow: hidden;
 }
 .softcta h2 { font-size: clamp(1.5rem, 3.2vw, 2rem); margin-bottom: .8rem; }
