@@ -220,9 +220,11 @@ body::after {
 .js .hero__copy > *:nth-child(4) { animation-delay: .22s; }
 .js .hero__copy > *:nth-child(5) { animation-delay: .3s; }
 @media (prefers-reduced-motion: reduce) {
+  /* !important: the draw-in selector carries an :nth-child and outguns
+     these plain selectors on specificity */
   .js .filfield,
   .js .hero__network .fil-main > path, .js .hero__network svg #nodes,
-  .js .hero__copy > * { animation: none; }
+  .js .hero__copy > * { animation: none !important; }
 }
 
 /* ---------- Layout helpers ---------- */
@@ -459,7 +461,8 @@ body::after {
 @media (max-width: 900px) {
   /* the mobile strip sits on slate — go luminous like the comp */
   .strip__label { color: rgba(247,243,234,.7); }
-  .strip__logos > * { color: #F7F3EA; opacity: .88; }
+  .strip__row > * { color: #F7F3EA; opacity: .88; }
+  .lg-xero { color: #44506B !important; }
 }
 
 @media (max-width: 900px) {
