@@ -285,7 +285,16 @@ body::after {
 .nav__links a:not(.btn):hover { text-decoration: underline; text-decoration-color: var(--bronze); text-decoration-thickness: 1.5px; text-underline-offset: 6px; }
 .nav__links .btn { margin-left: .6rem; padding: .75rem 1.2rem; font-size: .92rem; box-shadow: none; }
 @media (prefers-reduced-motion: reduce) { .brand:hover svg { transform: none; } }
-.nav__burger { display: none; }
+/* Comp nav: brand + burger only over the hero; the scrolled (stuck) clone
+   keeps the full links + CTA for wayfinding */
+.nav:not(.nav--stuck) .nav__links { display: none; }
+.nav:not(.nav--stuck) .nav__burger { display: inline-flex; }
+.nav--stuck .nav__burger { display: none; }
+.nav__burger {
+  flex-direction: column; gap: 5px;
+  background: none; border: 0; padding: .65rem .5rem; cursor: pointer;
+}
+.nav__burger span { width: 22px; height: 2px; background: var(--ink); border-radius: 2px; }
 
 /* Sticky nav appears after hero scroll-out (JS adds .nav--stuck to a clone) */
 .nav--stuck {
@@ -298,39 +307,50 @@ body::after {
 }
 .nav--stuck.is-shown { transform: translateY(0); visibility: visible; transition: transform .28s ease; }
 
-/* Mobile drawer (hidden everywhere; opened on mobile only) */
-.drawer { display: none; }
+/* Drawer — the burger menu at every width (comp nav is brand + burger) */
+.drawer {
+  position: fixed; inset: 0; z-index: 40; display: none;
+  background:
+    radial-gradient(120% 100% at 10% -10%,
+      rgba(248,238,220,.95) 0%, rgba(240,229,207,.55) 34%, rgba(199,206,218,0) 62%),
+    var(--grad-page);
+  padding: 6rem clamp(1.5rem, 8vw, 5rem) 2rem;
+}
+.drawer.is-open { display: block; }
+.drawer a {
+  display: block; font: 500 clamp(1.5rem, 2.6vw, 2rem)/2.4 var(--serif);
+  text-decoration: none; border-bottom: 1px solid rgba(30,42,69,.12);
+  max-width: 26em;
+}
+.drawer .btn { margin-top: 2.4rem; justify-content: center; width: 100%; max-width: 380px; }
+.drawer__close {
+  position: absolute; top: 1.2rem; right: 1.4rem; background: none; border: 0;
+  font-size: 1.8rem; color: var(--ink); cursor: pointer; padding: .5rem .8rem;
+}
 @media (max-width: 780px) {
   .nav__links { display: none; }
-  .nav__burger {
-    display: inline-flex; flex-direction: column; gap: 5px;
-    background: none; border: 0; padding: .5rem; cursor: pointer;
-  }
-  .nav__burger span { width: 22px; height: 2px; background: var(--ink); border-radius: 2px; transition: transform .2s ease, opacity .2s ease; }
-  .drawer {
-    position: fixed; inset: 0; z-index: 40; display: none;
-    background: var(--grad-page);
-    padding: 5.5rem clamp(1.25rem,6vw,2.5rem) 2rem;
-  }
-  .drawer.is-open { display: block; }
-  .drawer a { display: block; font: 500 1.5rem/2.6 var(--serif); text-decoration: none; border-bottom: 1px solid rgba(30,42,69,.1); }
-  .drawer .btn { margin-top: 2rem; justify-content: center; width: 100%; }
-  .drawer__close { position: absolute; top: 1.2rem; right: 1.2rem; background: none; border: 0; font-size: 1.6rem; color: var(--ink); cursor: pointer; padding: .5rem; }
+  .nav--stuck .nav__burger { display: inline-flex; }
 }
 
 /* ---------- Hero ---------- */
 .hero {
   position: relative; overflow: hidden;
-  /* A near-viewport-ratio box turns --grad-page cold (same trap as .legal-hero):
-     the 315° axis parks slate across the right half. Keep the golden source
-     broad at the top-left, as in the comp, and let slate hold only the corner. */
+  /* Comp-matched sky: ivory-gold floods from the top-left, falls through
+     warm grey into deep slate at the right and foot. Deeper than --grad-page. */
   background:
-    radial-gradient(120% 135% at 10% -5%,
-      rgba(242,237,227,.95) 0%, rgba(238,230,214,.6) 30%, rgba(199,206,218,0) 58%),
-    var(--grad-page);
+    radial-gradient(115% 125% at 8% -8%,
+      rgba(248,238,220,.98) 0%, rgba(240,229,207,.75) 26%, rgba(199,206,218,0) 56%),
+    linear-gradient(118deg, #EFE6D4 0%, #D9D4C7 28%, #A9B0BC 56%, #71809A 80%, #57647E 100%);
   min-height: 100svh;
   display: flex; flex-direction: column;
 }
+/* Photographic vignette — the comp's corners fall away */
+.hero::before {
+  content: ''; position: absolute; inset: 0; pointer-events: none; z-index: 1;
+  background: radial-gradient(120% 120% at 50% 45%, transparent 58%, rgba(30,42,69,.16) 100%);
+}
+/* The comp's grain is loud on the hero */
+.hero.grain::after { opacity: .045; z-index: 4; }
 .hero__inner {
   flex: 1; display: grid; grid-template-columns: minmax(0, 50fr) minmax(0, 50fr);
   align-items: center; gap: 1.5rem;
@@ -353,7 +373,9 @@ body::after {
    and oversized: the cell keeps a stable height while the artwork outgrows it
    (hub stays ~72% across the viewport, matching the comp). overflow:visible
    stops the halo clipping at the viewBox edge. */
-.hero__network { position: relative; z-index: 2; height: min(860px, 84svh); }
+/* No z-index here: it would isolate the stacking context and break the
+   plate's screen blend against the hero sky */
+.hero__network { position: relative; height: min(860px, 84svh); }
 .hero__network svg {
   position: absolute; width: 164%; max-width: none; left: -41%;
   top: 50%; transform: translateY(-50%);
@@ -362,18 +384,34 @@ body::after {
 .hero__canvas {
   position: absolute; inset: 0; pointer-events: none; z-index: 3;
 }
+/* The generated atmosphere plate — photographic light the code layers sit on.
+   Same coordinate space as the SVG; its core (49.9%, 50.9%) is calibrated to
+   sit exactly under the drawn hub (62%, 50% of the SVG box). Edge-masked so
+   it melts into the gradient. */
+.hero__field {
+  /* Generated on true black, composited with screen blend: only the light
+     lands on the page, the page gradient is the sky — seams are impossible
+     and no mask is needed. Core (50.7%, 50.2%) sits under the drawn hub. */
+  position: absolute; width: 150%; max-width: none; height: auto;
+  left: -15.4%; top: 50%; transform: translateY(-50.2%);
+  mix-blend-mode: screen;
+}
 /* Node labels float on glass over a varied field — lift them with a soft ink halo */
 .hero__network .node text {
   paint-order: stroke; stroke: rgba(30,42,69,.45); stroke-width: 3px; stroke-linejoin: round;
 }
-/* On the gradient the CTA is luminous glass, as in the comp (ink primary lives
-   on ivory). No backdrop-filter: the backdrop is a smooth gradient, so a
-   translucent fill is visually identical and doesn't tax first paint. */
+/* On the gradient the CTA is the comp's luminous glass slab — rounded
+   rectangle, wide, text left / arrow right. Ink primary lives on ivory.
+   No backdrop-filter: the backdrop is a smooth gradient, so a translucent
+   fill is visually identical and doesn't tax first paint. */
 .hero .btn--primary {
-  background: linear-gradient(180deg, rgba(255,248,232,.78) 0%, rgba(255,244,220,.55) 100%);
+  background: linear-gradient(180deg, rgba(255,248,232,.8) 0%, rgba(255,244,220,.58) 100%);
   color: var(--ink); border-color: rgba(255,255,255,.85);
-  box-shadow: inset 0 1px 0 rgba(255,255,255,.9), 0 12px 32px -14px rgb(30 42 69 / .4);
+  border-radius: 14px; min-width: 320px; justify-content: space-between;
+  padding: 1.3rem 1.9rem; font-size: 1.02rem;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.9), 0 14px 36px -16px rgb(30 42 69 / .45);
 }
+@media (max-width: 480px) { .hero .btn--primary { width: 100%; min-width: 0; } }
 .hero .btn--primary:hover {
   border-color: #fff;
   box-shadow: inset 0 1px 0 rgba(255,255,255,.95), 0 16px 40px -14px rgb(30 42 69 / .42),
@@ -390,9 +428,26 @@ body::after {
   display: flex; flex-wrap: wrap; align-items: center;
   column-gap: clamp(1.4rem, 3.5vw, 2.6rem); row-gap: 1rem;
 }
-/* Wordmark wall — each name set in its brand's voice, one ink, no rasters */
-.strip__logos > * { opacity: .68; color: var(--ink); display: inline-flex; align-items: center; gap: .45rem; }
+/* Wordmark wall — each name set in its brand's voice, one ink, no rasters.
+   Desktop: confined to the copy column with hairline dividers (per comp). */
+.strip__logos { flex-direction: column; align-items: flex-start; row-gap: .9rem; }
+.strip__row { display: inline-flex; flex-wrap: wrap; align-items: center; row-gap: .9rem; }
+.strip__row > * { opacity: .68; color: var(--ink); display: inline-flex; align-items: center; gap: .45rem; }
 .strip__logos svg { height: 16px; width: auto; display: inline-block; }
+.lg-xero {
+  background: rgba(255,255,255,.8); color: #44506B !important;
+  border-radius: 999px; padding: .55em .5em; aspect-ratio: 1;
+  justify-content: center; font-size: .74rem !important; letter-spacing: .02em;
+}
+@media (min-width: 900px) {
+  .strip__logos { max-width: 640px; }
+  .strip__row > * { padding-inline: clamp(.9rem, 1.6vw, 1.4rem); }
+  .strip__row > *:first-child { padding-left: 0; }
+  .strip__row > * + * { border-left: 1px solid rgba(30,42,69,.2); }
+}
+@media (max-width: 899px) {
+  .strip__row { column-gap: clamp(1.3rem, 4vw, 2rem); }
+}
 .strip__name { font: 600 .95rem/1 var(--sans); }
 .lg-skio { font-weight: 700; font-size: .85rem; letter-spacing: .3em; }
 .lg-shopify, .lg-pipedrive, .lg-cropster, .lg-xero { font-weight: 700; font-size: 1.02rem; }
@@ -408,15 +463,13 @@ body::after {
 }
 
 @media (max-width: 900px) {
-  /* Tall narrow boxes drain the warmth — pour more gold in from the source
-     and keep a warm veil behind the network, as the mobile comp does */
+  /* Mobile comp: ivory-gold crown over the copy, falling to deep slate
+     beneath the network */
   .hero {
     background:
-      radial-gradient(150% 80% at 12% -5%,
-        rgba(242,237,227,.97) 0%, rgba(240,230,208,.7) 34%, rgba(199,206,218,0) 62%),
-      radial-gradient(120% 45% at 55% 58%,
-        rgba(243,228,190,.32) 0%, rgba(243,228,190,0) 70%),
-      var(--grad-page);
+      radial-gradient(160% 55% at 20% -8%,
+        rgba(248,238,220,.98) 0%, rgba(240,229,207,.72) 38%, rgba(199,206,218,0) 66%),
+      linear-gradient(178deg, #EDE4D2 0%, #CFCCC2 30%, #9AA3B3 58%, #67768F 82%, #535F79 100%);
   }
   .hero__inner { grid-template-columns: 1fr; padding-top: 5.5rem; gap: 0; }
   .hero__copy { text-align: left; padding-top: 1rem; }
@@ -425,6 +478,7 @@ body::after {
      runs the network a touch larger — shift and scale rather than redraw. */
   .hero__network svg { position: static; width: 132%; margin-left: -28%; left: 0; transform: none; }
   .hero__network svg text { font-size: 18px; }
+  .hero__field { width: 126%; left: -10%; }
 }
 
 /* ---------- Problem section ---------- */
