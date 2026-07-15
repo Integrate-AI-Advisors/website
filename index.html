@@ -189,14 +189,75 @@
       <p style="margin-top:1.4rem">No migration. No new system to learn. The Brain plugs into the tools you already run — your shop, your books, your inbox, your calendar — and meets your business exactly where it is. Connecting takes days, not months.</p>
       <p class="detail-line">Read-only until you say otherwise. You choose what it can see, and what it can touch.</p>
     </div>
-    <div class="chips" aria-label="Connected tools">
-      <span class="chip"><span class="dot"></span>Shopify <small>connected</small></span>
-      <span class="chip"><span class="dot"></span>Xero <small>connected</small></span>
-      <span class="chip"><span class="dot"></span>Klaviyo <small>connected</small></span>
-      <span class="chip"><span class="dot"></span>SKIO <small>connected</small></span>
-      <span class="chip chip--ro"><span class="dot"></span>Inbox <small>read-only</small></span>
-      <span class="chip chip--ro"><span class="dot"></span>Calendar <small>read-only</small></span>
-    </div>
+    <figure class="pipeline">
+      <svg viewBox="0 0 600 380" role="img" aria-label="How it fits together: the tools you already run — Shopify, Xero, Klaviyo, your inbox — connect to one brain, which turns what it sees into actions you approve: invoices chased, reorders queued, quiet regulars won back.">
+        <defs>
+          <radialGradient id="pipeGlow" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#FFF4DC" stop-opacity=".95"/>
+            <stop offset="45%" stop-color="#F3E4BE" stop-opacity=".38"/>
+            <stop offset="100%" stop-color="#F3E4BE" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+
+        <circle cx="300" cy="200" r="148" fill="url(#pipeGlow)" opacity=".55"/>
+        <circle cx="300" cy="200" r="92" fill="url(#pipeGlow)" opacity=".8"/>
+        <circle cx="300" cy="200" r="52" fill="url(#pipeGlow)"/>
+
+        <g class="pipe-base">
+          <path id="pf1" d="M122 68 C 190 68, 220 158, 258 186"/>
+          <path id="pf2" d="M122 156 C 180 156, 215 182, 257 195"/>
+          <path id="pf3" d="M122 244 C 180 244, 215 218, 257 205"/>
+          <path id="pf4" d="M122 332 C 190 332, 220 242, 258 214"/>
+          <path id="pf5" d="M342 185 C 380 158, 392 110, 432 110"/>
+          <path id="pf6" d="M344 200 C 375 200, 400 200, 432 200"/>
+          <path id="pf7" d="M342 215 C 380 242, 392 290, 432 290"/>
+        </g>
+        <g class="pipe-flows" aria-hidden="true">
+          <use href="#pf1" class="pipe-flow"/>
+          <use href="#pf2" class="pipe-flow" style="animation-delay:-1.3s"/>
+          <use href="#pf3" class="pipe-flow" style="animation-delay:-2.6s"/>
+          <use href="#pf4" class="pipe-flow" style="animation-delay:-0.7s"/>
+          <use href="#pf5" class="pipe-flow" style="animation-delay:-2s"/>
+          <use href="#pf6" class="pipe-flow" style="animation-delay:-3.2s"/>
+          <use href="#pf7" class="pipe-flow" style="animation-delay:-1.8s"/>
+        </g>
+
+        <g fill="#C99B4F">
+          <circle cx="180" cy="120" r="2" opacity=".5"/><circle cx="225" cy="298" r="2" opacity=".45"/>
+          <circle cx="385" cy="142" r="2" opacity=".5"/><circle cx="394" cy="262" r="1.8" opacity=".45"/>
+          <circle cx="300" cy="122" r="1.6" opacity=".4"/><circle cx="302" cy="284" r="1.6" opacity=".4"/>
+        </g>
+
+        <g font-family="Inter,system-ui,sans-serif" font-size="11" font-weight="600" fill="#44506B" letter-spacing=".14em" text-anchor="middle">
+          <text x="84" y="18">YOUR TOOLS</text>
+          <text x="300" y="18">THE BRAIN</text>
+          <text x="506" y="18">APPROVED ACTIONS</text>
+        </g>
+
+        <g font-family="Inter,system-ui,sans-serif" font-size="15" font-weight="500" fill="#1E2A45" text-anchor="middle">
+          <g class="pipe-node"><circle cx="84" cy="68" r="36"/><text x="84" y="73">Shopify</text></g>
+          <g class="pipe-node"><circle cx="84" cy="156" r="36"/><text x="84" y="161">Xero</text></g>
+          <g class="pipe-node"><circle cx="84" cy="244" r="36"/><text x="84" y="249">Klaviyo</text></g>
+          <g class="pipe-node"><circle cx="84" cy="332" r="36"/><text x="84" y="330">Inbox</text><text x="84" y="345" font-size="9.5" font-weight="400" fill="#44506B" letter-spacing=".04em">read-only</text></g>
+        </g>
+
+        <g>
+          <circle cx="300" cy="200" r="44" fill="rgba(255,255,255,.82)" stroke="rgba(30,42,69,.14)" stroke-width="1.4"/>
+          <g transform="translate(280,180) scale(0.83)" stroke="#1E2A45" stroke-linecap="round" fill="none">
+            <path d="M24 6 24 16" stroke-width="3"/><path d="M24 32 24 42" stroke-width="3"/>
+            <path d="M6 24 16 24" stroke-width="3"/><path d="M32 24 42 24" stroke-width="3"/>
+            <path d="M11.3 11.3 17.7 17.7" stroke-width="2.3"/><path d="M30.3 30.3 36.7 36.7" stroke-width="2.3"/>
+            <path d="M36.7 11.3 30.3 17.7" stroke-width="2.3"/><path d="M17.7 30.3 11.3 36.7" stroke-width="2.3"/>
+          </g>
+        </g>
+
+        <g font-family="Inter,system-ui,sans-serif" font-size="13.5" font-weight="500" fill="#1E2A45">
+          <g class="pipe-pill"><rect x="432" y="92" width="156" height="36" rx="18"/><circle cx="450" cy="110" r="3.5" fill="#4A7C59"/><text x="462" y="114.5">Invoice chased</text></g>
+          <g class="pipe-pill"><rect x="432" y="182" width="156" height="36" rx="18"/><circle cx="450" cy="200" r="3.5" fill="#4A7C59"/><text x="462" y="204.5">Reorder queued</text></g>
+          <g class="pipe-pill"><rect x="432" y="272" width="156" height="36" rx="18"/><circle cx="450" cy="290" r="3.5" fill="#4A7C59"/><text x="462" y="294.5">Regular won back</text></g>
+        </g>
+      </svg>
+    </figure>
   </div>
 </section>
 

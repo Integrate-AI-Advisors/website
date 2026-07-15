@@ -292,6 +292,25 @@ a:hover { text-decoration-color: var(--ink); }
 .chip--ro .dot { background: var(--haze); }
 .chip small { color: var(--ink-soft); font-size: .78rem; }
 
+/* §01 pipeline mini-diagram (tools → brain → approved actions).
+   Shimmer is CSS-only; .is-live is IO-toggled so it pauses off-viewport.
+   Reduced-motion / no-JS: static base connectors — the authored finished state. */
+.pipeline { margin: 0; width: 100%; }
+.pipeline svg { display: block; width: 100%; height: auto; }
+.pipe-base path { fill: none; stroke: #A87938; stroke-opacity: .28; stroke-width: 1.6; }
+.pipe-node circle { fill: rgba(255,255,255,.78); stroke: rgba(30,42,69,.16); stroke-width: 1.2; }
+.pipe-pill rect { fill: rgba(255,255,255,.78); stroke: rgba(30,42,69,.14); stroke-width: 1.2; }
+.pipe-flow {
+  fill: none; stroke: #C99B4F; stroke-width: 2; stroke-linecap: round;
+  stroke-dasharray: 16 128; opacity: 0; transition: opacity .6s ease;
+}
+.pipeline.is-live .pipe-flow { opacity: .9; animation: pipe-flow 3.8s linear infinite; }
+@keyframes pipe-flow { to { stroke-dashoffset: -144; } }
+@media (max-width: 860px) { .pipeline { margin-top: 1.8rem; max-width: 560px; } }
+@media (prefers-reduced-motion: reduce) {
+  .pipeline .pipe-flow { animation: none !important; opacity: 0 !important; }
+}
+
 /* Proof frames (screenshots live in code-drawn glass cards) */
 .proof {
   background: var(--glass); border: 1px solid var(--glass-border);

@@ -214,6 +214,15 @@
     }, { threshold: 0.3 }).observe(dash);
   });
 
+  /* ---------- §01 pipeline mini-diagram: CSS-only shimmer, IO-gated.
+     Reduced-motion / no-JS never get .is-live — static base connectors. */
+  document.querySelectorAll('.pipeline').forEach(function (pipe) {
+    if (motionQuery.matches || !('IntersectionObserver' in window)) return;
+    new IntersectionObserver(function (entries) {
+      pipe.classList.toggle('is-live', entries[0].isIntersecting);
+    }, { threshold: 0.25 }).observe(pipe);
+  });
+
   /* ---------- Approvals simulator: auto-cycling Slack + queue loop.
      The markup ships the FINISHED conversation (the no-JS / reduced-motion
      state); this engine rebuilds it and plays 3 sample scenarios forever.
