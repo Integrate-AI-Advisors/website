@@ -18,6 +18,26 @@
        observer frames (the old -8% margin made that possible). */
     }, { rootMargin: '0px 0px 12% 0px' });
     revealed.forEach(function (el) { io.observe(el); });
+
+    /* Momentum flicks can outrun IO frames entirely — sweep on scroll and
+       force-reveal anything the viewport has already passed. Self-removing. */
+    var pending = Array.prototype.slice.call(revealed);
+    var sweeping = false;
+    function sweep() {
+      sweeping = false;
+      pending = pending.filter(function (el) {
+        if (el.classList.contains('is-visible')) return false;
+        if (el.getBoundingClientRect().top < window.innerHeight) {
+          el.classList.add('is-visible'); io.unobserve(el); return false;
+        }
+        return true;
+      });
+      if (!pending.length) window.removeEventListener('scroll', onScroll);
+    }
+    function onScroll() {
+      if (!sweeping) { sweeping = true; requestAnimationFrame(sweep); }
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
   } else {
     revealed.forEach(function (el) { el.classList.add('is-visible'); });
   }
