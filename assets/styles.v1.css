@@ -342,15 +342,6 @@ a:hover { text-decoration-color: var(--ink); }
 .trust li span { color: var(--ink-soft); }
 .reassure { font-family: var(--serif); font-style: italic; font-size: 1.15rem; color: var(--ink-soft); margin-top: 2.2rem; }
 
-/* ---------- Founder strip ---------- */
-.founders { border-top: 1px solid rgba(30,42,69,.08); }
-.founders__row { display: flex; gap: 2.2rem; align-items: center; flex-wrap: wrap; margin-top: 1.8rem; }
-.founder { display: flex; gap: 1rem; align-items: center; }
-.founder img { width: 64px; height: 64px; border-radius: 50%; object-fit: cover; border: 2px solid var(--surface); box-shadow: 0 8px 24px -10px rgb(30 42 69/.3); }
-.founder b { display: block; font-weight: 600; }
-.founder span { font-size: var(--fs-small); color: var(--ink-soft); }
-.founder a { font-size: .82rem; }
-
 /* ---------- Pricing ---------- */
 .pricing { background: var(--grad-section); }
 .pricing .price-line { font-family: var(--serif); font-size: clamp(1.6rem, 4vw, 2.3rem); margin-top: 1.8rem; }
