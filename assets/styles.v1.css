@@ -327,11 +327,13 @@ body::after {
 .hero__copy { position: relative; z-index: 5; }
 .hero__copy h1 { margin-bottom: 1.6rem; max-width: 11em; text-wrap: balance; }
 .hero__copy .lead { margin-bottom: 2.4rem; }
+/* Block flow, not flex — mixed text + links wrap as tidy lines on any width */
 .hero__meta {
-  display: flex; align-items: center; gap: .6rem; margin-top: 1.1rem;
+  display: block; margin-top: 1.1rem; line-height: 2;
   font-size: var(--fs-small); color: var(--ink-soft);
 }
-.hero__meta svg { width: 15px; height: 15px; }
+.hero__meta svg { display: inline-block; width: 15px; height: 15px; vertical-align: -2.5px; margin-right: .35rem; }
+.hero__meta a { white-space: nowrap; }
 
 /* The network — inline SVG + canvas overlay. In the comp the network renders
    near 1:1 at 1535px — far larger than the grid cell — with its glow bleeding
@@ -702,7 +704,7 @@ body::after {
 }
 .card h3 { margin-bottom: .55rem; font-size: 1.28rem; }
 .card p { font-size: var(--fs-small); line-height: 1.62; color: var(--ink-soft); }
-.card svg { width: 26px; height: 26px; margin-bottom: 1.1rem; color: var(--bronze); }
+.card svg { width: 26px; height: 26px; margin-bottom: 1.1rem; color: var(--bronze); stroke-width: 1.75; }
 @media (prefers-reduced-motion: reduce) { .card, .card:hover { transform: none; } }
 
 /* Objections — conversational strips, deliberately NOT another card grid */
@@ -808,6 +810,15 @@ body::after {
   text-align: center; color: var(--ink);
 }
 .close-section .wrap { position: relative; z-index: 2; }
+@media (max-width: 640px) {
+  /* narrow viewports: hold the gold, let the slate corners nearly vanish */
+  .close-section {
+    background:
+      radial-gradient(120% 80% at 50% -20%, #FFF4DC 0%, rgba(243,228,190,.5) 40%, rgba(243,228,190,0) 70%),
+      radial-gradient(70% 40% at 105% 108%, rgba(94,111,141,.22) 0%, rgba(94,111,141,0) 60%),
+      linear-gradient(180deg, var(--dawn-ivory) 0%, #ECE6D8 100%);
+  }
+}
 .close-section h2 { max-width: 16em; margin-inline: auto; }
 .close-section p { margin-inline: auto; margin-top: 1.4rem; color: var(--ink-soft); }
 .close-section .btn { margin-top: 2.6rem; }
