@@ -348,6 +348,23 @@ body::after {
 .hero__canvas {
   position: absolute; inset: 0; pointer-events: none; z-index: 3;
 }
+/* Node labels float on glass over a varied field — lift them with a soft ink halo */
+.hero__network .node text {
+  paint-order: stroke; stroke: rgba(30,42,69,.45); stroke-width: 3px; stroke-linejoin: round;
+}
+.hero__network .node > g { filter: drop-shadow(0 1px 2px rgba(30,42,69,.35)); }
+/* On the gradient the CTA is luminous glass, as in the comp (ink primary lives on ivory) */
+.hero .btn--primary {
+  background: linear-gradient(180deg, rgba(255,248,232,.72) 0%, rgba(255,244,220,.48) 100%);
+  color: var(--ink); border-color: rgba(255,255,255,.85);
+  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.9), 0 12px 32px -14px rgb(30 42 69 / .4);
+}
+.hero .btn--primary:hover {
+  border-color: #fff;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.95), 0 16px 40px -14px rgb(30 42 69 / .42),
+              0 6px 28px -6px rgb(201 155 79 / .5);
+}
 
 /* Integrations strip (real HTML — never raster) */
 .strip { position: relative; z-index: 5; padding-bottom: 2.6rem; }
@@ -366,6 +383,16 @@ body::after {
 }
 
 @media (max-width: 900px) {
+  /* Tall narrow boxes drain the warmth — pour more gold in from the source
+     and keep a warm veil behind the network, as the mobile comp does */
+  .hero {
+    background:
+      radial-gradient(150% 80% at 12% -5%,
+        rgba(242,237,227,.97) 0%, rgba(240,230,208,.7) 34%, rgba(199,206,218,0) 62%),
+      radial-gradient(120% 45% at 55% 58%,
+        rgba(243,228,190,.32) 0%, rgba(243,228,190,0) 70%),
+      var(--grad-page);
+  }
   .hero__inner { grid-template-columns: 1fr; padding-top: 5.5rem; gap: 0; }
   .hero__copy { text-align: left; padding-top: 1rem; }
   .hero__network { max-width: 560px; margin-inline: auto; height: auto; }
