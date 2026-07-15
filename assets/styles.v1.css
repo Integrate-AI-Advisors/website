@@ -192,6 +192,13 @@ body::after {
 @keyframes hero-fil-draw { from { stroke-dashoffset: 620; } to { stroke-dashoffset: 0; } }
 @keyframes hero-fade { from { opacity: 0; } }
 @keyframes hero-rise { from { opacity: 0; transform: translateY(16px); } }
+/* The field blooms in a beat after first paint: an opacity-0 subtree is
+   skipped by the painter, so the first frame ships without rasterising
+   ~190 gradient-stroked elements — and light growing into the scene is
+   the better entrance anyway. No-JS and reduced-motion see it instantly. */
+@keyframes filfield-in { from { opacity: 0; } }
+.js .filfield { animation: filfield-in .9s ease-out .12s backwards; }
+
 /* Only the seven primary strands draw in — companions, tendrils and the glow
    pass are simply present. Animating every strand re-rasterised the whole
    oversized SVG each frame during load and cost half a second of first paint. */
@@ -213,6 +220,7 @@ body::after {
 .js .hero__copy > *:nth-child(4) { animation-delay: .22s; }
 .js .hero__copy > *:nth-child(5) { animation-delay: .3s; }
 @media (prefers-reduced-motion: reduce) {
+  .js .filfield,
   .js .hero__network .fil-main > path, .js .hero__network svg #nodes,
   .js .hero__copy > * { animation: none; }
 }
@@ -358,12 +366,12 @@ body::after {
 .hero__network .node text {
   paint-order: stroke; stroke: rgba(30,42,69,.45); stroke-width: 3px; stroke-linejoin: round;
 }
-.hero__network .node > g { filter: drop-shadow(0 1px 2px rgba(30,42,69,.35)); }
-/* On the gradient the CTA is luminous glass, as in the comp (ink primary lives on ivory) */
+/* On the gradient the CTA is luminous glass, as in the comp (ink primary lives
+   on ivory). No backdrop-filter: the backdrop is a smooth gradient, so a
+   translucent fill is visually identical and doesn't tax first paint. */
 .hero .btn--primary {
-  background: linear-gradient(180deg, rgba(255,248,232,.72) 0%, rgba(255,244,220,.48) 100%);
+  background: linear-gradient(180deg, rgba(255,248,232,.78) 0%, rgba(255,244,220,.55) 100%);
   color: var(--ink); border-color: rgba(255,255,255,.85);
-  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
   box-shadow: inset 0 1px 0 rgba(255,255,255,.9), 0 12px 32px -14px rgb(30 42 69 / .4);
 }
 .hero .btn--primary:hover {
