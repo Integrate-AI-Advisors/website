@@ -1,6 +1,6 @@
 # Privacy + terms redraft — for founder approval
 
-**Status:** DRAFT · not applied to the live pages · awaiting Chad's sign-off
+**Status:** APPLIED 2026-07-15 · Chad signed off (controller = the Ltd) and this copy now lives in `privacy.html` / `terms.html`. Still worth a solicitor's eye before launch.
 **Written:** 2026-07-14 · pairs with [LEGAL-CONTENT-DRIFT.md](LEGAL-CONTENT-DRIFT.md)
 
 This is proposed replacement copy, drafted so it accurately describes what the Dawn

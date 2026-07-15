@@ -1,6 +1,6 @@
 # Legal content drift — privacy & terms
 
-**Status:** OPEN · founder/legal decision required · **blocks ship**
+**Status:** RESOLVED 2026-07-15 · Chad signed off the redraft (controller = Integrate AI Advisors Ltd, site stays analytics-free) and it is applied to `privacy.html` / `terms.html`. Kept for the record.
 **Raised:** 2026-07-14, during the Dawn re-skin of `privacy.html` / `terms.html` (WS-13, queue item 2).
 
 ## What happened
