@@ -357,6 +357,131 @@ a:hover { text-decoration-color: var(--ink); }
 }
 @media (max-width: 420px) { .dash__kpis { grid-template-columns: 1fr 1fr; } .kpi:last-child { grid-column: span 2; } }
 
+/* ---------- Approvals simulator (§ You're in charge) — the centrepiece.
+   Markup ships the FINISHED conversation (no-JS / reduced-motion state);
+   app.v1.js rebuilds it and runs the auto-cycling loop, paused off-viewport
+   (.is-paused) and never started under reduced-motion. ---------- */
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+.approve-head { max-width: 46em; margin-bottom: 2.6rem; }
+.sim { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: .8rem; }
+.sim.is-paused *, .sim.is-paused *::after { animation-play-state: paused !important; }
+
+.sim__slack {
+  background: var(--surface); border: 1px solid rgba(30,42,69,.07);
+  border-radius: calc(var(--radius-card) - 8px); overflow: hidden;
+  display: flex; flex-direction: column;
+}
+.sim__chrome {
+  display: flex; align-items: center; gap: 6px; padding: .7rem .9rem;
+  border-bottom: 1px solid rgba(30,42,69,.08);
+  font: 600 .75rem/1.3 var(--sans); color: var(--ink-soft); max-width: none;
+}
+.sim__chrome span { flex: none; width: 9px; height: 9px; border-radius: 50%; background: rgba(30,42,69,.12); }
+.sim__chrome b { margin-left: .5rem; font-weight: 600; min-width: 0; }
+.sim__thread {
+  flex: 1; display: flex; flex-direction: column; justify-content: flex-end;
+  gap: .9rem; padding: 1rem; height: 350px; overflow: hidden;
+}
+.msg { display: flex; gap: .6rem; align-items: flex-start; }
+.js .msg { opacity: 0; transform: translateY(8px); transition: opacity .4s ease, transform .4s ease; }
+.js .msg.is-on { opacity: 1; transform: none; }
+.msg__avatar {
+  flex: none; width: 28px; height: 28px; border-radius: 8px; position: relative;
+  background: linear-gradient(135deg, #FFF4DC, #EBDDB9); border: 1px solid rgba(168,121,56,.4);
+}
+.msg__avatar::after { content: ''; position: absolute; inset: 8px; border-radius: 50%; border: 2px solid #A87938; }
+.msg--you .msg__avatar { background: var(--haze); border-color: rgba(30,42,69,.22); }
+.msg--you .msg__avatar::after { border-color: var(--ink-soft); }
+.msg__body { min-width: 0; }
+.msg__meta { display: flex; align-items: baseline; gap: .45rem; font: 600 .74rem/1 var(--sans); color: var(--ink); max-width: none; }
+.msg__meta time { font-weight: 500; color: var(--ink-soft); font-size: .68rem; }
+.msg__badge {
+  font: 700 .55rem/1 var(--sans); letter-spacing: .06em; text-transform: uppercase;
+  color: var(--ink-soft); border: 1px solid rgba(30,42,69,.18); border-radius: 4px; padding: .14rem .3rem;
+}
+.msg__text { font-size: .82rem; line-height: 1.55; color: var(--ink-soft); margin-top: .3rem; max-width: 34em; }
+.msg--confirm .msg__text { color: #3D6B4E; font-weight: 500; }
+.msg__typing {
+  display: inline-flex; gap: 4px; padding: .55rem .7rem; margin-top: .3rem;
+  background: rgba(30,42,69,.05); border-radius: 12px;
+}
+.msg__typing span { width: 6px; height: 6px; border-radius: 50%; background: var(--ink-soft); animation: sim-dot 1.1s ease-in-out infinite; }
+.msg__typing span:nth-child(2) { animation-delay: .18s; }
+.msg__typing span:nth-child(3) { animation-delay: .36s; }
+@keyframes sim-dot {
+  0%, 60%, 100% { transform: none; opacity: .35; }
+  30% { transform: translateY(-3px); opacity: .85; }
+}
+
+.sim__queue {
+  display: flex; flex-direction: column;
+  background: linear-gradient(315deg, #EAE5DA 0%, #F2EDE3 100%);
+  border: 1px solid rgba(30,42,69,.07);
+  border-radius: calc(var(--radius-card) - 8px); padding: .9rem;
+}
+.sim__queue-head {
+  display: flex; justify-content: space-between; align-items: baseline; gap: .6rem;
+  font: 600 .74rem/1 var(--sans); letter-spacing: .07em; text-transform: uppercase;
+  color: var(--ink-soft); margin-bottom: .8rem; max-width: none;
+}
+.sim__queue-note { font: 500 .62rem/1 var(--sans); letter-spacing: .05em; }
+.simcard {
+  background: var(--surface); border: 1px solid rgba(30,42,69,.09);
+  border-left: 3px solid var(--haze); border-radius: 12px;
+  padding: .85rem .95rem; box-shadow: 0 10px 30px -18px rgb(30 42 69 / .35);
+}
+.js .simcard { opacity: 0; transform: translateY(10px); transition: opacity .4s ease, transform .4s ease; }
+.js .simcard.is-on { opacity: 1; transform: none; }
+.simcard.is-leaving { opacity: 0; transform: translateY(-8px); }
+.simcard--amber { border-left-color: #C08A45; }
+.simcard--red { border-left-color: #B4643C; }
+.simcard--green { border-left-color: #5F7F63; }
+.simcard__strip { display: flex; gap: .5rem; align-items: center; max-width: none; }
+.simcard__chip {
+  font: 700 .6rem/1 var(--sans); letter-spacing: .09em; text-transform: uppercase;
+  color: var(--ink); background: rgba(30,42,69,.07); border-radius: 5px; padding: .26rem .45rem;
+}
+.simcard__origin { font: 600 .62rem/1 var(--sans); letter-spacing: .05em; text-transform: uppercase; color: var(--ink-soft); }
+.simcard__risk { font: 500 .7rem/1.4 var(--sans); color: var(--ink-soft); margin-top: .55rem; max-width: none; }
+.simcard__title { font: 600 .92rem/1.35 var(--sans); color: var(--ink); margin-top: .5rem; max-width: none; }
+.simcard__detail { font-size: .78rem; line-height: 1.5; color: var(--ink-soft); margin-top: .3rem; max-width: none; }
+.simcard__facts { display: flex; flex-wrap: wrap; gap: .35rem; margin-top: .6rem; max-width: none; }
+.simcard__facts span { font: 500 .68rem/1 var(--sans); color: var(--ink-soft); background: rgba(30,42,69,.05); border-radius: 999px; padding: .3rem .55rem; }
+.simcard__actions { display: flex; flex-wrap: wrap; gap: .45rem; margin-top: .85rem; }
+.simbtn {
+  font: 600 .78rem/1 var(--sans); color: var(--ink);
+  background: var(--surface); border: 1px solid rgba(30,42,69,.18);
+  border-radius: 9px; padding: .55rem .8rem; cursor: pointer;
+  transition: transform .15s ease, filter .15s ease;
+}
+.simbtn--approve { background: #3D6B4E; border-color: #3D6B4E; color: #fff; }
+.simbtn:hover { transform: translateY(-1px); }
+.simbtn.is-auto, .simbtn:active { transform: scale(.95); filter: brightness(.94); }
+.simcard__note { display: none; font: italic 500 .75rem/1.5 var(--serif); color: var(--ink-soft); margin-top: .6rem; max-width: none; }
+.simcard__note.is-on { display: block; animation: sim-pulse 1.4s ease-in-out infinite; }
+@keyframes sim-pulse { 0%, 100% { opacity: 1; } 50% { opacity: .55; } }
+.simcard__exec { display: none; align-items: center; gap: .6rem; margin-top: .85rem; font: 600 .72rem/1 var(--sans); color: var(--ink-soft); max-width: none; }
+.simcard__exec.is-on { display: flex; }
+.simcard__exec-track { flex: 1; height: 4px; border-radius: 2px; background: rgba(30,42,69,.08); overflow: hidden; }
+.simcard__exec-fill { display: block; width: 0; height: 100%; border-radius: 2px; background: #A87938; transition: width 1.3s ease; }
+.simcard__done { display: none; align-items: center; gap: .5rem; margin-top: .85rem; font: 600 .78rem/1.35 var(--sans); color: #3D6B4E; max-width: none; }
+.simcard__done.is-on { display: flex; }
+.simcard.is-done .simcard__done { display: flex; }
+.simcard.is-done .simcard__actions, .simcard.is-done .simcard__note, .simcard.is-done .simcard__exec { display: none; }
+.simcard__done.is-neutral { color: var(--ink-soft); }
+.simcard__done svg { flex: none; width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; }
+@media (max-width: 860px) {
+  .sim { grid-template-columns: 1fr; }
+  .sim__thread { height: 300px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .js .msg, .js .simcard { opacity: 1; transform: none; transition: none; }
+  .msg__typing span, .simcard__note.is-on { animation: none; }
+}
+
 /* Acts cards */
 .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 1.2rem; margin-top: 2.6rem; }
 .card {

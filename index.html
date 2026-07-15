@@ -296,18 +296,73 @@
   </div>
 </section>
 
-<!-- ============ APPROVE ============ -->
+<!-- ============ APPROVE (live simulator) ============ -->
 <section class="section chapter">
-  <div class="wrap chapter__grid reveal">
-    <div>
+  <div class="wrap reveal">
+    <div class="approve-head">
       <p class="eyebrow">You're in charge</p>
       <h2>Nothing happens without your say-so.</h2>
       <p style="margin-top:1.4rem">Every action lands in your Slack before it goes out. Small, safe things it just does and tells you. Anything that spends money, sends a message or touches a customer waits for a tap. You decide in seconds, from your phone.</p>
-      <p class="detail-line">It's one brain — but it shows up as a small team of specialists in your Slack, each looking after a different corner of the business.</p>
+      <p class="detail-line">It's one brain — but it shows up as a small team of specialists in your Slack, each looking after a different corner of the business. Watch it work — the buttons are real.</p>
     </div>
-    <figure class="proof">
-      <img src="/assets/img/proof-approval.png" alt="A Slack approval card: the Brain asks permission before chasing an overdue invoice, with Approve, Hold and Not now buttons. Sample data." width="1000" height="720" loading="lazy">
-      <figcaption class="proof__caption">Approve · Hold · Not now — from your phone. Shown with sample roastery data.</figcaption>
+    <figure class="proof proof--sim">
+      <div class="sim" data-sim role="group" aria-label="A simulated Slack approvals channel for a fictional roastery. An auto-playing demo with sample data — the buttons are real, click one to drive it.">
+        <div class="sim__slack">
+          <p class="sim__chrome" aria-hidden="true"><span></span><span></span><span></span><b>#approvals — Northwind Coffee Roasters (sample)</b></p>
+          <div class="sim__thread">
+            <div class="msg is-on">
+              <span class="msg__avatar" aria-hidden="true"></span>
+              <div class="msg__body">
+                <p class="msg__meta"><b>IntegrateAI · Wholesale</b><span class="msg__badge">app</span><time>07:15</time></p>
+                <p class="msg__text">The Bridge Café usually reorders every two weeks — it's been five. That pattern normally means drift, not a lost customer. I've drafted a friendly check-in from you; it's in your approvals.</p>
+              </div>
+            </div>
+            <div class="msg msg--you is-on">
+              <span class="msg__avatar" aria-hidden="true"></span>
+              <div class="msg__body">
+                <p class="msg__meta"><b>You</b><time>07:18</time></p>
+                <p class="msg__text">Warmer, please — and mention the new seasonal espresso.</p>
+              </div>
+            </div>
+            <div class="msg is-on">
+              <span class="msg__avatar" aria-hidden="true"></span>
+              <div class="msg__body">
+                <p class="msg__meta"><b>IntegrateAI · Wholesale</b><span class="msg__badge">app</span><time>07:19</time></p>
+                <p class="msg__text">Done — warmer tone, and a line on the new seasonal espresso. The revised draft is in your approvals.</p>
+              </div>
+            </div>
+            <div class="msg msg--confirm is-on">
+              <span class="msg__avatar" aria-hidden="true"></span>
+              <div class="msg__body">
+                <p class="msg__meta"><b>IntegrateAI · Wholesale</b><span class="msg__badge">app</span><time>07:21</time></p>
+                <p class="msg__text">Sent to The Bridge Café. I'll flag their reply the moment it lands.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <aside class="sim__queue">
+          <p class="sim__queue-head">Approval queue<span class="sim__queue-note">sample data</span></p>
+          <div class="sim__queue-body">
+            <div class="simcard simcard--amber is-on is-done">
+              <p class="simcard__strip"><span class="simcard__chip">Send</span><span class="simcard__origin">Proactive</span></p>
+              <p class="simcard__risk">Needs your sign-off — it messages a customer</p>
+              <p class="simcard__title">Send the warmer check-in to The Bridge Café</p>
+              <p class="simcard__detail">Friendlier opening, a line on the new seasonal espresso, and an offer to add their usual to the next delivery round.</p>
+              <p class="simcard__facts"><span>Last order: 35 days</span><span>Usual: every 14</span><span>Nothing sends without you</span></p>
+              <div class="simcard__actions">
+                <button type="button" class="simbtn simbtn--approve" data-act="approve">Approve</button>
+                <button type="button" class="simbtn" data-act="changes">Request changes</button>
+                <button type="button" class="simbtn" data-act="decline">Decline</button>
+              </div>
+              <p class="simcard__note"></p>
+              <p class="simcard__exec"><span class="simcard__exec-track"><span class="simcard__exec-fill"></span></span>Working…</p>
+              <p class="simcard__done"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 8.5l3.5 3.5 7.5-8"/></svg><span>Approved — sent, and posted back to the thread</span></p>
+            </div>
+          </div>
+          <p class="sim__live sr-only" aria-live="polite" aria-atomic="true"></p>
+        </aside>
+      </div>
+      <figcaption class="proof__caption">Approve · Request changes · Decline — from your phone. Shown with sample roastery data.</figcaption>
     </figure>
   </div>
 </section>
