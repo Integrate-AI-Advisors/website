@@ -420,9 +420,9 @@ body::after {
    Reduced-motion / no-JS: static base connectors — the authored finished state. */
 .pipeline { margin: 0; width: 100%; }
 .pipeline svg { display: block; width: 100%; height: auto; }
-.pipe-base path { fill: none; stroke: #A87938; stroke-opacity: .28; stroke-width: 1.6; }
-.pipe-node circle { fill: rgba(255,255,255,.78); stroke: rgba(30,42,69,.16); stroke-width: 1.2; }
-.pipe-pill rect { fill: rgba(255,255,255,.78); stroke: rgba(30,42,69,.14); stroke-width: 1.2; }
+.pipe-base path { fill: none; stroke: var(--bronze); stroke-opacity: .28; stroke-width: 1.6; }
+.pipe-node circle { fill: rgba(252,250,245,.88); stroke: rgba(168,121,56,.3); stroke-width: 1.2; }
+.pipe-pill rect { fill: rgba(252,250,245,.88); stroke: rgba(168,121,56,.26); stroke-width: 1.2; }
 .pipe-flow {
   fill: none; stroke: #C99B4F; stroke-width: 2; stroke-linecap: round;
   stroke-dasharray: 16 128; opacity: 0; transition: opacity .6s ease;
