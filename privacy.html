@@ -21,7 +21,7 @@ strong{font-weight:600}
 table{width:100%;border-collapse:collapse;margin:14px 0 20px}
 th,td{text-align:left;vertical-align:top;padding:10px 12px;border-bottom:1px solid rgba(20,20,19,0.08);font-size:14px}
 th{font-weight:600;font-size:13px;color:#6a6862;text-transform:uppercase;letter-spacing:0.05em}
-@media (max-width:560px){table,thead,tbody,tr,th,td{display:block}thead{display:none}tr{padding:10px 0;border-bottom:1px solid rgba(20,20,19,0.08)}td{border:0;padding:2px 0}td:first-child{font-weight:600}}
+@media (max-width:560px){table,thead,tbody,tr,th,td{display:block}thead{display:none}tr{padding:10px 0;border-bottom:1px solid rgba(20,20,19,0.08)}td{border:0;padding:2px 0}td:first-child{font-weight:600}td:nth-child(2)::before{content:"What: ";font-weight:600}td:nth-child(3)::before{content:"Why: ";font-weight:600}}
 </style>
 <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
 </head>
@@ -47,16 +47,20 @@ th{font-weight:600;font-size:13px;color:#6a6862;text-transform:uppercase;letter-
 <tr><td>You email us</td><td>Your name, email address and what you tell us</td><td>To reply and follow up. Legitimate interests (answering people who contact us).</td></tr>
 <tr><td>You book a walkthrough</td><td>Your name, email address, the time you choose and any notes you add (collected through Cal.com)</td><td>To arrange and hold the call. Legitimate interests, or steps you ask us to take before a contract.</td></tr>
 <tr><td>You or your business become a client</td><td>Names and business contact details of your team, contract, invoice and payment records</td><td>To provide the service and run the relationship. Contract; and legal obligation for tax and accounting records.</td></tr>
-<tr><td>You visit this website</td><td>Page views, referring site, country and device type, counted in aggregate with no cookies (Vercel Web Analytics and Speed Insights); technical logs including IP address, kept by our hosting provider for security</td><td>To understand how the site is used and keep it secure. Legitimate interests.</td></tr>
+<tr><td>You visit this website</td><td>Page views, referring site, country, device type and page-load timings, counted in aggregate with no cookies (Vercel Web Analytics and Speed Insights); technical logs including IP address, kept for a short period by our hosting provider for security</td><td>To understand how the site is used and keep it secure. Legitimate interests.</td></tr>
+<tr><td>We contact your business about our service</td><td>Your name and business contact details, from public sources such as your business website</td><td>To tell businesses that may benefit about our service. Legitimate interests (promoting our business to other businesses). You can ask us to stop at any time.</td></tr>
 </tbody>
 </table>
+<p>You don&rsquo;t have to give us information, but we can&rsquo;t reply to you or arrange a call without it.</p>
 <p>We do not sell personal information, and we do not make decisions about you based solely on automated processing that have legal or similarly significant effects on you.</p>
 
 <h2>4. Who we share it with</h2>
 <p>We use service providers who handle personal information on our behalf, under contracts that require them to protect it:</p>
 <ul>
 <li>Vercel, which hosts this website and counts visits.</li>
-<li>Google, for our email.</li>
+<li>Google, for email, calendar and documents.</li>
+<li>Slack, for messaging with clients.</li>
+<li>Anthropic, whose AI tools we use to run our business.</li>
 <li>Cal.com, for booking calls.</li>
 <li>Our accounting and banking providers, for invoices and payments.</li>
 </ul>
@@ -64,11 +68,11 @@ th{font-weight:600;font-size:13px;color:#6a6862;text-transform:uppercase;letter-
 <p>We may also share information where the law requires it, or with professional advisers such as our accountants and lawyers.</p>
 
 <h2>5. International transfers</h2>
-<p>Some of these providers are based in, or process information in, the United States or other countries outside the UK. Where that happens, we rely on the safeguards UK data protection law requires, such as UK adequacy regulations (including the UK Extension to the EU-US Data Privacy Framework) or the UK's approved contract clauses.</p>
+<p>Some of these providers are based in, or process information in, the United States or other countries outside the UK. Where that happens, we rely on the safeguards UK data protection law requires, such as UK adequacy regulations (including the UK Extension to the EU-US Data Privacy Framework) or the UK's approved contract clauses. Ask us if you would like details.</p>
 
 <h2>6. How long we keep it</h2>
 <ul>
-<li>Enquiries and bookings that do not lead to working together: up to 12 months after our last contact.</li>
+<li>Enquiries, bookings and prospect details that do not lead to working together: for as long as we need them to follow up, normally no more than 12 months after our last contact.</li>
 <li>Client relationship records: for the length of the contract and 6 years after it ends, for legal, tax and accounting purposes.</li>
 <li>Website visit counts are aggregated and never linked to you.</li>
 </ul>
@@ -77,8 +81,8 @@ th{font-weight:600;font-size:13px;color:#6a6862;text-transform:uppercase;letter-
 <p>This website does not set cookies or use similar technologies to track you. Cal.com, where bookings are made, is a separate website with its own cookie and privacy policies.</p>
 
 <h2>8. Your rights</h2>
-<p>You have the right to ask for a copy of your personal information, to have it corrected or deleted, to restrict or object to how we use it, and to receive it in a portable format. Some of these rights have limits set by law. To make a request, email <a href="mailto:hello@integrate-ai.uk">hello@integrate-ai.uk</a>. We will respond within one month.</p>
-<p>If you are unhappy with how we have handled your information, please tell us first so we can put it right. You also have the right to complain to the Information Commissioner's Office: <a href="https://ico.org.uk/make-a-complaint/" rel="noopener">ico.org.uk/make-a-complaint</a>, or 0303 123 1113.</p>
+<p>You have the right to ask for a copy of your personal information, to have it corrected or deleted, to restrict or object to how we use it, and to receive it in a portable format. Some of these rights have limits set by law. To make a request, email <a href="mailto:hello@integrate-ai.uk">hello@integrate-ai.uk</a>. We will respond within one month (longer where the law allows).</p>
+<p>If you are unhappy with how we have handled your information, please tell us first so we can put it right. You also have the right to complain to the Information Commissioner's Office: <a href="https://ico.org.uk/make-a-complaint/">ico.org.uk/make-a-complaint</a>, or 0303 123 1113.</p>
 
 <h2>9. Keeping it safe</h2>
 <p>We use appropriate technical and organisational measures to protect personal information, and we limit access to the people who need it.</p>
