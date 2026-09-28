@@ -892,3 +892,38 @@ html:not(.js) .hero__figure,.rm .hero__figure{align-self:end;justify-self:end;wi
 .js:not(.rm) .chat--slack .typing,.js:not(.rm) .chat--slack .msg--you .typing,.js:not(.rm) .chat--slack .msg--cro .typing,.js:not(.rm) .chat--slack .msg--cfo .typing{left:64px;right:auto;top:10px;height:28px;padding:0 12px;border-radius:14px;background:#f1f1f1;box-shadow:none;transform-origin:0 50%}
 .chat--slack .typing i,.chat--slack .msg--you .typing i{width:6px;height:6px;background:#8f8f8f}
 @container (max-width:560px){.chat--slack .chat__bar .label{display:none}.slk{grid-template-columns:minmax(0,1fr)}.slk__side{display:none}.chat--slack .msg__box{padding:8px 14px}.slk__head{padding:11px 14px}.chat--slack .js .typing{left:60px}}
+
+/* ---------- 1.7: one team, two places (Slack + your mission control); tabs swap gently ---------- */
+.chat--duo{background:#fff}
+.duo__tabs{position:relative;display:flex;gap:4px;padding:8px;background:#f4f4f2;border-bottom:1px solid var(--line-soft)}
+.duo__tab{position:relative;z-index:1;flex:1;height:34px;border:0;border-radius:10px;background:none;font:500 11px/1 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);cursor:pointer;transition:color .4s}
+.duo__tab[aria-selected="true"]{color:var(--ink)}
+.duo__tab:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+.duo__ind{position:absolute;top:8px;bottom:8px;left:8px;width:calc(50% - 10px);border-radius:10px;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.08),inset 0 0 0 1px var(--line);transition:transform .6s cubic-bezier(.65,0,.35,1)}
+.chat--duo[data-view="1"] .duo__ind{transform:translateX(calc(100% + 4px))}
+.duo__stage{display:grid}
+.duo__pane{grid-area:1/1;min-width:0;transition:opacity .6s ease,transform .6s cubic-bezier(.65,0,.35,1),visibility 0s linear .6s;opacity:0;visibility:hidden;transform:translateY(8px)}
+.duo__pane.is-on{opacity:1;visibility:visible;transform:none;transition-delay:0s}
+.no-js .duo__pane,.rm .duo__pane{transition:none}
+.duo__pane--mc{display:flex;background:#fff}
+.mcv{flex:1;display:flex;flex-direction:column;gap:12px;padding:16px 18px 14px}
+.mcv__head{display:flex;align-items:center;gap:10px;padding-bottom:12px;border-bottom:1px solid var(--line-soft)}
+.mcv__orb{width:30px;height:30px;border-radius:8px}
+.mcv__title{font-weight:600;font-size:15px;letter-spacing:-.01em}
+.mcv__st{margin-left:auto;font-size:10px}
+.mcv__label{margin:2px 0 -2px}
+.mcv__item{display:flex;gap:12px;padding:14px;border-radius:16px;background:var(--card);box-shadow:inset 0 0 0 1px var(--line)}
+.mcv__body{min-width:0;display:flex;flex-direction:column;align-items:flex-start;gap:6px}
+.mcv__meta{display:flex;flex-wrap:wrap;align-items:baseline;gap:8px;margin:0;font-size:14px}
+.mcv__meta b{font-weight:700}
+.mcv__meta span{font:500 10.5px/1 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.mcv__text{margin:0;font-size:15px;line-height:1.45;color:var(--ink)}
+.mcv__note{margin:auto 0 0;font-size:13px;color:var(--muted)}
+.duo__road{display:flex;flex-wrap:wrap;gap:6px;margin:0;padding:12px 16px 16px;list-style:none;border-top:1px solid var(--line-soft);background:#fff}
+.duo__road li{display:inline-flex;align-items:center;gap:8px;padding:6px 10px;border-radius:999px;font-size:12.5px;color:var(--ink);box-shadow:inset 0 0 0 1px var(--line)}
+.duo__road b{font:500 10px/1 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.duo__road li:first-child{background:#f1f7f3;box-shadow:inset 0 0 0 1px rgba(62,142,107,.35)}
+.duo__road li:first-child b{color:#357a5c}
+@container (max-width:560px){.duo__tab{font-size:10px;letter-spacing:.08em}.mcv{padding:14px}.mcv__st{display:none}}
+.mcv__night{display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px;padding:12px 14px;border-radius:14px;background:#f6f6f4}
+.mcv__night .label{margin:0}.mcv__nt{margin:0;font-size:14px;color:var(--ink)}.mcv__night .st{font-size:10px}
