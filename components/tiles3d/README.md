@@ -131,3 +131,32 @@ greyscale (stored as grey + alpha), all under 250 KB. Labelled and clean (`-clea
 | `deck-face.png` | the deck face-on | 714x730 |
 
 Show them at half their pixel size (they are 2x). They sit best on the paper `#F1F1EF` or white cards.
+
+## Signal Colour additions (version 1.1.0-colour)
+
+This copy lives in `variants/signal-colour/`. It adds one optional input and changes nothing else: with no
+palette it draws exactly the greyscale 1.0 tiles. The deck and its composing orb stay greyscale (the logo).
+
+- **`palette`** (new option): `IATiles3D.create(el, { palette })`. When the option is absent the component
+  reads `window.IA_COLOUR.tiles3d` (the page's `colour.js` sets it); pass `palette: null` to force greyscale.
+  ```js
+  palette = {
+    finishes: { myFinish: { color, metal, rough, cc, ccr, sheen, env, envI, glow, tm, grad, ink, inkR, emit,
+                            accent, pat, patR, patAmt, opacity, edge, shadow, dome, pattern } },   // optional, adds or overrides finishes
+    tiles: { 'Xero': 'glassGreen', 'Cropster': { accent: '#A86F1C' }, 'Bank': { finish: 'frostGreen' } }
+  }
+  ```
+- **New finishes** (usable by name, brand hues only): `ceramicGreen`, `ceramicBlue`, `ceramicAmber` (tinted glaze,
+  deep-hue label, glyph in the hue), `glassGreen`, `glassBlue`, `glassAmber` (jewel glass: the face is the brand hue
+  itself, not tone mapped, lit a little more toward the lower edge, crisp strip reflections, pale self-lit ink),
+  `frostGreen`, `frostBlue`, `frostAmber` (translucent tinted glass), `aluGreen`, `aluBlue`, `aluAmber` (anodised
+  metal). `IATiles3D.FINISHES` lists every finish name.
+- **New finish fields:** `accent` (ink for the live glyph: bars, lines, dots; labels keep `ink`), `glow` (the body
+  lights itself by this fraction of its colour), `tm: false` (skip tone mapping so the face matches the CSS hue),
+  `grad` (emissive gradient, brighter toward the lower edge), `pattern` (which surface pattern the atlas draws:
+  `dots`, `graphite`, `hatch`).
+- **Shader change:** the atlas's animated channel (G) can be inked separately (`uInk2`, `uInkEmit2`), and glass
+  can carry an emissive gradient (`uGrad`). Program cache key is now `ia-tile-c1`.
+- **Renders:** `renders-colour.html` poses the coloured tiles (`?shot=glassGreen|glassBlue|glassAmber|ceramicAmber|
+  ceramicBlue|grid&fin=<any finish>`) and exposes `window.__trim(pad)`; the page's `.tools/stills.mjs` captures
+  trimmed transparent PNGs (4x, kept in `.tools/stills-raw/`, halved into `img/`).

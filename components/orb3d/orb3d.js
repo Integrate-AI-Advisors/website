@@ -1,5 +1,8 @@
 /* IAOrb3D v1.0 · the IntegrateAI composing orb as a real 3D object, plus the "dive into mission control" moment.
-   Zero dependencies: raw WebGL (2, falling back to 1 + instancing). Greyscale only. The sphere never spins;
+   Signal Colour edition (1.0-c): two optional extras, both off unless asked for. `tint` gives the light a colour
+   (a warm key glint, a cool rim, a paper bounce), and pulse(strength, angle, colour) lets a ripple carry a colour.
+   Without them it renders exactly as 1.0. The tint comes from opts.tint, or window.IA_COLOUR.orb3d.tint.
+   Zero dependencies: raw WebGL (2, falling back to 1 + instancing). Greyscale by default. The sphere never spins;
    only the woven band moves, at the brand speed. Orientation, sizes and clock match the official orb.svg still
    (tilt 0.729 rad, band clock 2.4 s), fitted dot by dot against the file.
 
@@ -22,7 +25,7 @@
   var STILL = 2.4;                // brand still clock, seconds
   var D0 = 14;                    // rest camera distance (orb radius = 1): long lens, logo-faithful
   var K_SIZE = 0.0229, K_MIN = 0.0227; // dot radius per orb radius (fitted to orb.svg)
-  var FLOATS = 12;
+  var FLOATS = 16;
 
   function c01(v) { return v < 0 ? 0 : v > 1 ? 1 : v; }
   function lerp(a, b, t) { return a + (b - a) * t; }
@@ -113,10 +116,11 @@
     'attribute vec4 iA;', // x, y (css px), radius px, blur px
     'attribute vec4 iB;', // streak x, y (px), grey, alpha
     'attribute vec4 iC;', // spec, glow, ink, flat
+    'attribute vec4 iD;', // ripple colour rgb, amount (Signal Colour)
     'uniform vec2 uRes;',
     'varying vec2 vLocal; varying vec2 vAxis; varying vec2 vPix;',
     'varying vec3 vShape;', // radius, streak length, blur
-    'varying vec4 vB; varying vec4 vC;',
+    'varying vec4 vB; varying vec4 vC; varying vec4 vD;',
     'void main(){',
     '  float L = length(iB.xy);',
     '  vec2 ax = L > 0.001 ? iB.xy / L : vec2(1.0, 0.0);',
@@ -126,7 +130,7 @@
     '  vec2 loc = vec2(aCorner.x * (ext + L * 0.5), aCorner.y * ext);',
     '  vec2 pix = iA.xy + ax * loc.x + pp * loc.y;',
     '  vLocal = loc; vAxis = ax; vPix = pix;',
-    '  vShape = vec3(iA.z, L, iA.w); vB = iB; vC = iC;',
+    '  vShape = vec3(iA.z, L, iA.w); vB = iB; vC = iC; vD = iD;',
     '  gl_Position = vec4(pix.x / uRes.x * 2.0 - 1.0, 1.0 - pix.y / uRes.y * 2.0, 0.0, 1.0);',
     '}'
   ].join('\n');
@@ -134,8 +138,9 @@
   var FS_BEAD = [
     'precision highp float;',
     'varying vec2 vLocal; varying vec2 vAxis; varying vec2 vPix;',
-    'varying vec3 vShape; varying vec4 vB; varying vec4 vC;',
+    'varying vec3 vShape; varying vec4 vB; varying vec4 vC; varying vec4 vD;',
     'uniform vec3 uKey;',
+    'uniform vec3 uGlint; uniform vec3 uRim; uniform vec3 uBounce;',
     'uniform vec4 uClip; uniform float uClipR; uniform float uClipOn;',
     SDF,
     'void main(){',
@@ -173,13 +178,16 @@
     '  float g = vB.z, ink = vC.z;',
     // pearl on the dark deck: soft diffuse, crisp glint, a cool back-rim on the shadow side
     '  float back = clamp(dot(n.xy, normalize(vec2(0.62, -0.78))), 0.0, 1.0);',
-    '  float cL = g * (0.26 + 0.84 * dif * dif) + vC.x * (1.1 * spec + 0.10 * sheen) + fres * back * 0.40 * (0.35 + g) + env * 0.10 * vC.x;',
+    '  vec3 cL = vec3(g * (0.26 + 0.84 * dif * dif)) + uGlint * (vC.x * (1.1 * spec + 0.10 * sheen) + env * 0.10 * vC.x) + uRim * (fres * back * 0.40 * (0.35 + g));',
     // polished ink bead on paper: deep body, bright glint, paper bounce on the lower rim
     '  float bounce = clamp(-n.y * 0.8 + 0.2, 0.0, 1.0);',
-    '  float cI = g * (0.55 + 0.6 * dif) + vC.x * (0.95 * spec + 0.06 * sheen) + fres * bounce * 0.34 * (1.0 - g * 0.5) + env * 0.07 * vC.x;',
-    '  float c = mix(cL, cI, ink);',
+    '  vec3 cI = vec3(g * (0.55 + 0.6 * dif)) + uGlint * (vC.x * (0.95 * spec + 0.06 * sheen) + env * 0.07 * vC.x) + uBounce * (fres * bounce * 0.34 * (1.0 - g * 0.5));',
+    '  vec3 c = mix(cL, cI, ink);',
     '  float fl = max(vC.w, clamp(b / (R + 1.5), 0.0, 1.0) * 0.8);',
-    '  c = mix(c, g + vC.x * 0.06 * (1.0 - ink), fl);',
+    '  c = mix(c, vec3(g + vC.x * 0.06 * (1.0 - ink)), fl);',
+    // a ripple can carry the colour of the tool that sent it: the bead takes that hue, lit by its own light
+    '  float lum = dot(c, vec3(0.2126, 0.7152, 0.0722));',
+    '  c = mix(c, vD.rgb * (0.3 + 1.05 * lum) + uGlint * vC.x * spec * 0.8, vD.a);',
     '  float a = vB.w * cov * energy;',
     '  if (uClipOn > 0.5) {',
     '    vec2 hs = uClip.zw * 0.5;',
@@ -190,7 +198,8 @@
     '  if (vC.y > 0.0 && hl < R) { float e = max(d - R, 0.0) / (R * 0.8 + 1.2); halo = vC.y * exp(-e * e) * (1.0 - cov * 0.6) * energy; }',
     '  if (uClipOn > 0.5) { vec2 hs2 = uClip.zw * 0.5; halo *= 1.0 - smoothstep(-0.8, 0.4, sdRR(vPix - uClip.xy - hs2, hs2, min(uClipR, min(hs2.x, hs2.y)))); }',
     '  c = clamp(c, 0.0, 1.0);',
-    '  gl_FragColor = vec4(vec3(c * a + halo * (1.0 - a)), a);',
+    '  vec3 hc = mix(vec3(1.0), vD.rgb, vD.a);',
+    '  gl_FragColor = vec4(c * a + hc * halo * (1.0 - a), a);',
     '}'
   ].join('\n');
 
@@ -257,6 +266,17 @@
     var manualPointer = opts.pointer === 'manual' || opts.pointer === false;
     var smoothing = opts.smoothing !== false;
     var qa = !!opts.qa;
+    // Signal Colour: light tints (sRGB hex), mixed toward white by (1 - amount). Absent = pure white light.
+    var tintOpt = opts.tint || (G.IA_COLOUR && G.IA_COLOUR.orb3d && G.IA_COLOUR.orb3d.tint) || null;
+    function tintRGB(hex, amt) {
+      if (!hex) return [1, 1, 1];
+      var h = String(hex).replace('#', ''), k = amt == null ? 1 : Math.max(0, Math.min(1, amt));
+      var c = [parseInt(h.slice(0, 2), 16) / 255, parseInt(h.slice(2, 4), 16) / 255, parseInt(h.slice(4, 6), 16) / 255];
+      return c.map(function (v) { return 1 + (v - 1) * k; });
+    }
+    var TG = tintRGB(tintOpt && tintOpt.glint, tintOpt && tintOpt.amount);
+    var TR = tintRGB(tintOpt && tintOpt.rim, tintOpt && tintOpt.amount);
+    var TB = tintRGB(tintOpt && tintOpt.bounce, tintOpt && tintOpt.amount);
 
     var api = { supported: false, ready: null, canvas: null, stats: { cpu: 0, beads: 0 } };
     var resolveReady; api.ready = new Promise(function (r) { resolveReady = r; });
@@ -300,7 +320,7 @@
     function initGL() {
       P_DECK = program(gl, VS_QUAD, FS_DECK, { aPos: 0 });
       P_SHADOW = program(gl, VS_QUAD, FS_SHADOW, { aPos: 0 });
-      P_BEAD = program(gl, VS_BEAD, FS_BEAD, { aCorner: 0, iA: 1, iB: 2, iC: 3 });
+      P_BEAD = program(gl, VS_BEAD, FS_BEAD, { aCorner: 0, iA: 1, iB: 2, iC: 3, iD: 4 });
       quadBuf = gl.createBuffer(); gl.bindBuffer(gl.ARRAY_BUFFER, quadBuf);
       gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([0, 0, 1, 0, 0, 1, 1, 1]), gl.STATIC_DRAW);
       cornerBuf = gl.createBuffer(); gl.bindBuffer(gl.ARRAY_BUFFER, cornerBuf);
@@ -407,20 +427,26 @@
     var AL = new Float32Array(N), GR = new Float32Array(N), SP = new Float32Array(N), GW = new Float32Array(N);
     var PX = new Float32Array(N), PY = new Float32Array(N), OK = new Uint8Array(N), OKP = new Uint8Array(N);
     var BL = new Float32Array(N);
+    var PCR = new Float32Array(N), PCG = new Float32Array(N), PCB = new Float32Array(N), PCA = new Float32Array(N);
     var order = new Uint16Array(N); for (var oi = 0; oi < N; oi++) order[oi] = oi;
     var camA = {}, camB = {};
 
+    var PC = [0, 0, 0, 0];   // the ripple colour at the last bead asked for: rgb, amount
     function pulseAt(i, now) {
+      PC[0] = PC[1] = PC[2] = PC[3] = 0;
       if (!pulses.length || i >= NB) return 0;
-      var a = ANG[i], l = L_OF[i], v = 0;
+      var a = ANG[i], l = L_OF[i], v = 0, cw = 0;
       for (var k = 0; k < pulses.length; k++) {
         var pu = pulses[k], tt = now - pu.t0;
         if (tt < 0) continue;
         var dA = a - pu.a0; dA = Math.atan2(Math.sin(dA), Math.cos(dA));
         var front = tt * 3.3 - Math.abs(l - 5.5) * 0.045;
         var x = (Math.abs(dA) - front) / 0.42;
-        v += pu.s * Math.exp(-x * x) * Math.exp(-tt / 0.95) * (0.55 + 0.45 * Math.cos(dA * 0.5));
+        var e = pu.s * Math.exp(-x * x) * Math.exp(-tt / 0.95) * (0.55 + 0.45 * Math.cos(dA * 0.5));
+        v += e;
+        if (pu.col) { PC[0] += pu.col[0] * e; PC[1] += pu.col[1] * e; PC[2] += pu.col[2] * e; cw += e; }
       }
+      if (cw > 1e-4) { PC[0] /= cw; PC[1] /= cw; PC[2] /= cw; PC[3] = Math.min(0.85, cw * 1.25); }
       return v > 1.4 ? 1.4 : v;
     }
 
@@ -459,7 +485,7 @@
           Xr = exr; Yr = -(yRest * c0 + ezr * s0); Zr = -yRest * s0 + ezr * c0;
           var wvF = wv * (1 - flat), y = y0 + wvF;
           var rr = Math.sqrt(Math.max(0, 1 - y * y)); rr += (1 - rr) * flat;
-          if (full) pb = pulseAt(i, now);
+          if (full) { pb = pulseAt(i, now); PCR[i] = PC[0]; PCG[i] = PC[1]; PCB[i] = PC[2]; PCA[i] = PC[3]; }
           var swell = 1 + 0.03 * pb;
           if (kappa >= 0.9999) {
             X = rr * CA[i]; Z0 = rr * SA[i];
@@ -474,6 +500,7 @@
           X *= swell; Y0 *= swell; Z0 *= swell;
         } else {
           var g = i - NB;
+          PCA[i] = 0;
           X = GX[g]; Y0 = -GY[g]; Z0 = GZ[g];
           Xr = X; Yr = Y0 * c0 - Z0 * s0; Zr = Y0 * s0 + Z0 * c0;
         }
@@ -599,6 +626,8 @@
         instData[k++] = SX[i]; instData[k++] = SY[i]; instData[k++] = SR[i]; instData[k++] = BL[i];
         instData[k++] = vx; instData[k++] = vy; instData[k++] = g; instData[k++] = a;
         instData[k++] = SP[i]; instData[k++] = GW[i] * (1 - ink); instData[k++] = dark ? ink : 1; instData[k++] = flat;
+        var pa = reduced ? 0 : PCA[i] * (1 - flat);
+        instData[k++] = PCR[i]; instData[k++] = PCG[i]; instData[k++] = PCB[i]; instData[k++] = pa;
         n++;
       }
       return n;
@@ -609,12 +638,15 @@
       var u = P_BEAD.u;
       gl.uniform2f(u.uRes, W, H);
       gl.uniform3f(u.uKey, keyV[0], keyV[1], keyV[2]);
+      gl.uniform3f(u.uGlint, TG[0], TG[1], TG[2]);
+      gl.uniform3f(u.uRim, TR[0], TR[1], TR[2]);
+      gl.uniform3f(u.uBounce, TB[0], TB[1], TB[2]);
       gl.uniform1f(u.uClipOn, clip ? 1 : 0);
       if (clip) { gl.uniform4f(u.uClip, clip.x, clip.y, clip.w, clip.h); gl.uniform1f(u.uClipR, clipR); }
       gl.bindBuffer(gl.ARRAY_BUFFER, instBuf);
       gl.bufferSubData(gl.ARRAY_BUFFER, 0, instData.subarray(0, count * FLOATS));
       var st = FLOATS * 4;
-      for (var a = 1; a <= 3; a++) {
+      for (var a = 1; a <= 4; a++) {
         gl.enableVertexAttribArray(a);
         gl.vertexAttribPointer(a, 4, gl.FLOAT, false, st, (a - 1) * 16);
         divisor(a, 1);
@@ -623,7 +655,7 @@
       gl.enableVertexAttribArray(0); gl.vertexAttribPointer(0, 2, gl.FLOAT, false, 0, 0);
       divisor(0, 0);
       if (gl2) gl.drawArraysInstanced(gl.TRIANGLE_STRIP, 0, 4, count); else inst.drawArraysInstancedANGLE(gl.TRIANGLE_STRIP, 0, 4, count);
-      for (var b = 1; b <= 3; b++) { divisor(b, 0); gl.disableVertexAttribArray(b); }
+      for (var b = 1; b <= 4; b++) { divisor(b, 0); gl.disableVertexAttribArray(b); }
     }
 
     // key light, fixed in the world (upper left, toward the viewer); into view space per frame
@@ -793,12 +825,14 @@
       return api;
     };
     api.setDeckRect = function (rect) { deckSrc = rect || null; invalidate(); return api; };
-    api.pulse = function (strength, angle) {
+    api.pulse = function (strength, angle, colour) {
       if (reduced || dead) return api;
       var s = strength == null ? 1 : Math.max(0, Math.min(1.5, +strength));
       var a0 = angle != null ? +angle : PI / 2 + (pulseSeq++ * 2.399963) % 1.6 - 0.8;
       pulseFix = null;
-      pulses.push({ t0: realNow(), s: s * 0.8, a0: ((a0 % TAU) + TAU) % TAU });
+      var col = null;
+      if (colour) { var ch = String(colour).replace('#', ''); col = [parseInt(ch.slice(0, 2), 16) / 255, parseInt(ch.slice(2, 4), 16) / 255, parseInt(ch.slice(4, 6), 16) / 255]; }
+      pulses.push({ t0: realNow(), s: s * 0.8, a0: ((a0 % TAU) + TAU) % TAU, col: col });
       if (pulses.length > 8) pulses.shift();
       kick();
       return api;
@@ -812,7 +846,12 @@
       if (o && o.dive != null) { diveT = diveP = c01(o.dive); diveV = 0; qaPrev = o.prev != null ? c01(o.prev) : null; }
       if (o && o.time != null) { clockS = o.time; frozen = true; }
       shutter = 0.6;
-      if (o && o.pulse) { pulseFix = o.pulse.age || 0; pulses = [{ t0: 0, s: (o.pulse.s == null ? 1 : o.pulse.s) * 0.9, a0: o.pulse.angle != null ? o.pulse.angle : PI / 2 }]; }
+      if (o && o.pulse) {
+        pulseFix = o.pulse.age || 0;
+        var pcol = null;
+        if (o.pulse.colour) { var ph = String(o.pulse.colour).replace('#', ''); pcol = [parseInt(ph.slice(0, 2), 16) / 255, parseInt(ph.slice(2, 4), 16) / 255, parseInt(ph.slice(4, 6), 16) / 255]; }
+        pulses = [{ t0: 0, s: (o.pulse.s == null ? 1 : o.pulse.s) * 0.9, a0: o.pulse.angle != null ? o.pulse.angle : PI / 2, col: pcol }];
+      }
       render();
       if (!drawn) { drawn = true; cv.style.opacity = '1'; resolveReady(true); }
       return api;
@@ -833,5 +872,5 @@
     return api;
   }
 
-  G.IAOrb3D = { create: create, version: '1.0.0', STILL: STILL, TILT: TILT };
+  G.IAOrb3D = { create: create, version: '1.0.0-colour', STILL: STILL, TILT: TILT };
 })(window);
