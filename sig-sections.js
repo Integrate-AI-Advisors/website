@@ -107,7 +107,7 @@
     });
     gsap.fromTo($$('.exec__face', grid), { rotationX: -38, z: -160, y: 40, autoAlpha: 0 }, { rotationX: 0, z: 0, y: 0, autoAlpha: 1, duration: 1.2, ease: 'expo.out', stagger: 0.07, scrollTrigger: { trigger: grid, start: 'top 88%', once: true } });
     var wide = window.matchMedia('(min-width: 1100px)').matches;
-    gsap.fromTo(chat, { rotationY: -14, rotationX: 8, z: -120, autoAlpha: 0, transformPerspective: 1400 }, { rotationY: wide ? -4 : 0, rotationX: wide ? 2 : 0, z: 0, autoAlpha: 1, duration: 1.4, ease: 'expo.out', scrollTrigger: { trigger: wide ? grid : chat, start: wide ? 'top 85%' : 'top 96%', once: true } });
+    gsap.fromTo(chat, { rotationY: -14, rotationX: 8, z: -120, autoAlpha: 0, transformPerspective: 1400, transformOrigin: '100% 50%' }, { rotationY: wide ? -4 : 0, rotationX: wide ? 2 : 0, z: 0, autoAlpha: 1, duration: 1.4, ease: 'expo.out', scrollTrigger: { trigger: wide ? grid : chat, start: wide ? 'top 85%' : 'top 96%', once: true } });
     S.tilt(chat, { target: chat, max: 3 });
 
     function drawWire(fromEl, toEl) {
