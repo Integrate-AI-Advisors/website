@@ -1,4 +1,4 @@
-/* IntegrateAI · Signal 1.1 · preloader and hero. Twenty becomes one. */
+/* IntegrateAI · Signal 1.2 · preloader and hero. Twenty becomes one, then the hero stays gently alive. */
 (function () {
   'use strict';
   var S = window.SIG;
@@ -236,42 +236,130 @@
         .add(arrived, 2.3);
     }
 
-    /* ---- after arrival: tilt, sheen, and small live moments ---- */
+    /* ---- after arrival: pointer tilt, then the hero stays gently alive ---- */
     function arrived() {
       S.tilt(stage, { target: figure, max: 5, layers: layers, sheen: sheen, light: bg, area: stage });
       // a new status switches on
       gsap.set(event, { visibility: 'visible', autoAlpha: 0, y: 8 });
       gsap.to(event, { autoAlpha: 1, y: 0, duration: 0.7, ease: 'expo.out', delay: 0.9, onComplete: function () { S.switchOn([event]); } });
-      liveChart();
+      // the small orb in the card header takes over from the still and keeps weaving
+      var liveOrb = $('.mc__orb', mc);
+      if (liveOrb && S.liveDeck) S.liveDeck(liveOrb);
+      alive();
     }
 
+    /* Calm, slow, low-amplitude and periodic: nothing flashes, nothing competes with the headline.
+       Everything pauses while the hero is off screen (and the whole page pauses when the tab is hidden). */
+    function alive() {
+      var loops = [];
+      function keep(t) { loops.push(t); return t; }
+      // the card floats and breathes: a few px, under a degree, 9 to 11 s cycles
+      keep(gsap.to(mc, { y: -5, duration: 5.2, ease: 'sine.inOut', yoyo: true, repeat: -1 }));
+      keep(gsap.to(mc, { rotationX: 0.7, duration: 5.6, ease: 'sine.inOut', yoyo: true, repeat: -1, delay: 1.2 }));
+      keep(gsap.to(mc, { rotationY: -0.9, duration: 4.6, ease: 'sine.inOut', yoyo: true, repeat: -1, delay: 2.4 }));
+      // a soft sheen passes across it about every nine seconds
+      var sw = $('.mc__sweep i', mc);
+      if (sw) keep(gsap.timeline({ repeat: -1, repeatDelay: 7.2, delay: 1.6 }).fromTo(sw, { xPercent: -160 }, { xPercent: 420, duration: 2, ease: 'power2.inOut' }));
+      // the chart keeps living, and the money figure ticks up now and then
+      keep(liveChart());
+      keep(liveMoney());
+      // the "Needs you" note cycles through a few sample items
+      var nl = cycleNeeds(); if (nl) keep(nl);
+      // slow window light drifting across the paper
+      var g1 = $('.hero__glow'), g2 = $('.hero__glow--b');
+      keep(gsap.to(g1, { xPercent: -14, yPercent: 7, duration: 17, ease: 'sine.inOut', yoyo: true, repeat: -1 }));
+      keep(gsap.to(g1, { opacity: 0.72, scale: 1.06, duration: 13, ease: 'sine.inOut', yoyo: true, repeat: -1 }));
+      if (g2) {
+        gsap.to(g2, { autoAlpha: 1, duration: 3, ease: 'power1.inOut' });
+        keep(gsap.to(g2, { xPercent: 18, yPercent: -10, duration: 21, ease: 'sine.inOut', yoyo: true, repeat: -1 }));
+      }
+      // three rendered tiles drifting far behind, with a little pointer parallax
+      var far = $$('.far', hero);
+      if (far.length) {
+        gsap.fromTo(far, { autoAlpha: 0, scale: 0.85 }, { autoAlpha: 1, scale: 1, duration: 2.4, ease: 'power2.out', stagger: 0.3, delay: 0.6 });
+        far.forEach(function (f, i) {
+          keep(gsap.to(f, { y: i % 2 ? 12 : -12, rotation: i % 2 ? -4 : 4, duration: 14 + i * 3, ease: 'sine.inOut', yoyo: true, repeat: -1 }));
+        });
+        if (S.canHover()) {
+          var qf = far.map(function (f) { var w = f.parentNode; return gsap.quickTo(w, 'x', { duration: 1.6, ease: 'power3.out' }); });
+          var qg = far.map(function (f) { var w = f.parentNode; return gsap.quickTo(w, 'y', { duration: 1.6, ease: 'power3.out' }); });
+          var dep = [0.6, 1, 0.8];
+          window.addEventListener('pointermove', function (e) {
+            var px = e.clientX / window.innerWidth - 0.5, py = e.clientY / window.innerHeight - 0.5;
+            qf.forEach(function (q, i) { q(-px * 18 * dep[i]); }); qg.forEach(function (q, i) { q(-py * 12 * dep[i]); });
+          }, { passive: true });
+        }
+      }
+      if ('IntersectionObserver' in window) {
+        new IntersectionObserver(function (es) {
+          var on = es[0].isIntersecting;
+          loops.forEach(function (t) { if (on) t.resume(); else t.pause(); });
+        }).observe(hero);
+      }
+    }
+
+    // A new point eases in every five seconds; the line extends and the window moves on.
     function liveChart() {
       var line = $('.cline', chartSvg), area = $('.carea', chartSvg);
-      var xs = [4, 44, 84, 124, 164, 204, 244, 284, 324, 364, 404, 444, 484, 516, 540];
+      var N = 15, X0 = 4, X1 = 540, dx = (X1 - X0) / (N - 1);
       var ys = [90, 82, 88, 74, 79, 64, 70, 58, 63, 48, 53, 38, 42, 27, 20];
-      var extra = [26, 22, 30, 21, 17, 24, 19, 14, 21, 16];
-      var k = 0;
-      function paint(v) {
-        var pts = xs.map(function (x, i) { return x + ',' + v[i].toFixed(1); }).join(' ');
-        line.setAttribute('points', pts);
-        area.setAttribute('points', '4,118 ' + pts + ' 540,118');
-        endDot.style.setProperty('--ey', (v[v.length - 1] / 118 * 100).toFixed(2) + '%');
+      var rnd = S.mulberry(24);
+      function paint(v, s) {
+        var pts = v.map(function (y, i) { return (X0 + (i - s) * dx).toFixed(1) + ',' + y.toFixed(1); });
+        var lastX = X0 + (v.length - 1 - s) * dx;
+        line.setAttribute('points', pts.join(' '));
+        area.setAttribute('points', (X0 - s * dx).toFixed(1) + ',118 ' + pts.join(' ') + ' ' + lastX.toFixed(1) + ',118');
+        var ey = v.length > N ? S.lerp(v[N - 1], v[N], s) : v[N - 1];
+        endDot.style.setProperty('--ey', (ey / 118 * 100).toFixed(2) + '%');
       }
       function tick() {
-        if (document.hidden || !inView) return;
-        var from = ys.slice();
-        var to = ys.slice(1).map(function (y, i) { return y + (from[i] - from[i + 1]) * 0.12; });
-        to.push(extra[k++ % extra.length]);
-        // keep the rising shape: re-anchor so the first point sits low
-        var shift = 90 - to[0];
-        to = to.map(function (y, i) { return clamp(12, 100, y + shift * (1 - i / (to.length - 1))); });
-        var p = { t: 0 };
-        gsap.to(p, { t: 1, duration: 0.9, ease: 'power2.inOut', onUpdate: function () { paint(from.map(function (y, i) { return S.lerp(y, to[i], p.t); })); }, onComplete: function () { ys = to; } });
-        gsap.fromTo(endDot, { scale: 1.35 }, { scale: 1, duration: 0.8, ease: 'expo.out' });
+        var last = ys[N - 1];
+        var nv = clamp(12, 58, last + (rnd() - 0.56) * 18);
+        var v = ys.concat([last]), p = { s: 0, y: last };
+        gsap.to(p, {
+          s: 1, y: nv, duration: 1.8, ease: 'power2.inOut',
+          onUpdate: function () { v[N] = p.y; paint(v, p.s); },
+          onComplete: function () { ys = v.slice(1); ys[N - 1] = nv; paint(ys, 0); }
+        });
+        gsap.fromTo(endDot, { scale: 1 }, { scale: 1.25, duration: 0.5, ease: 'power2.out', yoyo: true, repeat: 1, delay: 1.3 });
       }
-      var inView = true;
-      if ('IntersectionObserver' in window) new IntersectionObserver(function (es) { inView = es[0].isIntersecting; }).observe(mc);
-      setInterval(tick, 3600);
+      var tl = gsap.timeline({ repeat: -1 });
+      tl.add(tick, 4.2).add(function () {}, 5);
+      return tl;
+    }
+
+    // Now and then a little more money comes in; the figure rolls on and the split keeps adding up.
+    function liveMoney() {
+      var el = $('.mc__big .odo', mc), legend = $$('.legend b', mc);
+      var ch = [14920, 6870, 2590], total = 24380;
+      var steps = [[1, 42], [2, 24], [1, 58], [0, 186], [1, 36], [2, 24], [1, 64], [0, 120], [1, 48], [2, 24]], k = 0;
+      function fmt(n) { return '£' + n.toLocaleString('en-GB'); }
+      var tl = gsap.timeline({ repeat: steps.length - 1 });
+      tl.add(function () {
+        var s = steps[k++ % steps.length];
+        total += s[1]; ch[s[0]] += s[1];
+        S.odoTo(el, fmt(total), { duration: 1 });
+        var b = legend[s[0]];
+        if (b) { b.textContent = fmt(ch[s[0]]); gsap.fromTo(b, { opacity: 0.3 }, { opacity: 1, duration: 1.1, ease: 'power2.out' }); }
+      }, 11.5);
+      return tl;
+    }
+
+    // The "Needs you" note gently cycles; its status dot switches off and on again in step.
+    function cycleNeeds() {
+      var box = $('.mc__needs', mc), items = $$('.needs__i', box), dot = $('.st', box), cur = 0;
+      if (!box || items.length < 2) return null;
+      var tl = gsap.timeline({ repeat: -1 });
+      tl.add(function () {
+        var a = items[cur], b = items[(cur + 1) % items.length];
+        cur = (cur + 1) % items.length;
+        dot.classList.remove('is-on');
+        gsap.to(a, { autoAlpha: 0, y: -6, duration: 0.55, ease: 'power2.in' });
+        gsap.fromTo(b, { autoAlpha: 0, y: 8 }, { autoAlpha: 1, y: 0, duration: 0.8, ease: 'expo.out', delay: 0.45 });
+        a.setAttribute('aria-hidden', 'true'); b.removeAttribute('aria-hidden');
+        gsap.delayedCall(1.15, function () { dot.classList.add('is-on'); });
+      }, 8);
+      return tl;
     }
 
     /* ---- the master timeline ---- */

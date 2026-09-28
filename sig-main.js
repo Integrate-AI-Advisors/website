@@ -1,4 +1,5 @@
-/* IntegrateAI · Signal 1.1 · boot. */
+/* IntegrateAI · Signal 1.2 · boot. Plain native scrolling at every size: no smooth-scroll library, no pins,
+   no scrubbing. Things animate once as they arrive, on their own clock. */
 (function () {
   'use strict';
   var S = window.SIG;
@@ -24,21 +25,13 @@
   // Reduced motion: calm and still, every interaction still works.
   if (reduce) {
     S.booking(null);
-    var d = S.buildDial();
+    S.buildDial();
     S.charge(true);
+    S.liveDecks(true);
     S.$$('canvas.orbit__orb, canvas.close__canvas').forEach(function (c) { S.makeOrb(c, { still: true }); });
     var mx = S.makeMatrix(S.$('.screen__matrix-c'));
     if (mx) mx.setReveal(1);
     return;
-  }
-
-  var lenis = null;
-  if (window.Lenis) {
-    lenis = new window.Lenis({ lerp: 0.1, smoothWheel: true, wheelMultiplier: 1 });
-    lenis.on('scroll', ScrollTrigger.update);
-    gsap.ticker.add(function (t) { lenis.raf(t * 1000); });
-    gsap.ticker.lagSmoothing(0);
-    window.__lenis = lenis;
   }
 
   // The 3D hero tiles start loading at once (three.js is injected by the component, once).
@@ -60,12 +53,11 @@
     if (started) return;
     started = true;
     S.prepLines();
-    // pins first, in page order, so every later trigger measures the spacers
     S.scene();
     var dial = S.buildDial();
     S.goals(dial);
     S.nav();
-    S.booking(lenis);
+    S.booking(null);
     S.reveals();
     S.team();
     S.joined();
@@ -75,15 +67,13 @@
     S.footer();
     S.signals();
     S.magnets();
-    S.anchors(lenis);
+    S.anchors(null);
     S.closeOrb();
+    S.liveDecks(false);
     var hero = S.hero();
-    ScrollTrigger.sort();
     ScrollTrigger.refresh();
     // Play with the 3D tiles if they are ready within a short window; otherwise the DOM tiles play.
-    var chosen = false;
     Promise.race([t3ready, new Promise(function (r) { setTimeout(function () { r(null); }, 900); })]).then(function (inst) {
-      chosen = true;
       if (!inst && t3) { t3ready.then(function (late) { if (late) late.destroy(); }); t3 = null; }
       S.preloaderEnd(function () { hero.play(inst); });
     });
