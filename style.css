@@ -941,3 +941,7 @@ html:not(.js) .hero__figure,.rm .hero__figure{align-self:end;justify-self:end;wi
 /* 1.12: where it is going (a future aim, not a promise) */
 .charge__next{display:grid;gap:12px;justify-items:start;padding:var(--s4) 0 0;border-top:1px solid var(--line)}
 .charge__next p{max-width:30em;margin:0;font-size:clamp(17px,1.35vw,21px);line-height:1.45;color:var(--muted);text-wrap:pretty}
+
+/* 1.15: the beta card (no price on the site) */
+.price__beta{font-weight:600;font-size:clamp(48px,5.6vw,96px);line-height:.95;letter-spacing:-.05em;color:var(--ink);text-wrap:balance}
+.info__lede{margin:0 0 var(--s3);font-size:clamp(18px,1.4vw,22px);line-height:1.4;color:var(--ink);text-wrap:pretty}
