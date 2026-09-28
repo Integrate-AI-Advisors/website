@@ -1,1092 +1,686 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="en-GB">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <!-- Google Analytics 4 -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-RT7VN5KQHC"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-RT7VN5KQHC');
-  </script>
-  <title>IntegrateAI Advisors — AI Agents &amp; Automation for SMEs</title>
-  <meta name="description" content="AI consultancy for entrepreneurs and SMEs. We implement AI agent teams and productivity tools — giving you AI employees with six-figure expertise, operating through Slack 24/7, at a fraction of the cost of hiring." />
-  <meta property="og:title" content="IntegrateAI Advisors — AI Agents &amp; Automation for SMEs" />
-  <meta property="og:description" content="Extend your team with AI employees that have six-figure expertise. We implement AI agents and smart automation for solo entrepreneurs and SMEs. Book your free AI diagnostic." />
-  <meta property="og:type" content="website" />
-  <meta property="og:image" content="https://integrate-ai.uk/og-image.png" />
-  <meta property="og:url" content="https://integrate-ai.uk" />
-  <meta name="theme-color" content="#1A1A19" />
-  <link rel="canonical" href="https://integrate-ai.uk" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <link rel="icon" href="/favicon.ico" sizes="32x32" />
-  <link rel="icon" href="/favicon.png" type="image/png" />
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    "name": "IntegrateAI Advisors",
-    "description": "AI consultancy for entrepreneurs and SMEs. We implement AI agent teams and productivity tools.",
-    "url": "https://www.integrate-ai.uk",
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Milton under Wychwood",
-      "addressRegion": "Oxfordshire",
-      "addressCountry": "GB"
-    },
-    "email": "hello@integrate-ai.uk",
-    "areaServed": {
-      "@type": "Country",
-      "name": "United Kingdom"
-    },
-    "priceRange": "££"
-  }
-  </script>
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {"@type": "Question", "name": "We're already using ChatGPT. Is this still useful?", "acceptedAnswer": {"@type": "Answer", "text": "That's ideal — you already have a foundation. We structure what's working, fix what isn't, and implement Cowork and AI agents so your whole team uses AI consistently."}},
-      {"@type": "Question", "name": "How fast will we see results?", "acceptedAnswer": {"@type": "Answer", "text": "Most clients see time savings within two weeks. The full engagement — diagnostic to delivered implementation — takes about 30 days."}},
-      {"@type": "Question", "name": "How much time will this take from our side?", "acceptedAnswer": {"@type": "Answer", "text": "Complexity dependent but generally one half-day discovery and implementation session plus light follow-up. We handle the technical work — you and your team walk us through their workflows and show up for training."}},
-      {"@type": "Question", "name": "What tools do you use?", "acceptedAnswer": {"@type": "Answer", "text": "Claude Cowork for daily AI productivity across your team. AI agents that join your Slack and operate like expert employees — handling marketing, sales, customer service, research, and reporting."}},
-      {"@type": "Question", "name": "We're worried about data safety and client confidentiality.", "acceptedAnswer": {"@type": "Answer", "text": "Good — you should be. Data governance is built into every engagement. We define what should and shouldn't go into AI, set up guardrails, and make sure your team understands the boundaries."}},
-      {"@type": "Question", "name": "What does it cost beyond the initial engagement?", "acceptedAnswer": {"@type": "Answer", "text": "A Claude subscription (for Cowork), AI tokens based on models and usage, and an optional monthly retainer for ongoing optimisation. No hidden fees from us."}}
-    ]
-  }
-  </script>
-  <!-- Brand fonts: DM Serif Display, Inter, JetBrains Mono -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-  <style>
-/* ═══════════════════════════════════════════
-   BRAND TOKENS — from brand-tokens.md
-   ═══════════════════════════════════════════ */
-:root {
-  /* Core */
-  --terra: #D97757;
-  --dark: #1A1A19;
-  --cream: #FAF9F5;
-  --ink: #111110;
-  --white: #FFFFFF;
-
-  /* Text */
-  --grey: #3A3935;
-  --muted: #9A9590;
-
-  /* Tints */
-  --lterra: #F5E6DE;
-  --lgrey: #F0EFEB;
-  --border: #E5E2DC;
-
-  /* Semantic */
-  --green: #4A7C59;
-  --green-bg: rgba(74,124,89,.08);
-  --blue: #4A6FA5;
-  --blue-bg: rgba(74,111,165,.08);
-  --amber: #C4943A;
-  --amber-bg: rgba(196,148,58,.08);
-  --red: #C25B56;
-  --purple: #7B61A5;
-  --purple-bg: rgba(123,97,165,.08);
-
-  /* Typography */
-  --serif: 'DM Serif Display', Georgia, serif;
-  --sans: 'Inter', system-ui, sans-serif;
-  --mono: 'JetBrains Mono', monospace;
-
-  /* Derived */
-  --terra-ring: rgba(217,119,87,.22);
-  --terra-bg: rgba(217,119,87,.08);
-  --br-l: rgba(20,20,19,.08);
-  --br-d: rgba(250,249,245,.08);
-  --lite: #FAF9F5;
-  --lite-2: rgba(250,249,245,.72);
-  --lite-3: rgba(250,249,245,.40);
-}
-
-/* ═══════ RESET ═══════ */
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{font-family:var(--sans);font-size:16px;line-height:1.6;color:var(--grey);background:var(--dark);-webkit-font-smoothing:antialiased}
-.wrap{max-width:1080px;margin:0 auto;padding:0 32px}
-.sec{padding:96px 0}
-
-/* Grain texture overlay */
-.grain::after{content:'';position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E");background-size:200px;pointer-events:none;z-index:0;opacity:0.4}
-.grain{position:relative}.grain>*{position:relative;z-index:1}
-
-/* Scroll progress — terra gradient */
-.scroll-progress{position:fixed;top:0;left:0;z-index:600;width:0%;height:3px;background:linear-gradient(90deg,var(--terra),#E08A6A);box-shadow:0 0 8px rgba(217,119,87,.35);pointer-events:none}
-
-/* ═══════ GLOBAL TYPOGRAPHY ═══════ */
-/* Brand label: mono, 0.6rem, 600, terra, uppercase, 0.2em spacing */
-.eyebrow{display:inline-block;font-family:var(--mono);font-size:0.6rem;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--terra);margin-bottom:16px}
-.eyebrow--dark{color:var(--terra)}
-
-/* Headings: DM Serif Display, never bold — weight 400 */
-.hdg{font-family:var(--serif);font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:400;line-height:1.12;color:var(--ink)}
-.hdg em{font-style:italic;color:var(--terra)}
-.hdg--dark{color:var(--white)}.hdg--dark em{color:var(--terra)}
-.hdg--center{text-align:center}
-
-/* Body: Inter, 0.88rem, weight 400, line-height 1.7, grey, max-width 700px */
-.copy{font-family:var(--sans);font-size:0.88rem;font-weight:400;line-height:1.7;color:var(--grey);margin-top:14px;max-width:700px}
-.copy--dark{color:var(--muted)}.copy--center{text-align:center;margin-left:auto;margin-right:auto}
-
-/* Caption/meta: mono, 0.6rem, muted */
-.meta-text{font-family:var(--mono);font-size:0.6rem;line-height:1.6;color:var(--muted)}
-
-:focus-visible{outline:2px solid var(--terra);outline-offset:3px;border-radius:4px}
-.skip-link{position:absolute;top:-100%;left:16px;background:var(--terra);color:#fff;padding:8px 18px;border-radius:0 0 8px 8px;font-size:14px;font-weight:500;text-decoration:none;z-index:9999;transition:top 0.2s}
-.skip-link:focus{top:0}
-
-/* ═══════ BUTTONS ═══════ */
-.btn{display:inline-flex;align-items:center;gap:7px;font-family:var(--sans);font-size:0.88rem;font-weight:500;padding:13px 26px;border-radius:100px;text-decoration:none;border:none;cursor:pointer;transition:transform 0.3s,box-shadow 0.3s,background 0.3s;white-space:nowrap;position:relative;overflow:hidden}
-.btn:hover{transform:translateY(-2px)}.btn:active{transform:translateY(0)}
-.btn-primary{background:var(--terra);color:#fff;box-shadow:0 4px 18px rgba(217,119,87,.30)}
-.btn-primary:hover{background:#C06545;box-shadow:0 8px 28px rgba(217,119,87,.38)}
-.btn-primary::after{content:'';position:absolute;top:0;left:-100%;width:60%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.25),transparent);animation:btn-shine 2.8s ease-in-out infinite}
-@keyframes btn-shine{0%{left:-100%}40%{left:140%}100%{left:140%}}
-.btn-ghost{background:transparent;color:var(--grey);border:1.5px solid var(--border)}
-.btn-ghost:hover{border-color:var(--terra);color:var(--terra)}
-.btn-ghost-dark{background:transparent;color:var(--lite);border:1.5px solid var(--br-d)}
-.btn-ghost-dark:hover{border-color:var(--terra);color:var(--terra)}
-.btn-white{background:#fff;color:var(--terra);box-shadow:0 4px 20px rgba(0,0,0,.14)}
-.btn-white:hover{box-shadow:0 10px 32px rgba(0,0,0,.20)}
-.btn-white::after{content:'';position:absolute;top:0;left:-100%;width:60%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.45),transparent);animation:btn-shine 2.8s ease-in-out infinite}
-
-/* ═══════ SCROLL REVEAL (brand spec: translateY(40px)→0, 0.8s, cubic-bezier) ═══════ */
-.r{opacity:0;transform:translateY(40px);transition:opacity 0.8s cubic-bezier(.16,1,.3,1),transform 0.8s cubic-bezier(.16,1,.3,1)}
-.r.on{opacity:1;transform:none}
-.r.d1{transition-delay:0.1s}.r.d2{transition-delay:0.2s}.r.d3{transition-delay:0.3s}.r.d4{transition-delay:0.4s}.r.d5{transition-delay:0.5s}
-
-/* ═══════ PILLS & BADGES (brand spec) ═══════ */
-.pill{display:inline-flex;align-items:center;gap:5px;font-family:var(--mono);font-size:0.55rem;font-weight:600;text-transform:uppercase;letter-spacing:0.06em;padding:3px 10px;border-radius:20px}
-.pill-terra{background:rgba(217,119,87,.10);border:1px solid rgba(217,119,87,.20);color:var(--terra)}
-.pill-green{background:rgba(74,124,89,.10);border:1px solid rgba(74,124,89,.20);color:var(--green)}
-.pill-blue{background:rgba(74,111,165,.10);border:1px solid rgba(74,111,165,.20);color:var(--blue)}
-.pill-amber{background:rgba(196,148,58,.10);border:1px solid rgba(196,148,58,.20);color:var(--amber)}
-.pill-purple{background:rgba(123,97,165,.10);border:1px solid rgba(123,97,165,.20);color:var(--purple)}
-.pill__dot{width:6px;height:6px;border-radius:50%;background:currentColor;animation:breathing 3s ease-in-out infinite}
-@keyframes breathing{0%,100%{opacity:1}50%{opacity:0.5}}
-
-/* ═══════ SECTION DIVIDER — 3 terra dots ═══════ */
-.divider{display:flex;justify-content:center;gap:8px;padding:4px 0}
-.divider__dot{width:6px;height:6px;border-radius:50%;background:var(--terra);opacity:0.3;animation:dotPulse 3s ease-in-out infinite}
-.divider__dot:nth-child(2){animation-delay:0.3s}
-.divider__dot:nth-child(3){animation-delay:0.6s}
-@keyframes dotPulse{0%,100%{transform:scale(1);opacity:0.3}50%{transform:scale(1.15);opacity:0.7}}
-
-/* ═══════════════════════════════════════════
-   NAV — brand spec: dark frosted glass, terra bottom border
-   ═══════════════════════════════════════════ */
-.nav{position:fixed;top:0;left:0;right:0;z-index:500;height:60px;display:flex;align-items:center;background:rgba(26,26,25,.95);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid rgba(217,119,87,.15);transition:box-shadow 0.3s}
-.nav.up{box-shadow:0 2px 18px rgba(0,0,0,.15)}
-.nav__in{max-width:1080px;margin:0 auto;padding:0 32px;width:100%;display:flex;align-items:center;justify-content:space-between}
-.nav__logo{display:flex;align-items:center;gap:9px;text-decoration:none}
-/* Dot matrix logo */
-.nav__orb{width:32px;height:32px;border-radius:9px;background:var(--dark);position:relative;flex-shrink:0;overflow:hidden;transition:transform 0.3s cubic-bezier(.34,1.56,.64,1);display:grid;grid-template-columns:repeat(4,1fr);gap:2px;padding:6px;align-content:center}
-.nav__logo:hover .nav__orb{transform:scale(1.08)}
-.v4__dot{aspect-ratio:1;border-radius:50%;background:var(--terra)}
-.v4__dot--dim{opacity:0.15}.v4__dot--mid{opacity:0.5}
-.v4__dot--bright{opacity:1;animation:v4-glow 3s ease-in-out infinite}
-@keyframes v4-glow{0%,100%{box-shadow:0 0 3px rgba(217,119,87,.3)}50%{box-shadow:0 0 8px rgba(217,119,87,.6)}}
-.shifting .v4__dot{animation:v4-shift 4s ease-in-out infinite}
-.v4__dot:nth-child(1){animation-delay:0s}.v4__dot:nth-child(2){animation-delay:0.2s}
-.v4__dot:nth-child(3){animation-delay:0.4s}.v4__dot:nth-child(4){animation-delay:0.6s}
-.v4__dot:nth-child(5){animation-delay:0.8s}.v4__dot:nth-child(6){animation-delay:1.0s}
-.v4__dot:nth-child(7){animation-delay:1.2s}.v4__dot:nth-child(8){animation-delay:1.4s}
-@keyframes v4-shift{0%,100%{opacity:var(--o,1)}33%{opacity:0.15}66%{opacity:var(--o,1)}}
-.v4__dot:nth-child(1){--o:1}.v4__dot:nth-child(2){--o:0.15}.v4__dot:nth-child(3){--o:0.5}.v4__dot:nth-child(4){--o:1}
-.v4__dot:nth-child(5){--o:0.15}.v4__dot:nth-child(6){--o:1}.v4__dot:nth-child(7){--o:1}.v4__dot:nth-child(8){--o:0.5}
-/* Brand: serif white with "AI" in terra */
-.nav__brand{font-family:var(--serif);font-size:15px;font-weight:400;color:var(--white);letter-spacing:-0.01em}
-.nav__brand .ai{color:var(--terra)}
-.nav__links{list-style:none;display:flex;gap:26px}
-.nav__links a{font-family:var(--sans);font-size:13px;color:var(--muted);text-decoration:none;transition:color 0.18s;position:relative}
-.nav__links a::after{content:'';position:absolute;bottom:-2px;left:0;right:0;height:1.5px;background:var(--terra);transform:scaleX(0);transform-origin:right;transition:transform 0.28s cubic-bezier(.22,1,.36,1)}
-.nav__links a:hover{color:var(--white)}.nav__links a:hover::after{transform:scaleX(1);transform-origin:left}
-.nav__cta-desktop{font-size:13px!important;padding:10px 20px!important}
-
-/* Mobile nav toggle */
-.nav__toggle{display:none;background:none;border:none;cursor:pointer;width:36px;height:36px;position:relative;z-index:510;flex-shrink:0}
-.nav__toggle span{display:block;width:20px;height:2px;background:var(--lite);border-radius:2px;position:absolute;left:8px;transition:transform 0.3s,opacity 0.2s}
-.nav__toggle span:nth-child(1){top:11px}.nav__toggle span:nth-child(2){top:17px}.nav__toggle span:nth-child(3){top:23px}
-.nav__toggle.open span:nth-child(1){transform:translateY(6px) rotate(45deg)}.nav__toggle.open span:nth-child(2){opacity:0}.nav__toggle.open span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
-/* Mobile overlay */
-.nav__mobile{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:var(--dark);flex-direction:column;z-index:499;opacity:0;transform:translateY(-10px);transition:opacity 0.35s ease,transform 0.35s ease;overflow-y:auto}
-.nav__mobile.open{display:flex;opacity:1;transform:none}
-.nav__mobile-top{padding:80px 32px 0;flex:1;display:flex;flex-direction:column;justify-content:center;gap:0}
-.nav__mobile-link{display:flex;align-items:center;justify-content:space-between;padding:22px 0;border-bottom:1px solid var(--br-d);text-decoration:none;opacity:0;transform:translateX(-16px);transition:opacity 0.3s ease,transform 0.3s ease}
-.nav__mobile.open .nav__mobile-link{opacity:1;transform:none}
-.nav__mobile.open .nav__mobile-link:nth-child(1){transition-delay:0.08s}
-.nav__mobile.open .nav__mobile-link:nth-child(2){transition-delay:0.14s}
-.nav__mobile.open .nav__mobile-link:nth-child(3){transition-delay:0.20s}
-.nav__mobile.open .nav__mobile-link:nth-child(4){transition-delay:0.26s}
-.nav__mobile-link:last-child{border-bottom:none}
-.nav__mobile-link span{font-family:var(--serif);font-size:28px;font-weight:400;color:var(--lite);transition:color 0.2s}
-.nav__mobile-link:hover span{color:var(--terra)}
-.nav__mobile-link svg{width:20px;height:20px;stroke:var(--lite-3);stroke-width:1.5;fill:none;stroke-linecap:round;transition:transform 0.2s,stroke 0.2s}
-.nav__mobile-link:hover svg{transform:translateX(4px);stroke:var(--terra)}
-.nav__mobile-bottom{padding:24px 32px 40px;border-top:1px solid var(--br-d)}
-.nav__mobile-cta{display:flex;width:100%;justify-content:center;margin-bottom:20px}
-.nav__mobile-cta .btn{width:100%;justify-content:center;font-size:16px;padding:16px 24px}
-.nav__mobile-meta{display:flex;align-items:center;gap:8px;justify-content:center}
-.nav__mobile-meta span{font-family:var(--mono);font-size:0.6rem;color:var(--lite-3);opacity:0.5}
-
-/* ═══════════════════════════════════════════
-   HERO — DARK section (brand rhythm: Dark first)
-   ═══════════════════════════════════════════ */
-.hero{background:var(--dark);display:grid;place-items:center;text-align:center;padding:120px 24px 80px;position:relative;overflow:hidden}
-.hero__orb{position:absolute;border-radius:50%;pointer-events:none;filter:blur(80px);opacity:0}
-.hero__orb-1{width:600px;height:600px;background:radial-gradient(circle,rgba(217,119,87,.12) 0%,transparent 70%);top:-180px;left:50%;transform:translateX(-50%);animation:orb-fade 1.2s 0.5s ease forwards,orb-float-1 14s 1.7s ease-in-out infinite alternate}
-.hero__orb-2{width:380px;height:380px;background:radial-gradient(circle,rgba(217,119,87,.08) 0%,transparent 70%);bottom:60px;right:6%;animation:orb-fade 1.4s 0.9s ease forwards,orb-float-2 17s 2.3s ease-in-out infinite alternate}
-.hero__orb-3{width:300px;height:300px;background:radial-gradient(circle,rgba(217,119,87,.06) 0%,transparent 70%);bottom:140px;left:4%;animation:orb-fade 1.6s 1.2s ease forwards,orb-float-3 19s 2.8s ease-in-out infinite alternate}
-@keyframes orb-fade{to{opacity:1}}
-@keyframes orb-float-1{from{transform:translateX(-50%) translateY(0)}to{transform:translateX(-50%) translateY(32px)}}
-@keyframes orb-float-2{from{transform:translateY(0) scale(1)}to{transform:translateY(-22px) scale(1.07)}}
-@keyframes orb-float-3{from{transform:translateY(0) scale(1)}to{transform:translateY(18px) scale(0.95)}}
-.hero__inner{position:relative;z-index:1;width:100%;max-width:900px}
-.hero__badge{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:0.6rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:var(--terra);background:var(--terra-bg);border:1px solid var(--terra-ring);padding:5px 14px 5px 10px;border-radius:20px;margin-bottom:28px;opacity:0;animation:fade-up 0.5s 0.3s ease forwards;white-space:nowrap}
-.hero__pulse{width:6px;height:6px;background:var(--terra);border-radius:50%;flex-shrink:0;animation:breathing 3s ease-in-out infinite}
-.hero__h1{font-family:var(--serif);font-size:clamp(48px,8vw,96px);font-weight:400;line-height:1.04;letter-spacing:-0.035em;color:var(--white);max-width:960px;margin:0 auto;opacity:0;animation:fade-up 0.6s 0.4s cubic-bezier(.22,1,.36,1) forwards;background:linear-gradient(110deg, var(--white) 35%, rgba(217,119,87,.45) 50%, var(--white) 65%);background-size:250% 100%;background-position:200% 0;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
-.hero__h1.shimmer-on{animation:hero-shimmer 5s linear infinite}
-@keyframes hero-shimmer{0%{background-position:200% 0}100%{background-position:-50% 0}}
-.hero__rule{display:block;width:48px;height:2px;margin:14px auto 10px;background:var(--terra);border-radius:2px;opacity:0;animation:fade-up 0.5s 0.65s ease forwards,rule-expand 0.6s 0.65s cubic-bezier(.22,1,.36,1) forwards}
-@keyframes rule-expand{from{width:0}to{width:48px}}
-.hero__tw-slot{display:flex;align-items:flex-start;justify-content:center;font-family:var(--serif);font-size:clamp(48px,8vw,96px);font-weight:400;font-style:italic;line-height:1.15;letter-spacing:-0.035em;color:var(--terra);text-align:center;height:1.25em;margin:0 auto;opacity:0;animation:fade-up 0.6s 0.75s cubic-bezier(.22,1,.36,1) forwards;overflow:hidden}
-.hero__tw-text{display:inline}
-.hero__tw-text::after{content:'';display:inline-block;width:3px;height:0.7em;background:var(--terra);border-radius:1px;margin-left:2px;animation:tw-blink 0.9s step-end infinite}
-@keyframes tw-blink{0%,100%{opacity:1}50%{opacity:0}}
-.hero__sub{margin-top:24px;font-family:var(--sans);font-size:clamp(16px,2vw,19px);font-weight:300;color:var(--muted);max-width:540px;margin-left:auto;margin-right:auto;line-height:1.68;opacity:0}
-.hero__btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:32px;opacity:0}
-/* Stats panel */
-.hero__stats{margin-top:48px;max-width:720px;width:100%;margin-left:auto;margin-right:auto;opacity:0;background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.06);border-radius:12px;overflow:hidden;box-shadow:0 24px 64px rgba(0,0,0,.25);transform:translateY(30px) scale(0.97)}
-.hero__sub.show,.hero__btns.show{animation:fade-up 0.6s ease forwards}
-.hero__stats.show{animation:stats-entrance 0.7s cubic-bezier(.34,1.56,.64,1) forwards}
-@keyframes stats-entrance{from{opacity:0;transform:translateY(30px) scale(0.97)}to{opacity:1;transform:translateY(0) scale(1)}}
-.hero__btns.show{animation-delay:0.1s}.hero__stats.show{animation-delay:0.2s}
-.hero__stats-bar{display:flex;align-items:center;gap:6px;padding:10px 18px;background:rgba(255,255,255,.03);border-bottom:1px solid rgba(255,255,255,.06)}
-.hero__stats-bar-dot{width:7px;height:7px;border-radius:50%;background:var(--green);animation:breathing 3s ease-in-out infinite}
-.hero__stats-bar-label{font-family:var(--mono);font-size:0.6rem;font-weight:500;color:var(--lite-3);letter-spacing:0.04em;text-transform:uppercase}
-.hero__stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;position:relative}
-.hero__stats-grid::after{content:'';position:absolute;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(250,249,245,.12),rgba(217,119,87,.15),rgba(250,249,245,.12),transparent);top:-1px;opacity:0;pointer-events:none}
-.hero__stats.show .hero__stats-grid::after{animation:scan-sweep 0.8s 0.5s ease forwards}
-@keyframes scan-sweep{0%{top:-1px;opacity:0}10%{opacity:1}100%{top:100%;opacity:0}}
-.hero__stat{padding:22px 20px;text-align:center;position:relative;transition:background 0.25s;opacity:0;transform:translateY(8px)}
-.hero__stat.stat-in{animation:stat-cell-in 0.4s cubic-bezier(.22,1,.36,1) forwards}
-@keyframes stat-cell-in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
-.hero__stat:hover{background:rgba(255,255,255,.04)}
-.hero__stat::before{content:'';position:absolute;top:0;left:20%;right:20%;height:2px;background:linear-gradient(90deg,transparent,var(--terra),transparent);opacity:0;transition:opacity 0.3s;border-radius:1px}
-.hero__stat:hover::before{opacity:0.5}
-.hero__stat:not(:last-child)::after{content:'';position:absolute;right:0;top:16px;bottom:16px;width:1px;background:rgba(250,249,245,.07)}
-.hero__stat-num{font-family:var(--serif);font-size:32px;font-weight:400;color:var(--lite);line-height:1;letter-spacing:-0.02em}
-.hero__stat-num span{color:var(--terra)}
-.hero__stat-label{font-family:var(--sans);font-size:12px;color:var(--lite-2);margin-top:6px;font-weight:400}
-.hero__stat-ctx{font-family:var(--mono);font-size:0.55rem;color:var(--muted);margin-top:4px;letter-spacing:0.04em;text-transform:uppercase}
-@keyframes fade-up{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
-
-/* ═══════════════════════════════════════════
-   LOGO STRIP — LIGHT section
-   ═══════════════════════════════════════════ */
-.strip{background:var(--cream);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:22px 0;display:flex;align-items:center;overflow:hidden;position:relative}
-.strip__label{font-family:var(--mono);font-size:0.6rem;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);white-space:nowrap;padding-left:32px;padding-right:28px;flex-shrink:0;position:relative;z-index:2;background:var(--cream)}
-.strip__track{display:flex;animation:marquee 28s linear infinite}
-.strip__set{display:flex;gap:40px;align-items:center;padding-right:40px;flex-shrink:0}
-.strip__name{font-family:var(--sans);font-size:14px;font-weight:500;color:var(--grey);opacity:0.55;white-space:nowrap;transition:opacity 0.2s}.strip__name:hover{opacity:1}
-.strip::before,.strip::after{content:'';position:absolute;top:0;bottom:0;width:60px;z-index:1;pointer-events:none}
-.strip::before{left:0;background:linear-gradient(90deg,var(--cream),transparent)}
-.strip::after{right:0;background:linear-gradient(-90deg,var(--cream),transparent)}
-@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
-
-/* ═══════════════════════════════════════════
-   SERVICES — LIGHT section (cream bg)
-   ═══════════════════════════════════════════ */
-.services{background:var(--cream)}
-.services__hd{text-align:center;margin-bottom:52px}
-.services__hd .copy{max-width:520px;margin-left:auto;margin-right:auto}
-.services__grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
-.svc{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:0;overflow:hidden;transition:transform 0.3s cubic-bezier(.22,1,.36,1),box-shadow 0.3s;display:flex;flex-direction:column}
-.svc:hover{transform:translateY(-4px);box-shadow:0 16px 44px rgba(20,20,19,.08)}
-.svc__preview{background:var(--dark);padding:16px 18px;border-bottom:1px solid var(--br-d);display:flex;align-items:center;gap:8px;min-height:52px}
-.svc__preview-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
-.svc__preview-text{font-family:var(--mono);font-size:0.6rem;color:var(--lite-3);letter-spacing:0.03em;flex:1;overflow:hidden;white-space:nowrap}
-.svc__preview-text span{color:var(--terra)}
-.svc__tw-cursor{display:inline-block;width:1px;height:12px;background:var(--lite-3);vertical-align:middle;margin-left:1px;animation:term-blink 0.7s step-end infinite}
-.svc__tw-cursor.done{opacity:0;animation:none}
-@keyframes term-blink{0%,100%{opacity:1}50%{opacity:0}}
-.svc__preview-badge{margin-left:auto}
-.svc__content{padding:28px 30px 30px;flex:1;display:flex;flex-direction:column}
-.svc__head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:14px}
-.svc__name{font-family:var(--serif);font-size:1.15rem;font-weight:400;color:var(--ink);line-height:1.3}
-.svc__icon{width:38px;height:38px;border-radius:10px;background:var(--terra-bg);display:grid;place-items:center;flex-shrink:0}
-.svc__icon svg{width:18px;height:18px;stroke:var(--terra);fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
-.svc__body{font-size:0.88rem;color:var(--grey);line-height:1.7;flex:1}
-.svc__meta{display:flex;align-items:center;gap:10px;margin-top:18px;padding-top:16px;border-top:1px solid var(--border)}
-.svc__tag{font-family:var(--mono);font-size:0.55rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:var(--terra);background:var(--terra-bg);padding:3px 10px;border-radius:20px}
-.svc__timeline{margin-left:auto;font-family:var(--mono);font-size:0.6rem;color:var(--muted)}
-
-/* ═══════════════════════════════════════════
-   HOW IT WORKS — DARK section
-   ═══════════════════════════════════════════ */
-.how{background:var(--dark)}
-.how__grid{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:start}
-.how__steps{margin-top:40px;display:flex;flex-direction:column}
-.how-step{display:flex;gap:18px;padding:26px 0;border-bottom:1px solid var(--br-d);position:relative}
-.how-step:first-child{padding-top:0}.how-step:last-child{border-bottom:none;padding-bottom:0}
-.how-step:not(:last-child)::after{content:'';position:absolute;left:14px;top:38px;bottom:0;width:2px;background:linear-gradient(to bottom,var(--terra),rgba(217,119,87,.15));border-radius:1px}
-.how-step:first-child::after{top:32px}
-.how-step__n{flex-shrink:0;width:30px;height:30px;background:var(--terra);border-radius:50%;display:grid;place-items:center;font-family:var(--sans);font-size:13px;font-weight:600;color:#fff;margin-top:1px;position:relative;z-index:1}
-.how-step__title{font-family:var(--serif);font-size:1.15rem;font-weight:400;color:var(--lite);margin-bottom:5px}
-.how-step__body{font-size:0.88rem;color:var(--muted);line-height:1.7}
-/* Dashboard preview — brand border trace animation */
-@property --dash-angle{syntax:'<angle>';initial-value:0deg;inherits:false}
-.dash{background:rgba(255,255,255,.025);border:1px solid transparent;border-radius:12px;overflow:hidden;position:sticky;top:80px;box-shadow:0 24px 64px rgba(0,0,0,.25)}
-.dash::before{content:'';position:absolute;inset:-1px;border-radius:13px;padding:1px;background:conic-gradient(from var(--dash-angle),transparent 65%,rgba(217,119,87,.5) 80%,var(--terra) 90%,transparent 100%);-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;animation:dash-trace 4s linear infinite;pointer-events:none;z-index:0}
-@keyframes dash-trace{to{--dash-angle:360deg}}
-.dash>*{position:relative;z-index:1}
-.dash__bar{background:rgba(255,255,255,.03);border-bottom:1px solid var(--br-d);padding:13px 18px;display:flex;align-items:center;gap:6px}
-.dash__dot{width:9px;height:9px;border-radius:50%}
-.dash__bar-title{margin-left:10px;font-family:var(--mono);font-size:0.6rem;color:var(--lite-3);letter-spacing:0.05em;text-transform:uppercase;display:flex;align-items:center;gap:6px}
-.dash__cursor{display:inline-block;width:7px;height:13px;background:var(--terra);border-radius:1px;animation:blink-cur 1.1s step-end infinite;vertical-align:middle}
-@keyframes blink-cur{0%,100%{opacity:1}50%{opacity:0}}
-.dash__agents{padding:20px}
-.agent-row{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;border-radius:10px;margin-bottom:8px;background:rgba(255,255,255,.04);border:1px solid var(--br-d);transition:background 0.22s,border-color 0.22s}
-.agent-row:last-child{margin-bottom:0}
-.agent-row:hover{background:rgba(255,255,255,.07);border-color:rgba(250,249,245,.14)}
-.agent-row__name{font-family:var(--sans);font-size:13px;font-weight:500;color:var(--lite)}
-.abadge{font-family:var(--mono);font-size:0.55rem;font-weight:600;padding:3px 10px;border-radius:20px;text-transform:uppercase;letter-spacing:0.06em}
-.abadge--green{background:rgba(74,124,89,.14);color:var(--green);animation:glow-g 3s ease-in-out infinite}
-.abadge--amber{background:rgba(196,148,58,.14);color:var(--amber)}
-.abadge--terra{background:rgba(217,119,87,.18);color:var(--terra)}
-@keyframes glow-g{0%,100%{box-shadow:0 0 6px rgba(74,124,89,.15)}50%{box-shadow:0 0 14px rgba(74,124,89,.40)}}
-.dash__metrics{padding:18px 20px 20px;border-top:1px solid var(--br-d);display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-.dash__metric{text-align:center}
-.dash__metric-num{font-family:var(--serif);font-size:22px;font-weight:400;color:var(--lite);line-height:1}
-.dash__metric-num span{color:var(--terra)}
-.dash__metric-label{font-family:var(--mono);font-size:0.55rem;color:var(--lite-3);margin-top:4px;text-transform:uppercase;letter-spacing:0.04em}
-
-/* ═══════════════════════════════════════════
-   RESULTS — LIGHT section (cream)
-   ═══════════════════════════════════════════ */
-.results{background:var(--cream)}
-.results__hd{text-align:center;margin-bottom:56px}
-.results__grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
-.result-card{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:30px 28px;display:flex;flex-direction:column;gap:14px;transition:transform 0.3s cubic-bezier(.22,1,.36,1),box-shadow 0.3s}
-.result-card:hover{transform:translateY(-4px);box-shadow:0 12px 36px rgba(20,20,19,.07)}
-.result-card__head{display:flex;align-items:center;justify-content:space-between}
-.result-card__label{font-family:var(--sans);font-size:0.88rem;font-weight:500;color:var(--grey);line-height:1.4}
-.result-card__num{font-family:var(--serif);font-size:44px;font-weight:400;color:var(--ink);letter-spacing:-0.03em;line-height:1}
-.result-card__num span{color:var(--terra)}
-.result-card__bar{height:4px;background:rgba(20,20,19,.06);border-radius:2px;overflow:hidden}
-.result-card__fill{height:100%;border-radius:2px;background:linear-gradient(90deg,var(--terra),#E08A6A);width:0%;transition:width 1.4s cubic-bezier(.22,1,.36,1)}
-.result-card__context{display:flex;align-items:center;justify-content:space-between;gap:8px}
-.result-card__detail{font-family:var(--sans);font-size:12px;color:var(--muted);line-height:1.5}
-.result-card__source{font-family:var(--mono);font-size:0.55rem;color:var(--muted);opacity:0.7;white-space:nowrap;text-transform:uppercase;letter-spacing:0.04em}
-
-/* Mid-page CTA — dark card on cream, terra top accent, brand glow-pulse */
-.mid-cta-wrap{padding:56px 24px;background:var(--cream)}
-.mid-cta{max-width:560px;margin:0 auto;background:var(--dark);border:1px solid rgba(255,255,255,.06);border-radius:12px;padding:48px 40px;text-align:center;position:relative;overflow:hidden;box-shadow:0 24px 64px rgba(20,20,19,.18);animation:cta-card-glow 3s ease-in-out infinite}
-@keyframes cta-card-glow{0%,100%{box-shadow:0 24px 64px rgba(20,20,19,.18),0 0 0 0 rgba(217,119,87,0)}50%{box-shadow:0 24px 64px rgba(20,20,19,.18),0 0 28px rgba(217,119,87,.08)}}
-/* Terra accent bar at top */
-.mid-cta::before{content:'';position:absolute;top:0;left:15%;right:15%;height:3px;background:linear-gradient(90deg,transparent,var(--terra),transparent);border-radius:0 0 2px 2px}
-/* Subtle grain */
-.mid-cta::after{content:'';position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E");background-size:200px;pointer-events:none;opacity:0.3}
-.mid-cta>*{position:relative;z-index:1}
-.mid-cta__text{font-family:var(--serif);font-size:clamp(24px,3.5vw,32px);font-weight:400;color:var(--white);margin-bottom:24px;line-height:1.2}
-.mid-cta__text em{color:var(--terra);font-style:italic}
-.mid-cta__risk{font-family:var(--mono);font-size:0.55rem;color:var(--muted);margin-top:18px;letter-spacing:0.06em;text-transform:uppercase}
-@media(max-width:600px){.mid-cta{padding:36px 24px}}
-
-/* ═══════════════════════════════════════════
-   QUALIFIER — LIGHT section
-   ═══════════════════════════════════════════ */
-.qualifier{background:var(--cream);padding:96px 0;border-top:1px solid var(--border)}
-.qualifier__grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
-.qualifier__col{border-radius:12px;padding:0;overflow:hidden;transition:transform 0.3s cubic-bezier(.22,1,.36,1),box-shadow 0.3s}
-.qualifier__col:hover{transform:translateY(-4px);box-shadow:0 12px 36px rgba(20,20,19,.07)}
-.qualifier__col--yes{background:var(--white);border:1px solid var(--border)}
-.qualifier__col--yes .qualifier__col-head{background:rgba(74,124,89,.06);border-bottom:1px solid rgba(74,124,89,.12);padding:24px 28px;display:flex;align-items:center;gap:12px}
-.qualifier__col--yes .qualifier__col-icon{width:36px;height:36px;border-radius:10px;background:rgba(74,124,89,.12);display:grid;place-items:center;flex-shrink:0}
-.qualifier__col--yes .qualifier__col-icon svg{width:18px;height:18px;stroke:var(--green);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-.qualifier__col--yes h3{font-family:var(--serif);font-size:1.15rem;font-weight:400;color:var(--ink);line-height:1.3;margin:0}
-.qualifier__col--no{background:var(--dark);border:1px solid rgba(255,255,255,.06)}
-.qualifier__col--no .qualifier__col-head{background:rgba(255,255,255,.03);border-bottom:1px solid rgba(255,255,255,.06);padding:24px 28px;display:flex;align-items:center;gap:12px}
-.qualifier__col--no .qualifier__col-icon{width:36px;height:36px;border-radius:10px;background:rgba(255,255,255,.06);display:grid;place-items:center;flex-shrink:0}
-.qualifier__col--no .qualifier__col-icon svg{width:18px;height:18px;stroke:var(--muted);fill:none;stroke-width:2;stroke-linecap:round}
-.qualifier__col--no h3{font-family:var(--serif);font-size:1.15rem;font-weight:400;color:var(--lite);line-height:1.3;margin:0}
-.qualifier__list{list-style:none;display:flex;flex-direction:column;gap:0;padding:0}
-.qualifier__list li{font-family:var(--sans);font-size:0.88rem;line-height:1.7;display:flex;gap:12px;align-items:flex-start;padding:14px 28px;border-bottom:1px solid transparent}
-.qualifier__col--yes .qualifier__list li{color:var(--grey);border-bottom-color:var(--border)}
-.qualifier__col--no .qualifier__list li{color:var(--muted);border-bottom-color:rgba(255,255,255,.05)}
-.qualifier__list li:last-child{border-bottom:none}
-.qualifier__list li::before{content:'';flex-shrink:0;width:18px;height:18px;margin-top:1px;background-size:contain;background-repeat:no-repeat}
-.qualifier__col--yes .qualifier__list li::before{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18'%3E%3Ccircle cx='9' cy='9' r='8' fill='rgba(74,124,89,0.1)' stroke='%234A7C59' stroke-width='1.5'/%3E%3Cpath d='M5.5 9.5l2.5 2.5 4.5-5' stroke='%234A7C59' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E")}
-.qualifier__col--no .qualifier__list li::before{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18'%3E%3Ccircle cx='9' cy='9' r='8' fill='rgba(154,149,144,0.08)' stroke='%239A9590' stroke-width='1.5'/%3E%3Cpath d='M6 6l6 6M12 6l-6 6' stroke='%239A9590' stroke-width='1.8' stroke-linecap='round' fill='none'/%3E%3C/svg%3E")}
-
-/* ═══════════════════════════════════════════
-   PRICING — DARK section
-   ═══════════════════════════════════════════ */
-.pricing{background:var(--dark)}
-.pricing__hd{text-align:center;margin-bottom:52px}
-.pricing__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:start}
-.plan{border:1px solid var(--br-d);border-radius:12px;padding:0;overflow:hidden;position:relative;transition:transform 0.3s cubic-bezier(.34,1.56,.64,1),box-shadow 0.3s}
-.plan::before{content:'';position:absolute;inset:-1px;border-radius:13px;padding:1px;background:linear-gradient(135deg,transparent,transparent);-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;transition:background 0.4s;pointer-events:none}
-.plan:hover::before{background:linear-gradient(135deg,var(--terra),#E08A6A,rgba(212,104,56,.3))}
-.plan:hover{transform:translateY(-4px);box-shadow:0 20px 52px rgba(0,0,0,.28)}
-.plan--featured{background:rgba(255,255,255,.05);border-color:var(--terra);animation:plan-glow 3s ease-in-out infinite}
-.plan--featured::before{background:linear-gradient(135deg,var(--terra),#E08A6A,rgba(212,104,56,.3))}
-@keyframes plan-glow{0%,100%{box-shadow:0 0 0 0 rgba(217,119,87,0),0 0 0 0 rgba(217,119,87,0)}50%{box-shadow:0 0 24px rgba(217,119,87,.12),0 0 0 4px rgba(217,119,87,.06)}}
-.plan__header{padding:30px 28px 0}
-.plan__tier-row{display:flex;align-items:center;gap:8px;margin-bottom:12px}
-.plan__tier{font-family:var(--mono);font-size:0.6rem;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--terra)}
-.plan__avail{margin-left:auto}
-.plan__name{font-family:var(--serif);font-size:1.5rem;font-weight:400;color:var(--lite);margin-bottom:8px}
-.plan__desc{font-family:var(--sans);font-size:0.88rem;color:var(--muted);line-height:1.7;margin-bottom:22px}
-.plan__price-row{display:flex;align-items:baseline;gap:8px;padding-bottom:24px;border-bottom:1px solid var(--br-d)}
-.plan__currency{font-family:var(--sans);font-size:18px;font-weight:500;color:var(--lite-3)}
-.plan__num{font-family:var(--serif);font-size:48px;font-weight:400;line-height:1;color:var(--lite);letter-spacing:-0.03em}
-.plan__period{font-family:var(--mono);font-size:0.6rem;color:var(--lite-3);margin-left:2px;text-transform:uppercase;letter-spacing:0.04em}
-.plan__body{padding:24px 28px 28px}
-.plan__features{list-style:none;display:flex;flex-direction:column;gap:10px;margin-bottom:26px}
-.plan__features li{display:flex;gap:10px;font-family:var(--sans);font-size:0.88rem;color:var(--muted);line-height:1.5}
-.plan__features li::before{content:'';flex-shrink:0;width:16px;height:16px;margin-top:1px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M2.5 8.5l3.5 3.5 7.5-8' stroke='%23D97757' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E");background-size:contain;background-repeat:no-repeat}
-.plan__includes{font-family:var(--mono);font-size:0.55rem;color:var(--lite-3);margin-bottom:18px;padding:8px 12px;background:rgba(255,255,255,.03);border-radius:8px;border:1px solid var(--br-d);text-transform:uppercase;letter-spacing:0.04em}
-
-/* ═══════════════════════════════════════════
-   CTA BAND — Terra accent
-   ═══════════════════════════════════════════ */
-.cta-band{background:var(--terra);padding:100px 24px;text-align:center;position:relative;overflow:hidden}
-.cta-band::before{content:'';position:absolute;top:0;left:-100%;width:50%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.10),transparent);pointer-events:none;z-index:0}
-.cta-band.shimmer::before{animation:shimmer-sweep 1s ease forwards}
-@keyframes shimmer-sweep{from{left:-60%}to{left:120%}}
-.cta-band::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 100% at 20% 50%,rgba(0,0,0,.10) 0%,transparent 60%);pointer-events:none;z-index:0}
-.cta-band__h2{font-family:var(--serif);font-size:clamp(36px,5.5vw,66px);font-weight:400;line-height:1.1;letter-spacing:-0.02em;color:#fff;max-width:660px;margin:0 auto 18px;position:relative;z-index:2}
-.cta-band__h2 em{font-style:italic;opacity:0.85}
-.cta-band__sub{font-family:var(--sans);font-size:18px;font-weight:300;color:rgba(255,255,255,.82);max-width:480px;margin:0 auto 38px;line-height:1.6;position:relative;z-index:2}
-.cta-band .btn{position:relative;z-index:2}
-.cta-band__spots{font-family:var(--mono);font-size:0.6rem;font-weight:500;color:rgba(255,255,255,.70);margin-top:20px;position:relative;z-index:2;display:flex;align-items:center;justify-content:center;gap:6px;text-transform:uppercase;letter-spacing:0.06em}
-.cta-band__spots-dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.8);animation:breathing 3s ease-in-out infinite}
-
-/* ═══════════════════════════════════════════
-   FAQ — LIGHT section
-   ═══════════════════════════════════════════ */
-.faq{background:var(--cream)}
-.faq__grid{display:grid;grid-template-columns:1fr 2fr;gap:72px;align-items:start}
-.faq__list{display:flex;flex-direction:column}
-.faq__item{border-bottom:1px solid var(--border)}
-.faq__q{width:100%;background:none;border:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:22px 0;text-align:left;font-family:var(--serif);font-size:1.15rem;font-weight:400;color:var(--ink);transition:color 0.18s}
-.faq__q:hover{color:var(--terra)}
-.faq__icon{flex-shrink:0;width:22px;height:22px;border:1.5px solid var(--border);border-radius:50%;display:grid;place-items:center;font-family:var(--sans);font-size:16px;color:var(--grey);transition:background 0.22s,border-color 0.22s,transform 0.35s cubic-bezier(.34,1.56,.64,1);line-height:1}
-.faq__item.open .faq__icon{background:var(--terra);border-color:var(--terra);color:#fff;transform:rotate(45deg)}
-.faq__a{font-family:var(--sans);font-size:0.88rem;color:var(--grey);line-height:1.7;display:grid;grid-template-rows:0fr;transition:grid-template-rows 0.4s cubic-bezier(.22,1,.36,1),padding 0.4s}
-.faq__a-inner{overflow:hidden}
-.faq__item.open .faq__a{grid-template-rows:1fr;padding-bottom:20px}
-
-/* ═══════════════════════════════════════════
-   FOOTER — DARK
-   ═══════════════════════════════════════════ */
-footer{background:var(--dark);padding:64px 0 36px;border-top:1px solid var(--br-d)}
-.footer__top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;padding-bottom:48px;border-bottom:1px solid var(--br-d)}
-.footer__about p{font-family:var(--sans);font-size:0.88rem;color:var(--muted);line-height:1.7;margin-top:14px;max-width:260px}
-.footer__brand{color:var(--lite)!important}
-.footer__col h5{font-family:var(--mono);font-size:0.6rem;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);margin-bottom:16px}
-.footer__col ul{list-style:none;display:flex;flex-direction:column;gap:10px}
-.footer__col a{font-family:var(--sans);font-size:0.88rem;color:var(--lite-2);text-decoration:none;transition:color 0.18s}.footer__col a:hover{color:var(--lite)}
-.footer__bottom{display:flex;justify-content:space-between;align-items:center;margin-top:36px;flex-wrap:wrap;gap:12px}
-.footer__copy{font-family:var(--sans);font-size:13px;color:var(--lite-3)}
-.footer__note{font-family:var(--mono);font-size:0.55rem;color:rgba(250,249,245,.22);text-transform:uppercase;letter-spacing:0.04em}
-.footer__btt{display:inline-flex;align-items:center;gap:5px;font-family:var(--mono);font-size:0.6rem;color:var(--lite-3);text-decoration:none;transition:color 0.2s;text-transform:uppercase;letter-spacing:0.06em}.footer__btt:hover{color:var(--terra)}
-.footer__btt svg{width:12px;height:12px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round}
-
-/* ═══════════════════════════════════════════
-   RESPONSIVE
-   ═══════════════════════════════════════════ */
-@media(max-width:900px){
-.nav__links,.nav__cta-desktop{display:none}.nav__toggle{display:block}
-.how__grid,.faq__grid,.footer__top{grid-template-columns:1fr;gap:40px}
-.results__grid{grid-template-columns:1fr}
-.testi-grid,.pricing__grid,.services__grid{grid-template-columns:1fr}
-.hero__stats-grid{grid-template-columns:repeat(2,1fr)}.hero__stat:nth-child(2)::after{display:none}.dash{position:static}
-.qualifier__grid{grid-template-columns:1fr;gap:32px}
-.strip__label{padding-left:20px;padding-right:16px}
-}
-@media(max-width:600px){
-.hero__stats-grid{gap:0}
-.wrap{padding:0 20px}.sec{padding:72px 0}
-.hero{padding:96px 20px 64px;min-height:auto}
-.hero__h1{font-size:clamp(36px,9vw,46px)}
-.hero__tw-slot{font-size:clamp(36px,9vw,46px);height:2.2em}
-.hero__rule{margin:18px auto 14px}
-.hero__badge{margin-bottom:32px}
-.hero__sub{margin-top:28px}
-.hero__btns{margin-top:34px}
-.hero__stats{margin-top:56px}
-}
-@media(prefers-reduced-motion:reduce){
-*,*::before,*::after{animation-duration:0.01ms!important;transition-duration:0.01ms!important}
-.r{opacity:1;transform:none}
-.hero__h1,.hero__tw-slot,.hero__badge,.hero__sub,.hero__btns,.hero__stats,.hero__rule{opacity:1;transform:none}
-.hero__stat{opacity:1;transform:none}
-.strip__track{animation:none}
-.svc__tw-cursor{animation:none}
-.v4__dot{animation:none!important}
-.nav__orb{transition:none}
-.hero__h1.shimmer-on{animation:none}
-.plan--featured{animation:none}
-}
-@media print{
-.nav,.scroll-progress,.strip,.hero__orb,.hero__stats-bar-dot,.nav__mobile,.footer__btt,.mid-cta,.cta-band,.divider{display:none!important}
-body{font-size:12pt;color:#000}
-.hero{min-height:auto;padding:40px 0}
-.sec{padding:30px 0}
-a{color:inherit;text-decoration:underline}
-.btn{border:1px solid #000;background:transparent!important;color:#000!important}
-}
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>IntegrateAI | Twenty dashboards. One mission control.</title>
+<meta name="description" content="IntegrateAI joins up the tools you already run your business on into one mission control, with six AI executives who read your systems every night and advise you each morning.">
+<link rel="canonical" href="https://www.integrate-ai.uk/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.integrate-ai.uk/">
+<meta property="og:title" content="IntegrateAI | Twenty dashboards. One mission control.">
+<meta property="og:description" content="Every tool you run on, on one screen, with six AI executives reading it every night.">
+<meta name="theme-color" content="#F1F1EF">
+<link rel="icon" href="/orb.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="generator" content="Signal 1.1">
+<style>html,body{margin:0}</style>
 </head>
 <body>
+<script>(function(){var d=document.documentElement;d.classList.add('js');var q=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;if(q){d.classList.add('rm')}setTimeout(function(){if(!window.__signalReady){window.__signalFallback=true;d.classList.remove('js')}},4000)})();</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..600&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="style.css">
 
-<div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
-<a href="#main" class="skip-link">Skip to main content</a>
+<a class="skip" href="#main">Skip to content</a>
 
-<!-- NAV — dark frosted glass per brand spec -->
-<nav class="nav" id="nav" role="navigation" aria-label="Main navigation">
-  <div class="nav__in">
-    <a href="#main" class="nav__logo" aria-label="IntegrateAI Advisors — Home">
-      <div class="nav__orb shifting" aria-hidden="true"><div class="v4__dot v4__dot--bright"></div><div class="v4__dot v4__dot--dim"></div><div class="v4__dot v4__dot--mid"></div><div class="v4__dot v4__dot--bright"></div><div class="v4__dot v4__dot--dim"></div><div class="v4__dot v4__dot--bright"></div><div class="v4__dot v4__dot--bright"></div><div class="v4__dot v4__dot--mid"></div></div>
-      <span class="nav__brand">Integrate<span class="ai">AI</span> Advisors</span>
+<div class="pre" aria-hidden="true"><div class="pre__deck"><canvas class="pre__orb" width="160" height="160"></canvas></div></div>
+
+<header class="nav" id="top">
+  <div class="nav__bar">
+    <span class="nav__bg" aria-hidden="true"><i class="nav__progress"></i></span>
+    <a class="nav__brand" href="#top" aria-label="IntegrateAI, back to top">
+      <img class="nav__deck" src="orb.svg" alt="" width="44" height="44">
+      <span class="nav__word">IntegrateAI</span>
     </a>
-    <ul class="nav__links"><li><a href="#services">Services</a></li><li><a href="#how">How it works</a></li><li><a href="#pricing">Pricing</a></li><li><a href="#faq">FAQ</a></li><li><a href="/blog">Blog</a></li></ul>
-    <a href="#book" class="btn btn-primary nav__cta-desktop">Free AI Diagnostic</a>
-    <button class="nav__toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    <nav class="nav__links" aria-label="Sections">
+      <a href="#one-screen">How it works</a>
+      <a href="#team">Your team</a>
+      <a href="#goals">Goals</a>
+      <a href="#price">Price</a>
+    </nav>
+    <a class="nav__cta" href="#close" data-book aria-haspopup="dialog"><span class="nav__cta-long">See it on your own numbers</span><span class="nav__cta-short">Book a walkthrough</span></a>
   </div>
-</nav>
-<div class="nav__mobile" id="nav-mobile" role="dialog" aria-label="Mobile navigation">
-  <div class="nav__mobile-top">
-    <a href="#services" class="nav__mobile-link"><span>Services</span><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-    <a href="#how" class="nav__mobile-link"><span>How it works</span><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-    <a href="#pricing" class="nav__mobile-link"><span>Pricing</span><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-    <a href="#faq" class="nav__mobile-link"><span>FAQ</span><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-    <a href="/blog" class="nav__mobile-link"><span>Blog</span><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-  </div>
-  <div class="nav__mobile-bottom">
-    <div class="nav__mobile-cta"><a href="#book" class="btn btn-primary">Free AI Diagnostic &rarr;</a></div>
-    <div class="nav__mobile-meta"><span>hello@integrate-ai.uk</span><span>&middot;</span><span>AI agents for SMEs</span></div>
-  </div>
-</div>
+</header>
 
 <main id="main">
 
-<!-- ═══ HERO — DARK ═══ -->
-<section class="hero grain" aria-labelledby="hero-heading">
-  <div class="hero__orb hero__orb-1" aria-hidden="true"></div>
-  <div class="hero__orb hero__orb-2" aria-hidden="true"></div>
-  <div class="hero__orb hero__orb-3" aria-hidden="true"></div>
-  <div class="hero__inner">
-    <div class="hero__badge" aria-hidden="true"><span class="hero__pulse"></span>AI agents for SMEs &middot; Expert implementation</div>
-    <h1 class="hero__h1" id="hero-heading">Give your business<br>superpowers with</h1>
-    <span class="hero__rule" aria-hidden="true"></span>
-    <div class="hero__tw-slot" aria-live="polite"><span class="hero__tw-text" id="tw-text"></span></div>
-    <p class="hero__sub" id="hero-sub">Solo founder? Small team? Doesn't matter. We give you superintelligent AI agents that work like six-figure employees — running your marketing, sales, and customer service through Slack, 24/7, while you focus on growth.</p>
-    <div class="hero__btns" id="hero-btns">
-      <a href="#book" class="btn btn-primary">Free AI Diagnostic &rarr;</a>
-      <a href="#services" class="btn btn-ghost-dark">See how it works</a>
-    </div>
-    <div class="hero__stats" id="hero-stats" aria-label="Key metrics">
-      <div class="hero__stats-bar">
-        <span class="hero__stats-bar-dot" aria-hidden="true"></span>
-        <span class="hero__stats-bar-label">Hire vs. deploy</span>
+  <!-- HERO -->
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="hero__glow" aria-hidden="true"></div>
+    <div class="hero__grid wrap">
+      <div class="hero__copy">
+        <p class="pill eyebrow">For specialty coffee roasters</p>
+        <h1 class="hero__title" id="hero-title">
+          <span class="hero__l1"><span class="mask"><span class="w">Twenty</span></span> <span class="mask"><span class="w">dashboards.</span></span></span>
+          <span class="hero__l2">
+            <span class="hero__count" aria-hidden="true"><span class="hero__strip"><span>20</span><span>19</span><span>18</span><span>17</span><span>16</span><span>15</span><span>14</span><span>13</span><span>12</span><span>11</span><span>10</span><span>9</span><span>8</span><span>7</span><span>6</span><span>5</span><span>4</span><span>3</span><span>2</span><span>1</span></span></span>
+            <span class="hero__line"><span class="w">One</span> <span class="w">mission</span></span>
+            <span class="hero__line"><span class="w">control.</span></span>
+          </span>
+        </h1>
+        <p class="hero__lede" data-lines>Every tool you use has its own dashboard, and the only place they all meet is your head. IntegrateAI puts your whole business on one screen, with an AI team watching it for you.</p>
+        <div class="hero__actions">
+          <a class="btn btn--primary chrome magnet" href="#close" data-book aria-haspopup="dialog"><span>See it on your own numbers</span><span class="btn__arr" aria-hidden="true">&rarr;</span></a>
+          <a class="btn btn--quiet magnet" href="#one-screen">How it works</a>
+        </div>
+        <p class="status"><span class="st st--run"><i class="dot dot--run" aria-hidden="true"></i>Running today</span> <span class="status__rest">for a UK specialty roaster</span></p>
       </div>
-      <div class="hero__stats-grid">
-        <div class="hero__stat">
-          <div class="hero__stat-num" data-val="65" data-suffix="k">0<span>k</span></div>
-          <div class="hero__stat-label">Marketing</div>
-          <div class="hero__stat-ctx">/year salary</div>
-        </div>
-        <div class="hero__stat">
-          <div class="hero__stat-num" data-val="55" data-suffix="k">0<span>k</span></div>
-          <div class="hero__stat-label">Sales</div>
-          <div class="hero__stat-ctx">/year salary</div>
-        </div>
-        <div class="hero__stat">
-          <div class="hero__stat-num" data-val="40" data-suffix="k">0<span>k</span></div>
-          <div class="hero__stat-label">Admin</div>
-          <div class="hero__stat-ctx">/year salary</div>
-        </div>
-        <div class="hero__stat">
-          <div class="hero__stat-num" data-val="3.5" data-suffix="k" data-decimal="1">0<span>k</span></div>
-          <div class="hero__stat-label">All 3 as AI</div>
-          <div class="hero__stat-ctx">one-time setup</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
 
-<!-- ═══ DIVIDER ═══ -->
-<div class="divider" aria-hidden="true"><span class="divider__dot"></span><span class="divider__dot"></span><span class="divider__dot"></span></div>
+      <div class="hero__stage" id="stage">
+        <div class="tiles3d-mount" aria-hidden="true"></div>
+        <div class="tiles" aria-hidden="true">
+          <div class="tile m-ink"><div class="tile__in"><span class="tile__name">Xero</span><span class="tile__g"><span class="tile__num">&pound;840</span><svg viewBox="0 0 64 12"><rect x="0" y="4" width="64" height="4" rx="2" opacity=".28"/><rect class="g-grow" x="0" y="4" width="46" height="4" rx="2"/></svg></span></div></div>
+          <div class="tile m-pearl"><div class="tile__in"><span class="tile__name">Shopify</span><span class="tile__g"><svg viewBox="0 0 64 32"><g class="g-bars"><rect x="1" y="18" width="9" height="14" rx="2"/><rect x="14" y="8" width="9" height="24" rx="2"/><rect x="27" y="14" width="9" height="18" rx="2"/><rect x="40" y="4" width="9" height="28" rx="2"/><rect x="53" y="11" width="9" height="21" rx="2"/></g></svg></span></div></div>
+          <div class="tile m-graphite"><div class="tile__in"><span class="tile__name">Skio</span><span class="tile__g"><svg viewBox="0 0 64 32"><circle class="g-track" cx="15" cy="16" r="11"/><circle class="g-arc" cx="15" cy="16" r="11"/><rect x="34" y="10" width="28" height="4" rx="2"/><rect x="34" y="19" width="18" height="4" rx="2" opacity=".45"/></svg></span></div></div>
+          <div class="tile m-paper"><div class="tile__in"><span class="tile__name">Stripe</span><span class="tile__g"><svg viewBox="0 0 64 32"><polyline class="g-line" points="2,26 12,19 22,22 32,11 42,15 52,5 62,8"/></svg></span></div></div>
+          <div class="tile m-chrome"><div class="tile__in"><span class="tile__name">Cropster</span><span class="tile__g"><svg viewBox="0 0 64 32"><path class="g-line" d="M2 29 C10 29 13 5 24 5 S40 15 48 16 S58 13 62 13"/><circle cx="62" cy="13" r="3"/></svg></span></div></div>
 
-<!-- ═══ LOGO STRIP — LIGHT ═══ -->
-<div class="strip" aria-label="Trusted by teams in these industries">
-  <span class="strip__label">Trusted by teams in</span>
-  <div class="strip__track">
-    <div class="strip__set"><span class="strip__name">Accountancy</span><span class="strip__name">Legal</span><span class="strip__name">Marketing</span><span class="strip__name">Property</span><span class="strip__name">Consulting</span><span class="strip__name">Financial Services</span><span class="strip__name">Professional Services</span><span class="strip__name">Media &amp; Entertainment</span></div>
-    <div class="strip__set" aria-hidden="true"><span class="strip__name">Accountancy</span><span class="strip__name">Legal</span><span class="strip__name">Marketing</span><span class="strip__name">Property</span><span class="strip__name">Consulting</span><span class="strip__name">Financial Services</span><span class="strip__name">Professional Services</span><span class="strip__name">Media &amp; Entertainment</span></div>
-  </div>
-</div>
+          <div class="tile m-dots"><div class="tile__in"><span class="tile__name">Royal Mail</span><span class="tile__g"><svg viewBox="0 0 64 32"><rect x="2" y="14" width="60" height="5" rx="2.5" opacity=".25"/><rect class="g-grow" x="2" y="14" width="40" height="5" rx="2.5"/><circle cx="42" cy="16.5" r="6"/></svg></span></div></div>
+          <div class="tile m-ink"><div class="tile__in"><span class="tile__name">DPD</span><span class="tile__g"><svg viewBox="0 0 64 32"><g class="g-dots"><circle cx="4" cy="6" r="2.6"/><circle cx="14" cy="6" r="2.6"/><circle cx="24" cy="6" r="2.6" opacity=".3"/><circle cx="34" cy="6" r="2.6"/><circle cx="44" cy="6" r="2.6" opacity=".3"/><circle cx="54" cy="6" r="2.6"/><circle cx="4" cy="16" r="2.6" opacity=".3"/><circle cx="14" cy="16" r="2.6"/><circle cx="24" cy="16" r="2.6"/><circle cx="34" cy="16" r="2.6" opacity=".3"/><circle cx="44" cy="16" r="2.6"/><circle cx="54" cy="16" r="2.6"/><circle cx="4" cy="26" r="2.6"/><circle cx="14" cy="26" r="2.6" opacity=".3"/><circle cx="24" cy="26" r="2.6"/><circle cx="34" cy="26" r="2.6"/><circle cx="44" cy="26" r="2.6"/><circle cx="54" cy="26" r="2.6" opacity=".3"/></g></svg></span></div></div>
+          <div class="tile m-paper"><div class="tile__in"><span class="tile__name">Klaviyo</span><span class="tile__g"><svg viewBox="0 0 64 32"><rect class="g-stroke" x="2" y="5" width="34" height="23" rx="4"/><path class="g-stroke" d="M3 7 L19 18 L35 7"/><circle cx="50" cy="10" r="5"/></svg></span></div></div>
+          <div class="tile m-graphite"><div class="tile__in"><span class="tile__name">Basecamp</span><span class="tile__g"><svg viewBox="0 0 64 32"><path class="g-stroke" d="M2 5.5l3 3 5-6M2 16.5l3 3 5-6M2 27l3 3 5-6"/><rect x="16" y="4" width="40" height="4" rx="2"/><rect x="16" y="15" width="30" height="4" rx="2"/><rect x="16" y="26" width="44" height="4" rx="2" opacity=".4"/></svg></span></div></div>
+          <div class="tile m-outline"><div class="tile__in"><span class="tile__name">Bank</span><span class="tile__g"><svg viewBox="0 0 64 32"><rect x="0" y="2" width="64" height="4" rx="2"/><rect x="0" y="12" width="44" height="4" rx="2" opacity=".4"/><rect x="0" y="20" width="54" height="4" rx="2" opacity=".4"/><rect x="0" y="28" width="30" height="4" rx="2" opacity=".4"/></svg></span></div></div>
 
-<!-- ═══ SERVICES — LIGHT ═══ -->
-<section class="services sec grain" id="services" aria-labelledby="services-heading">
-  <div class="wrap">
-    <div class="services__hd r">
-      <div class="eyebrow">What we do</div>
-      <h2 class="hdg hdg--center" id="services-heading">What you get. <em>What it's worth.</em></h2>
-      <p class="copy copy--center">From AI training workshops to autonomous agent teams that operate like six-figure employees — every engagement has a defined scope, documented deliverables, and a fixed price.</p>
-    </div>
-    <div class="services__grid">
-      <div class="svc r d1">
-        <div class="svc__preview">
-          <div class="svc__preview-dot" style="background:var(--green)" aria-hidden="true"></div>
-          <span class="svc__preview-text" data-type-text="Workshop · 2-3hrs · safe AI usage + prompt fundamentals"></span>
-          <span class="pill pill-green"><span class="pill__dot"></span>Live</span>
+          <div class="tile m-grey"><div class="tile__in"><span class="tile__name">Payroll</span><span class="tile__g"><svg viewBox="0 0 64 32"><g class="g-bars"><rect x="1" y="10" width="9" height="22" rx="2"/><rect x="14" y="16" width="9" height="16" rx="2"/><rect x="27" y="6" width="9" height="26" rx="2"/><rect x="40" y="12" width="9" height="20" rx="2"/><rect x="53" y="20" width="9" height="12" rx="2"/></g></svg></span></div></div>
+          <div class="tile m-pearl"><div class="tile__in"><span class="tile__name">Inbox</span><span class="tile__g"><svg viewBox="0 0 64 32"><rect class="g-stroke" x="2" y="5" width="34" height="23" rx="4"/><path class="g-stroke" d="M3 18 H13 L16 22 H22 L25 18 H35"/><circle cx="50" cy="10" r="5"/></svg></span></div></div>
+          <div class="tile m-ink"><div class="tile__in"><span class="tile__name">Calendar</span><span class="tile__g"><svg viewBox="0 0 64 32"><g class="g-cal"><rect x="0" y="0" width="7" height="7" rx="2"/><rect x="9.5" y="0" width="7" height="7" rx="2" opacity=".3"/><rect x="19" y="0" width="7" height="7" rx="2"/><rect x="28.5" y="0" width="7" height="7" rx="2"/><rect x="38" y="0" width="7" height="7" rx="2" opacity=".3"/><rect x="47.5" y="0" width="7" height="7" rx="2"/><rect x="57" y="0" width="7" height="7" rx="2" opacity=".3"/><rect x="0" y="12" width="7" height="7" rx="2" opacity=".3"/><rect x="9.5" y="12" width="7" height="7" rx="2"/><rect x="19" y="12" width="7" height="7" rx="2"/><rect x="28.5" y="12" width="7" height="7" rx="2" opacity=".3"/><rect x="38" y="12" width="7" height="7" rx="2"/><rect x="47.5" y="12" width="7" height="7" rx="2"/><rect x="57" y="12" width="7" height="7" rx="2"/><rect x="0" y="24" width="7" height="7" rx="2"/><rect x="9.5" y="24" width="7" height="7" rx="2"/><rect x="19" y="24" width="7" height="7" rx="2" opacity=".3"/><rect x="28.5" y="24" width="7" height="7" rx="2"/><rect x="38" y="24" width="7" height="7" rx="2" opacity=".3"/><rect x="47.5" y="24" width="7" height="7" rx="2"/><rect x="57" y="24" width="7" height="7" rx="2"/></g></svg></span></div></div>
+          <div class="tile m-hatch"><div class="tile__in"><span class="tile__name">Sheets</span><span class="tile__g"><svg viewBox="0 0 64 32"><rect class="g-stroke" x="1.5" y="1.5" width="61" height="29" rx="3"/><path class="g-stroke" d="M1.5 11 H62.5 M1.5 21 H62.5 M22 1.5 V30.5 M42 1.5 V30.5"/></svg></span></div></div>
+          <div class="tile m-chrome"><div class="tile__in"><span class="tile__name">Stock</span><span class="tile__g"><svg viewBox="0 0 64 32"><g class="g-hbars"><rect x="0" y="2" width="58" height="5" rx="2.5"/><rect x="0" y="13" width="36" height="5" rx="2.5"/><rect x="0" y="24" width="47" height="5" rx="2.5"/></g></svg></span></div></div>
+
+          <div class="tile m-paper"><div class="tile__in"><span class="tile__name">Wholesale</span><span class="tile__g"><svg viewBox="0 0 64 32"><polyline class="g-line" points="2,10 12,14 22,8 32,18 42,14 52,22 62,20"/></svg></span></div></div>
+          <div class="tile m-graphite"><div class="tile__in"><span class="tile__name">Reviews</span><span class="tile__g"><svg viewBox="0 0 64 32"><g><path d="M6 8l1.9 3.9 4.3.6-3.1 3 .7 4.3L6 17.8l-3.8 2 .7-4.3-3.1-3 4.3-.6z"/><path d="M19 8l1.9 3.9 4.3.6-3.1 3 .7 4.3L19 17.8l-3.8 2 .7-4.3-3.1-3 4.3-.6z"/><path d="M32 8l1.9 3.9 4.3.6-3.1 3 .7 4.3L32 17.8l-3.8 2 .7-4.3-3.1-3 4.3-.6z"/><path d="M45 8l1.9 3.9 4.3.6-3.1 3 .7 4.3L45 17.8l-3.8 2 .7-4.3-3.1-3 4.3-.6z"/><path d="M58 8l1.9 3.9 4.3.6-3.1 3 .7 4.3L58 17.8l-3.8 2 .7-4.3-3.1-3 4.3-.6z" opacity=".3"/></g></svg></span></div></div>
+          <div class="tile m-outline"><div class="tile__in"><span class="tile__name">Social</span><span class="tile__g"><svg viewBox="0 0 64 32"><circle class="g-stroke" cx="14" cy="16" r="11"/><circle cx="14" cy="16" r="4.5"/><rect x="32" y="9" width="30" height="4" rx="2"/><rect x="32" y="19" width="22" height="4" rx="2" opacity=".45"/></svg></span></div></div>
+          <div class="tile m-pearl"><div class="tile__in"><span class="tile__name">Web stats</span><span class="tile__g"><svg viewBox="0 0 64 32"><path d="M2 30 L2 22 L12 18 L22 21 L32 12 L42 14 L52 6 L62 9 L62 30 Z" opacity=".12"/><polyline class="g-line" points="2,22 12,18 22,21 32,12 42,14 52,6 62,9"/></svg></span></div></div>
+          <div class="tile m-ink"><div class="tile__in"><span class="tile__name">Till</span><span class="tile__g"><svg viewBox="0 0 64 32"><g class="g-bars"><rect x="1" y="14" width="9" height="18" rx="2"/><rect x="14" y="20" width="9" height="12" rx="2"/><rect x="27" y="9" width="9" height="23" rx="2"/><rect x="40" y="16" width="9" height="16" rx="2"/><rect x="53" y="4" width="9" height="28" rx="2"/></g></svg></span></div></div>
         </div>
-        <div class="svc__content">
-          <div class="svc__head">
-            <h3 class="svc__name">AI Foundations Workshop</h3>
-            <div class="svc__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
+        <div class="one" aria-hidden="true"><img src="orb.svg" alt=""></div>
+        <div class="one-ring" aria-hidden="true"></div>
+
+        <figure class="hero__figure">
+          <div class="mc" id="mc">
+            <span class="mc__bg" aria-hidden="true"></span>
+            <div class="mc__head mc__layer" data-z="20">
+              <img class="mc__orb" src="orb.svg" alt="" width="44" height="44">
+              <span class="mc__title">Your mission control &middot; this morning</span>
+              <span class="st st--run mc__sys"><i class="dot dot--run" aria-hidden="true"></i><span><b class="count" data-count="9">9</b> systems up to date</span></span>
+            </div>
+            <div class="mc__body">
+              <div class="mc__row mc__layer" data-z="70">
+                <div>
+                  <p class="label">Money in &middot; 30 days</p>
+                  <p class="fig mc__big"><span class="odo" data-odo="&pound;24,380">&pound;24,380</span></p>
+                </div>
+                <span class="chip">&uarr; 4.2%</span>
+              </div>
+              <div class="chartw mc__layer" data-z="110">
+                <svg class="chart" viewBox="0 0 560 118" preserveAspectRatio="none" aria-hidden="true">
+                  <defs><linearGradient id="fillA" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#191919" stop-opacity=".09"/><stop offset="1" stop-color="#191919" stop-opacity="0"/></linearGradient></defs>
+                  <line class="grid" x1="0" y1="30" x2="560" y2="30"/><line class="grid" x1="0" y1="62" x2="560" y2="62"/><line class="grid" x1="0" y1="94" x2="560" y2="94"/>
+                  <polygon class="carea" fill="url(#fillA)" points="4,118 4,90 44,82 84,88 124,74 164,79 204,64 244,70 284,58 324,63 364,48 404,53 444,38 484,42 516,27 540,20 540,118"/>
+                  <polyline class="cline" points="4,90 44,82 84,88 124,74 164,79 204,64 244,70 284,58 324,63 364,48 404,53 444,38 484,42 516,27 540,20"/>
+                </svg>
+                <i class="chartw__end" style="--ex:96.43%;--ey:16.9%" aria-hidden="true"></i>
+              </div>
+              <div class="split mc__layer" data-z="60" aria-hidden="true">
+                <span class="split__seg split__seg--w" style="flex-grow:61.2"></span><span class="split__seg split__seg--o" style="flex-grow:28.2"></span><span class="split__seg split__seg--s" style="flex-grow:10.6"></span>
+              </div>
+              <ul class="legend mc__layer" data-z="40">
+                <li><i class="sw sw--w" aria-hidden="true"></i>Wholesale <b>&pound;14,920</b></li>
+                <li><i class="sw sw--o" aria-hidden="true"></i>Online shop <b>&pound;6,870</b></li>
+                <li><i class="sw sw--s" aria-hidden="true"></i>Subscriptions <b>&pound;2,590</b></li>
+              </ul>
+              <div class="mc__needs mc__layer" data-z="140">
+                <span class="st st--warn"><i class="dot dot--warn" aria-hidden="true"></i>Needs you</span>
+                <p><b>Millbrook Farm Shop.</b> Usually orders every 21 days. Nothing for 30. Worth a call.</p>
+              </div>
+              <p class="mc__event st st--run mc__layer" data-z="30"><i class="dot dot--run" aria-hidden="true"></i>Morning brief sent in Slack &middot; 7:04</p>
+            </div>
+            <span class="mc__sheen" aria-hidden="true"></span>
           </div>
-          <p class="svc__body">A focused 2-3 hour session for your leadership team and staff. Walk away with a clear understanding of AI tools, prompting fundamentals, safe usage rules for client data, and a shortlist of workflows to implement first.</p>
-          <div class="svc__meta"><span class="svc__tag">Leadership &amp; staff</span><span class="svc__timeline">from &pound;950</span></div>
-        </div>
-      </div>
-      <div class="svc r d2">
-        <div class="svc__preview">
-          <div class="svc__preview-dot" style="background:var(--green)" aria-hidden="true"></div>
-          <span class="svc__preview-text" data-type-text="Cowork active · 3 AI agents deployed · team trained"></span>
-          <span class="pill pill-green"><span class="pill__dot"></span>Live</span>
-        </div>
-        <div class="svc__content">
-          <div class="svc__head">
-            <h3 class="svc__name">Cowork &amp; AI Agents</h3>
-            <div class="svc__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M3 9h18M9 21V9"/></svg></div>
-          </div>
-          <p class="svc__body">Our core offer. We audit your workflows, implement Cowork across your team, set up AI agents for repetitive tasks, configure intelligent automation, and deliver full documentation and training so your team adopts AI consistently and safely.</p>
-          <div class="svc__meta"><span class="svc__tag">Core offer</span><span class="svc__timeline">from &pound;3,500</span></div>
-        </div>
-      </div>
-      <div class="svc r d3">
-        <div class="svc__preview">
-          <div class="svc__preview-dot" style="background:var(--green)" aria-hidden="true"></div>
-          <span class="svc__preview-text" data-type-text="Slack · 4 AI agents online · marketing · sales · reporting"></span>
-          <span class="pill pill-green"><span class="pill__dot"></span>Live</span>
-        </div>
-        <div class="svc__content">
-          <div class="svc__head">
-            <h3 class="svc__name">AI Agent Teams</h3>
-            <div class="svc__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="6" cy="6" r="2"/><circle cx="18" cy="6" r="2"/><circle cx="6" cy="18" r="2"/><circle cx="18" cy="18" r="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="6" y1="8" x2="6" y2="16"/><line x1="18" y1="8" x2="18" y2="16"/><line x1="8" y1="18" x2="16" y2="18"/></svg></div>
-          </div>
-          <p class="svc__body">Extend your team with AI agents that operate like six-figure expert employees — inside Slack. Single agents or coordinated teams handling your marketing, sales, lead gen, customer service, and reporting. They learn your business, remember context, and work around the clock while you focus on growth.</p>
-          <div class="svc__meta"><span class="svc__tag">Autonomous operations</span><span class="svc__timeline">from &pound;3,500</span></div>
-        </div>
-      </div>
-      <div class="svc r d4">
-        <div class="svc__preview">
-          <div class="svc__preview-dot" style="background:var(--terra)" aria-hidden="true"></div>
-          <span class="svc__preview-text" data-type-text="30-min call · 3-5 workflows · ROI estimate · clear next steps"></span>
-          <span class="pill pill-terra">Advisory</span>
-        </div>
-        <div class="svc__content">
-          <div class="svc__head">
-            <h3 class="svc__name">Free AI Diagnostic Call</h3>
-            <div class="svc__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M2 20h20M12 4v12M8 8l4-4 4 4"/></svg></div>
-          </div>
-          <p class="svc__body">A focused 30-minute call where we identify your 3-5 highest-friction workflows, estimate the time and cost you're losing, and show you how AI agents and intelligent automation could transform your operations. No ROI? No pitch.</p>
-          <div class="svc__meta"><span class="svc__tag">Free &middot; 30 minutes</span><span class="svc__timeline">No obligation</span></div>
-          <a href="#book" class="btn btn-primary" style="width:100%;justify-content:center;margin-top:16px;">Book now &rarr;</a>
-        </div>
+          <figcaption class="cap">Illustration: sample figures and names.</figcaption>
+        </figure>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ═══ DIVIDER ═══ -->
-<div class="divider" aria-hidden="true" style="background:var(--cream)"><span class="divider__dot"></span><span class="divider__dot"></span><span class="divider__dot"></span></div>
+  <!-- ONE SCREEN: a pinned scene. The tools feed the logo; the logo opens into the screen. -->
+  <section class="scene" id="one-screen" aria-labelledby="s1-title">
+    <div class="scene__pin">
+      <div class="scene__copy wrap">
+        <div class="sec__top"><span class="pill">01 &middot; One screen</span></div>
+        <h2 class="h2 scene__title" id="s1-title" data-split>Your whole business, <span class="mute">on one screen.</span></h2>
+        <p class="sec__text scene__text" data-lines>Sales, money, roasting, delivery and emails, joined up in one place. Each morning you see what changed overnight, and the few things that need you.</p>
+      </div>
 
-<!-- ═══ HOW IT WORKS — DARK ═══ -->
-<section class="how sec" id="how" aria-labelledby="how-heading">
-  <div class="wrap">
-    <div class="how__grid">
-      <div class="r">
-        <div class="eyebrow">How it works</div>
-        <h2 class="hdg hdg--dark" id="how-heading">Diagnostic to <em>deployed agents</em> in 30 days</h2>
-        <p class="copy copy--dark">Five steps from first call to your team using AI every day. Most businesses are fully implemented within 30 days.</p>
-        <ol class="how__steps" role="list">
-          <li class="how-step r d1"><div class="how-step__n" aria-hidden="true">1</div><div><div class="how-step__title">Free AI Diagnostic</div><p class="how-step__body">A focused 30-minute call. We identify your repetitive workflows, quantify the time and cost, and determine whether structured AI implementation would produce clear ROI.</p></div></li>
-          <li class="how-step r d2"><div class="how-step__n" aria-hidden="true">2</div><div><div class="how-step__title">Receive Your Proposal</div><p class="how-step__body">You receive a short scope document: prioritised workflows, implementation plan, projected annual savings, and a clear fixed price.</p></div></li>
-          <li class="how-step r d3"><div class="how-step__n" aria-hidden="true">3</div><div><div class="how-step__title">We Implement</div><p class="how-step__body">We set up Cowork across your team, configure AI agents for your key operations, and implement intelligent automation. Your agents join Slack and start working like expert team members — with full documentation so you stay in control.</p></div></li>
-          <li class="how-step r d4"><div class="how-step__n" aria-hidden="true">4</div><div><div class="how-step__title">Your Team Runs It</div><p class="how-step__body">Full documentation, staff training, and a usage guide so your team can use everything consistently — without needing us. You own all the materials.</p></div></li>
-          <li class="how-step r d5"><div class="how-step__n" aria-hidden="true">5</div><div><div class="how-step__title">Optimise &amp; Evolve</div><p class="how-step__body">Optional monthly retainer to refine your agents, expand Cowork usage, adopt new AI releases, and receive ongoing guidance as both your business and the technology evolve.</p></div></li>
-        </ol>
-      </div>
-      <div class="r d2">
-        <div class="dash" role="img" aria-label="Live agent dashboard preview">
-          <div class="dash__bar"><div class="dash__dot" style="background:var(--red)"></div><div class="dash__dot" style="background:var(--amber)"></div><div class="dash__dot" style="background:var(--green)"></div><span class="dash__bar-title">AI Agent Team &middot; Live <span class="dash__cursor" aria-hidden="true"></span></span></div>
-          <div class="dash__agents">
-            <div class="agent-row"><span class="agent-row__name">&#128269;&nbsp; Research Agent</span><span class="abadge abadge--green">Running</span></div>
-            <div class="agent-row"><span class="agent-row__name">&#128231;&nbsp; Outreach Agent</span><span class="abadge abadge--green">Running</span></div>
-            <div class="agent-row"><span class="agent-row__name">&#128202;&nbsp; Content Agent</span><span class="abadge abadge--amber">Queued</span></div>
-            <div class="agent-row"><span class="agent-row__name">&#128200;&nbsp; Reporting Agent</span><span class="abadge abadge--terra">Done</span></div>
-          </div>
-          <div class="dash__metrics">
-            <div class="dash__metric"><div class="dash__metric-num" data-count="47" data-suffix="&#10003;">0<span>&#10003;</span></div><div class="dash__metric-label">Tasks today</div></div>
-            <div class="dash__metric"><div class="dash__metric-num" data-count="18" data-suffix="h">0<span>h</span></div><div class="dash__metric-label">Hours saved/wk</div></div>
-            <div class="dash__metric"><div class="dash__metric-num" data-count="99" data-suffix="%">0<span>%</span></div><div class="dash__metric-label">Uptime</div></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══ DIVIDER ═══ -->
-<div class="divider" aria-hidden="true"><span class="divider__dot"></span><span class="divider__dot"></span><span class="divider__dot"></span></div>
-
-<!-- ═══ RESULTS — LIGHT ═══ -->
-<section class="results sec grain" id="results" aria-labelledby="results-heading">
-  <div class="wrap">
-    <div class="results__hd r">
-      <div class="eyebrow">What your AI team delivers</div>
-      <h2 class="hdg hdg--center" id="results-heading">&pound;160k of talent. <em>From &pound;3.5k to deploy.*</em></h2>
-      <p class="copy copy--center">Real output from AI agent teams deployed for SMEs and solo founders.</p>
-    </div>
-    <div class="results__grid">
-      <div class="result-card r d1">
-        <div class="result-card__head">
-          <span class="result-card__label">Leads researched and delivered weekly</span>
-          <div class="result-card__num" data-target="50" data-suffix="+"><span class="rv">0</span><span>+</span></div>
-        </div>
-        <div class="result-card__bar"><div class="result-card__fill" data-width="95"></div></div>
-        <div class="result-card__context"><span class="result-card__detail">AI Research Agent in your Slack</span><span class="result-card__source">&pound;55k role, handled by AI</span></div>
-      </div>
-      <div class="result-card r d2">
-        <div class="result-card__head">
-          <span class="result-card__label">Personalised outreach emails per week</span>
-          <div class="result-card__num" data-target="200" data-suffix="+"><span class="rv">0</span><span>+</span></div>
-        </div>
-        <div class="result-card__bar"><div class="result-card__fill" data-width="85"></div></div>
-        <div class="result-card__context"><span class="result-card__detail">AI Outreach Agent, fully autonomous</span><span class="result-card__source">&pound;65k role, handled by AI</span></div>
-      </div>
-      <div class="result-card r d3">
-        <div class="result-card__head">
-          <span class="result-card__label">Admin hours eliminated per week</span>
-          <div class="result-card__num" data-target="35" data-suffix="h"><span class="rv">0</span><span>h</span></div>
-        </div>
-        <div class="result-card__bar"><div class="result-card__fill" data-width="68"></div></div>
-        <div class="result-card__context"><span class="result-card__detail">Reports, emails, follow-ups, summaries</span><span class="result-card__source">&pound;40k role, handled by AI</span></div>
-      </div>
-      <div class="result-card r d4">
-        <div class="result-card__head">
-          <span class="result-card__label">Your total investment for all of this</span>
-          <div class="result-card__num" data-target="3.5" data-suffix="k" data-decimal="1"><span class="rv">0</span><span>k</span></div>
-        </div>
-        <div class="result-card__bar"><div class="result-card__fill" data-width="5"></div></div>
-        <div class="result-card__context"><span class="result-card__detail">One-time setup &middot; agents live in 30 days</span><span class="result-card__source">&pound;160k worth of capability</span></div>
-      </div>
-    </div>
-    <p class="meta-text" style="text-align:center;margin-top:24px;">* Operational costs dependent on AI model and token usage.</p>
-  </div>
-</section>
-
-<!-- Mid-page CTA — dark card -->
-<div class="mid-cta-wrap">
-  <div class="mid-cta r">
-    <div class="mid-cta__text">Seen enough? <em>Let's go.</em></div>
-    <a href="https://cal.com/chad-pickard-integrateai" class="btn btn-primary">Book your free call &rarr;</a>
-    <div class="mid-cta__risk">30 minutes &middot; Completely free &middot; No pitch without clear ROI</div>
-  </div>
-</div>
-
-<!-- ═══ QUALIFIER — LIGHT ═══ -->
-<section class="qualifier" aria-labelledby="qualifier-heading">
-  <div class="wrap">
-    <div class="r" style="text-align:center;margin-bottom:48px">
-      <div class="eyebrow">Is this right for you?</div>
-      <h2 class="hdg hdg--center" id="qualifier-heading">We're a great fit <em>if&hellip;</em></h2>
-    </div>
-    <div class="qualifier__grid r d1">
-      <div class="qualifier__col qualifier__col--yes">
-        <div class="qualifier__col-head">
-          <div class="qualifier__col-icon"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></div>
-          <h3>This is for you</h3>
-        </div>
-        <ul class="qualifier__list">
-          <li>You're a solo entrepreneur or small team who wants to punch above your weight with AI</li>
-          <li>You have marketing, sales, admin, or ops tasks that could be handled by intelligent agents</li>
-          <li>You want practical implementation with documented deliverables, not theory</li>
-          <li>You value your team's time and are ready to invest in real implementation</li>
-          <li>You want AI employees with expert-level capability — without the six-figure salary</li>
+      <div class="scene__stage">
+        <div class="scene__orbit">
+        <div class="orbit__gl" aria-hidden="true"></div>
+        <svg class="orbit__lines" aria-hidden="true"></svg>
+        <ul class="orbit__items" aria-label="Tools feeding it">
+          <li class="orbit__item orbit__pill">Xero</li>
+          <li class="orbit__item orbit__pill">Shopify</li>
+          <li class="orbit__item orbit__pill">Skio</li>
+          <li class="orbit__item orbit__pill">Stripe</li>
+          <li class="orbit__item orbit__pill">Cropster</li>
+          <li class="orbit__item orbit__pill">Royal Mail</li>
+          <li class="orbit__item orbit__pill">DPD</li>
+          <li class="orbit__item orbit__pill">Klaviyo</li>
+          <li class="orbit__item orbit__pill">Basecamp</li>
+          <li class="orbit__item orbit__pill orbit__pill--more">+ more</li>
+          <li class="orbit__item orbit__card orbit__card--money" aria-hidden="true"><span class="label">Money in &middot; 30 days</span><span class="fig">&pound;24,380</span></li>
+          <li class="orbit__item orbit__card" aria-hidden="true"><span class="st st--warn"><i class="dot dot--warn"></i>Needs you</span><span class="orbit__sub">Millbrook Farm Shop</span></li>
         </ul>
-      </div>
-      <div class="qualifier__col qualifier__col--no">
-        <div class="qualifier__col-head">
-          <div class="qualifier__col-icon"><svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg></div>
-          <h3>Not the right fit</h3>
+        <div class="orbit__deck" aria-hidden="true"><img class="deck__still" src="orb.svg" alt=""><canvas class="orbit__orb" width="240" height="240"></canvas></div>
+        <p class="orbit__done st st--run" aria-hidden="true"><i class="dot dot--run"></i>9 systems up to date</p>
+        <p class="cap orbit__cap">Tools feeding it &middot; Illustration: sample figures and names.</p>
         </div>
-        <ul class="qualifier__list">
-          <li>You're looking for general IT support or custom software development</li>
-          <li>You want a strategy deck without any hands-on implementation</li>
-          <li>You're not willing to adjust existing workflows to incorporate AI</li>
-          <li>You need enterprise-scale system integration or cybersecurity audits</li>
-          <li>You're looking for the cheapest option — we focus on outcomes, not cost-cutting</li>
+
+        <figure class="screen-wrap">
+          <div class="screen" id="screen">
+            <span class="screen__bg" aria-hidden="true"></span>
+            <img class="screen__orb" src="orb.svg" alt="" width="44" height="44">
+            <div class="screen__head sc__layer" data-z="30">
+              <span class="screen__title">Your mission control &middot; this morning</span>
+              <span class="st st--run"><i class="dot dot--run" aria-hidden="true"></i><span><b class="count" data-count="9">9</b> systems up to date</span></span>
+            </div>
+            <div class="screen__matrix sc__layer" data-z="10" aria-hidden="true"><canvas class="screen__matrix-c"></canvas></div>
+            <div class="screen__tabs sc__layer" data-z="50" aria-hidden="true"><span>Sales</span><span>Money</span><span>Roasting</span><span>Delivery</span><span>Emails</span></div>
+            <div class="screen__grid">
+              <div class="panel panel--money sc__layer" data-z="90">
+                <div class="panel__top"><p class="label">Money in &middot; 30 days</p><span class="chip">&uarr; 4.2%</span></div>
+                <p class="fig panel__big"><span class="odo" data-odo="&pound;24,380">&pound;24,380</span></p>
+                <div class="chartw chartw--big">
+                  <svg class="chart" viewBox="0 0 560 150" preserveAspectRatio="none" aria-hidden="true">
+                    <defs><linearGradient id="fillB" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#191919" stop-opacity=".08"/><stop offset="1" stop-color="#191919" stop-opacity="0"/></linearGradient></defs>
+                    <line class="grid" x1="0" y1="30" x2="560" y2="30"/><line class="grid" x1="0" y1="75" x2="560" y2="75"/><line class="grid" x1="0" y1="120" x2="560" y2="120"/>
+                    <polygon class="carea" fill="url(#fillB)" points="4,150 4,118 44,108 84,116 124,98 164,104 204,86 244,93 284,78 324,84 364,64 404,71 444,52 484,57 516,37 540,28 540,150"/>
+                    <polyline class="cline" points="4,118 44,108 84,116 124,98 164,104 204,86 244,93 284,78 324,84 364,64 404,71 444,52 484,57 516,37 540,28"/>
+                  </svg>
+                  <i class="chartw__end" style="--ex:96.43%;--ey:18.7%" aria-hidden="true"></i>
+                </div>
+                <div class="split split--big" aria-hidden="true">
+                  <span class="split__seg split__seg--w" style="flex-grow:61.2"><em>Wholesale</em></span><span class="split__seg split__seg--o" style="flex-grow:28.2"><em>Online shop</em></span><span class="split__seg split__seg--s" style="flex-grow:10.6"></span>
+                </div>
+                <ul class="legend">
+                  <li><i class="sw sw--w" aria-hidden="true"></i>Wholesale <b>&pound;14,920</b></li>
+                  <li><i class="sw sw--o" aria-hidden="true"></i>Online shop <b>&pound;6,870</b></li>
+                  <li><i class="sw sw--s" aria-hidden="true"></i>Subscriptions <b>&pound;2,590</b></li>
+                </ul>
+              </div>
+              <div class="panel panel--needs silk sc__layer" data-z="150">
+                <p class="st st--warn"><i class="dot dot--warn" aria-hidden="true"></i>Needs you</p>
+                <p class="panel__name">Millbrook Farm Shop.</p>
+                <p class="panel__text">Usually orders every 21 days. Nothing for 30. Worth a call.</p>
+                <div class="rhythm" aria-hidden="true"><i></i><i></i><i></i><i></i><i class="gap"></i></div>
+              </div>
+              <div class="panel panel--night sc__layer" data-z="120">
+                <p class="label">Overnight</p>
+                <p class="panel__text">Last night's checks: 1 late invoice, 1 quiet account.</p>
+                <p class="st st--run panel__ok"><i class="dot dot--run" aria-hidden="true"></i>nothing else needs you</p>
+              </div>
+            </div>
+            <span class="mc__sheen" aria-hidden="true"></span>
+          </div>
+          <figcaption class="cap screen__cap">Illustration: sample figures and names.</figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <div class="wrap scene__after">
+      <span class="label">Tools feeding it</span>
+      <ul class="pills" aria-label="Tools feeding it">
+        <li class="pill">Xero</li><li class="pill">Shopify</li><li class="pill">Skio</li><li class="pill">Stripe</li><li class="pill">Cropster</li><li class="pill">Royal Mail</li><li class="pill">DPD</li><li class="pill">Klaviyo</li><li class="pill">Basecamp</li><li class="pill pill--line">+ more</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- TEAM -->
+  <section class="sec team" id="team" aria-labelledby="s2-title">
+    <div class="wrap">
+      <div class="sec__top"><span class="pill">02 &middot; Your team</span></div>
+      <div class="sec__head">
+        <h2 class="h2" id="s2-title" data-split>An AI team, <span class="mute">watching it for you.</span></h2>
+        <p class="sec__text" data-lines>Six AI executives (CFO, CRO, COO, CMO, CEO, CTO) read your systems every night. Each weekday morning one of them briefs you in Slack, and any of them will answer a question in about a minute.</p>
+      </div>
+
+      <div class="team__grid">
+        <svg class="team__wire" aria-hidden="true"><path class="team__path" d=""/><circle class="team__spark" r="3"/></svg>
+        <ul class="execs" aria-label="Your six AI executives">
+          <li class="exec m-graphite" data-exec="cfo"><span class="exec__face"><span class="exec__mono" aria-hidden="true"><b>C</b><b>F</b><b>O</b></span><span class="exec__role">Chief Financial Officer</span><span class="exec__sheen" aria-hidden="true"></span></span></li>
+          <li class="exec m-pearl" data-exec="cro"><span class="exec__face"><span class="exec__mono" aria-hidden="true"><b>C</b><b>R</b><b>O</b></span><span class="exec__role">Chief Revenue Officer</span><span class="exec__sheen" aria-hidden="true"></span></span></li>
+          <li class="exec m-chrome" data-exec="coo"><span class="exec__face"><span class="exec__mono" aria-hidden="true"><b>C</b><b>O</b><b>O</b></span><span class="exec__role">Chief Operating Officer</span><span class="exec__sheen" aria-hidden="true"></span></span></li>
+          <li class="exec m-dots" data-exec="cmo"><span class="exec__face"><span class="exec__mono" aria-hidden="true"><b>C</b><b>M</b><b>O</b></span><span class="exec__role">Chief Marketing Officer</span><span class="exec__sheen" aria-hidden="true"></span></span></li>
+          <li class="exec m-ink" data-exec="ceo"><span class="exec__face"><span class="exec__mono" aria-hidden="true"><b>C</b><b>E</b><b>O</b></span><span class="exec__role">Chief Executive Officer</span><span class="exec__sheen" aria-hidden="true"></span></span></li>
+          <li class="exec m-outline" data-exec="cto"><span class="exec__face"><span class="exec__mono" aria-hidden="true"><b>C</b><b>T</b><b>O</b></span><span class="exec__role">Chief Technology Officer</span><span class="exec__sheen" aria-hidden="true"></span></span></li>
+        </ul>
+
+        <div class="chat">
+          <div class="chat__bar"><span class="chat__lights" aria-hidden="true"><i></i><i></i><i></i></span><span class="pill pill--soft">In Slack</span><span class="label">Weekday &middot; morning</span></div>
+          <div class="chat__list">
+            <div class="msg msg--cfo" data-from="cfo">
+              <div class="typing" aria-hidden="true"><i></i><i></i><i></i></div>
+              <div class="msg__box"><p class="msg__who"><b>Your CFO</b><time>7:04</time></p><p class="msg__text">The Riverside Caf&eacute; owes &pound;840, 28 days late. They usually pay within 10. Worth a friendly nudge today.</p></div>
+            </div>
+            <div class="msg msg--you" data-from="you">
+              <div class="typing" aria-hidden="true"><i></i><i></i><i></i></div>
+              <div class="msg__box"><p class="msg__who"><b>You</b><time>7:12</time></p><p class="msg__text">Any wholesale accounts gone quiet?</p></div>
+            </div>
+            <div class="msg msg--cro" data-from="cro">
+              <div class="typing" aria-hidden="true"><i></i><i></i><i></i></div>
+              <div class="msg__box"><p class="msg__who"><b>Your CRO</b><time>7:13</time></p><p class="msg__text">One. Millbrook Farm Shop usually orders every 21 days. Nothing for 30. Worth a call.</p></div>
+            </div>
+          </div>
+          <p class="cap chat__cap">Sample conversation. Names and figures invented.</p>
+        </div>
+      </div>
+
+      <div class="running">
+        <p class="st st--run running__title"><i class="dot dot--run" aria-hidden="true"></i>Running today</p>
+        <ul class="running__list">
+          <li class="pillrow"><i class="dot dot--run" aria-hidden="true"></i>a brief every weekday morning</li>
+          <li class="pillrow"><i class="dot dot--run" aria-hidden="true"></i>answers in Slack in about a minute</li>
+          <li class="pillrow"><i class="dot dot--run" aria-hidden="true"></i>checks every night for late invoices, quiet accounts and subscriptions at risk</li>
         </ul>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ═══ DIVIDER ═══ -->
-<div class="divider" aria-hidden="true" style="background:var(--cream)"><span class="divider__dot"></span><span class="divider__dot"></span><span class="divider__dot"></span></div>
+  <!-- GOALS: a horizontal track in perspective, light materials -->
+  <section class="goals" id="goals" aria-labelledby="s3-title">
+    <div class="goals__pin">
+      <div class="goals__track">
+        <div class="goal goal--intro">
+          <div class="goal__intro-in">
+            <div class="sec__top"><span class="pill">03 &middot; Four goals</span></div>
+            <h2 class="h2 h2--xl" id="s3-title" data-split>Four goals.<br> <span class="mute">One playbook<br> built for roasters.</span></h2>
+            <div class="key" aria-label="Key">
+              <span class="key__i"><i class="dot dot--run" aria-hidden="true"></i>Running today</span>
+              <span class="key__i"><i class="ring" aria-hidden="true"></i>Coming soon</span>
+            </div>
+            <p class="goal__hint" aria-hidden="true"><span>Scroll</span><i></i></p>
+          </div>
+        </div>
 
-<!-- ═══ PRICING — DARK ═══ -->
-<section class="pricing sec" id="pricing" aria-labelledby="pricing-heading">
-  <div class="wrap">
-    <div class="pricing__hd r">
-      <div class="eyebrow">Investment</div>
-      <h2 class="hdg hdg--dark hdg--center" id="pricing-heading">Pick your plan. <em>See what you get.</em></h2>
-      <p class="copy copy--dark copy--center">No hidden fees. No scope creep. Every engagement has a clear deliverable and a fixed price — decided before we start.</p>
+        <article class="goal goal--save" aria-labelledby="g1">
+          <div class="goal__in">
+            <span class="goal__mat" aria-hidden="true"></span>
+            <p class="goal__idx"><span>Goal 01 / 04</span><span>2 running today</span></p>
+            <h3 class="goal__word" id="g1"><span class="gw"><span>Save</span></span> <span class="gw"><span>money</span></span></h3>
+            <div class="goal__obj" aria-hidden="true">
+              <div class="fan">
+                <div class="fan__card fan__card--3"><span class="fan__n">Oak &amp; Ash Deli</span><span class="fan__ok">Paid</span></div>
+                <div class="fan__card fan__card--2"><span class="fan__n">Harbour Kitchen</span><span class="fan__ok">Paid</span></div>
+                <div class="fan__card fan__card--1">
+                  <p class="label">Invoice &middot; nightly check</p>
+                  <p class="fan__name">The Riverside Caf&eacute;</p>
+                  <div class="fan__row"><span class="fig fan__amt">&pound;840</span><span class="fig fan__days">28 days</span></div>
+                  <span class="st st--warn fan__flag"><i class="dot dot--warn"></i>Late</span>
+                </div>
+              </div>
+              <p class="viz__note">Sample figures and names.</p>
+            </div>
+            <div class="goal__side">
+              <p class="goal__sub">Protect margin and cash</p>
+              <ul class="goal__items">
+                <li><i class="dot dot--run" aria-hidden="true"></i><span class="goal__t">Late invoices flagged the day they slip</span><span class="tag tag--on">Running today</span></li>
+                <li><i class="dot dot--run" aria-hidden="true"></i><span class="goal__t">Margin watched against your target</span><span class="tag tag--on">Running today</span></li>
+                <li><i class="ring" aria-hidden="true"></i><span class="goal__t">Margin by coffee, bag size and channel</span><span class="tag">Coming soon</span></li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
+        <article class="goal goal--grow" aria-labelledby="g2">
+          <div class="goal__in">
+            <span class="goal__mat" aria-hidden="true"></span>
+            <p class="goal__idx"><span>Goal 02 / 04</span><span>Coming soon</span></p>
+            <h3 class="goal__word" id="g2"><span class="gw"><span>Grow</span></span> <span class="gw"><span>revenue</span></span></h3>
+            <div class="goal__obj" aria-hidden="true">
+              <div class="iso">
+                <div class="iso__scene">
+                  <div class="iso__floor"></div>
+                  <div class="box" style="--h:0.3;--x:0"><i class="box__top"></i><i class="box__front"></i><i class="box__side"></i></div>
+                  <div class="box" style="--h:0.46;--x:1"><i class="box__top"></i><i class="box__front"></i><i class="box__side"></i></div>
+                  <div class="box" style="--h:0.4;--x:2"><i class="box__top"></i><i class="box__front"></i><i class="box__side"></i></div>
+                  <div class="box" style="--h:0.62;--x:3"><i class="box__top"></i><i class="box__front"></i><i class="box__side"></i></div>
+                  <div class="box" style="--h:0.55;--x:4"><i class="box__top"></i><i class="box__front"></i><i class="box__side"></i></div>
+                  <div class="box box--hi" style="--h:0.92;--x:5"><i class="box__top"></i><i class="box__front"></i><i class="box__side"></i></div>
+                  <div class="iso__plane"><span>Free delivery</span></div>
+                </div>
+              </div>
+              <p class="label goal__objcap">Basket size and the free-delivery line &middot; coming soon</p>
+            </div>
+            <div class="goal__side">
+              <p class="goal__sub">Sell more, to the right people</p>
+              <ul class="goal__items">
+                <li><i class="ring" aria-hidden="true"></i><span class="goal__t">Repeat buyers ready for a subscription</span><span class="tag">Coming soon</span></li>
+                <li><i class="ring" aria-hidden="true"></i><span class="goal__t">Bigger baskets: the free-delivery line</span><span class="tag">Coming soon</span></li>
+                <li><i class="ring" aria-hidden="true"></i><span class="goal__t">Christmas and Black Friday, planned early</span><span class="tag">Coming soon</span></li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
+        <article class="goal goal--eff" aria-labelledby="g3">
+          <div class="goal__in">
+            <span class="goal__mat" aria-hidden="true"></span>
+            <p class="goal__idx"><span>Goal 03 / 04</span><span>2 running today</span></p>
+            <h3 class="goal__word" id="g3"><span class="gw"><span>Get</span></span> <span class="gw"><span>efficient</span></span></h3>
+            <div class="goal__obj" aria-hidden="true">
+              <div class="fold">
+                <img class="fold__grid" src="img/grid-clean.png" alt="" width="1207" height="1165" loading="lazy" decoding="async">
+                <div class="fold__brief">
+                  <p class="label">Morning brief</p>
+                  <span class="fold__line"></span><span class="fold__line"></span><span class="fold__line"></span>
+                  <span class="st st--run fold__st"><i class="dot dot--run"></i>In Slack &middot; 7:04</span>
+                </div>
+              </div>
+              <p class="label goal__objcap">Twenty logins &middot; one brief</p>
+            </div>
+            <div class="goal__side">
+              <p class="goal__sub">Fewer hours, fewer logins</p>
+              <ul class="goal__items">
+                <li><i class="dot dot--run" aria-hidden="true"></i><span class="goal__t">One brief instead of twenty logins</span><span class="tag tag--on">Running today</span></li>
+                <li><i class="dot dot--run" aria-hidden="true"></i><span class="goal__t">Answers in Slack in about a minute</span><span class="tag tag--on">Running today</span></li>
+                <li><i class="ring" aria-hidden="true"></i><span class="goal__t">A roast plan built from real demand</span><span class="tag">Coming soon</span></li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
+        <article class="goal goal--keep" aria-labelledby="g4">
+          <div class="goal__in">
+            <span class="goal__mat" aria-hidden="true"></span>
+            <p class="goal__idx"><span>Goal 04 / 04</span><span>3 running today</span></p>
+            <h3 class="goal__word" id="g4"><span class="gw"><span>Keep</span></span> <span class="gw"><span>customers</span></span></h3>
+            <div class="goal__obj" aria-hidden="true">
+              <div class="dial">
+                <div class="dial__disc">
+                  <span class="dial__edge"></span>
+                  <svg class="dial__svg" viewBox="0 0 240 240">
+                    <g class="dial__ticks"><line x1="120.00" y1="30.00" x2="120.00" y2="20.00" class="is-major"/><line x1="129.83" y1="26.51" x2="130.45" y2="20.55"/><line x1="139.54" y1="28.05" x2="140.79" y2="22.19"/><line x1="149.05" y1="30.60" x2="150.90" y2="24.89"/><line x1="158.23" y1="34.13" x2="160.67" y2="28.65"/><line x1="167.00" y1="38.59" x2="170.00" y2="33.40"/><line x1="175.25" y1="43.95" x2="178.78" y2="39.10"/><line x1="180.22" y1="53.12" x2="186.91" y2="45.69" class="is-major"/><line x1="189.86" y1="57.10" x2="194.31" y2="53.09"/><line x1="196.05" y1="64.75" x2="200.90" y2="61.22"/><line x1="201.41" y1="73.00" x2="206.60" y2="70.00"/><line x1="205.87" y1="81.77" x2="211.35" y2="79.33"/><line x1="209.40" y1="90.95" x2="215.11" y2="89.10"/><line x1="211.95" y1="100.46" x2="217.81" y2="99.21"/><line x1="209.51" y1="110.59" x2="219.45" y2="109.55" class="is-major"/><line x1="214.00" y1="120.00" x2="220.00" y2="120.00"/><line x1="213.49" y1="129.83" x2="219.45" y2="130.45"/><line x1="211.95" y1="139.54" x2="217.81" y2="140.79"/><line x1="209.40" y1="149.05" x2="215.11" y2="150.90"/><line x1="205.87" y1="158.23" x2="211.35" y2="160.67"/><line x1="201.41" y1="167.00" x2="206.60" y2="170.00"/><line x1="192.81" y1="172.90" x2="200.90" y2="178.78" class="is-major"/><line x1="189.86" y1="182.90" x2="194.31" y2="186.91"/><line x1="182.90" y1="189.86" x2="186.91" y2="194.31"/><line x1="175.25" y1="196.05" x2="178.78" y2="200.90"/><line x1="167.00" y1="201.41" x2="170.00" y2="206.60"/><line x1="158.23" y1="205.87" x2="160.67" y2="211.35"/><line x1="149.05" y1="209.40" x2="150.90" y2="215.11"/><line x1="138.71" y1="208.03" x2="140.79" y2="217.81" class="is-major"/><line x1="129.83" y1="213.49" x2="130.45" y2="219.45"/><line x1="120.00" y1="214.00" x2="120.00" y2="220.00"/><line x1="110.17" y1="213.49" x2="109.55" y2="219.45"/><line x1="100.46" y1="211.95" x2="99.21" y2="217.81"/><line x1="90.95" y1="209.40" x2="89.10" y2="215.11"/><line x1="81.77" y1="205.87" x2="79.33" y2="211.35"/><line x1="75.00" y1="197.94" x2="70.00" y2="206.60" class="is-major"/><line x1="64.75" y1="196.05" x2="61.22" y2="200.90"/><line x1="57.10" y1="189.86" x2="53.09" y2="194.31"/><line x1="50.14" y1="182.90" x2="45.69" y2="186.91"/><line x1="43.95" y1="175.25" x2="39.10" y2="178.78"/><line x1="38.59" y1="167.00" x2="33.40" y2="170.00"/><line x1="34.13" y1="158.23" x2="28.65" y2="160.67"/><line x1="34.40" y1="147.81" x2="24.89" y2="150.90" class="is-major"/><line x1="28.05" y1="139.54" x2="22.19" y2="140.79"/><line x1="26.51" y1="129.83" x2="20.55" y2="130.45"/><line x1="26.00" y1="120.00" x2="20.00" y2="120.00"/><line x1="26.51" y1="110.17" x2="20.55" y2="109.55"/><line x1="28.05" y1="100.46" x2="22.19" y2="99.21"/><line x1="30.60" y1="90.95" x2="24.89" y2="89.10"/><line x1="37.78" y1="83.39" x2="28.65" y2="79.33" class="is-major"/><line x1="38.59" y1="73.00" x2="33.40" y2="70.00"/><line x1="43.95" y1="64.75" x2="39.10" y2="61.22"/><line x1="50.14" y1="57.10" x2="45.69" y2="53.09"/><line x1="57.10" y1="50.14" x2="53.09" y2="45.69"/><line x1="64.75" y1="43.95" x2="61.22" y2="39.10"/><line x1="73.00" y1="38.59" x2="70.00" y2="33.40"/><line x1="83.39" y1="37.78" x2="79.33" y2="28.65" class="is-major"/><line x1="90.95" y1="30.60" x2="89.10" y2="24.89"/><line x1="100.46" y1="28.05" x2="99.21" y2="22.19"/><line x1="110.17" y1="26.51" x2="109.55" y2="20.55"/></g>
+                    <circle class="dial__track" cx="120" cy="120" r="86"/>
+                    <path class="dial__gap" d="M176.63 161.14 A 70 70 0 0 1 63.37 78.86"/>
+                    <g class="dial__orders"><circle cx="120.00" cy="34.00" r="7"/><circle cx="189.58" cy="170.55" r="7"/><circle cx="38.21" cy="146.58" r="6" class="is-due"/></g>
+                    <line class="dial__hand" x1="120" y1="120" x2="120" y2="56" transform="rotate(306 120 120)"/>
+                    <circle class="dial__hub" cx="120" cy="120" r="6"/>
+                  </svg>
+                </div>
+                <div class="dial__label">
+                  <p class="label">Millbrook Farm Shop</p>
+                  <p class="dial__big"><span class="fig" data-quiet>30</span> days</p>
+                  <span class="st st--warn"><i class="dot dot--warn"></i>Nothing for 30 &middot; usually 21</span>
+                </div>
+              </div>
+              <p class="viz__note">Sample figures and names.</p>
+            </div>
+            <div class="goal__side">
+              <p class="goal__sub">Nobody drifts away unnoticed</p>
+              <ul class="goal__items">
+                <li><i class="dot dot--run" aria-hidden="true"></i><span class="goal__t">Caf&eacute;s going quiet, by their own rhythm</span><span class="tag tag--on">Running today</span></li>
+                <li><i class="dot dot--run" aria-hidden="true"></i><span class="goal__t">Online customers drifting</span><span class="tag tag--on">Running today</span></li>
+                <li><i class="dot dot--run" aria-hidden="true"></i><span class="goal__t">Subscriptions at risk, caught early</span><span class="tag tag--on">Running today</span></li>
+              </ul>
+            </div>
+          </div>
+        </article>
+      </div>
     </div>
-    <div class="pricing__grid">
-      <div class="plan r d1">
-        <div class="plan__header">
-          <div class="plan__tier-row"><span class="plan__tier">Starter</span><span class="plan__avail pill pill-green"><span class="pill__dot"></span>Available</span></div>
-          <h3 class="plan__name">AI Foundations</h3>
-          <p class="plan__desc">For teams who want clarity on AI tools, safe usage, and a shortlist of workflows to implement.</p>
-          <div class="plan__price-row"><span class="plan__currency">&pound;</span><span class="plan__num" data-price="950">950</span><span class="plan__period">per session</span></div>
-        </div>
-        <div class="plan__body">
-          <div class="plan__includes">Includes: 2-3 hour session + materials + action plan</div>
-          <ul class="plan__features"><li>AI landscape overview (what matters, what doesn't)</li><li>Prompting fundamentals your team can use immediately</li><li>Safe usage rules: client data, confidentiality, risk</li><li>Shortlist of high-ROI workflows to target first</li><li>Materials and reference guide to keep</li></ul>
-          <a href="#book" class="btn btn-ghost-dark" style="width:100%;justify-content:center;">Free AI Diagnostic &rarr;</a>
-        </div>
+  </section>
+
+  <!-- JOINED UP -->
+  <section class="sec joined" id="joined" aria-labelledby="s4-title">
+    <div class="wrap">
+      <div class="sec__top"><span class="pill">04 &middot; Joined up</span><span class="pill pill--line">Coming next</span></div>
+      <div class="sec__head">
+        <h2 class="h2" id="s4-title" data-split>Joined up, <span class="mute">not just side by side.</span></h2>
+        <p class="sec__text" data-lines>Each tool sees one piece; joined up they answer what none can alone.</p>
       </div>
-      <div class="plan plan--featured r d2">
-        <div class="plan__header">
-          <div class="plan__tier-row"><span class="plan__tier">Most popular</span><span class="plan__avail pill pill-amber"><span class="pill__dot"></span>2 spots left</span></div>
-          <h3 class="plan__name">Cowork &amp; AI Agents</h3>
-          <p class="plan__desc">Claude Cowork integration plus AI agent deployment — the full implementation package.</p>
-          <div class="plan__price-row"><span class="plan__num" style="font-size:36px;">from &pound;3,500</span></div>
-        </div>
-        <div class="plan__body">
-          <div class="plan__includes">Includes: Cowork setup + agent deployment + training + docs</div>
-          <ul class="plan__features"><li>Full workflow audit with time/cost analysis</li><li>Claude Cowork setup across your team</li><li>AI agent configuration for key tasks</li><li>Intelligent automation for repetitive workflows</li><li>Full SOP documentation + team training</li><li>Post-implementation support included</li></ul>
-          <a href="#book" class="btn btn-primary" style="width:100%;justify-content:center;">Free AI Diagnostic &rarr;</a>
-        </div>
+
+      <div class="jd-list">
+        <article class="jd jd--customer tilt">
+          <div class="jd__head"><span class="jd__n">A</span><h3 class="h3">One customer, every system</h3></div>
+          <div class="tl" aria-label="Millbrook Farm Shop across four systems, July to today">
+            <div class="tl__who">Millbrook Farm Shop</div>
+            <div class="tl__months" aria-hidden="true"><span style="--x:0%">Jul</span><span style="--x:35.2%">Aug</span><span style="--x:70.5%">Sep</span><span class="tl__today" style="--x:100%">Today</span></div>
+            <div class="tl__row"><span class="tl__name">Shopify orders</span><div class="tl__track"><i style="--x:18.2%"></i><i style="--x:42%"></i><i style="--x:65.9%"></i><i class="ghost" style="--x:89.8%"></i></div></div>
+            <div class="tl__row"><span class="tl__name">Xero invoices</span><div class="tl__track"><i style="--x:18.2%"></i><i style="--x:42%"></i><i style="--x:65.9%"></i><em class="tl__note" style="--x:66%">paid on time</em></div></div>
+            <div class="tl__row"><span class="tl__name">Royal Mail</span><div class="tl__track"><i style="--x:20.5%"></i><i style="--x:44.3%"></i><i style="--x:68.2%"></i></div></div>
+            <div class="tl__row"><span class="tl__name">Klaviyo emails</span><div class="tl__track tl__track--mail"><i style="--x:2.3%"></i><i style="--x:10.2%"></i><i style="--x:18.2%"></i><i style="--x:26.1%"></i><i style="--x:34.1%"></i><i style="--x:42%"></i><i style="--x:50%"></i><i style="--x:58%"></i><i style="--x:65.9%"></i><i class="hollow" style="--x:73.9%"></i><i class="hollow" style="--x:81.8%"></i><i class="hollow" style="--x:89.8%"></i><i class="hollow" style="--x:97.7%"></i></div></div>
+            <div class="tl__gap" aria-hidden="true"><span>30 days</span></div>
+          </div>
+          <p class="jd__say"><span class="st st--warn"><i class="dot dot--warn" aria-hidden="true"></i>Worth a call</span><span class="jd__q">&ldquo;No order in 30 days and stopped opening your emails, though still paying on time. Worth a call.&rdquo;</span></p>
+        </article>
+
+        <article class="jd jd--order tilt">
+          <div class="jd__head"><span class="jd__n">B</span><h3 class="h3">One order, end to end</h3></div>
+          <ol class="route">
+            <li class="route__st"><span class="route__dot"></span><b>Ordered</b><span class="route__meta">Shopify &middot; 25 Aug</span></li>
+            <li class="route__st"><span class="route__dot"></span><b>Roasted</b><span class="route__meta">Cropster &middot; 26 Aug</span></li>
+            <li class="route__st"><span class="route__dot"></span><b>Delivered</b><span class="route__meta">Royal Mail &middot; 28 Aug</span></li>
+            <li class="route__st route__st--q"><span class="route__dot"><i class="dot dot--warn" aria-hidden="true"></i></span><b>Paid?</b><span class="route__meta">Xero &middot; due 30 Aug</span></li>
+          </ol>
+          <p class="jd__say"><span class="jd__q">&ldquo;The Riverside Caf&eacute;: &pound;840, 28 days unpaid.&rdquo;</span></p>
+        </article>
+
+        <article class="jd jd--money tilt">
+          <div class="jd__head"><span class="jd__n">C</span><h3 class="h3">One money figure, not three</h3></div>
+          <div class="merge">
+            <ul class="merge__src">
+              <li><span class="merge__tool">Shopify</span><b class="fig">&pound;6,870</b></li>
+              <li><span class="merge__tool">Stripe</span><b class="fig">&pound;6,742</b></li>
+              <li><span class="merge__tool">Xero</span><b class="fig">&pound;6,870</b></li>
+            </ul>
+            <svg class="merge__wires" viewBox="0 0 100 120" preserveAspectRatio="none" aria-hidden="true">
+              <path d="M0 20 C 55 20, 45 60, 100 60"/><path d="M0 60 L 100 60"/><path d="M0 100 C 55 100, 45 60, 100 60"/>
+            </svg>
+            <div class="merge__out">
+              <p class="fig merge__sum">&pound;6,870 &minus; &pound;128 card fees = &pound;6,742</p>
+              <p class="st st--run merge__ok"><i class="dot dot--run" aria-hidden="true"></i>All three agree, and the gap is explained.</p>
+            </div>
+          </div>
+        </article>
       </div>
-      <div class="plan r d3">
-        <div class="plan__header">
-          <div class="plan__tier-row"><span class="plan__tier">Enterprise</span><span class="plan__avail pill pill-terra">Rolling monthly</span></div>
-          <h3 class="plan__name">Ongoing Support</h3>
-          <p class="plan__desc">For teams who want continuous optimisation, agent management, and expert guidance as AI evolves.</p>
-          <div class="plan__price-row"><span class="plan__num" style="font-size:36px;letter-spacing:-0.02em;">1,000</span><span class="plan__period">/month</span></div>
+      <p class="cap">Illustration: sample figures and names.</p>
+    </div>
+  </section>
+
+  <!-- IN CHARGE -->
+  <section class="sec charge" id="charge" aria-labelledby="s5-title">
+    <div class="wrap">
+      <div class="sec__top"><span class="pill">05 &middot; You stay in charge</span></div>
+      <div class="charge__grid">
+        <div class="charge__words">
+          <h2 class="h2 charge__title" id="s5-title" data-split>Nothing goes out <span class="mute">without your yes.</span></h2>
+          <ol class="stmts">
+            <li class="stmt" data-beat="0"><span class="stmt__n" aria-hidden="true">01</span><p class="stmt__p">It reads and advises. It acts only where you say so, in writing.</p></li>
+            <li class="stmt" data-beat="1"><span class="stmt__n" aria-hidden="true">02</span><p class="stmt__p">Coming next: it drafts the chaser or the win-back email. Nothing goes out without your yes.</p></li>
+            <li class="stmt" data-beat="2"><span class="stmt__n" aria-hidden="true">03</span><p class="stmt__p">Money leaving your business always needs your own yes, paid from your own bank or Xero. Never by us.</p></li>
+          </ol>
         </div>
-        <div class="plan__body">
-          <div class="plan__includes">Includes: Everything in AI Productivity Setup + Dedicated consultant + Strategy</div>
-          <ul class="plan__features"><li>Everything in AI Productivity Setup</li><li>Unlimited agents &amp; integrations</li><li>Dedicated consultant embedded in your team</li><li>Board-level AI strategy session</li><li>12-month adoption roadmap</li><li>Dedicated Slack support channel</li></ul>
-          <a href="#book" class="btn btn-ghost-dark" style="width:100%;justify-content:center;">Free AI Diagnostic &rarr;</a>
+
+        <div class="charge__side">
+          <div class="yes" data-beat="1">
+            <div class="yes__top">
+              <span class="label">Illustration</span>
+              <div class="yes__tabs" role="tablist" aria-label="Three rules">
+                <button type="button" role="tab" class="yes__tab" data-go="0" aria-selected="false">It advises</button>
+                <button type="button" role="tab" class="yes__tab" data-go="1" aria-selected="true">Your yes</button>
+                <button type="button" role="tab" class="yes__tab" data-go="2" aria-selected="false">Your money</button>
+              </div>
+            </div>
+            <div class="yes__stage">
+              <article class="yes__card yes__card--advice" data-card="0">
+                <header class="yes__hd"><span class="yes__who"><img src="orb.svg" alt="" width="44" height="44">Your CFO</span><span class="tag">Advice only</span></header>
+                <p class="yes__text">The Riverside Caf&eacute; owes &pound;840, 28 days late. Worth a friendly nudge today.</p>
+                <div class="yes__rules">
+                  <p class="label">Your rules, in writing</p>
+                  <ul>
+                    <li><span>Read your systems</span><span class="yes__rv">Allowed</span></li>
+                    <li><span>Draft a reminder</span><span class="yes__rv">Coming next</span></li>
+                    <li><span>Send anything</span><span class="yes__rv">Your yes</span></li>
+                    <li><span>Move money</span><span class="yes__rv">Never</span></li>
+                  </ul>
+                </div>
+              </article>
+
+              <article class="yes__card yes__card--draft" data-card="1">
+                <span class="yes__mail-fly" aria-hidden="true"></span>
+                <header class="yes__hd"><span class="yes__who">Draft &middot; friendly reminder</span><span class="tag">Coming next</span></header>
+                <dl class="yes__mail">
+                  <div><dt>To</dt><dd>The Riverside Caf&eacute;</dd></div>
+                  <div><dt>Subject</dt><dd>A friendly reminder</dd></div>
+                </dl>
+                <p class="yes__body">Hi there, a friendly reminder that &pound;840 is now 28 days overdue. Thank you, and have a lovely week.</p>
+                <div class="yes__foot">
+                  <button class="yes__key" type="button" aria-describedby="yes-hint"><span class="yes__cap"><span class="yes__cap-t">Your yes</span></span></button>
+                  <div class="yes__after">
+                    <p class="yes__hint" id="yes-hint">Nothing goes out until you press it.</p>
+                    <p class="yes__sent st st--run" aria-live="polite"><i class="dot dot--run" aria-hidden="true"></i><span>Sent with your yes &middot; 7:18</span></p>
+                    <button class="yes__again" type="button">Replay</button>
+                  </div>
+                </div>
+              </article>
+
+              <article class="yes__card yes__card--money" data-card="2">
+                <header class="yes__hd"><span class="yes__who">Money leaving your business</span><span class="st st--warn"><i class="dot dot--warn" aria-hidden="true"></i>Needs your own yes</span></header>
+                <div class="yes__vault">
+                  <svg class="yes__lock" viewBox="0 0 64 64" aria-hidden="true"><path class="yes__shackle" d="M20 30 V21 a12 12 0 0 1 24 0 V30"/><rect x="13" y="29" width="38" height="28" rx="8"/><circle cx="32" cy="42" r="4"/><path d="M32 45 v5"/></svg>
+                  <div>
+                    <p class="yes__vt">Only you can approve it.</p>
+                    <p class="yes__vs">In your own bank, or in Xero.</p>
+                  </div>
+                </div>
+                <div class="yes__foot">
+                  <button class="yes__key yes__key--locked" type="button" aria-describedby="lock-hint"><span class="yes__cap"><span class="yes__cap-t">Locked</span></span></button>
+                  <p class="yes__hint" id="lock-hint">IntegrateAI never moves money.</p>
+                </div>
+              </article>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-    <p class="meta-text" style="text-align:center;margin-top:24px;color:var(--lite-3);">* Operational costs depend on AI model and token usage. We provide full cost transparency before any engagement.</p>
-  </div>
-</section>
+  </section>
 
-<!-- ═══ CTA BAND — Terra ═══ -->
-<section class="cta-band" id="book" aria-labelledby="cta-heading">
-  <h2 class="cta-band__h2 r" id="cta-heading">See what AI could do <em>for your business.</em></h2>
-  <p class="cta-band__sub r d1">Book your free 30-minute AI Diagnostic. We'll show you which roles an AI agent could fill, how Cowork would boost your team's output, and give you a concrete savings estimate — yours to keep even if you don't proceed.</p>
-  <a href="https://cal.com/chad-pickard-integrateai" aria-label="Book your free AI Diagnostic" class="btn btn-white r d2">Book Your Free Call &rarr;</a>
-  <div class="cta-band__spots r d3"><span class="cta-band__spots-dot"></span>Free &middot; No obligation &middot; You keep the analysis either way</div>
-</section>
-
-<!-- ═══ FAQ — LIGHT ═══ -->
-<section class="faq sec grain" id="faq" aria-labelledby="faq-heading">
-  <div class="wrap">
-    <div class="faq__grid">
-      <div class="r">
-        <div class="eyebrow">FAQ</div>
-        <h2 class="hdg" id="faq-heading">Quick<br><em>answers</em></h2>
-        <p class="copy" style="margin-top:14px;">Can't find what you need? Email us at <a href="mailto:hello@integrate-ai.uk" style="color:var(--terra);text-decoration:none;">hello@integrate-ai.uk</a></p>
-      </div>
-      <div class="faq__list r d1" role="list">
-        <div class="faq__item" role="listitem"><button class="faq__q" aria-expanded="false" aria-controls="faq-1">We're already using ChatGPT. Is this still useful?<span class="faq__icon" aria-hidden="true">+</span></button><div class="faq__a" id="faq-1" role="region"><div class="faq__a-inner">That's ideal — you already have a foundation. We structure what's working, fix what isn't, and implement Cowork and AI agents so your whole team uses AI consistently.</div></div></div>
-        <div class="faq__item" role="listitem"><button class="faq__q" aria-expanded="false" aria-controls="faq-2">How fast will we see results?<span class="faq__icon" aria-hidden="true">+</span></button><div class="faq__a" id="faq-2" role="region"><div class="faq__a-inner">Most clients see time savings within two weeks. The full engagement — diagnostic to delivered implementation — takes about 30 days.</div></div></div>
-        <div class="faq__item" role="listitem"><button class="faq__q" aria-expanded="false" aria-controls="faq-3">How much time will this take from our side?<span class="faq__icon" aria-hidden="true">+</span></button><div class="faq__a" id="faq-3" role="region"><div class="faq__a-inner">Complexity dependent but generally one half-day discovery and implementation session plus light follow-up. We handle the technical work — you and your team walk us through their workflows and show up for training.</div></div></div>
-        <div class="faq__item" role="listitem"><button class="faq__q" aria-expanded="false" aria-controls="faq-4">What tools do you use?<span class="faq__icon" aria-hidden="true">+</span></button><div class="faq__a" id="faq-4" role="region"><div class="faq__a-inner">Claude Cowork for daily AI productivity across your team. AI agents that join your Slack and operate like expert employees — handling marketing, sales, customer service, research, and reporting. Whether you need a single specialist agent or a coordinated team, we design and deploy what fits your business.</div></div></div>
-        <div class="faq__item" role="listitem"><button class="faq__q" aria-expanded="false" aria-controls="faq-5">We're worried about data safety and client confidentiality.<span class="faq__icon" aria-hidden="true">+</span></button><div class="faq__a" id="faq-5" role="region"><div class="faq__a-inner">Good — you should be. Data governance is built into every engagement. We define what should and shouldn't go into AI, set up guardrails, and make sure your team understands the boundaries.</div></div></div>
-        <div class="faq__item" role="listitem"><button class="faq__q" aria-expanded="false" aria-controls="faq-6">What does it cost beyond the initial engagement?<span class="faq__icon" aria-hidden="true">+</span></button><div class="faq__a" id="faq-6" role="region"><div class="faq__a-inner">A Claude subscription (for Cowork), AI tokens based on models and usage, and an optional monthly retainer for ongoing optimisation. No hidden fees from us.</div></div></div>
+  <!-- PRICE -->
+  <section class="sec price" id="price" aria-labelledby="s6-title">
+    <div class="wrap">
+      <div class="sec__top"><span class="pill" id="s6-title">06 &middot; Price</span><span class="pill pill--line">Beta</span></div>
+      <div class="price__grid">
+        <div class="price__big giant silk tilt">
+          <p class="price__main"><span class="price__num odo" data-odo="&pound;250">&pound;250</span> <span class="price__unit">a month in beta.</span></p>
+          <div class="price__deck" aria-hidden="true"><img src="orb.svg" alt=""></div>
+          <span class="mc__sheen" aria-hidden="true"></span>
+        </div>
+        <aside class="info" aria-label="Price details">
+          <p class="label info__title">Information</p>
+          <dl class="info__rows">
+            <div><dt>Included</dt><dd>All in, AI costs included.</dd></div>
+            <div><dt>Terms</dt><dd>No set-up fee, 6-month minimum.</dd></div>
+            <div><dt>After beta</dt><dd>After beta, &pound;500 a month, never within your first six months, and with 30 days' notice.</dd></div>
+          </dl>
+          <p class="label info__title">What you get</p>
+          <ul class="info__list">
+            <li>your mission control, every tool on one screen</li>
+            <li>six AI executives reading your systems every night</li>
+            <li>a brief every weekday morning, and answers in Slack</li>
+            <li>new checks as the playbook grows</li>
+          </ul>
+          <a class="btn btn--quiet info__cta magnet" href="#close" data-book aria-haspopup="dialog">Book a walkthrough <span class="btn__arr" aria-hidden="true">&rarr;</span></a>
+        </aside>
       </div>
     </div>
-  </div>
-</section>
+  </section>
+
+  <!-- CLOSE -->
+  <section class="close" id="close" aria-labelledby="s7-title">
+    <div class="wrap">
+      <div class="close__stage">
+      <div class="close__floats" aria-hidden="true">
+        <img class="float float--a" src="img/tile-chrome-clean.png" alt="" width="624" height="673" loading="lazy" decoding="async">
+        <img class="float float--b" src="img/tile-pearl-clean.png" alt="" width="659" height="703" loading="lazy" decoding="async">
+        <img class="float float--c" src="img/tile-glass-clean.png" alt="" width="634" height="708" loading="lazy" decoding="async">
+        <img class="float float--d" src="img/tile-graphite-clean.png" alt="" width="663" height="703" loading="lazy" decoding="async">
+      </div>
+      <div class="close__box giant">
+        <div class="close__orb" aria-hidden="true"><img class="deck__still" src="orb.svg" alt=""><canvas class="close__canvas" width="220" height="220"></canvas></div>
+        <p class="label close__eyebrow">Your next step</p>
+        <h2 class="close__title" id="s7-title" data-split>See it on your own numbers.</h2>
+        <p class="close__sub">A 30-minute walkthrough with Chad and Paul.</p>
+        <div class="close__actions">
+          <a class="btn btn--primary chrome magnet" href="https://cal.com/chad-pickard-integrateai/30min" target="_blank" rel="noopener"><span>Book a 30-minute call</span><span class="btn__arr" aria-hidden="true">&rarr;</span></a>
+          <a class="btn btn--quiet magnet" href="mailto:chad@integrate-ai.uk?subject=Walkthrough%20request">Email us</a>
+        </div>
+        <div class="mail">
+          <span class="mail__addr">chad@integrate-ai.uk</span>
+          <button class="mail__copy" type="button" data-copy="chad@integrate-ai.uk"><span class="mail__copy-a">Copy</span><span class="mail__copy-b" aria-hidden="true">Copied</span></button>
+        </div>
+        <p class="terms"><span class="nw">&pound;250 a month in beta</span> &middot; <span class="nw">No set-up fee</span> &middot; <span class="nw">6-month minimum</span></p>
+      </div>
+      </div>
+    </div>
+  </section>
 </main>
 
-<!-- FOOTER — DARK -->
-<footer role="contentinfo">
+<footer class="foot">
   <div class="wrap">
-    <div class="footer__top">
-      <div class="footer__about">
-        <a href="#main" class="nav__logo" style="text-decoration:none;" aria-label="IntegrateAI Advisors — Home"><div class="nav__orb shifting" aria-hidden="true"><div class="v4__dot v4__dot--bright"></div><div class="v4__dot v4__dot--dim"></div><div class="v4__dot v4__dot--mid"></div><div class="v4__dot v4__dot--bright"></div><div class="v4__dot v4__dot--dim"></div><div class="v4__dot v4__dot--bright"></div><div class="v4__dot v4__dot--bright"></div><div class="v4__dot v4__dot--mid"></div></div><span class="nav__brand footer__brand">Integrate<span class="ai">AI</span> Advisors</span></a>
-        <p>AI consultancy for entrepreneurs and SMEs. We implement AI agent teams and productivity tools — giving you superintelligent AI employees with six-figure expertise, at a fraction of the cost.</p>
-      </div>
-      <div class="footer__col r d1"><h5>Services</h5><ul><li><a href="#services">AI Foundations Workshop</a></li><li><a href="#services">Cowork &amp; AI Agents</a></li><li><a href="#services">AI Agent Teams</a></li><li><a href="#pricing">Ongoing Support</a></li></ul></div>
-      <div class="footer__col r d2"><h5>Company</h5><ul><li><a href="#how">About</a></li><li><a href="#results">Case studies</a></li><li><a href="#faq">FAQ</a></li><li><a href="/blog">Blog</a></li><li><a href="#book">Contact</a></li></ul></div>
-      <div class="footer__col r d3"><h5>Contact</h5><ul><li><a href="mailto:hello@integrate-ai.uk">hello&#64;integrate-ai.uk</a></li><li><a href="https://cal.com/chad-pickard-integrateai">Free AI Diagnostic</a></li><li><a href="https://x.com/integrateaiuk" target="_blank" rel="noopener noreferrer">Twitter / X</a></li><li><a href="https://www.instagram.com/integrate.ai.advisors/" target="_blank" rel="noopener noreferrer">Instagram</a></li></ul></div>
-      <div class="footer__col r d4"><h5>Legal</h5><ul><li><a href="terms.html">Terms of Service</a></li><li><a href="privacy.html">Privacy Policy</a></li></ul></div>
-    </div>
-    <div class="footer__bottom">
-      <span class="footer__copy">&copy; <span id="copy-year"></span> IntegrateAI Advisors. All rights reserved.</span>
-      <a href="#main" class="footer__btt"><svg viewBox="0 0 16 16"><path d="M8 13V3M4 7l4-4 4 4"/></svg>Back to top</a>
-      <span class="footer__note">Not affiliated with Anthropic PBC. Built using Claude and Anthropic's APIs.</span>
+    <div class="foot__sign" aria-hidden="true"><span class="foot__deck"><img src="orb.svg" alt=""></span><span class="foot__word"><span class="foot__mask"><span>IntegrateAI</span></span></span></div>
+    <div class="foot__row">
+      <span class="pill pill--brand"><img src="orb.svg" alt="" width="44" height="44">IntegrateAI</span>
+      <span class="pill">integrate-ai.uk</span>
+      <span class="pill">&copy; 2026</span>
+      <span class="pill pill--note">Sample figures and names throughout.</span>
+      <a class="pill pill--line" href="/privacy">Privacy</a>
+      <a class="pill pill--line" href="/terms">Terms</a>
+      <a class="pill pill--line foot__top" href="#top">Back to top &uarr;</a>
     </div>
   </div>
 </footer>
 
-<script>
-(function(){
-'use strict';
+<!-- The booking panel. Opens in place from any "See it on your own numbers" or "Book a walkthrough" button. -->
+<dialog class="book" id="book" aria-labelledby="book-title" aria-describedby="book-sub">
+  <div class="book__veil" aria-hidden="true"></div>
+  <div class="book__card">
+    <span class="book__morph" aria-hidden="true"></span>
+    <span class="book__grab" aria-hidden="true"></span>
+    <button class="book__x" type="button" aria-label="Close"><span aria-hidden="true"></span></button>
+    <div class="book__in">
+      <div class="book__top">
+        <span class="book__deck" aria-hidden="true"><img src="orb.svg" alt=""></span>
+        <p class="label">Your next step</p>
+      </div>
+      <h2 class="book__title" id="book-title">See it on your own numbers.</h2>
+      <p class="book__sub" id="book-sub"><span class="book__faces" aria-hidden="true"><i>C</i><i>P</i></span>A 30-minute walkthrough with Chad and Paul.</p>
+      <div class="book__actions">
+        <a class="btn btn--primary chrome book__primary" href="https://cal.com/chad-pickard-integrateai/30min" target="_blank" rel="noopener" autofocus><span>Book a 30-minute call</span><span class="btn__arr" aria-hidden="true">&rarr;</span></a>
+        <a class="btn btn--quiet" href="mailto:chad@integrate-ai.uk?subject=Walkthrough%20request">Email us</a>
+      </div>
+      <div class="mail mail--book">
+        <span class="mail__addr">chad@integrate-ai.uk</span>
+        <button class="mail__copy" type="button" data-copy="chad@integrate-ai.uk"><span class="mail__copy-a">Copy</span><span class="mail__copy-b" aria-hidden="true">Copied</span></button>
+      </div>
+      <p class="terms"><span class="nw">&pound;250 a month in beta</span> &middot; <span class="nw">No set-up fee</span> &middot; <span class="nw">6-month minimum</span></p>
+    </div>
+  </div>
+</dialog>
+<p class="sr mail__status" role="status" aria-live="polite"></p>
 
-var yearEl=document.getElementById('copy-year');
-if(yearEl)yearEl.textContent=new Date().getFullYear();
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
+<script src="components/orb3d/orb3d.js"></script>
+<script src="components/tiles3d/tiles3d.js"></script>
+<script src="sig-core.js"></script>
+<script src="sig-booking.js"></script>
+<script src="sig-hero.js"></script>
+<script src="sig-scene.js"></script>
+<script src="sig-sections.js"></script>
+<script src="sig-main.js"></script>
 
-var progressBar=document.getElementById('scroll-progress');
-function updateProgress(){var s=window.scrollY,d=document.documentElement.scrollHeight-window.innerHeight;progressBar.style.width=(d>0?(s/d)*100:0)+'%'}
-
-var nav=document.getElementById('nav');
-var ticking=false;
-window.addEventListener('scroll',function(){if(!ticking){requestAnimationFrame(function(){nav.classList.toggle('up',window.scrollY>20);updateProgress();ticking=false});ticking=true}},{passive:true});
-
-var toggle=document.getElementById('nav-toggle'),mobileNav=document.getElementById('nav-mobile');
-if(toggle&&mobileNav){toggle.addEventListener('click',function(){var o=toggle.classList.toggle('open');mobileNav.classList.toggle('open',o);toggle.setAttribute('aria-expanded',String(o));toggle.setAttribute('aria-label',o?'Close menu':'Open menu');document.body.style.overflow=o?'hidden':''});mobileNav.querySelectorAll('a').forEach(function(l){l.addEventListener('click',function(){toggle.classList.remove('open');mobileNav.classList.remove('open');toggle.setAttribute('aria-expanded','false');toggle.setAttribute('aria-label','Open menu');document.body.style.overflow=''})})}
-
-var phrases=['AI agents','Claude Cowork','AI employees','smart automation','agent teams','24/7 in Slack'];
-var twIdx=0,twChar=0,twDel=false;
-function twTick(){var el=document.getElementById('tw-text');if(!el)return;var p=phrases[twIdx];if(!twDel){twChar++;el.textContent=p.slice(0,twChar);if(twChar===p.length){twDel=true;setTimeout(twTick,2000);return}setTimeout(twTick,65)}else{twChar--;el.textContent=p.slice(0,twChar);if(twChar===0){twDel=false;twIdx=(twIdx+1)%phrases.length;setTimeout(twTick,350);return}setTimeout(twTick,35)}}
-setTimeout(twTick,1000);
-
-function showHeroRest(){['hero-sub','hero-btns','hero-stats'].forEach(function(id){var el=document.getElementById(id);if(el)el.classList.add('show')});startHeroCountUp()}
-setTimeout(showHeroRest,1900);
-
-/* Hero shimmer — activate after fade-up completes (0.4s delay + 0.6s anim = 1s + buffer) */
-setTimeout(function(){var h1=document.querySelector('.hero__h1');if(h1){h1.style.opacity='1';h1.style.transform='none';h1.classList.add('shimmer-on')}},1500);
-
-function animateCount(el,from,to,dur,dec,sfx){var s=performance.now();function tick(now){var t=Math.min((now-s)/dur,1),e=1-Math.pow(1-t,3);el.innerHTML=(from+(to-from)*e).toFixed(dec)+'<span>'+sfx+'</span>';if(t<1)requestAnimationFrame(tick)}requestAnimationFrame(tick)}
-function startHeroCountUp(){
-var stats=document.querySelectorAll('.hero__stat');
-stats.forEach(function(stat,i){
-setTimeout(function(){
-stat.classList.add('stat-in');
-var el=stat.querySelector('.hero__stat-num');
-if(el)animateCount(el,0,parseFloat(el.dataset.val),1100,el.dataset.decimal?1:0,el.dataset.suffix);
-},i*150);
-});
-}
-
-/* Scroll reveal — brand spec: threshold 8%, rootMargin -40px */
-var revObs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('on');revObs.unobserve(e.target)}})},{threshold:0.08,rootMargin:'0px 0px -40px 0px'});
-document.querySelectorAll('.r').forEach(function(el){revObs.observe(el)});
-
-/* Results — count up + progress bars */
-var resGrid=document.querySelector('.results__grid');
-if(resGrid){new IntersectionObserver(function(entries,obs){entries.forEach(function(e){if(!e.isIntersecting)return;
-e.target.querySelectorAll('.result-card').forEach(function(card,i){setTimeout(function(){
-var numEl=card.querySelector('.result-card__num');var target=parseFloat(numEl.dataset.target);var dec=numEl.dataset.decimal?1:0;var sfx=numEl.dataset.suffix;var valEl=numEl.querySelector('.rv');var fill=card.querySelector('.result-card__fill');
-var s=performance.now();
-(function tick(now){var t=Math.min((now-s)/1300,1),ease=1-Math.pow(1-t,3);valEl.textContent=(target*ease).toFixed(dec);if(t<1)requestAnimationFrame(tick);else valEl.textContent=target.toFixed(dec)})(performance.now());
-if(fill)fill.style.width=fill.dataset.width+'%';
-},i*120)});
-obs.unobserve(e.target)})},{threshold:0.25}).observe(resGrid)}
-
-/* Dashboard count-up */
-var dash=document.querySelector('.dash');
-if(dash){new IntersectionObserver(function(entries,obs){entries.forEach(function(e){if(!e.isIntersecting)return;e.target.querySelectorAll('[data-count]').forEach(function(el,i){var target=parseInt(el.dataset.count,10),sfx=el.dataset.suffix||el.querySelector('span').textContent;setTimeout(function(){var s=performance.now();(function tick(now){var t=Math.min((now-s)/900,1),ease=1-Math.pow(1-t,3);el.innerHTML=Math.round(target*ease)+'<span>'+sfx+'</span>';if(t<1)requestAnimationFrame(tick)})(performance.now())},i*140)});obs.unobserve(e.target)})},{threshold:0.4}).observe(dash)}
-
-/* CTA shimmer */
-var ctaBand=document.querySelector('.cta-band');
-if(ctaBand){new IntersectionObserver(function(entries,obs){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('shimmer');obs.unobserve(e.target)}})},{threshold:0.3}).observe(ctaBand)}
-
-/* FAQ */
-document.querySelectorAll('.faq__item').forEach(function(item){var btn=item.querySelector('.faq__q');btn.addEventListener('click',function(){var isOpen=item.classList.contains('open');document.querySelectorAll('.faq__item').forEach(function(i){i.classList.remove('open');i.querySelector('.faq__q').setAttribute('aria-expanded','false');i.querySelector('.faq__icon').textContent='+'});if(!isOpen){item.classList.add('open');btn.setAttribute('aria-expanded','true');item.querySelector('.faq__icon').textContent='\u2212'}})});
-
-/* Marquee pause */
-var strip=document.querySelector('.strip'),track=document.querySelector('.strip__track');
-if(strip&&track){strip.addEventListener('mouseenter',function(){track.style.animationPlayState='paused'});strip.addEventListener('mouseleave',function(){track.style.animationPlayState='running'})}
-
-/* Service terminal typing effect */
-function typeTerminal(el,text,speed,delay){
-  var cursor=document.createElement('span');
-  cursor.className='svc__tw-cursor';
-  el.textContent='';
-  el.appendChild(cursor);
-  var i=0;
-  setTimeout(function tick(){
-    if(i<text.length){
-      cursor.before(text.charAt(i));
-      i++;
-      setTimeout(tick,speed+(Math.random()*20-10));
-    }else{
-      setTimeout(function(){cursor.classList.add('done')},1200);
-    }
-  },delay);
-}
-var svcSection=document.getElementById('services');
-if(svcSection){
-  new IntersectionObserver(function(entries,obs){
-    entries.forEach(function(e){
-      if(!e.isIntersecting)return;
-      e.target.querySelectorAll('[data-type-text]').forEach(function(el,i){
-        typeTerminal(el,el.dataset.typeText,28,i*600+300);
-      });
-      obs.unobserve(e.target);
-    });
-  },{threshold:0.15}).observe(svcSection);
-}
-
-/* Pricing number count-up */
-var pricingSection=document.getElementById('pricing');
-if(pricingSection){
-  new IntersectionObserver(function(entries,obs){
-    entries.forEach(function(e){
-      if(!e.isIntersecting)return;
-      e.target.querySelectorAll('[data-price]').forEach(function(el,i){
-        var target=parseInt(el.dataset.price,10);
-        el.textContent='0';
-        setTimeout(function(){
-          var s=performance.now();
-          (function tick(now){
-            var t=Math.min((now-s)/800,1);
-            var ease=1-Math.pow(1-t,3);
-            var val=Math.round(target*ease);
-            el.textContent=val.toLocaleString('en-GB');
-            if(t<1)requestAnimationFrame(tick);
-            else el.textContent=target.toLocaleString('en-GB');
-          })(performance.now());
-        },i*150);
-      });
-      obs.unobserve(e.target);
-    });
-  },{threshold:0.1}).observe(pricingSection);
-}
-
-
-}());
-</script>
 </body>
 </html>
-<!-- v3 brand refresh + SEO + UX: 2026-03-31 -->
