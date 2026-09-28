@@ -1,4 +1,4 @@
-/* IntegrateAI · Signal 1.1 · core helpers shared by every module. */
+/* IntegrateAI · Signal 1.2 · core helpers shared by every module. */
 (function () {
   'use strict';
   var S = window.SIG = window.SIG || {};
@@ -120,6 +120,117 @@
       done: function () { cols.forEach(function (c) { gsap.set(c.strip, { yPercent: -100 * c.steps / (c.steps + 1) }); }); }
     };
     return el._odo;
+  };
+
+  // Roll an odometer on to a new value: each changed digit spins up from its old digit to the new one.
+  S.odoTo = function (el, text, o) {
+    o = o || {};
+    var old = el.getAttribute('data-now') || el.getAttribute('data-odo') || text;
+    el.setAttribute('data-now', text);
+    var sr = el.querySelector('.sr'); if (sr) sr.textContent = text;
+    var vis = el.querySelector('.odo__v');
+    if (!vis) { el.textContent = text; return; }
+    var nv = document.createElement('span'); nv.className = 'odo__v'; nv.setAttribute('aria-hidden', 'true');
+    var cols = [];
+    for (var i = 0; i < text.length; i++) {
+      var ch = text.charAt(i), was = old.charAt(i);
+      if (/\d/.test(ch)) {
+        var to = +ch, from = /\d/.test(was) ? +was : to, seq = [from];
+        while (seq[seq.length - 1] !== to) seq.push((seq[seq.length - 1] + 1) % 10);
+        var col = document.createElement('span'); col.className = 'odo__c';
+        var strip = document.createElement('span'); strip.className = 'odo__s';
+        strip.innerHTML = seq.map(function (d) { return '<span>' + d + '</span>'; }).join('');
+        var probe = document.createElement('span'); probe.className = 'odo__p'; probe.textContent = ch;
+        col.appendChild(probe); col.appendChild(strip); nv.appendChild(col);
+        cols.push({ strip: strip, steps: seq.length - 1 });
+      } else {
+        var x = document.createElement('span'); x.className = 'odo__x'; x.textContent = ch; nv.appendChild(x);
+      }
+    }
+    vis.parentNode.replaceChild(nv, vis);
+    cols.forEach(function (c, k) {
+      if (!c.steps) return;
+      gsap.fromTo(c.strip, { yPercent: 0 }, { yPercent: -100 * c.steps / (c.steps + 1), duration: (o.duration || 0.9) + k * 0.05, ease: 'expo.out', delay: k * 0.04 });
+    });
+  };
+
+  /* The logo orb exactly as the official orb.svg still (tilt 0.729 rad, screen y down, band clock from 2.4 s,
+     orb radius 0.30 of the tile), drawn in 2D for the small dark tiles so they keep weaving at the brand's slow
+     speed. Greyscale. Runs only while visible, at about 30 fps. */
+  S.logoOrb = function (cv, opts) {
+    opts = opts || {};
+    if (!cv || !cv.getContext) return null;
+    var ctx = cv.getContext('2d'), dpr = Math.min(2, window.devicePixelRatio || 1);
+    var W = 0, R = 0, cT = Math.cos(-0.729), sT = Math.sin(-0.729), CLOCK = 2.34 * 0.42;
+    var gh = [];
+    for (var g = 0; g < 38; g++) {
+      var gy = 1 - (g + 0.5) * 2 / 38, gr = Math.sqrt(1 - gy * gy), th = g * 2.399963;
+      var X = Math.cos(th) * gr * 0.8, Y0 = -gy * 0.8, Z0 = Math.sin(th) * gr * 0.8;
+      gh.push([X, Y0 * cT - Z0 * sT, Y0 * sT + Z0 * cT]);
+    }
+    var pts = [];
+    function size() {
+      var w = cv.getBoundingClientRect().width || opts.size || 44;
+      W = w; cv.width = Math.round(w * dpr); cv.height = Math.round(w * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0); R = 0.3 * W;
+    }
+    function draw(sec) {
+      var t = (2.4 + sec) * CLOCK, n = 0;
+      for (var s = 0; s < 44; s++) {
+        var a = 2 * Math.PI * s / 44, ca = Math.cos(a), sa = Math.sin(a);
+        for (var l = 0; l < 12; l++) {
+          var y = (l - 5.5) * 0.075 + 0.16 * Math.sin(3 * a - 1.7 * t + 0.22 * l) + 0.07 * Math.sin(5 * a + 1.1 * t);
+          var r = Math.sqrt(Math.max(0, 1 - y * y)), X = r * ca, Z0 = r * sa, Y0 = -y;
+          pts[n++] = [X, Y0 * cT - Z0 * sT, Y0 * sT + Z0 * cT, 0];
+        }
+      }
+      for (var q = 0; q < gh.length; q++) pts[n++] = [gh[q][0], gh[q][1], gh[q][2], 1];
+      pts.length = n;
+      pts.sort(function (p1, p2) { return p1[2] - p2[2]; });
+      ctx.clearRect(0, 0, W, W);
+      var cx = W / 2, cy = W / 2;
+      for (var i = 0; i < n; i++) {
+        var p = pts[i], rad, grey, alpha;
+        if (!p[3]) {
+          var depth = (p[2] + 1) / 2, edge = Math.min(1, Math.sqrt(p[0] * p[0] + p[1] * p[1]));
+          rad = Math.max(0.0227, 0.0229 * (0.935 + 1.445 * depth) * (1 - 0.25 * edge)) * R;
+          grey = 0.30 + 0.62 * depth - 0.06 * edge; alpha = 0.4 + 0.6 * depth;
+        } else {
+          var gd = (p[2] / 0.8 + 1) / 2;
+          rad = 0.0227 * 0.9 * R; grey = 0.36 + 0.1 * gd; alpha = 0.12 + 0.2 * gd;
+        }
+        var c = Math.round(S.clamp(0, 1, grey) * 255);
+        ctx.fillStyle = 'rgba(' + c + ',' + c + ',' + c + ',' + alpha.toFixed(3) + ')';
+        ctx.beginPath(); ctx.arc(cx + p[0] * R, cy - p[1] * R, Math.max(0.35, rad), 0, 6.2832); ctx.fill();
+      }
+    }
+    size(); draw(0);
+    if (opts.still) return { start: function () {}, stop: function () {} };
+    var raf = 0, visible = !('IntersectionObserver' in window), running = false, t0 = performance.now(), last = 0;
+    function loop(now) {
+      raf = requestAnimationFrame(loop);
+      if (now - last < 31) return;
+      last = now; draw((now - t0) / 1000);
+    }
+    function run() { if (!raf && visible && running && !document.hidden) raf = requestAnimationFrame(loop); }
+    function halt() { if (raf) cancelAnimationFrame(raf); raf = 0; }
+    if ('IntersectionObserver' in window) new IntersectionObserver(function (es) { visible = es[0].isIntersecting; if (visible) run(); else halt(); }).observe(cv);
+    document.addEventListener('visibilitychange', function () { if (document.hidden) halt(); else run(); });
+    window.addEventListener('resize', function () { size(); draw((performance.now() - t0) / 1000); });
+    return { start: function () { running = true; run(); }, stop: function () { running = false; halt(); } };
+  };
+
+  // Small dark tiles marked .deck-live: the canvas takes over from the still once it has drawn.
+  S.liveDeck = function (d, still) {
+    if (!d || d._live) return;
+    d._live = true;
+    var o = S.logoOrb(d.querySelector('canvas'), { still: !!still });
+    if (!o) return;
+    d.classList.add('is-live');
+    o.start();
+  };
+  S.liveDecks = function (still) {
+    S.$$('.deck-live').forEach(function (d) { if (still || !d.hasAttribute('data-defer')) S.liveDeck(d, still); });
   };
 
   S.switchOn = function (list) { (list || []).forEach(function (el) { el.classList.add('is-on'); }); };

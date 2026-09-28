@@ -14,7 +14,9 @@
 <link rel="icon" href="/orb.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon.png" type="image/png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<meta name="generator" content="Signal 1.1">
+<meta name="generator" content="Signal 1.3">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"IntegrateAI","url":"https://www.integrate-ai.uk/","logo":"https://www.integrate-ai.uk/orb.svg","areaServed":"GB","description":"One mission control for your business: every tool you run on, on one screen, with six AI executives reading it every night."}</script>
+<!--ANALYTICS-->
 <style>html,body{margin:0}</style>
 </head>
 <body>
@@ -33,7 +35,7 @@
   <div class="nav__bar">
     <span class="nav__bg" aria-hidden="true"><i class="nav__progress"></i></span>
     <a class="nav__brand" href="#top" aria-label="IntegrateAI, back to top">
-      <img class="nav__deck" src="orb.svg" alt="" width="44" height="44">
+      <span class="nav__deck deck-live"><img src="orb.svg" alt="" width="44" height="44"><canvas></canvas></span>
       <span class="nav__word">IntegrateAI</span>
     </a>
     <nav class="nav__links" aria-label="Sections">
@@ -51,6 +53,12 @@
   <!-- HERO -->
   <section class="hero" aria-labelledby="hero-title">
     <div class="hero__glow" aria-hidden="true"></div>
+    <div class="hero__glow hero__glow--b" aria-hidden="true"></div>
+    <div class="hero__far" aria-hidden="true">
+      <span class="far-w far-w--a"><img class="far" src="img/tile-pearl-clean.png" alt="" width="659" height="703" decoding="async"></span>
+      <span class="far-w far-w--b"><img class="far" src="img/tile-glass-clean.png" alt="" width="634" height="708" decoding="async"></span>
+      <span class="far-w far-w--c"><img class="far" src="img/tile-chrome-clean.png" alt="" width="624" height="673" decoding="async"></span>
+    </div>
     <div class="hero__grid wrap">
       <div class="hero__copy">
         <p class="pill eyebrow">For specialty coffee roasters</p>
@@ -104,7 +112,7 @@
           <div class="mc" id="mc">
             <span class="mc__bg" aria-hidden="true"></span>
             <div class="mc__head mc__layer" data-z="20">
-              <img class="mc__orb" src="orb.svg" alt="" width="44" height="44">
+              <span class="mc__orb deck-live" data-defer><img src="orb.svg" alt="" width="44" height="44"><canvas></canvas></span>
               <span class="mc__title">Your mission control &middot; this morning</span>
               <span class="st st--run mc__sys"><i class="dot dot--run" aria-hidden="true"></i><span><b class="count" data-count="9">9</b> systems up to date</span></span>
             </div>
@@ -118,10 +126,10 @@
               </div>
               <div class="chartw mc__layer" data-z="110">
                 <svg class="chart" viewBox="0 0 560 118" preserveAspectRatio="none" aria-hidden="true">
-                  <defs><linearGradient id="fillA" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#191919" stop-opacity=".09"/><stop offset="1" stop-color="#191919" stop-opacity="0"/></linearGradient></defs>
+                  <defs><linearGradient id="fillA" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#191919" stop-opacity=".09"/><stop offset="1" stop-color="#191919" stop-opacity="0"/></linearGradient><clipPath id="clipA"><rect x="0" y="-24" width="560" height="170"/></clipPath></defs>
                   <line class="grid" x1="0" y1="30" x2="560" y2="30"/><line class="grid" x1="0" y1="62" x2="560" y2="62"/><line class="grid" x1="0" y1="94" x2="560" y2="94"/>
-                  <polygon class="carea" fill="url(#fillA)" points="4,118 4,90 44,82 84,88 124,74 164,79 204,64 244,70 284,58 324,63 364,48 404,53 444,38 484,42 516,27 540,20 540,118"/>
-                  <polyline class="cline" points="4,90 44,82 84,88 124,74 164,79 204,64 244,70 284,58 324,63 364,48 404,53 444,38 484,42 516,27 540,20"/>
+                  <polygon class="carea" fill="url(#fillA)" clip-path="url(#clipA)" points="4,118 4,90 44,82 84,88 124,74 164,79 204,64 244,70 284,58 324,63 364,48 404,53 444,38 484,42 516,27 540,20 540,118"/>
+                  <polyline class="cline" clip-path="url(#clipA)" points="4,90 44,82 84,88 124,74 164,79 204,64 244,70 284,58 324,63 364,48 404,53 444,38 484,42 516,27 540,20"/>
                 </svg>
                 <i class="chartw__end" style="--ex:96.43%;--ey:16.9%" aria-hidden="true"></i>
               </div>
@@ -135,10 +143,15 @@
               </ul>
               <div class="mc__needs mc__layer" data-z="140">
                 <span class="st st--warn"><i class="dot dot--warn" aria-hidden="true"></i>Needs you</span>
-                <p><b>Millbrook Farm Shop.</b> Usually orders every 21 days. Nothing for 30. Worth a call.</p>
+                <div class="needs__stack">
+                  <p class="needs__i"><b>Millbrook Farm Shop.</b> Usually orders every 21 days. Nothing for 30. Worth a call.</p>
+                  <p class="needs__i" aria-hidden="true"><b>The Riverside Caf&eacute;</b> owes &pound;840, 28 days late. They usually pay within 10. Worth a friendly nudge today.</p>
+                  <p class="needs__i" aria-hidden="true"><b>A subscription at risk,</b> caught early. Worth a friendly check-in.</p>
+                </div>
               </div>
               <p class="mc__event st st--run mc__layer" data-z="30"><i class="dot dot--run" aria-hidden="true"></i>Morning brief sent in Slack &middot; 7:04</p>
             </div>
+            <span class="mc__sweep" aria-hidden="true"><i></i></span>
             <span class="mc__sheen" aria-hidden="true"></span>
           </div>
           <figcaption class="cap">Illustration: sample figures and names.</figcaption>
@@ -147,16 +160,15 @@
     </div>
   </section>
 
-  <!-- ONE SCREEN: a pinned scene. The tools feed the logo; the logo opens into the screen. -->
-  <section class="scene" id="one-screen" aria-labelledby="s1-title">
-    <div class="scene__pin">
-      <div class="scene__copy wrap">
-        <div class="sec__top"><span class="pill">01 &middot; One screen</span></div>
-        <h2 class="h2 scene__title" id="s1-title" data-split>Your whole business, <span class="mute">on one screen.</span></h2>
-        <p class="sec__text scene__text" data-lines>Sales, money, roasting, delivery and emails, joined up in one place. Each morning you see what changed overnight, and the few things that need you.</p>
-      </div>
-
-      <div class="scene__stage">
+  <!-- ONE SCREEN: the tools feed the orb, then the mission control arrives. A simple scroll at every size. -->
+  <section class="sec scene" id="one-screen" aria-labelledby="s1-title">
+    <div class="wrap">
+      <div class="sec__top"><span class="pill">01 &middot; One screen</span></div>
+      <div class="scene__top">
+        <div class="scene__copy">
+          <h2 class="h2 scene__title" id="s1-title" data-split>Your whole business, <span class="mute">on one screen.</span></h2>
+          <p class="sec__text scene__text" data-lines>Sales, money, roasting, delivery and emails, joined up in one place. Each morning you see what changed overnight, and the few things that need you.</p>
+        </div>
         <div class="scene__orbit">
         <div class="orbit__gl" aria-hidden="true"></div>
         <svg class="orbit__lines" aria-hidden="true"></svg>
@@ -178,11 +190,12 @@
         <p class="orbit__done st st--run" aria-hidden="true"><i class="dot dot--run"></i>9 systems up to date</p>
         <p class="cap orbit__cap">Tools feeding it &middot; Illustration: sample figures and names.</p>
         </div>
+      </div>
 
         <figure class="screen-wrap">
           <div class="screen" id="screen">
             <span class="screen__bg" aria-hidden="true"></span>
-            <img class="screen__orb" src="orb.svg" alt="" width="44" height="44">
+            <span class="screen__orb deck-live"><img src="orb.svg" alt="" width="44" height="44"><canvas></canvas></span>
             <div class="screen__head sc__layer" data-z="30">
               <span class="screen__title">Your mission control &middot; this morning</span>
               <span class="st st--run"><i class="dot dot--run" aria-hidden="true"></i><span><b class="count" data-count="9">9</b> systems up to date</span></span>
@@ -227,14 +240,13 @@
           </div>
           <figcaption class="cap screen__cap">Illustration: sample figures and names.</figcaption>
         </figure>
-      </div>
-    </div>
 
-    <div class="wrap scene__after">
+      <div class="scene__after">
       <span class="label">Tools feeding it</span>
       <ul class="pills" aria-label="Tools feeding it">
         <li class="pill">Xero</li><li class="pill">Shopify</li><li class="pill">Skio</li><li class="pill">Stripe</li><li class="pill">Cropster</li><li class="pill">Royal Mail</li><li class="pill">DPD</li><li class="pill">Klaviyo</li><li class="pill">Basecamp</li><li class="pill pill--line">+ more</li>
       </ul>
+      </div>
     </div>
   </section>
 
@@ -301,7 +313,6 @@
               <span class="key__i"><i class="dot dot--run" aria-hidden="true"></i>Running today</span>
               <span class="key__i"><i class="ring" aria-hidden="true"></i>Coming soon</span>
             </div>
-            <p class="goal__hint" aria-hidden="true"><span>Scroll</span><i></i></p>
           </div>
         </div>
 
@@ -494,14 +505,12 @@
     <div class="wrap">
       <div class="sec__top"><span class="pill">05 &middot; You stay in charge</span></div>
       <div class="charge__grid">
-        <div class="charge__words">
           <h2 class="h2 charge__title" id="s5-title" data-split>Nothing goes out <span class="mute">without your yes.</span></h2>
           <ol class="stmts">
             <li class="stmt" data-beat="0"><span class="stmt__n" aria-hidden="true">01</span><p class="stmt__p">It reads and advises. It acts only where you say so, in writing.</p></li>
             <li class="stmt" data-beat="1"><span class="stmt__n" aria-hidden="true">02</span><p class="stmt__p">Coming next: it drafts the chaser or the win-back email. Nothing goes out without your yes.</p></li>
             <li class="stmt" data-beat="2"><span class="stmt__n" aria-hidden="true">03</span><p class="stmt__p">Money leaving your business always needs your own yes, paid from your own bank or Xero. Never by us.</p></li>
           </ol>
-        </div>
 
         <div class="charge__side">
           <div class="yes" data-beat="1">
@@ -672,7 +681,6 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
 <script src="components/orb3d/orb3d.js"></script>
 <script src="components/tiles3d/tiles3d.js"></script>
 <script src="sig-core.js"></script>
