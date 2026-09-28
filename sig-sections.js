@@ -346,15 +346,15 @@
   /* ---------- price ---------- */
   S.price = function () {
     var num = $('.price__num');
-    if (!num) return;
-    var odo = S.makeOdo(num);
+    var odo = num ? S.makeOdo(num) : null;   // 1.15: the beta card has no price number
     var big = $('.price__big');
+    if (!big) return;
     S.tilt(big, { target: big, max: 3, sheen: $('.mc__sheen', big) });
     var t = gsap.timeline({ paused: true });
-    t.add(function () { odo.play({ duration: 1.7, stagger: 0.12 }); }, 0)
+    t.add(function () { if (odo) odo.play({ duration: 1.7, stagger: 0.12 }); }, 0)
       .fromTo('.price__unit', { autoAlpha: 0, y: 18 }, { autoAlpha: 1, y: 0, duration: 0.9, ease: 'expo.out' }, 0.5)
       .fromTo('.price__deck', { autoAlpha: 0, scale: 0.8, rotation: -8, y: 20 }, { autoAlpha: 1, scale: 1, rotation: 0, y: 0, duration: 1.2, ease: 'expo.out' }, 0.3)
-      .fromTo('.info__rows > div, .info__list li, .info__cta', { autoAlpha: 0, y: 14 }, { autoAlpha: 1, y: 0, duration: 0.7, ease: 'power3.out', stagger: 0.06 }, 0.5);
+      .fromTo('.info__lede, .info__list li, .info__cta', { autoAlpha: 0, y: 14 }, { autoAlpha: 1, y: 0, duration: 0.7, ease: 'power3.out', stagger: 0.06 }, 0.5);
     ScrollTrigger.create({ trigger: '.price__grid', start: 'top 80%', once: true, onEnter: function () { t.play(); } });
   };
 
