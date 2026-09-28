@@ -927,3 +927,6 @@ html:not(.js) .hero__figure,.rm .hero__figure{align-self:end;justify-self:end;wi
 @container (max-width:560px){.duo__tab{font-size:10px;letter-spacing:.08em}.mcv{padding:14px}.mcv__st{display:none}}
 .mcv__night{display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px;padding:12px 14px;border-radius:14px;background:#f6f6f4}
 .mcv__night .label{margin:0}.mcv__nt{margin:0;font-size:14px;color:var(--ink)}.mcv__night .st{font-size:10px}
+.mcv__ask{display:flex;align-items:center;justify-content:space-between;height:40px;padding:0 12px;border-radius:10px;box-shadow:inset 0 0 0 1px var(--line);background:#fff;color:#8f8f8f;font-size:14px}
+.mcv__ask i{width:26px;height:26px;border-radius:7px;background:var(--ink)}
+.mcv__note{margin-top:auto}
