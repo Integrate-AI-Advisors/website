@@ -165,8 +165,8 @@
     function click() {
       clickText();
       var tl = gsap.timeline();
-      tl.to(one, { scale: 1.08, duration: 0.12, ease: 'power2.out', overwrite: 'auto' }, 0)
-        .to(one, { scale: 1, duration: 0.8, ease: 'elastic.out(1, 0.5)' }, 0.12)
+      tl.to(one, { scale: 1.04, duration: 0.22, ease: 'sine.out', overwrite: 'auto' }, 0)
+        .to(one, { scale: 1, duration: 0.6, ease: 'sine.inOut' }, 0.22)
         .fromTo(ring, { autoAlpha: 1, scale: 1 }, { scale: 1.8, autoAlpha: 0, duration: 0.9, ease: 'power3.out', immediateRender: false }, 0)
         .add(unfold, 0.26);
     }
@@ -213,27 +213,28 @@
       gsap.set(endDot, { scale: 0 });
       gsap.set(one, { autoAlpha: 0 });
 
+      // 1.3: the exploded tilt eases in while the tile opens (1.2 jumped to it in one frame: the jerk)
+      bodyLayers.forEach(function (l) { gsap.set(l, { z: (+l.getAttribute('data-z') || 0) * 1.2, y: -(+l.getAttribute('data-z') || 0) * 0.1 }); });
       var u = gsap.timeline();
-      u.to(clip, { t: 0, r: 0, b: 0, l: 0, rad: 28, duration: 0.85, ease: 'expo.inOut', onUpdate: clip.apply }, 0)
-        .to(orb, { x: 0, y: 0, scale: 1, duration: 0.85, ease: 'expo.inOut' }, 0)
+      u.to(clip, { t: 0, r: 0, b: 0, l: 0, rad: 28, duration: 1.0, ease: 'power3.inOut', onUpdate: clip.apply }, 0)
+        .to(orb, { x: 0, y: 0, scale: 1, duration: 1.0, ease: 'power3.inOut' }, 0)
+        .fromTo(figure, { rotationX: 0, rotationY: 0 }, { rotationX: 12, rotationY: -10, duration: 1.0, ease: 'sine.inOut' }, 0)
+        .fromTo(head, { z: 0 }, { z: 24, duration: 1.0, ease: 'sine.inOut' }, 0)
         .to(headBits, { autoAlpha: 1, y: 0, duration: 0.6, ease: 'power3.out', stagger: 0.08 }, 0.55)
         .add(function () {
           clip.clear();
-          // exploded view: the layers hang apart in depth, then snap flat
-          gsap.set(figure, { rotationX: 24, rotationY: -20 });
-          bodyLayers.forEach(function (l) { gsap.set(l, { z: (+l.getAttribute('data-z') || 0) * 1.5, y: -(+l.getAttribute('data-z') || 0) * 0.12 }); });
-          gsap.set(head, { z: 30 });
-          gsap.to(bodyLayers, { autoAlpha: 1, duration: 0.35, ease: 'power2.out', stagger: 0.035 });
-          gsap.to(figure, { rotationX: 0, rotationY: 0, duration: 1.35, ease: 'expo.out', delay: 0.18 });
-          gsap.to(bodyLayers.concat(head), { z: 0, y: 0, duration: 1.2, ease: 'expo.out', delay: 0.28, stagger: 0.03 });
-        }, 0.82)
+          // exploded view: the layers fade in apart in depth, then glide flat
+          gsap.to(bodyLayers, { autoAlpha: 1, duration: 0.5, ease: 'sine.out', stagger: 0.04 });
+          gsap.to(figure, { rotationX: 0, rotationY: 0, duration: 1.6, ease: 'power2.inOut', delay: 0.05 });
+          gsap.to(bodyLayers.concat(head), { z: 0, y: 0, duration: 1.5, ease: 'power2.inOut', delay: 0.1, stagger: 0.03 });
+        }, 1.0)
         .add(function () { odoMoney.play({ duration: 1.1, stagger: 0.06 }); S.countUp(sysCount, 1.1); }, 0.95)
         .to(cclip, { r: 0, duration: 1.1, ease: 'power2.inOut', onUpdate: cclip.apply, onComplete: function () { cclip.clear(); } }, 1.0)
         .to(segs, { scaleX: 1, duration: 0.9, ease: 'expo.out', stagger: 0.08 }, 1.05)
-        .to(endDot, { scale: 1, duration: 0.6, ease: 'back.out(2.4)' }, 1.9)
+        .to(endDot, { scale: 1, duration: 0.6, ease: 'back.out(1.4)' }, 2.0)
         .to(caption, { autoAlpha: 1, duration: 0.6 }, 1.3)
         .add(function () { S.switchOn(signals); }, 2.0)
-        .add(arrived, 2.3);
+        .add(arrived, 2.75);
     }
 
     /* ---- after arrival: pointer tilt, then the hero stays gently alive ---- */
