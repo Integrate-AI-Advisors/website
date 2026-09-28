@@ -119,7 +119,7 @@ html:not(.js) .mc__sweep,.rm .mc__sweep{display:none}
 /* ---------- nav: the dark deck tile that grows into a bar ---------- */
 .nav{position:sticky;top:0;z-index:50;padding:14px 0 0;pointer-events:none}
 .js:not(.rm) .nav{position:fixed;left:0;right:0}
-.nav__bar{position:relative;display:flex;align-items:center;gap:14px;width:min(calc(100% - 32px),1240px);height:60px;margin:0 auto;padding:0 8px}
+.nav__bar{position:relative;display:flex;align-items:center;gap:14px;width:min(calc(100% - 2 * var(--gutter)),calc(var(--max) - 2 * var(--gutter)));height:60px;margin:0 auto;padding:0 8px}
 .nav__bg{position:absolute;inset:0;border-radius:20px;background:var(--deck);box-shadow:inset 0 0 0 1px rgba(255,255,255,.06),inset 0 1px 0 rgba(255,255,255,.07),0 18px 40px -20px rgba(0,0,0,.55);overflow:hidden}
 .nav__progress{position:absolute;left:24px;right:24px;bottom:0;height:1px;background:linear-gradient(90deg,rgba(255,255,255,.1),rgba(255,255,255,.7));transform-origin:0 50%;transform:scaleX(var(--p,0))}
 .nav__brand{position:relative;display:inline-flex;align-items:center;gap:12px;text-decoration:none;border-radius:14px;pointer-events:auto}
