@@ -144,3 +144,20 @@ qa/shot.sh ph "t=2.4&dive=0.6" 520,844 qa-phone.html     # true 390 px layout (h
 The helper uses its own profile in this folder and SwiftShader WebGL (headless Chrome on this Mac does not exit
 after a GPU screenshot, so the helper kills it once the PNG is written). Checked: desktop and 390 px phone, both
 themes, pointer turn, pulse, reduced motion, every dive stage, no console errors.
+
+## Signal Colour additions (version 1.0.0-colour)
+
+This copy lives in `variants/signal-colour/`. Two optional extras; without them it renders exactly as 1.0.
+
+- **`tint`** (new option): `IAOrb3D.create(el, { tint: { glint: '#FFF0D6', rim: '#9CCFD9', bounce: '#hex', amount: 0.72 } })`.
+  The bead's light is split into body, glint (key specular and studio reflection), rim (the back light on the
+  shadow side, dark theme) and bounce (paper bounce, paper theme); each light term is multiplied by its tint,
+  mixed toward white by `1 - amount`. Absent: white light. When the option is absent the component reads
+  `window.IA_COLOUR.orb3d.tint`.
+- **Coloured ripples:** `orb.pulse(strength, angle, colour)` takes an optional sRGB hex. The ripple's beads take
+  that hue, lit by their own light (up to 85% at the crest, never in reduced motion, never on the landed grid),
+  then fade back to silver. Without a colour the ripple is the 1.0 greyscale brightening.
+- **Shader change:** a fourth per-bead attribute `iD` (ripple colour rgb, amount; 16 floats per bead instead of 12)
+  and three uniforms `uGlint`, `uRim`, `uBounce`. `renderNow({ pulse: { colour } })` freezes a coloured ripple for QA.
+- The page's `colour.js` wraps `IAOrb3D.create` so that a ripple from the scene's orbit takes the colour of the
+  tool pill on that side (money green, sales blue, operations sea, customers amber).

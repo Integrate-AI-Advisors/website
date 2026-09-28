@@ -1,6 +1,10 @@
 /* IntegrateAI · tiles3d · "Twenty dashboards become one" as a real 3D scene.
    Global: IATiles3D. Needs three@0.149.0 (UMD, global THREE) and loads it itself when absent.
-   Greyscale only. One canvas, 20 tiles + 1 deck + 566 orb dots. See README.md for the API. */
+   One canvas, 20 tiles + 1 deck + 566 orb dots. See README.md for the API.
+   Signal Colour edition (1.1-c): adds an optional `palette` (per-tile finish and accent ink, extra finishes,
+   including tinted ceramics, coloured glass and anodised metals). With no palette it renders exactly as 1.0:
+   greyscale. The palette comes from opts.palette, or from window.IA_COLOUR.tiles3d when the page sets one.
+   The deck and its orb always stay greyscale (the logo). */
 (function (root) {
   'use strict';
 
@@ -104,6 +108,33 @@
     hatch:     { color: '#f6f6f4', metal: 0, rough: 0.55, cc: 0.25, ccr: 0.35, env: 'bright', envI: 1.0, ink: '#18181a', inkR: 0.75, pat: '#c9c9c6', patR: 0.85, patAmt: 1 },
     frost:     { color: '#ffffff', metal: 0, rough: 0.3, cc: 1, ccr: 0.12, env: 'bright', envI: 1.0, ink: '#18181a', inkR: 0.62, opacity: 0.58, edge: 1, shadow: 0.5 }
   };
+  // Signal Colour: finishes a palette can use by name (never used unless a palette asks for them).
+  // `accent` inks the live glyph (bars, lines, dots) in its own colour; `glow` lets a glass body light itself a
+  // little, as coloured glass does. Colours are sRGB hex, brand hues only (green #3E8E6B, blue #4A7FC0,
+  // amber #BA7F27, and their tints and shades).
+  var FIN_COLOUR = {
+    // tinted ceramic: soft pastel glaze, the glyph in the hue, the label a deep shade of it
+    ceramicGreen: { color: '#c0e2d0', metal: 0, rough: 0.34, cc: 1, ccr: 0.08, sheen: 0.3, glow: 0.05, env: 'bright', envI: 1.0, ink: '#1c4d39', inkR: 0.6, accent: '#2c7a58' },
+    ceramicBlue:  { color: '#c5d9f3', metal: 0, rough: 0.34, cc: 1, ccr: 0.08, sheen: 0.3, glow: 0.05, env: 'bright', envI: 1.0, ink: '#1f3b62', inkR: 0.6, accent: '#3a67a0' },
+    ceramicSea:   { color: '#c3dde3', metal: 0, rough: 0.34, cc: 1, ccr: 0.08, sheen: 0.3, glow: 0.05, env: 'bright', envI: 1.0, ink: '#1d4049', inkR: 0.6, accent: '#366c78' },
+    ceramicAmber: { color: '#f6d7a0', metal: 0, rough: 0.34, cc: 1, ccr: 0.08, sheen: 0.3, glow: 0.05, env: 'bright', envI: 1.0, ink: '#553a10', inkR: 0.6, accent: '#a86f1c' },
+    // coloured glass: a jewel body lit from within (not tone mapped, so the face is the brand hue itself),
+    // dark studio reflections for crisp strip highlights, pale self-lit ink
+    glassGreen:   { color: '#3e8e6b', metal: 0, rough: 0.08, cc: 1, ccr: 0.03, env: 'dark', envI: 1.0, glow: 0.66, tm: false, ink: '#f3fbf7', inkR: 0.5, emit: 0.62, grad: 0.2 },
+    glassBlue:    { color: '#4a7fc0', metal: 0, rough: 0.08, cc: 1, ccr: 0.03, env: 'dark', envI: 1.0, glow: 0.66, tm: false, ink: '#f4f8fd', inkR: 0.5, emit: 0.62, grad: 0.2 },
+    glassSea:     { color: '#448796', metal: 0, rough: 0.08, cc: 1, ccr: 0.03, env: 'dark', envI: 1.0, glow: 0.66, tm: false, ink: '#f3f9fb', inkR: 0.5, emit: 0.62, grad: 0.2 },
+    glassAmber:   { color: '#ba7f27', metal: 0, rough: 0.08, cc: 1, ccr: 0.03, env: 'dark', envI: 1.0, glow: 0.7, tm: false, ink: '#fffaf0', inkR: 0.5, emit: 0.62, grad: 0.2 },
+    // frosted tinted glass: translucent, the paper shows through
+    frostGreen:   { color: '#9fd0b8', metal: 0, rough: 0.28, cc: 1, ccr: 0.12, env: 'bright', envI: 1.0, ink: '#163f2e', inkR: 0.62, opacity: 0.74, edge: 1, shadow: 0.55, accent: '#2c7a58' },
+    frostBlue:    { color: '#a8c6ec', metal: 0, rough: 0.28, cc: 1, ccr: 0.12, env: 'bright', envI: 1.0, ink: '#1a3458', inkR: 0.62, opacity: 0.74, edge: 1, shadow: 0.55, accent: '#3a67a0' },
+    frostSea:     { color: '#a3cbd4', metal: 0, rough: 0.28, cc: 1, ccr: 0.12, env: 'bright', envI: 1.0, ink: '#183a42', inkR: 0.62, opacity: 0.74, edge: 1, shadow: 0.55, accent: '#366c78' },
+    frostAmber:   { color: '#f5c266', metal: 0, rough: 0.28, cc: 1, ccr: 0.12, env: 'bright', envI: 1.0, glow: 0.06, ink: '#4a300a', inkR: 0.62, opacity: 0.8, edge: 1, shadow: 0.55, accent: '#9a6418' },
+    // anodised aluminium: tinted metal, the chrome studio
+    aluGreen:     { color: '#b3dac7', metal: 1, rough: 0.22, env: 'chrome', dome: 1, envI: 1.0, ink: '#12321f', inkR: 0.62 },
+    aluBlue:      { color: '#bcd2f0', metal: 1, rough: 0.22, env: 'chrome', dome: 1, envI: 1.0, ink: '#14284a', inkR: 0.62 },
+    aluSea:       { color: '#b6d4dc', metal: 1, rough: 0.22, env: 'chrome', dome: 1, envI: 1.0, ink: '#13303a', inkR: 0.62 },
+    aluAmber:     { color: '#eed2a0', metal: 1, rough: 0.22, env: 'chrome', dome: 1, envI: 1.0, ink: '#3b2606', inkR: 0.62 }
+  };
 
   var MODE = { STATIC: 0, VBARS: 1, HBARS: 2, HGROW: 3, DRAW: 4, BLINK_DPD: 5, BLINK_CAL: 6, SPIN: 7 };
 
@@ -170,10 +201,11 @@
   function trackedWidth(g, text, track) { var w = 0; for (var i = 0; i < text.length; i++) w += g.measureText(text[i]).width + (i < text.length - 1 ? track : 0); return w; }
 
   // One atlas cell: R static ink, G animated ink, B animation ramp, A surface pattern.
-  function drawCell(L, tile, C, fs, rng) {
+  function drawCell(L, tile, C, fs, rng, finDefs) {
     var R = L.R, A = L.A;
     var pad = Math.round(C * 0.145);
-    var fin = tile.finish;
+    var fd = finDefs && finDefs[tile.finish];
+    var fin = (fd && fd.pattern) || tile.finish;
     // surface pattern, clipped to the flat face
     A.save();
     rr(A, C * 0.085, C * 0.085, C * 0.83, C * 0.83, C * 0.2); A.clip();
@@ -220,7 +252,7 @@
     return { gx: gx / C, gyTop: 1 - gy / C, gw: gw / C, gh: gh / C, vb: vb, mode: gdef.mode || 0 };
   }
 
-  function buildAtlas(THREE, C, fs) {
+  function buildAtlas(THREE, C, fs, defs, finDefs) {
     var cols = 5, rows = 4, W = cols * C, Ht = rows * C;
     var data = new Uint8Array(W * Ht * 4);
     var rng = mulberry(7);
@@ -230,9 +262,9 @@
       L[n] = c.getContext('2d', { willReadFrequently: true });
     });
     var meta = [];
-    TILES.forEach(function (tile, i) {
+    (defs || TILES).forEach(function (tile, i) {
       names.forEach(function (n) { var g = L[n]; g.setTransform(1, 0, 0, 1, 0, 0); g.fillStyle = '#000'; g.fillRect(0, 0, C, C); });
-      var info = drawCell(L, tile, C, fs, rng);
+      var info = drawCell(L, tile, C, fs, rng, finDefs);
       var col = i % cols, row = Math.floor(i / cols);
       var ch = names.map(function (n) { return L[n].getImageData(0, 0, C, C).data; });
       for (var y = 0; y < C; y++) {
@@ -462,6 +494,7 @@
   var TILE_HEAD = [
     'uniform sampler2D uAtlas; uniform vec4 uCell; uniform vec4 uGBox; uniform float uVb;',
     'uniform vec3 uInk; uniform vec3 uPat; uniform vec3 uInkEmit; uniform vec4 uMat; uniform float uEdge;',
+    'uniform vec3 uInk2; uniform vec3 uInkEmit2; uniform float uGrad;',
     'uniform float uTime; uniform float uMode; uniform float uLive; uniform float uPhase;',
     'varying vec2 vFaceUv; varying float vFrontN;',
     'float iaOut(float x){ return 1.0 - pow(1.0 - x, 3.0); }',
@@ -490,10 +523,13 @@
     'vec4 iaT = texture2D(uAtlas, uCell.xy + iaUv * uCell.zw);',
     'float iaFront = smoothstep(0.55, 0.9, vFrontN);',
     'vec2 iaG = vec2((iaUv.x - uGBox.x) / uGBox.z * 64.0, (uGBox.y - iaUv.y) / uGBox.w * uVb);',
-    'float iaInk = clamp(max(iaT.r, iaAnim(iaT, iaG)), 0.0, 1.0) * iaFront * uMat.z;',
+    'float iaA = iaAnim(iaT, iaG);',
+    'float iaInk = clamp(max(iaT.r, iaA), 0.0, 1.0) * iaFront * uMat.z;',
+    // the live glyph (G channel) may carry its own accent ink; labels and static marks (R) keep the tile ink
+    'float iaW2 = clamp(iaA / max(iaT.r + iaA, 0.001), 0.0, 1.0);',
     'float iaPat = iaT.a * iaFront * uMat.w;',
     'diffuseColor.rgb = mix(diffuseColor.rgb, uPat, iaPat);',
-    'diffuseColor.rgb = mix(diffuseColor.rgb, uInk, iaInk);',
+    'diffuseColor.rgb = mix(diffuseColor.rgb, mix(uInk, uInk2, iaW2), iaInk);',
     'diffuseColor.a = mix(diffuseColor.a, 1.0, max(iaInk, uEdge * (1.0 - smoothstep(0.3, 0.97, vFrontN)) * 0.85));'].join('\n');
 
   function patchTile(THREE, m, u) {
@@ -508,11 +544,35 @@
         .replace('#include <map_fragment>', TILE_MAP)
         .replace('#include <roughnessmap_fragment>', '#include <roughnessmap_fragment>\nroughnessFactor = mix(roughnessFactor, uMat.y, iaPat);\nroughnessFactor = mix(roughnessFactor, uMat.x, iaInk);')
         .replace('#include <metalnessmap_fragment>', '#include <metalnessmap_fragment>\nmetalnessFactor *= (1.0 - iaInk);')
-        .replace('#include <emissivemap_fragment>', '#include <emissivemap_fragment>\ntotalEmissiveRadiance += uInkEmit * iaInk;')
+        .replace('#include <emissivemap_fragment>', '#include <emissivemap_fragment>\ntotalEmissiveRadiance *= 1.0 + uGrad * (1.0 - 2.0 * clamp(vFaceUv.y, 0.0, 1.0));\ntotalEmissiveRadiance += mix(uInkEmit, uInkEmit2, iaW2) * iaInk;')
         .replace('#include <lights_physical_fragment>', '#include <lights_physical_fragment>\nmaterial.specularColor = mix(material.specularColor, material.specularColor * 0.1, iaInk);\nmaterial.specularF90 = mix(material.specularF90, 0.12, iaInk);\n#ifdef USE_CLEARCOAT\nmaterial.clearcoat *= (1.0 - 0.9 * iaInk);\n#endif');
       sh.fragmentShader = f;
     };
-    m.customProgramCacheKey = function () { return 'ia-tile-1'; };
+    m.customProgramCacheKey = function () { return 'ia-tile-c1'; };
+  }
+
+  /* ------------------------------------------------------------------ palette (Signal Colour) */
+  // palette = { finishes: { key: finishDef }, tiles: { 'Xero': 'glassGreen' | { finish, accent } } }
+  // opts.palette wins; otherwise window.IA_COLOUR.tiles3d; null or absent = the greyscale 1.0 look.
+  function resolvePalette(opts) {
+    if (opts.palette !== undefined) return opts.palette || null;
+    var g = root.IA_COLOUR;
+    return (g && g.tiles3d) || null;
+  }
+  function tileDefs(pal) {
+    var fin = {}, k;
+    for (k in FIN) fin[k] = FIN[k];
+    for (k in FIN_COLOUR) fin[k] = FIN_COLOUR[k];
+    if (pal && pal.finishes) for (k in pal.finishes) fin[k] = pal.finishes[k];
+    var defs = TILES.map(function (t) {
+      var d = { name: t.name, finish: t.finish, glyph: t.glyph, accent: null };
+      var o = pal && pal.tiles ? pal.tiles[t.name] : null;
+      if (typeof o === 'string') d.finish = o;
+      else if (o) { if (o.finish) d.finish = o.finish; if (o.accent) d.accent = o.accent; }
+      if (!fin[d.finish]) d.finish = t.finish;
+      return d;
+    });
+    return { fin: fin, defs: defs };
   }
 
   /* ------------------------------------------------------------------ the component */
@@ -597,7 +657,9 @@
     var tilePx = this.tileWorld / this._upp(0.8);
     var cellPx = clamp(192, 384, Math.round(tilePx * this.dpr * 1.25 / 32) * 32);
     var fs = clamp(0.1, 0.135, 11.5 / Math.max(40, tilePx));
-    this.atlas = buildAtlas(THREE, cellPx, fs);
+    var td = tileDefs(resolvePalette(this.opts));
+    this.fin = td.fin; this.defs = td.defs;
+    this.atlas = buildAtlas(THREE, cellPx, fs, this.defs, this.fin);
     this.atlas.tex.anisotropy = Math.min(8, r.capabilities.getMaxAnisotropy());
 
     // shared uniforms
@@ -610,7 +672,7 @@
     this.deckGeo = slabGeometry(THREE, { r: 0.3, n: 2, bevel: 0.06, depth: 0.14, dome: 0, ns: 16, bs: 7, cap: 2 });
 
     // tiles
-    this.tiles = TILES.map(function (def, i) { return self._makeTile(def, i); });
+    this.tiles = this.defs.map(function (def, i) { return self._makeTile(def, i); });
 
     // deck: black glass with the brand radial as its own light (tone mapping off so it matches the DOM deck)
     var dc = document.createElement('canvas'); dc.width = dc.height = 256;
@@ -682,7 +744,7 @@
   };
 
   P._makeTile = function (def, i) {
-    var THREE = this.THREE, F = FIN[def.finish], meta = this.atlas.meta[i];
+    var THREE = this.THREE, F = this.fin[def.finish] || FIN[def.finish], meta = this.atlas.meta[i];
     var m = new THREE.MeshPhysicalMaterial({
       color: this.lin(F.color), metalness: F.metal, roughness: F.rough,
       clearcoat: F.cc || 0, clearcoatRoughness: F.ccr || 0,
@@ -690,9 +752,12 @@
     });
     if (F.sheen) { m.sheen = F.sheen; m.sheenColor = new THREE.Color(1, 1, 1); m.sheenRoughness = 0.6; }
     if (F.opacity) { m.transparent = true; m.opacity = F.opacity; m.depthWrite = true; }
+    if (F.glow) m.emissive.copy(this.lin(F.color)).multiplyScalar(F.glow);   // coloured glass lights itself
+    if (F.tm === false) m.toneMapped = false;                                // its face is the brand hue, exactly
     var mf = m.clone();                     // transparent twin, used only while a tile fades in
     mf.transparent = true; mf.depthWrite = true; mf.opacity = 0;
     var emit = this.lin(F.ink).multiplyScalar(F.emit || 0);
+    var acc = this.lin(def.accent || F.accent || F.ink), emit2 = acc.clone().multiplyScalar(F.emit || 0);
     var u = {
       uAtlas: { value: this.atlas.tex },
       uCell: { value: new THREE.Vector4(meta.cell[0], meta.cell[1], meta.cell[2], meta.cell[3]) },
@@ -701,6 +766,9 @@
       uInk: { value: this.lin(F.ink) },
       uPat: { value: this.lin(F.pat || F.color) },
       uInkEmit: { value: new THREE.Vector3(emit.r, emit.g, emit.b) },
+      uInk2: { value: acc },
+      uInkEmit2: { value: new THREE.Vector3(emit2.r, emit2.g, emit2.b) },
+      uGrad: { value: F.grad || 0 },
       uMat: { value: new THREE.Vector4(F.inkR, F.patR || F.rough, 1, F.patAmt || 0) },
       uEdge: { value: F.edge || 0 },
       uTime: this.uTime, uLive: this.uLive,
@@ -1387,7 +1455,8 @@
   }
 
   root.IATiles3D = {
-    version: '1.0.0',
+    version: '1.1.0-colour',
+    FINISHES: Object.keys(FIN).concat(Object.keys(FIN_COLOUR)),
     supported: supported,
     TILES: TILES.map(function (t) { return t.name; }),
     create: function (el, opts) { return new Tiles3D(el, opts); }
