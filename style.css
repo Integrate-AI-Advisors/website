@@ -936,3 +936,5 @@ html:not(.js) .hero__figure,.rm .hero__figure{align-self:end;justify-self:end;wi
 .info__fn{margin:10px 0 var(--s4);font-size:13px;line-height:1.5;color:var(--muted-2)}
 .info__fn sup{font-size:.75em;line-height:0}
 .info__fn a{color:inherit;text-decoration:underline;text-underline-offset:2px}
+/* 1.10: registered company details in the footer */
+.foot__legal{margin-top:var(--s3);font-size:12px;line-height:1.6;color:var(--muted-2)}
