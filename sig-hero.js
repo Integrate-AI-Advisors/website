@@ -157,8 +157,11 @@
     // "1" rolls on into the headline
     function clickText() {
       hero.classList.remove('is-chaos');
+      // 1.4: always land on "1" (the 3D scene has fewer than 20 tiles at some sizes), then clear the numeral away
+      gsap.killTweensOf(cs); cs.p = 19; renderCount();
       var tl = gsap.timeline();
       tl.to(strip, { yPercent: -5, duration: 0.42, ease: 'power3.in' }, 0.1)
+        .to(strip.parentNode, { autoAlpha: 0, duration: 0.2 }, 0.5)
         .to(l2w, { yPercent: 0, duration: 1.05, ease: 'expo.out', stagger: 0.09 }, 0.4)
         .to(l1, { color: '#6a6a6e', duration: 1, ease: 'power2.out' }, 0.35);
     }
@@ -181,7 +184,7 @@
       t3.collapse({
         settle: 0.26,
         onImpact: function (i, n) {
-          if (i < n) gsap.to(cs, { p: Math.min(19, i), duration: 0.16, ease: 'power2.out', overwrite: 'auto', onUpdate: renderCount });
+          if (i < n) gsap.to(cs, { p: Math.min(19, Math.round(19 * i / n)), duration: 0.16, ease: 'power2.out', overwrite: 'auto', onUpdate: renderCount });
           else clickText();
         },
         onDone: function () {
