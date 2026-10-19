@@ -945,3 +945,12 @@ html:not(.js) .hero__figure,.rm .hero__figure{align-self:end;justify-self:end;wi
 /* 1.15: the beta card (no price on the site) */
 .price__beta{font-weight:600;font-size:clamp(48px,5.6vw,96px);line-height:.95;letter-spacing:-.05em;color:var(--ink);text-wrap:balance}
 .info__lede{margin:0 0 var(--s3);font-size:clamp(18px,1.4vw,22px);line-height:1.4;color:var(--ink);text-wrap:pretty}
+
+/* 2.0-u3: boot safety. If the hero's script fails, sig-main.js adds .hero--still and the hero shows its still
+   poster (the reduced-motion look) instead of staying hidden. Nothing here applies on a normal load. */
+.js:not(.rm) .hero--still .hero__copy,.js:not(.rm) .hero--still .hero__stage,.js:not(.rm) .hero--still .hero__figure,.js:not(.rm) .hero--still .mc__event{visibility:visible}
+.js:not(.rm) .hero--still .hero__count,.js:not(.rm) .hero--still .hero__far,.js:not(.rm) .hero--still .tiles3d-mount,.js:not(.rm) .hero--still .mc__sweep{display:none}
+.js:not(.rm) .hero--still .hero__figure{align-self:end;justify-self:end;width:min(86%,540px);margin-top:36%;transform:translateX(3%)}
+@media (max-width:759px){
+  .js:not(.rm) .hero--still .hero__figure{width:94%;margin-top:42%;transform:none}
+}
