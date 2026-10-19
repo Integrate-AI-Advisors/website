@@ -35,6 +35,12 @@
       });
     }, wait);
   };
+  // 2.0-u3 boot safety: take the loading screen away at once, whatever state it is in (sig-main.js uses it).
+  S.preloaderKill = function () {
+    var el = pre ? pre.el : $('.pre');
+    if (pre) { gsap.killTweensOf(pre.deck); if (pre.orb) pre.orb.stop(); pre = null; }
+    if (el) el.remove();
+  };
 
   /* ---------- hero ---------- */
   S.hero = function () {
