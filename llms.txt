@@ -1,0 +1,24 @@
+# IntegrateAI
+
+> IntegrateAI gives specialty coffee roasters one mission control. It brings sales, finance, roasting, delivery and customer data from the tools a roaster already uses into one screen, checks it every night, and tells the owner each weekday morning what changed and what needs attention.
+
+IntegrateAI is a UK company. It is in beta and sells to specialty coffee roasters. All names and figures shown on the website are invented samples.
+
+## What it does
+
+- One screen: sales, money, roasting, delivery and emails joined up in one place, from tools such as Xero, Shopify, Skio, Stripe, Cropster, Royal Mail, DPD, Klaviyo and Basecamp.
+- An AI team: six AI advisers covering finance, revenue, operations, marketing, technology and the overall business.
+- A morning brief: every weekday morning, a short brief in Slack and on the owner's mission control.
+- Questions answered: owners can ask a question in Slack or on their mission control and usually get an answer in about a minute.
+- Nightly checks: late invoices, quiet accounts and subscriptions at risk.
+
+## Pages
+
+- [Home](https://www.integrate-ai.uk/): what IntegrateAI is, how it works, the AI team and the four goals for roasters.
+- [Privacy](https://www.integrate-ai.uk/privacy): how personal data is handled.
+- [Terms](https://www.integrate-ai.uk/terms): terms of service.
+- [Fair use](https://www.integrate-ai.uk/fair-use): fair use policy.
+
+## Contact
+
+Book a 30 minute walkthrough from the link on the home page.
